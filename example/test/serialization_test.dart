@@ -8,107 +8,208 @@ import 'package:convex_dart/src/rust/dart_value.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:convex_dart/src/rust/dart_value/conversion.dart';
-import 'package:api/src/convex/functions/tasks/query1.dart' as tasksQuery1;
-import 'package:api/src/convex/functions/tasks/query2.dart' as tasksQuery2;
-import 'package:api/src/convex/functions/tasks/query3.dart' as tasksQuery3;
-import 'package:api/src/convex/functions/tasks/query4.dart' as tasksQuery4;
-import 'package:api/src/convex/functions/tasks/query5.dart' as tasksQuery5;
-import 'package:api/src/convex/functions/tasks/query6.dart' as tasksQuery6;
-import 'package:api/src/convex/functions/tasks/query7.dart' as tasksQuery7;
-import 'package:api/src/convex/functions/tasks/query9.dart' as tasksQuery9;
-import 'package:api/src/convex/functions/tasks/query10.dart' as tasksQuery10;
-import 'package:api/src/convex/functions/tasks/query11.dart' as tasksQuery11;
-import 'package:api/src/convex/functions/tasks/query13.dart' as tasksQuery13;
-import 'package:api/src/convex/functions/tasks/query14.dart' as tasksQuery14;
-import 'package:api/src/convex/functions/tasks/query15.dart' as tasksQuery15;
-import 'package:api/src/convex/functions/tasks/query16.dart' as tasksQuery16;
-import 'package:api/src/convex/functions/tasks/query17.dart' as tasksQuery17;
-import 'package:api/src/convex/functions/tasks/query18.dart' as tasksQuery18;
-import 'package:api/src/convex/functions/tasks/query19.dart' as tasksQuery19;
-import 'package:api/src/convex/functions/tasks/query20.dart' as tasksQuery20;
-import 'package:api/src/convex/functions/tasks/query21.dart' as tasksQuery21;
-import 'package:api/src/convex/functions/tasks/query22.dart' as tasksQuery22;
-import 'package:api/src/convex/functions/tasks/query24.dart' as tasksQuery24;
-import 'package:api/src/convex/functions/tasks/query25.dart' as tasksQuery25;
-import 'package:api/src/convex/functions/tasks/query26.dart' as tasksQuery26;
-import 'package:api/src/convex/functions/tasks/query27.dart' as tasksQuery27;
-import 'package:api/src/convex/functions/tasks/query28.dart' as tasksQuery28;
-import 'package:api/src/convex/functions/tasks/query29.dart' as tasksQuery29;
-import 'package:api/src/convex/functions/tasks/query30.dart' as tasksQuery30;
-import 'package:api/src/convex/functions/tasks/query31.dart' as tasksQuery31;
-import 'package:api/src/convex/functions/tasks/query32.dart' as tasksQuery32;
-import 'package:api/src/convex/functions/tasks/query33.dart' as tasksQuery33;
-import 'package:api/src/convex/functions/tasks/query35.dart' as tasksQuery35;
-import 'package:api/src/convex/functions/tasks/query36.dart' as tasksQuery36;
-import 'package:api/src/convex/functions/tasks/query37.dart' as tasksQuery37;
-import 'package:api/src/convex/functions/tasks/query38.dart' as tasksQuery38;
-import 'package:api/src/convex/functions/tasks/query39.dart' as tasksQuery39;
-import 'package:api/src/convex/functions/tasks/query40.dart' as tasksQuery40;
-import 'package:api/src/convex/functions/tasks/query41.dart' as tasksQuery41;
-import 'package:api/src/convex/functions/tasks/query42.dart' as tasksQuery42;
-import 'package:api/src/convex/functions/tasks/query43.dart' as tasksQuery43;
-import 'package:api/src/convex/functions/tasks/query44.dart' as tasksQuery44;
-import 'package:api/src/convex/functions/tasks/query45.dart' as tasksQuery45;
-import 'package:api/src/convex/functions/tasks/query58.dart' as tasksQuery58;
-import 'package:api/src/convex/functions/tasks/query59.dart' as tasksQuery59;
-import 'package:api/src/convex/functions/tasks/query60.dart' as tasksQuery60;
-import 'package:api/src/convex/functions/tasks/query61.dart' as tasksQuery61;
-import 'package:api/src/convex/functions/tasks/query62.dart' as tasksQuery62;
-import 'package:api/src/convex/functions/tasks/query63.dart' as tasksQuery63;
-import 'package:api/src/convex/functions/tasks/query64.dart' as tasksQuery64;
-import 'package:api/src/convex/functions/tasks/query65.dart' as tasksQuery65;
-import 'package:api/src/convex/functions/tasks/query66.dart' as tasksQuery66;
-import 'package:api/src/convex/functions/tasks/query67.dart' as tasksQuery67;
-import 'package:api/src/convex/functions/tasks/query69.dart' as tasksQuery69;
-import 'package:api/src/convex/functions/tasks/query70.dart' as tasksQuery70;
-import 'package:api/src/convex/functions/tasks/query71.dart' as tasksQuery71;
-import 'package:api/src/convex/functions/tasks/query72.dart' as tasksQuery72;
-import 'package:api/src/convex/functions/tasks/query73.dart' as tasksQuery73;
-import 'package:api/src/convex/functions/tasks/query74.dart' as tasksQuery74;
-import 'package:api/src/convex/functions/tasks/query75.dart' as tasksQuery75;
-import 'package:api/src/convex/functions/tasks/query76.dart' as tasksQuery76;
-import 'package:api/src/convex/functions/tasks/query77.dart' as tasksQuery77;
-import 'package:api/src/convex/functions/tasks/query78.dart' as tasksQuery78;
-import 'package:api/src/convex/functions/tasks/query79.dart' as tasksQuery79;
-import 'package:api/src/convex/functions/tasks/query81.dart' as tasksQuery81;
-import 'package:api/src/convex/functions/tasks/query82.dart' as tasksQuery82;
-import 'package:api/src/convex/functions/tasks/query83.dart' as tasksQuery83;
-import 'package:api/src/convex/functions/tasks/query84.dart' as tasksQuery84;
-import 'package:api/src/convex/functions/tasks/query85.dart' as tasksQuery85;
-import 'package:api/src/convex/functions/tasks/query86.dart' as tasksQuery86;
-import 'package:api/src/convex/functions/tasks/query87.dart' as tasksQuery87;
-import 'package:api/src/convex/functions/tasks/query88.dart' as tasksQuery88;
-import 'package:api/src/convex/functions/tasks/query89.dart' as tasksQuery89;
-import 'package:api/src/convex/functions/tasks/query90.dart' as tasksQuery90;
-import 'package:api/src/convex/functions/tasks/query92.dart' as tasksQuery92;
-import 'package:api/src/convex/functions/tasks/query93.dart' as tasksQuery93;
-import 'package:api/src/convex/functions/tasks/query94.dart' as tasksQuery94;
-import 'package:api/src/convex/functions/tasks/query95.dart' as tasksQuery95;
-import 'package:api/src/convex/functions/tasks/query96.dart' as tasksQuery96;
-import 'package:api/src/convex/functions/tasks/query97.dart' as tasksQuery97;
-import 'package:api/src/convex/functions/tasks/query98.dart' as tasksQuery98;
-import 'package:api/src/convex/functions/tasks/query100.dart' as tasksQuery100;
-import 'package:api/src/convex/functions/tasks/query101.dart' as tasksQuery101;
-import 'package:api/src/convex/functions/tasks/query102.dart' as tasksQuery102;
-import 'package:api/src/convex/functions/tasks/query103.dart' as tasksQuery103;
-import 'package:api/src/convex/functions/tasks/query104.dart' as tasksQuery104;
-import 'package:api/src/convex/functions/tasks/query105.dart' as tasksQuery105;
-import 'package:api/src/convex/functions/tasks/query106.dart' as tasksQuery106;
-import 'package:api/src/convex/functions/tasks/query107.dart' as tasksQuery107;
-import 'package:api/src/convex/functions/tasks/query111.dart' as tasksQuery111;
-import 'package:api/src/convex/functions/tasks/query112.dart' as tasksQuery112;
-import 'package:api/src/convex/functions/tasks/query113.dart' as tasksQuery113;
-import 'package:api/src/convex/functions/tasks/query114.dart' as tasksQuery114;
-import 'package:api/src/convex/functions/tasks/query115.dart' as tasksQuery115;
-import 'package:api/src/convex/functions/tasks/query116.dart' as tasksQuery116;
-import 'package:api/src/convex/functions/tasks/query117.dart' as tasksQuery117;
-import 'package:api/src/convex/functions/tasks/query118.dart' as tasksQuery118;
-import 'package:api/src/convex/functions/tasks/query119.dart' as tasksQuery119;
-import 'package:api/src/convex/functions/tasks/query120.dart' as tasksQuery120;
-import 'package:api/src/convex/functions/tasks/query121.dart' as tasksQuery121;
-import 'package:api/src/convex/functions/tasks/query122.dart' as tasksQuery122;
-import 'package:api/src/convex/functions/tasks/query123.dart' as tasksQuery123;
-import 'package:api/src/convex/functions/tasks/query124.dart' as tasksQuery124;
+import 'package:api/src/convex/functions/generic_functions/query1.dart'
+    as tasksQuery1;
+import 'package:api/src/convex/functions/generic_functions/query2.dart'
+    as tasksQuery2;
+import 'package:api/src/convex/functions/generic_functions/query3.dart'
+    as tasksQuery3;
+import 'package:api/src/convex/functions/generic_functions/query4.dart'
+    as tasksQuery4;
+import 'package:api/src/convex/functions/generic_functions/query5.dart'
+    as tasksQuery5;
+import 'package:api/src/convex/functions/generic_functions/query6.dart'
+    as tasksQuery6;
+import 'package:api/src/convex/functions/generic_functions/query7.dart'
+    as tasksQuery7;
+import 'package:api/src/convex/functions/generic_functions/query9.dart'
+    as tasksQuery9;
+import 'package:api/src/convex/functions/generic_functions/query10.dart'
+    as tasksQuery10;
+import 'package:api/src/convex/functions/generic_functions/query11.dart'
+    as tasksQuery11;
+import 'package:api/src/convex/functions/generic_functions/query13.dart'
+    as tasksQuery13;
+import 'package:api/src/convex/functions/generic_functions/query14.dart'
+    as tasksQuery14;
+import 'package:api/src/convex/functions/generic_functions/query15.dart'
+    as tasksQuery15;
+import 'package:api/src/convex/functions/generic_functions/query16.dart'
+    as tasksQuery16;
+import 'package:api/src/convex/functions/generic_functions/query17.dart'
+    as tasksQuery17;
+import 'package:api/src/convex/functions/generic_functions/query18.dart'
+    as tasksQuery18;
+import 'package:api/src/convex/functions/generic_functions/query19.dart'
+    as tasksQuery19;
+import 'package:api/src/convex/functions/generic_functions/query20.dart'
+    as tasksQuery20;
+import 'package:api/src/convex/functions/generic_functions/query21.dart'
+    as tasksQuery21;
+import 'package:api/src/convex/functions/generic_functions/query22.dart'
+    as tasksQuery22;
+import 'package:api/src/convex/functions/generic_functions/query24.dart'
+    as tasksQuery24;
+import 'package:api/src/convex/functions/generic_functions/query25.dart'
+    as tasksQuery25;
+import 'package:api/src/convex/functions/generic_functions/query26.dart'
+    as tasksQuery26;
+import 'package:api/src/convex/functions/generic_functions/query27.dart'
+    as tasksQuery27;
+import 'package:api/src/convex/functions/generic_functions/query28.dart'
+    as tasksQuery28;
+import 'package:api/src/convex/functions/generic_functions/query29.dart'
+    as tasksQuery29;
+import 'package:api/src/convex/functions/generic_functions/query30.dart'
+    as tasksQuery30;
+import 'package:api/src/convex/functions/generic_functions/query31.dart'
+    as tasksQuery31;
+import 'package:api/src/convex/functions/generic_functions/query32.dart'
+    as tasksQuery32;
+import 'package:api/src/convex/functions/generic_functions/query33.dart'
+    as tasksQuery33;
+import 'package:api/src/convex/functions/generic_functions/query35.dart'
+    as tasksQuery35;
+import 'package:api/src/convex/functions/generic_functions/query36.dart'
+    as tasksQuery36;
+import 'package:api/src/convex/functions/generic_functions/query37.dart'
+    as tasksQuery37;
+import 'package:api/src/convex/functions/generic_functions/query38.dart'
+    as tasksQuery38;
+import 'package:api/src/convex/functions/generic_functions/query39.dart'
+    as tasksQuery39;
+import 'package:api/src/convex/functions/generic_functions/query40.dart'
+    as tasksQuery40;
+import 'package:api/src/convex/functions/generic_functions/query41.dart'
+    as tasksQuery41;
+import 'package:api/src/convex/functions/generic_functions/query42.dart'
+    as tasksQuery42;
+import 'package:api/src/convex/functions/generic_functions/query43.dart'
+    as tasksQuery43;
+import 'package:api/src/convex/functions/generic_functions/query44.dart'
+    as tasksQuery44;
+import 'package:api/src/convex/functions/generic_functions/query45.dart'
+    as tasksQuery45;
+import 'package:api/src/convex/functions/generic_functions/query58.dart'
+    as tasksQuery58;
+import 'package:api/src/convex/functions/generic_functions/query59.dart'
+    as tasksQuery59;
+import 'package:api/src/convex/functions/generic_functions/query60.dart'
+    as tasksQuery60;
+import 'package:api/src/convex/functions/generic_functions/query61.dart'
+    as tasksQuery61;
+import 'package:api/src/convex/functions/generic_functions/query62.dart'
+    as tasksQuery62;
+import 'package:api/src/convex/functions/generic_functions/query63.dart'
+    as tasksQuery63;
+import 'package:api/src/convex/functions/generic_functions/query64.dart'
+    as tasksQuery64;
+import 'package:api/src/convex/functions/generic_functions/query65.dart'
+    as tasksQuery65;
+import 'package:api/src/convex/functions/generic_functions/query66.dart'
+    as tasksQuery66;
+import 'package:api/src/convex/functions/generic_functions/query67.dart'
+    as tasksQuery67;
+import 'package:api/src/convex/functions/generic_functions/query69.dart'
+    as tasksQuery69;
+import 'package:api/src/convex/functions/generic_functions/query70.dart'
+    as tasksQuery70;
+import 'package:api/src/convex/functions/generic_functions/query71.dart'
+    as tasksQuery71;
+import 'package:api/src/convex/functions/generic_functions/query72.dart'
+    as tasksQuery72;
+import 'package:api/src/convex/functions/generic_functions/query73.dart'
+    as tasksQuery73;
+import 'package:api/src/convex/functions/generic_functions/query74.dart'
+    as tasksQuery74;
+import 'package:api/src/convex/functions/generic_functions/query75.dart'
+    as tasksQuery75;
+import 'package:api/src/convex/functions/generic_functions/query76.dart'
+    as tasksQuery76;
+import 'package:api/src/convex/functions/generic_functions/query77.dart'
+    as tasksQuery77;
+import 'package:api/src/convex/functions/generic_functions/query78.dart'
+    as tasksQuery78;
+import 'package:api/src/convex/functions/generic_functions/query79.dart'
+    as tasksQuery79;
+import 'package:api/src/convex/functions/generic_functions/query81.dart'
+    as tasksQuery81;
+import 'package:api/src/convex/functions/generic_functions/query82.dart'
+    as tasksQuery82;
+import 'package:api/src/convex/functions/generic_functions/query83.dart'
+    as tasksQuery83;
+import 'package:api/src/convex/functions/generic_functions/query84.dart'
+    as tasksQuery84;
+import 'package:api/src/convex/functions/generic_functions/query85.dart'
+    as tasksQuery85;
+import 'package:api/src/convex/functions/generic_functions/query86.dart'
+    as tasksQuery86;
+import 'package:api/src/convex/functions/generic_functions/query87.dart'
+    as tasksQuery87;
+import 'package:api/src/convex/functions/generic_functions/query88.dart'
+    as tasksQuery88;
+import 'package:api/src/convex/functions/generic_functions/query89.dart'
+    as tasksQuery89;
+import 'package:api/src/convex/functions/generic_functions/query90.dart'
+    as tasksQuery90;
+import 'package:api/src/convex/functions/generic_functions/query92.dart'
+    as tasksQuery92;
+import 'package:api/src/convex/functions/generic_functions/query93.dart'
+    as tasksQuery93;
+import 'package:api/src/convex/functions/generic_functions/query94.dart'
+    as tasksQuery94;
+import 'package:api/src/convex/functions/generic_functions/query95.dart'
+    as tasksQuery95;
+import 'package:api/src/convex/functions/generic_functions/query96.dart'
+    as tasksQuery96;
+import 'package:api/src/convex/functions/generic_functions/query97.dart'
+    as tasksQuery97;
+import 'package:api/src/convex/functions/generic_functions/query98.dart'
+    as tasksQuery98;
+import 'package:api/src/convex/functions/generic_functions/query100.dart'
+    as tasksQuery100;
+import 'package:api/src/convex/functions/generic_functions/query101.dart'
+    as tasksQuery101;
+import 'package:api/src/convex/functions/generic_functions/query102.dart'
+    as tasksQuery102;
+import 'package:api/src/convex/functions/generic_functions/query103.dart'
+    as tasksQuery103;
+import 'package:api/src/convex/functions/generic_functions/query104.dart'
+    as tasksQuery104;
+import 'package:api/src/convex/functions/generic_functions/query105.dart'
+    as tasksQuery105;
+import 'package:api/src/convex/functions/generic_functions/query106.dart'
+    as tasksQuery106;
+import 'package:api/src/convex/functions/generic_functions/query107.dart'
+    as tasksQuery107;
+import 'package:api/src/convex/functions/generic_functions/query111.dart'
+    as tasksQuery111;
+import 'package:api/src/convex/functions/generic_functions/query112.dart'
+    as tasksQuery112;
+import 'package:api/src/convex/functions/generic_functions/query113.dart'
+    as tasksQuery113;
+import 'package:api/src/convex/functions/generic_functions/query114.dart'
+    as tasksQuery114;
+import 'package:api/src/convex/functions/generic_functions/query115.dart'
+    as tasksQuery115;
+import 'package:api/src/convex/functions/generic_functions/query116.dart'
+    as tasksQuery116;
+import 'package:api/src/convex/functions/generic_functions/query117.dart'
+    as tasksQuery117;
+import 'package:api/src/convex/functions/generic_functions/query118.dart'
+    as tasksQuery118;
+import 'package:api/src/convex/functions/generic_functions/query119.dart'
+    as tasksQuery119;
+import 'package:api/src/convex/functions/generic_functions/query120.dart'
+    as tasksQuery120;
+import 'package:api/src/convex/functions/generic_functions/query121.dart'
+    as tasksQuery121;
+import 'package:api/src/convex/functions/generic_functions/query122.dart'
+    as tasksQuery122;
+import 'package:api/src/convex/functions/generic_functions/query123.dart'
+    as tasksQuery123;
+import 'package:api/src/convex/functions/generic_functions/query124.dart'
+    as tasksQuery124;
 
 void main() {
   setUpAll(() async {

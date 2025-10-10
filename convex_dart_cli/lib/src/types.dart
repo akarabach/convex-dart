@@ -863,13 +863,14 @@ class JsObject extends JsType with JsObjectMappable {
       "($name as IMap<String, dynamic>$suffix)${dot}then(($argName) => (",
     );
     for (final entry in value.entries) {
+      // then(...) will only run if the map is not null
       if (entry.value.optional) {
         buffer.write(
-          "${dartSafeName(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: nullable)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
+          "${dartSafeName(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
         );
       } else {
         buffer.write(
-          "${dartSafeName(entry.key)}: ${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: nullable)},",
+          "${dartSafeName(entry.key)}: ${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)},",
         );
       }
     }
