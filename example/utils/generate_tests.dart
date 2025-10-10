@@ -1,4 +1,4 @@
-// Lagacy tests generation code which is no longer compatible with the new generation code.
+// Legacy tests generation code which is no longer compatible with the new generation code.
 // This code is kept here for reference only.
 
 // import 'dart:convert';

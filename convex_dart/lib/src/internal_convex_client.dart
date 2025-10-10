@@ -11,17 +11,17 @@ import 'package:convex_dart/src/task_queue.dart';
 /// The ConvexClient provides methods for executing queries, mutations, actions and
 /// managing real-time subscriptions with a Convex backend.
 ///
-/// A client class for interacting with Convex backend services
-/// Implements singleton pattern to ensure only one instance exists
+/// A client class for interacting with Convex backend services.
+/// Implements singleton pattern to ensure only one instance exists.
 class InternalConvexClient {
-  /// Private static instance for singleton pattern
+  /// Private static instance for singleton pattern.
   static InternalConvexClient? _instance;
 
-  /// The underlying mobile client that handles communication with Convex
+  /// The underlying mobile client that handles communication with Convex.
   late final MobileConvexClient _client;
 
-  /// Public getter to access singleton instance
-  /// Throws if accessed before initialization
+  /// Public getter to access singleton instance.
+  /// Throws if accessed before initialization.
   static InternalConvexClient get instance => _instance!;
 
   /// Sets the singleton instance of [InternalConvexClient].
@@ -30,11 +30,11 @@ class InternalConvexClient {
   /// which can be useful for testing or advanced use cases.
   static set instance(InternalConvexClient value) => _instance = value;
 
-  /// Initializes the ConvexClient singleton instance
+  /// Initializes the ConvexClient singleton instance.
   ///
-  /// [deploymentUrl] - The URL of your Convex deployment
+  /// [deploymentUrl] - The URL of your Convex deployment.
   ///
-  /// Returns the singleton instance after initialization
+  /// Returns the singleton instance after initialization.
   /// Will reuse existing instance if already initialized,
   /// calling this method more than once will have no effect.
   static Future<InternalConvexClient> init({
@@ -56,20 +56,20 @@ class InternalConvexClient {
     return _instance!;
   }
 
-  /// Private constructor to prevent direct instantiation
-  /// Takes the mobile client instance
+  /// Private constructor to prevent direct instantiation.
+  /// Takes the mobile client instance.
   InternalConvexClient._internal(this._client);
 
-  /// Executes a Convex query operation
+  /// Executes a Convex query operation.
   ///
-  /// [name] - Name of the query function to execute
-  /// [args] - Map of arguments to pass to the query
+  /// [name] - Name of the query function to execute.
+  /// [args] - Map of arguments to pass to the query.
   ///
-  /// Returns the query result as a JSON string
+  /// Returns the query result as a [DartValue].
   ///
   /// Throws:
-  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
-  /// - [ConvexClientError] for other errors (network, internal, server errors)
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
+  /// - [ConvexClientError] for other errors (network, internal, server errors).
   Future<DartValue> query({
     required String name,
     required BTreeMapStringValue args,
@@ -77,16 +77,16 @@ class InternalConvexClient {
     return _handleConvexCallback(() => _client.query(name: name, args: args));
   }
 
-  /// Creates a real-time subscription to a Convex query
+  /// Creates a real-time subscription to a Convex query.
   ///
-  /// [name] - Name of the query function to subscribe to
-  /// [args] - Map of arguments for the subscription
-  /// [onUpdate] - Callback function called when new data arrives
+  /// [name] - Name of the query function to subscribe to.
+  /// [args] - Map of arguments for the subscription.
+  /// [onUpdate] - Callback function called when new data arrives.
   ///
-  /// Returns a handle that can be used to manage the subscription
+  /// Returns a handle that can be used to manage the subscription.
   ///
   /// Throws:
-  /// - [ConvexClientError] for subscription setup errors (network, internal, server errors)
+  /// - [ConvexClientError] for subscription setup errors (network, internal, server errors).
   ///
   /// Note: The [onUpdate] callback may receive [ConvexError] or [ConvexClientError]
   /// through the stream if errors occur during the subscription.
@@ -102,18 +102,18 @@ class InternalConvexClient {
     );
   }
 
-  /// Creates a real-time stream for a Convex query
+  /// Creates a real-time stream for a Convex query.
   ///
-  /// [name] - Name of the query function to stream
-  /// [args] - Map of arguments for the query
-  /// [decodeResult] - Function to decode the raw result into the desired type
+  /// [name] - Name of the query function to stream.
+  /// [args] - Map of arguments for the query.
+  /// [decodeResult] - Function to decode the raw result into the desired type.
   ///
-  /// Returns a stream that emits query results and errors
+  /// Returns a stream that emits query results and errors.
   ///
   /// The stream may emit:
-  /// - Query results of type [Output] when data is received
-  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
-  /// - [ConvexClientError] for other errors (network, internal, server errors)
+  /// - Query results of type [Output] when data is received.
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
+  /// - [ConvexClientError] for other errors (network, internal, server errors).
   ///
   /// Example:
   /// ```dart
@@ -204,16 +204,16 @@ class InternalConvexClient {
     return controller.stream;
   }
 
-  /// Executes a Convex mutation operation
+  /// Executes a Convex mutation operation.
   ///
-  /// [name] - Name of the mutation function to execute
-  /// [args] - Map of arguments to pass to the mutation
+  /// [name] - Name of the mutation function to execute.
+  /// [args] - Map of arguments to pass to the mutation.
   ///
-  /// Returns the mutation result as a JSON string
+  /// Returns the mutation result as a [DartValue].
   ///
   /// Throws:
-  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
-  /// - [ConvexClientError] for other errors (network, internal, server errors)
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
+  /// - [ConvexClientError] for other errors (network, internal, server errors).
   Future<DartValue> mutation({
     required String name,
     required BTreeMapStringValue args,
@@ -223,16 +223,16 @@ class InternalConvexClient {
     );
   }
 
-  /// Executes a Convex action operation
+  /// Executes a Convex action operation.
   ///
-  /// [name] - Name of the action function to execute
-  /// [args] - Map of arguments to pass to the action
+  /// [name] - Name of the action function to execute.
+  /// [args] - Map of arguments to pass to the action.
   ///
-  /// Returns the action result as a JSON string
+  /// Returns the action result as a [DartValue].
   ///
   /// Throws:
-  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
-  /// - [ConvexClientError] for other errors (network, internal, server errors)
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
+  /// - [ConvexClientError] for other errors (network, internal, server errors).
   Future<DartValue> action({
     required String name,
     required BTreeMapStringValue args,
@@ -240,11 +240,11 @@ class InternalConvexClient {
     return _handleConvexCallback(() => _client.action(name: name, args: args));
   }
 
-  /// Sets the authentication token for the client
+  /// Sets the authentication token for the client.
   ///
-  /// [token] - The authentication token to set, or null to clear
+  /// [token] - The authentication token to set, or null to clear.
   ///
-  /// Used to authenticate requests to the Convex backend
+  /// Used to authenticate requests to the Convex backend.
   Future<void> setAuth({required String? token}) async {
     return await _client.setAuth(token: token);
   }

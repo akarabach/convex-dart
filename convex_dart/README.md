@@ -83,10 +83,13 @@ export const toggleTaskCompletion = mutation({
   args: {
     id: v.id("tasks"),
   },
-  returns: v.boolean(),
   handler: async (ctx, { id }) => {
-    return await ctx.db.patch(id, {
-      completed: !completed,
+    const task = await ctx.db.get(id);
+    if (!task) {
+      throw new Error("Task not found");
+    }
+    await ctx.db.patch(id, {
+      completed: !task.completed,
     });
   },
 });
@@ -230,21 +233,21 @@ class _TasksPageState extends State<TasksPage> {
                     final task = tasks[index];
                     return ListTile(
                       leading: Checkbox(
-                        value: task.isCompleted,
-                        onChanged: (_) => _toggleTask(task.$_id),
+                        value: task.completed,
+                        onChanged: (_) => _toggleTask(task._id),
                       ),
                       title: Text(
-                        task.text,
+                        task.title,
                         style: TextStyle(
-                          decoration: task.isCompleted
+                          decoration: task.completed
                               ? TextDecoration.lineThrough
                               : null,
                         ),
                       ),
                       subtitle: Text(
-                        'Created: ${DateTime.fromMillisecondsSinceEpoch(task.$_creationTime.toInt())}',
+                        'Created: ${DateTime.fromMillisecondsSinceEpoch(task._creationTime.toInt())}',
                       ),
-                      onTap: () => _toggleTask(task.$_id),
+                      onTap: () => _toggleTask(task._id),
                     );
                   },
                 );

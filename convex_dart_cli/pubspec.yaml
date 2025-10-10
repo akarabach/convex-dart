@@ -1,6 +1,6 @@
 name: convex_dart_cli
-description: A CLI for convex_dart
-version: 0.0.1
+description: Command-line tool for generating type-safe Dart client code from Convex backend schemas
+version: 0.2.0
 
 environment:
   sdk: ^3.9.0
