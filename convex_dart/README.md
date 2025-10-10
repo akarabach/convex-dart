@@ -25,17 +25,20 @@ A Flutter package for seamless integration with [Convex](https://convex.dev) bac
 
 ## Installation
 
-Add `convex_dart` to your `pubspec.yaml`:
+Add `convex_dart` and `convex_dart_cli` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  convex_dart: ^0.1.0
+  convex_dart: ^latest_version
+
+dev_dependencies:
+  convex_dart_cli: ^latest_version
 ```
 
-Then install the CLI tool globally for code generation:
+Or install via the command line:
 
-```bash
-dart pub global activate convex_dart_cli
+```
+flutter pub add dev:convex_dart_cli convex_dart
 ```
 
 ## Quick Start
@@ -75,6 +78,18 @@ export const createTask = mutation({
     });
   },
 });
+
+export const toggleTaskCompletion = mutation({
+  args: {
+    id: v.id("tasks"),
+  },
+  returns: v.boolean(),
+  handler: async (ctx, { id }) => {
+    return await ctx.db.patch(id, {
+      completed: !completed,
+    });
+  },
+});
 ```
 
 ### 2. Generate Dart Client
@@ -82,7 +97,7 @@ export const createTask = mutation({
 Run the CLI tool to generate your Dart client:
 
 ```bash
-convex_dart_cli generate --js ./jsProject --output ./lib/src/convex
+dart run convex_dart_cli generate
 ```
 
 This generates type-safe Dart functions in `lib/src/convex/`:
@@ -119,48 +134,15 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
-  List<GetTasksResponseItem>? tasks;
-  StreamSubscription? subscription;
   final _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTasks();
-    _subscribeToTasks();
-  }
-
-  // Load tasks once
-  Future<void> _loadTasks() async {
-    try {
-      final result = await getTasks.execute(null);
-      setState(() {
-        tasks = result;
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error loading tasks: $e')),
-      );
-    }
-  }
-
-  // Subscribe to real-time updates
-  void _subscribeToTasks() {
-    final stream = getTasks.subscribe(null);
-    subscription = stream.listen((newTasks) {
-      setState(() {
-        tasks = newTasks;
-      });
-    });
-  }
 
   // Create a new task
   Future<void> _createTask() async {
     if (_controller.text.isNotEmpty) {
       try {
-        await createTask.execute(CreateTaskArgs(title: _controller.text));
+        await createTask((title: _controller.text));
         _controller.clear();
-        // No need to reload - subscription will update automatically
+        // No need to reload - StreamBuilder will update automatically
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error creating task: $e')),
@@ -169,13 +151,12 @@ class _TasksPageState extends State<TasksPage> {
     }
   }
 
-  // Toggle task completion (example - implement your own toggle logic)
+  // Mark a task as completed or not completed
   Future<void> _toggleTask(TasksId taskId) async {
     try {
-      // This would be your own toggle mutation
-      // await toggleTask.execute(ToggleTaskArgs(id: taskId));
+      await toggleTaskCompletion((id: taskId));
       print('Toggle task: $taskId');
-      // No need to reload - subscription will update automatically
+      // No need to reload - StreamBuilder will update automatically
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error toggling task: $e')),
@@ -213,36 +194,62 @@ class _TasksPageState extends State<TasksPage> {
             ),
           ),
           
-          // Tasks list
+          // Tasks list with StreamBuilder
           Expanded(
-            child: tasks == null
-                ? Center(child: CircularProgressIndicator())
-                : tasks!.isEmpty
-                    ? Center(child: Text('No tasks yet'))
-                    : ListView.builder(
-                        itemCount: tasks!.length,
-                        itemBuilder: (context, index) {
-                          final task = tasks![index];
-                          return ListTile(
-                            leading: Checkbox(
-                              value: task.completed,
-                              onChanged: (_) => _toggleTask(task.id),
-                            ),
-                            title: Text(
-                              task.title,
-                              style: TextStyle(
-                                decoration: task.completed
-                                    ? TextDecoration.lineThrough
-                                    : null,
-                              ),
-                            ),
-                            subtitle: Text(
-                              'Created: ${DateTime.fromMillisecondsSinceEpoch(task.createdAt.toInt())}',
-                            ),
-                            onTap: () => _toggleTask(task.id),
-                          );
-                        },
+            child: StreamBuilder<GetTasksResponse>(
+              stream: getTasksStream(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.error, size: 64, color: Colors.red),
+                        SizedBox(height: 16),
+                        Text('Error loading tasks'),
+                        SizedBox(height: 8),
+                        Text('${snapshot.error}'),
+                      ],
+                    ),
+                  );
+                }
+                
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                
+                final tasks = snapshot.data!.body;
+                
+                if (tasks.isEmpty) {
+                  return Center(child: Text('No tasks yet'));
+                }
+                
+                return ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    final task = tasks[index];
+                    return ListTile(
+                      leading: Checkbox(
+                        value: task.isCompleted,
+                        onChanged: (_) => _toggleTask(task.$_id),
                       ),
+                      title: Text(
+                        task.text,
+                        style: TextStyle(
+                          decoration: task.isCompleted
+                              ? TextDecoration.lineThrough
+                              : null,
+                        ),
+                      ),
+                      subtitle: Text(
+                        'Created: ${DateTime.fromMillisecondsSinceEpoch(task.$_creationTime.toInt())}',
+                      ),
+                      onTap: () => _toggleTask(task.$_id),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -251,7 +258,6 @@ class _TasksPageState extends State<TasksPage> {
 
   @override
   void dispose() {
-    subscription?.cancel();
     _controller.dispose();
     super.dispose();
   }
@@ -300,8 +306,8 @@ The generated Dart code handles all type checking and serialization:
 
 ```dart
 // Usage in Dart
-final profile = await getUserProfile.execute(
-  GetUserProfileArgs(userId: UsersId("user123"))
+final profile = await getUserProfile(
+  (userId: UsersId("user123"))
 );
 
 // Type-safe pattern matching
@@ -322,41 +328,46 @@ profile?.split(
 
 ### Error Handling
 
+Convex Dart provides two main exception types for comprehensive error handling:
+
+> **Note**: `ConvexError` extends `ConvexClientError`, so you can catch `ConvexClientError` to handle both types, or catch them separately for more specific handling.
+
+#### ConvexError
+Thrown when a TypeScript `ConvexError` is thrown on the backend. This contains both the error message and any custom data payload.
+
 ```dart
 try {
-  final result = await someFunction.execute(args);
-  // Handle success
-} on ConvexException catch (e) {
-  // Handle Convex-specific errors
-  print('Convex error: ${e.message}');
-} catch (e) {
-  // Handle other errors
-  print('Unexpected error: $e');
+  final result = await createUser(args);
+} on ConvexError catch (e) {
+  // Handle application-specific errors from the backend
+  print('Application error: ${e.message}');
+  print('Error data: ${e.data}'); // Custom data from the backend
+  
+  // Example: Handle specific error types based on data
+  if (e.data is Map && e.data['code'] == 'USER_EXISTS') {
+    showErrorSnackBar('User already exists');
+  } else {
+    showErrorSnackBar('Failed to create user: ${e.message}');
+  }
 }
 ```
 
-### Real-time Subscriptions
+#### ConvexClientError
+Thrown for all other types of errors, including:
+- Network connectivity issues
+- Internal client errors
+- Server-side errors that aren't application-specific
+- Authentication failures
+- Invalid request parameters
 
 ```dart
-// Subscribe to live data
-final stream = myQuery.subscribe(args);
-final subscription = stream.listen((data) {
-  // Handle real-time updates
-  setState(() {
-    this.data = data;
-  });
-});
+try {
+  final result = await getUser(args);
+} on ConvexClientError catch (e) {
+  // Handle client-side and system errors
+  print('Client error: ${e.message}');
 
-// Avoid duplicate events (optional)
-final distinctStream = stream.distinct();
-final subscription = distinctStream.listen((data) {
-  setState(() {
-    this.data = data;
-  });
-});
-
-// Clean up when done
-subscription.cancel();
+}
 ```
 
 ### Optional Values
@@ -388,9 +399,6 @@ convex_dart_cli generate
 
 # Specify custom paths
 convex_dart_cli generate --js ./my-convex-project --output ./lib/src/api
-
-# Generate with public serialization methods (useful for testing)
-convex_dart_cli generate --public-serialize
 
 # Production mode
 convex_dart_cli generate --prod
@@ -452,74 +460,10 @@ final name = args.name; // String? instead of Optional<String>
 
 The Convex client can sometimes report the same event multiple times. 
 To avoid triggering unnecessary re-renders, use `.distinct()` on the stream.
-You may need to override the equality check to perform a deep equality comparison:
 
 ```dart
 // Use distinct to avoid duplicate events
-final stream = myQuery.subscribe(args).distinct();
-
-// For complex objects, provide custom equality
-final stream = myQuery.subscribe(args).distinct((prev, next) {
-  // Custom equality logic
-  return DeepCollectionEquality().equals(prev, next);
-});
-```
-
-## Performance & Best Practices
-
-### Stream Management
-
-```dart
-// ✅ Good: Cancel subscriptions in dispose
-@override
-void dispose() {
-  subscription?.cancel();
-  super.dispose();
-}
-
-// ✅ Good: Use StreamBuilder for reactive UI
-StreamBuilder<List<Task>>(
-  stream: getTasks.subscribe(null),
-  builder: (context, snapshot) {
-    if (snapshot.hasData) {
-      return TasksList(tasks: snapshot.data!);
-    }
-    return CircularProgressIndicator();
-  },
-)
-```
-
-### Error Handling Best Practices
-
-```dart
-// ✅ Good: Handle specific error types
-try {
-  await createTask.execute(args);
-} on ConvexException catch (e) {
-  // Handle Convex-specific errors (network, validation, etc.)
-  showErrorSnackBar('Failed to create task: ${e.message}');
-} on TimeoutException {
-  // Handle timeout specifically
-  showErrorSnackBar('Request timed out. Please try again.');
-} catch (e) {
-  // Handle unexpected errors
-  showErrorSnackBar('An unexpected error occurred.');
-  // Log for debugging
-  debugPrint('Unexpected error: $e');
-}
-```
-
-### Memory Management
-
-```dart
-// ✅ Good: Use distinct() to prevent unnecessary rebuilds
-final stream = getTasks.subscribe(null)
-  .distinct((a, b) => listEquals(a, b));
-
-// Note: For advanced stream operations like debounce, consider using rxdart:
-// Add 'rxdart: ^0.27.0' to your pubspec.yaml
-// final debouncedStream = searchQuery.subscribe(args)
-//   .debounceTime(Duration(milliseconds: 300));
+final stream = myQueryStream(args).distinct();
 ```
 
 ## Troubleshooting
@@ -547,12 +491,6 @@ await ConvexClient.init();
 - Check that your Convex function is properly exported
 - Verify network connectivity
 
-### Debug Mode
-
-```dart
-// Enable debug logging (in development)
-ConvexClient.enableDebugLogging = true;
-```
 
 ## Contributing
 

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
-import 'package:convex_dart/src/rust/dart_value.dart';
 import 'package:convex_dart/src/rust/dart_value/function.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
 import 'package:convex_dart/src/rust/lib.dart';
@@ -68,12 +67,14 @@ class InternalConvexClient {
   ///
   /// Returns the query result as a JSON string
   ///
-  /// Will throw an [ClientError] if the query fails
+  /// Throws:
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
+  /// - [ConvexClientError] for other errors (network, internal, server errors)
   Future<DartValue> query({
     required String name,
     required BTreeMapStringValue args,
   }) async {
-    return await _client.query(name: name, args: args);
+    return _handleConvexCallback(() => _client.query(name: name, args: args));
   }
 
   /// Creates a real-time subscription to a Convex query
@@ -84,7 +85,11 @@ class InternalConvexClient {
   ///
   /// Returns a handle that can be used to manage the subscription
   ///
-  /// Will throw an [ClientError] if the subscription fails
+  /// Throws:
+  /// - [ConvexClientError] for subscription setup errors (network, internal, server errors)
+  ///
+  /// Note: The [onUpdate] callback may receive [ConvexError] or [ConvexClientError]
+  /// through the stream if errors occur during the subscription.
   Future<SubscriptionHandle> subscribe({
     required String name,
     required BTreeMapStringValue args,
@@ -97,6 +102,39 @@ class InternalConvexClient {
     );
   }
 
+  /// Creates a real-time stream for a Convex query
+  ///
+  /// [name] - Name of the query function to stream
+  /// [args] - Map of arguments for the query
+  /// [decodeResult] - Function to decode the raw result into the desired type
+  ///
+  /// Returns a stream that emits query results and errors
+  ///
+  /// The stream may emit:
+  /// - Query results of type [Output] when data is received
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
+  /// - [ConvexClientError] for other errors (network, internal, server errors)
+  ///
+  /// Example:
+  /// ```dart
+  /// final stream = client.stream<String>(
+  ///   name: 'getUserName',
+  ///   args: {'id': 'user123'},
+  ///   decodeResult: (value) => value as String,
+  /// );
+  ///
+  /// stream.listen(
+  ///   (data) => print('Received: $data'),
+  ///   onError: (error) {
+  ///     if (error is ConvexError) {
+  ///       print('Application error: ${error.message}');
+  ///     } else if (error is ConvexClientError) {
+  ///       print('Client error: ${error.message}');
+  ///     }
+  ///   },
+  /// );
+  /// ```
+  // ignore: avoid_types_as_parameter_names
   Stream<Output> stream<Output>({
     required String name,
     required BTreeMapStringValue args,
@@ -124,10 +162,10 @@ class InternalConvexClient {
                 case DartFunctionResult_Value result:
                   controller.add(decodeResult(result.field0));
                 case DartFunctionResult_ErrorMessage result:
-                  controller.addError(ClientError(result.field0));
+                  controller.addError(ConvexClientError._(result.field0));
                 case DartFunctionResult_ConvexError result:
                   controller.addError(
-                    ConvexError(
+                    ConvexError._(
                       result.field0.message,
                       decodeValue(result.field0.data),
                     ),
@@ -173,12 +211,16 @@ class InternalConvexClient {
   ///
   /// Returns the mutation result as a JSON string
   ///
-  /// Will throw an [ClientError] if the mutation fails
+  /// Throws:
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
+  /// - [ConvexClientError] for other errors (network, internal, server errors)
   Future<DartValue> mutation({
     required String name,
     required BTreeMapStringValue args,
   }) async {
-    return await _client.mutation(name: name, args: args);
+    return _handleConvexCallback(
+      () => _client.mutation(name: name, args: args),
+    );
   }
 
   /// Executes a Convex action operation
@@ -188,12 +230,14 @@ class InternalConvexClient {
   ///
   /// Returns the action result as a JSON string
   ///
-  /// Will throw an [ClientError] if the action fails
+  /// Throws:
+  /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend
+  /// - [ConvexClientError] for other errors (network, internal, server errors)
   Future<DartValue> action({
     required String name,
     required BTreeMapStringValue args,
   }) async {
-    return await _client.action(name: name, args: args);
+    return _handleConvexCallback(() => _client.action(name: name, args: args));
   }
 
   /// Sets the authentication token for the client
@@ -206,10 +250,47 @@ class InternalConvexClient {
   }
 }
 
-class ConvexError implements Exception {
-  final String message;
+/// The rust methods may throw one of these exceptions, we will convert into
+/// the appropriate Dart exceptions.
+Future<T> _handleConvexCallback<T>(Future<T> Function() callback) async {
+  try {
+    return await callback();
+  } on ClientError_InternalError catch (e) {
+    throw ConvexClientError._(e.msg);
+  } on ClientError_ConvexError catch (e) {
+    throw ConvexError._(e.err.message, decodeValue(e.err.data));
+  } on ClientError_ServerError catch (e) {
+    throw ConvexClientError._(e.msg);
+  }
+}
+
+/// An exception thrown when a TypeScript ConvexError is thrown on the backend.
+///
+/// This exception contains all the data that was thrown from the Convex backend,
+/// including both the error message and any custom data payload that was
+/// included with the error.
+///
+/// Example:
+/// ```dart
+/// try {
+///   await client.mutation(name: 'createUser', args: {'name': 'John'});
+/// } on ConvexError catch (e) {
+///   print('Convex error: ${e.message}');
+///   print('Error data: ${e.data}');
+/// }
+/// ```
+///
+/// See also:
+/// - [ConvexClientError] for other types of errors
+/// - [Convex documentation on error handling](https://docs.convex.dev/functions/error-handling/application-errors)
+class ConvexError extends ConvexClientError {
+  /// Custom data payload that was included with the error.
+  /// This can be any JSON-serializable value that was passed
+  /// when the error was thrown on the backend.
   final dynamic data;
-  ConvexError(this.message, this.data);
+
+  /// Creates a new ConvexError with the given message and data.
+  ConvexError._(super.message, this.data) : super._();
 
   @override
   String toString() {
@@ -217,12 +298,41 @@ class ConvexError implements Exception {
   }
 }
 
-class ClientError implements Exception {
+/// An exception thrown for any error that is not a TypeScript ConvexError.
+///
+/// This exception is used for various types of client-side and system errors,
+/// including:
+/// - Internal errors within the Convex client
+/// - Network connectivity issues
+/// - Server-side errors that are not application-specific ConvexErrors
+/// - Authentication failures
+/// - Invalid request parameters
+///
+/// Example:
+/// ```dart
+/// try {
+///   await client.query(name: 'getUser', args: {'id': 'user123'});
+/// } on ConvexClientError catch (e) {
+///   print('Client error: ${e.message}');
+///   // Handle network issues, auth failures, etc.
+/// } on ConvexError catch (e) {
+///   print('Application error: ${e.message}');
+///   // Handle application-specific errors
+/// }
+/// ```
+///
+/// See also:
+/// - [ConvexError] for TypeScript ConvexErrors from the backend
+/// - [Convex documentation on error handling](https://docs.convex.dev/functions/error-handling/application-errors)
+class ConvexClientError implements Exception {
+  /// The error message describing what went wrong.
   final String message;
-  ClientError(this.message);
+
+  /// Creates a new ConvexClientError with the given message.
+  ConvexClientError._(this.message);
 
   @override
   String toString() {
-    return 'ClientError(message: $message)';
+    return 'ConvexClientError(message: $message)';
   }
 }
