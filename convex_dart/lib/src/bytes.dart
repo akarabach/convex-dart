@@ -2,8 +2,9 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 
-const ListEquality $bytesEquality = ListEquality();
+const ListEquality _bytesEquality = ListEquality();
 
+/// A wrapper around [Uint8List] that implements equality and hashing.
 class Uint8ListWithEquality {
   final Uint8List value;
   const Uint8ListWithEquality(this.value);
@@ -18,11 +19,11 @@ class Uint8ListWithEquality {
   @override
   bool operator ==(Object other) {
     if (other is Uint8ListWithEquality) {
-      return $bytesEquality.equals(value, other.value);
+      return _bytesEquality.equals(value, other.value);
     }
     return false;
   }
 
   @override
-  int get hashCode => $bytesEquality.hash(value);
+  int get hashCode => _bytesEquality.hash(value);
 }

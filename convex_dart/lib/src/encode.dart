@@ -31,7 +31,7 @@ DartValue encodeValue(dynamic value) {
         hashmap: map.map((k, v) => MapEntry(k, encodeValue(v))).unlockLazy,
       ),
     ),
-    TableId id => DartValue.string(id.value),
+    TableId id => DartValue.string(id.name),
     Literal literal => switch (literal.value) {
       String s => DartValue.string(s),
       int i => DartValue.int64(i),

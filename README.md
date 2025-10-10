@@ -1,75 +1,42 @@
-Getting Started:
+# Convex Dart
 
-1. Create a new Flutter package:
+A comprehensive Flutter/Dart integration for [Convex](https://convex.dev), providing type-safe real-time backend connectivity with automatic code generation.
 
-    ```bash
-    flutter create -t package my_api
-    ```
+## Packages
 
-2. Install the dependencies:
+This repository contains multiple packages:
 
-    ```bash
-    cd my_api
-    flutter pub add dev:convex_dart_builder dev:build_runner
-    ```
+### 📦 [convex_dart](./convex_dart/)
+The main Flutter package for integrating with Convex backends. Provides:
+- Type-safe API calls to Convex functions
+- Real-time subscriptions
+- Automatic serialization/deserialization
+- Cross-platform support (iOS, Android, Web, Desktop)
 
-3. Create a function spec by running `bunx convex function-spec > convex.json` and placing it in the `lib` directory.
+### 🛠️ [convex_dart_cli](./convex_dart_cli/)
+Command-line tool for generating Dart client code from your Convex backend:
+- Watches for changes and regenerates automatically
+- Supports all Convex types and schemas
+- Generates type-safe function wrappers
+- Integrates with your development workflow
 
-4. Create a build.yaml file in the root directory with the following content:
+### 📋 [example](./example/)
+Complete example project demonstrating:
+- Convex backend setup with TypeScript functions
+- Generated Dart client usage
+- Comprehensive test coverage
+- Real-world usage patterns
 
-    ```yaml
-    targets:
-      $default:
-        builders:
-          convex_dart_builder:
-            generate_for:
-              - lib/convex.json
-            options:
-              input_file: lib/convex.json
-    ```
-    If you've named your file differently, update the `generate_for` and `input_file` options accordingly.
+## Documentation
 
-5. Run the build:
+- [convex_dart Package Documentation](./convex_dart/README.md)
+- [CLI Tool Documentation](./convex_dart_cli/README.md)
+- [Example Project Guide](./example/README.md)
 
-    ```bash
-    flutter pub run build_runner build
-    ```
+## Contributing
 
-6. Install `my_api` as a dependency in your Flutter app.
-    ```yaml
-    dependencies:
-      my_api:
-        path: /path/to/my_api
-    ```
-8. Install `convex_dart` as a dependency in your Flutter app.
-    ```bash
-    flutter pub add convex_dart
-    ```
+Contributions are welcome! Please read our contributing guidelines and submit pull requests to help improve this project.
 
-9. Initialize the client:
-    ```dart
-    import 'package:my_api/my_api.dart';
-    import 'package:flutter/material.dart';
+## License
 
-    void main() async {
-      await ConvexClient.init();
-      runApp(MyApp());
-    }
-    ```
-
-10. Use the client in your Flutter app.
-    ```dart
-    // Fetch tasks
-    final tasks = await getTasks.execute(null);
-
-    // Subscribe to tasks
-    final subscription = await getTasks.subscribe(null, (event) {
-      print(event);
-    });
-    
-    // Cancel the subscription
-    subscription.cancel();
-
-    // Create a task
-    final createTask = await createTask.execute(CreateTaskRequest(title: "Task 1"));
-    ```
+This project is licensed under the MIT License - see the individual package directories for details.

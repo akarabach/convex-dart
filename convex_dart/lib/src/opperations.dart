@@ -1,70 +1,183 @@
+import 'dart:async';
+
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 import 'package:convex_dart/src/rust/dart_value/function.dart';
 import 'package:convex_dart/src/rust/lib.dart';
+import 'package:meta/meta.dart' show internal;
+import 'package:convex_dart/src/task_queue.dart';
 
+/// Base class for Convex operations (queries, mutations, and actions).
+///
+/// Operations are created by generated code and provide a type-safe interface
+/// for calling Convex functions.
 sealed class Operation<Input, Output_> {
-  final String identifier;
+  final String _identifier;
+  final BTreeMapStringValue Function(Input input) _encodeArgs;
+  final Output_ Function(DartValue result) _decodeResult;
+  const Operation(this._identifier, this._encodeArgs, this._decodeResult);
 
-  final BTreeMapStringValue Function(Input input) encodeArgs;
-  final Output_ Function(DartValue result) decodeResult;
-  const Operation(this.identifier, this.encodeArgs, this.decodeResult);
+  InternalConvexClient get _client => InternalConvexClient.instance;
 
-  ConvexClient get client => ConvexClient.instance;
+  /// Executes the operation with the given arguments.
+  ///
+  /// Returns a [Future] that completes with the operation result.
   Future<Output_> execute(Input args);
 }
 
+/// Represents a Convex query operation.
+///
+/// Queries are read-only operations that can be executed once or subscribed to
+/// for real-time updates.
 class QueryOperation<Input, Output_> extends Operation<Input, Output_> {
-  const QueryOperation(super.identifier, super.encodeArgs, super.decodeResult);
-
-  @override
-  Future<Output_> execute(Input args) async {
-    return decodeResult(await client.query(identifier, encodeArgs(args)));
-  }
-
-  Future<SubscriptionHandle> subscribe(
-    Input args,
-    void Function(SubscribeEvent<Output_> result) onUpdate,
-  ) {
-    return client.subscribe(
-      name: identifier,
-      args: encodeArgs(args),
-      onUpdate: (value) {
-        onUpdate(SubscribeEvent.fromDartFunctionResult(value, decodeResult));
-      },
-    );
-  }
-}
-
-class MutationOperation<Input, Output_> extends Operation<Input, Output_> {
-  const MutationOperation(
-    super.identifier,
-    super.encodeArgs,
-    super.decodeResult,
+  const QueryOperation._(
+    super._identifier,
+    super._encodeArgs,
+    super._decodeResult,
   );
 
   @override
   Future<Output_> execute(Input args) async {
-    return decodeResult(
-      await client.mutation(name: identifier, args: encodeArgs(args)),
+    return _decodeResult(await _client.query(_identifier, _encodeArgs(args)));
+  }
+
+  /// Creates a stream that emits the query result whenever it changes.
+  ///
+  /// If a ConvexError is raised in the convex backend, the stream will emit an ConvexErrorEvent,
+  /// any other error will be emitted as a ClientErrorEvent.
+  Stream<Output_> subscribe(Input args) {
+    final lock = LockedTask();
+
+    late StreamController<Output_> controller;
+    SubscriptionHandle? subscriptionHandle;
+
+    void startSubscription() {
+      lock.run((state) async {
+        if (state.isCancelled) {
+          return;
+        }
+        try {
+          final newHandle = await _client.subscribe(
+            name: _identifier,
+            args: _encodeArgs(args),
+            onUpdate: (value) {
+              if (state.isCancelled || controller.isClosed) {
+                return;
+              }
+              switch (SubscribeEvent._fromDartFunctionResult(
+                value,
+                _decodeResult,
+              )) {
+                case SuccessEvent(:final data):
+                  controller.add(data);
+                case ClientErrorEvent(:final message):
+                  controller.addError(ClientError(message));
+                case ConvexErrorEvent(:final message, :final data):
+                  controller.addError(ConvexError(message, data));
+              }
+            },
+          );
+          if (state.isCancelled) {
+            newHandle.cancel();
+          } else {
+            subscriptionHandle = newHandle;
+          }
+        } catch (e, s) {
+          if (state.isCancelled) {
+            return;
+          }
+          controller.addError(e, s);
+        }
+      });
+    }
+
+    void stopSubscription() {
+      lock.run((state) async {
+        if (state.isCancelled) {
+          return;
+        }
+        subscriptionHandle?.cancel();
+        subscriptionHandle = null;
+      });
+    }
+
+    controller = StreamController<Output_>(
+      onListen: startSubscription,
+      onCancel: stopSubscription,
     );
+    return controller.stream;
   }
 }
 
-class ActionOperation<Input, Output_> extends Operation<Input, Output_> {
-  const ActionOperation(super.identifier, super.encodeArgs, super.decodeResult);
+@internal
+QueryOperation<Input, Output_> createQueryOperation<Input, Output_>(
+  String identifier,
+  BTreeMapStringValue Function(Input input) encodeArgs,
+  Output_ Function(DartValue result) decodeResult,
+) {
+  return QueryOperation._(identifier, encodeArgs, decodeResult);
+}
+
+/// Represents a Convex mutation operation.
+///
+/// Mutations are write operations that modify data in your Convex database.
+class MutationOperation<Input, Output_> extends Operation<Input, Output_> {
+  const MutationOperation._(
+    super._identifier,
+    super._encodeArgs,
+    super._decodeResult,
+  );
 
   @override
   Future<Output_> execute(Input args) async {
-    return decodeResult(
-      await client.action(name: identifier, args: encodeArgs(args)),
+    return _decodeResult(
+      await _client.mutation(name: _identifier, args: _encodeArgs(args)),
     );
   }
 }
 
+@internal
+MutationOperation<Input, Output_> createMutationOperation<Input, Output_>(
+  String identifier,
+  BTreeMapStringValue Function(Input input) encodeArgs,
+  Output_ Function(DartValue result) decodeResult,
+) {
+  return MutationOperation._(identifier, encodeArgs, decodeResult);
+}
+
+/// Represents a Convex action operation.
+///
+/// Actions are operations that can perform side effects and call external APIs.
+class ActionOperation<Input, Output_> extends Operation<Input, Output_> {
+  const ActionOperation._(
+    super._identifier,
+    super._encodeArgs,
+    super._decodeResult,
+  );
+
+  @override
+  Future<Output_> execute(Input args) async {
+    return _decodeResult(
+      await _client.action(name: _identifier, args: _encodeArgs(args)),
+    );
+  }
+}
+
+@internal
+ActionOperation<Input, Output_> createActionOperation<Input, Output_>(
+  String identifier,
+  BTreeMapStringValue Function(Input input) encodeArgs,
+  Output_ Function(DartValue result) decodeResult,
+) {
+  return ActionOperation._(identifier, encodeArgs, decodeResult);
+}
+
+/// Base class for subscription events.
+///
+/// Events are delivered to subscription callbacks when query results change.
 sealed class SubscribeEvent<T> {
   const SubscribeEvent();
 
-  static SubscribeEvent<T> fromDartFunctionResult<T>(
+  static SubscribeEvent<T> _fromDartFunctionResult<T>(
     DartFunctionResult result,
     T Function(DartValue value) decodeResult,
   ) {
@@ -79,8 +192,7 @@ sealed class SubscribeEvent<T> {
   }
 }
 
-/// The error message of a Convex function run that does not complete
-/// successfully.
+/// Event representing a client-side error during query execution.
 class ClientErrorEvent<T> extends SubscribeEvent<T> {
   final String message;
   const ClientErrorEvent(this.message);
@@ -91,14 +203,12 @@ class ClientErrorEvent<T> extends SubscribeEvent<T> {
   }
 }
 
-/// The error payload of a Convex function run that doesn't complete
-/// successfully, with an application-level error.
+/// Event representing a server-side error during query execution.
 class ConvexErrorEvent<T> extends SubscribeEvent<T> {
-  /// From any error, redacted from prod deployments.
+  /// Error message describing what went wrong.
   final String message;
 
-  /// Custom application error data payload that can be passed from your
-  /// function to a client.
+  /// Additional error data provided by the function.
   final dynamic data;
   const ConvexErrorEvent(this.message, this.data);
 
@@ -108,7 +218,7 @@ class ConvexErrorEvent<T> extends SubscribeEvent<T> {
   }
 }
 
-/// The result of a successful subscription
+/// Event containing the successful result of a query.
 class SuccessEvent<T> extends SubscribeEvent<T> {
   final T data;
   const SuccessEvent(this.data);
@@ -116,5 +226,26 @@ class SuccessEvent<T> extends SubscribeEvent<T> {
   @override
   String toString() {
     return 'SuccessEvent(data: $data)';
+  }
+}
+
+class ConvexError implements Exception {
+  final String message;
+  final dynamic data;
+  ConvexError(this.message, this.data);
+
+  @override
+  String toString() {
+    return 'ConvexError(message: $message, data: $data)';
+  }
+}
+
+class ClientError implements Exception {
+  final String message;
+  ClientError(this.message);
+
+  @override
+  String toString() {
+    return 'ClientError(message: $message)';
   }
 }

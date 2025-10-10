@@ -1,8 +1,13 @@
-name: _
+name: convex_dart_workspace
 publish_to: none
+
 environment:
   sdk: ^3.8.0
+
 workspace:
   - convex_dart
-  - convex_dart_builder
-  - example/api
+  - convex_dart_cli
+  - example
+
+dev_dependencies:
+  melos: ^7.1.1
