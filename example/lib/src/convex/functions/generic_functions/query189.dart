@@ -6,24 +6,39 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query189 = createQueryOperation<Query189Args, Query189Response>(
-  'generic_functions:query189',
-  serialize,
-  deserialize,
-);
+Future<Query189Response> query189(Query189Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query189',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query189Response> query189Stream(Query189Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query189',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query189Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on40369) => encodeValue({
+              (on580475) => encodeValue({
                 'children': encodeValue(
-                  on40369.children
-                      .map((on583167) => encodeValue(on583167))
+                  on580475.children
+                      .map((on718167) => encodeValue(on718167))
                       .toIList(),
                 ),
-                'id': encodeValue(on40369.id),
+                'id': encodeValue(on580475.id),
               }),
             )
             .toIList(),
@@ -32,17 +47,18 @@ BTreeMapStringValue serialize(Query189Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query189Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on962676) => (
-      i: (on962676['i'] as IList<dynamic>)
+    (on487271) => (
+      i: (on487271['i'] as IList<dynamic>)
           .map(
-            (on636050) => (on636050 as IMap<String, dynamic>).then(
-              (on587628) => (
-                children: (on587628['children'] as IList<dynamic>)
-                    .map((on448873) => NodesId(on448873 as String))
+            (on807065) => (on807065 as IMap<String, dynamic>).then(
+              (on635555) => (
+                children: (on635555['children'] as IList<dynamic>)
+                    .map((on872717) => NodesId(on872717 as String))
                     .toIList(),
-                id: NodesId(on587628['id'] as String),
+                id: NodesId(on635555['id'] as String),
               ),
             ),
           )

@@ -6,26 +6,42 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query65 = createQueryOperation<Query65Args, Query65Response>(
-  'generic_functions:query65',
-  serialize,
-  deserialize,
-);
+Future<Query65Response> query65(Query65Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query65',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query65Response> query65Stream(Query65Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query65',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query65Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on643465) => encodeValue(on643465)).toIList(),
+        args.i.map((on997973) => encodeValue(on997973)).toIList(),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query65Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on507647) => (
-      i: (on507647['i'] as IList<dynamic>)
-          .map((on215709) => on215709 == null ? null : $hi.validate(on215709))
+    (on160942) => (
+      i: (on160942['i'] as IList<dynamic>)
+          .map((on137565) => on137565 == null ? null : $hi.validate(on137565))
           .toIList(),
     ),
   );

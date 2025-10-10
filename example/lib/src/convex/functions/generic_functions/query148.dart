@@ -6,19 +6,34 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query148 = createQueryOperation<Query148Args, Query148Response>(
-  'generic_functions:query148',
-  serialize,
-  deserialize,
-);
+Future<Query148Response> query148(Query148Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query148',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query148Response> query148Stream(Query148Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query148',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query148Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on812398 in args.i.entries)
-          on812398.key: encodeValue(
+        for (final on568532 in args.i.entries)
+          on568532.key: encodeValue(
             encodeValue(
-              on812398.value.map((on693691) => encodeValue(on693691)).toIList(),
+              on568532.value.map((on456879) => encodeValue(on456879)).toIList(),
             ),
           ),
       }),
@@ -26,14 +41,15 @@ BTreeMapStringValue serialize(Query148Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query148Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on615602) => (
-      i: (on615602['i'] as IMap<String, dynamic>).map(
-        (on411541, on302255) => MapEntry(
-          on411541,
-          (on302255 as IList<dynamic>)
-              .map((on464360) => ItemsId(on464360 as String))
+    (on193464) => (
+      i: (on193464['i'] as IMap<String, dynamic>).map(
+        (on288593, on12592) => MapEntry(
+          on288593,
+          (on12592 as IList<dynamic>)
+              .map((on23864) => ItemsId(on23864 as String))
               .toIList(),
         ),
       ),

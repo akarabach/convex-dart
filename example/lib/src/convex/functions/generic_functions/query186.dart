@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query186 = createQueryOperation<Query186Args, Query186Response>(
-  'generic_functions:query186',
-  serialize,
-  deserialize,
-);
+Future<Query186Response> query186(Query186Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query186',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query186Response> query186Stream(Query186Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query186',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query186Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,11 +33,11 @@ BTreeMapStringValue serialize(Query186Args args) {
         'permissions': encodeValue(
           args.i.permissions
               .map(
-                (on639013) => encodeValue(
-                  on639013.split(
-                    (on514801) => encodeValue(on514801),
-                    (on431574) => encodeValue(on431574),
-                    (on387299) => encodeValue(on387299),
+                (on825989) => encodeValue(
+                  on825989.split(
+                    (on90444) => encodeValue(on90444),
+                    (on929411) => encodeValue(on929411),
+                    (on753395) => encodeValue(on753395),
                   ),
                 ),
               )
@@ -33,24 +48,25 @@ BTreeMapStringValue serialize(Query186Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query186Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on348514) => (
-      i: (on348514['i'] as IMap<String, dynamic>).then(
-        (on889762) => (
-          permissions: (on889762['permissions'] as IList<dynamic>)
+    (on415458) => (
+      i: (on415458['i'] as IMap<String, dynamic>).then(
+        (on620196) => (
+          permissions: (on620196['permissions'] as IList<dynamic>)
               .map(
-                (on968811) => Union3<$read, $write, $admin>(() {
+                (on168578) => Union3<$read, $write, $admin>(() {
                   final map = {
                     'read': $read(),
                     'write': $write(),
                     'admin': $admin(),
                   };
-                  if (map.containsKey(on968811)) {
-                    return map[on968811];
+                  if (map.containsKey(on168578)) {
+                    return map[on168578];
                   }
                   throw Exception(
-                    (on968811.toString() ?? "null") +
+                    (on168578.toString() ?? "null") +
                         r" cannot be deserialized into a Union3<$read, $write, $admin>",
                   );
                 }()),

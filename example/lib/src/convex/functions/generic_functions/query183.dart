@@ -6,42 +6,58 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query183 = createQueryOperation<Query183Args, Query183Response>(
-  'generic_functions:query183',
-  serialize,
-  deserialize,
-);
+Future<Query183Response> query183(Query183Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query183',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query183Response> query183Stream(Query183Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query183',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query183Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on20731) => encodeValue({'a': encodeValue(on20731.a)}),
-          (on399589) => encodeValue({'a': encodeValue(on399589.a)}),
+          (on448603) => encodeValue({'a': encodeValue(on448603.a)}),
+          (on765858) => encodeValue({'a': encodeValue(on765858.a)}),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query183Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on88803) => (
+    (on314314) => (
       i: Union2<({String a}), ({double a})>(() {
         try {
-          return (on88803['i'] as IMap<String, dynamic>).then(
-            (on917131) => (a: (on917131['a'] as String)),
+          return (on314314['i'] as IMap<String, dynamic>).then(
+            (on755260) => (a: (on755260['a'] as String)),
           );
         } catch (e) {}
 
         try {
-          return (on88803['i'] as IMap<String, dynamic>).then(
-            (on450411) => (a: (on450411['a'] as double)),
+          return (on314314['i'] as IMap<String, dynamic>).then(
+            (on701479) => (a: (on701479['a'] as double)),
           );
         } catch (e) {}
 
         throw Exception(
-          (on88803['i'].toString() ?? "null") +
+          (on314314['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<({String a}), ({double a})>",
         );
       }()),

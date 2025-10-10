@@ -6,22 +6,38 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query175 = createQueryOperation<Query175Args, Query175Response>(
-  'generic_functions:query175',
-  serialize,
-  deserialize,
-);
+Future<Query175Response> query175(Query175Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query175',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query175Response> query175Stream(Query175Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query175',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query175Args args) {
   return hashmapToBtreemap(
     hashmap: {if (args.i.isDefined) 'i': encodeValue(args.i.asDefined().value)},
   );
 }
 
+@pragma("vm:prefer-inline")
 Query175Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on131397) => (
-      i: on131397.containsKey('i')
-          ? Defined((on131397['i'] as Uint8ListWithEquality))
+    (on907410) => (
+      i: on907410.containsKey('i')
+          ? Defined((on907410['i'] as Uint8ListWithEquality))
           : Undefined<Uint8ListWithEquality>(),
     ),
   );

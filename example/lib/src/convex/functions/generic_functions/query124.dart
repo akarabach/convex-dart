@@ -6,44 +6,59 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query124 = createQueryOperation<Query124Args, Query124Response>(
-  'generic_functions:query124',
-  serialize,
-  deserialize,
-);
+Future<Query124Response> query124(Query124Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query124',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query124Response> query124Stream(Query124Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query124',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query124Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'api': encodeValue({
           'endpoints': encodeValue({
-            for (final on727056 in args.i.api.endpoints.entries)
-              on727056.key: encodeValue(
+            for (final on697776 in args.i.api.endpoints.entries)
+              on697776.key: encodeValue(
                 encodeValue({
-                  if (on727056.value.auth.isDefined)
-                    'auth': encodeValue(on727056.value.auth.asDefined().value),
+                  if (on697776.value.auth.isDefined)
+                    'auth': encodeValue(on697776.value.auth.asDefined().value),
                   'method': encodeValue(
-                    on727056.value.method.split(
-                      (on654900) => encodeValue(on654900),
-                      (on529796) => encodeValue(on529796),
-                      (on695085) => encodeValue(on695085),
-                      (on218752) => encodeValue(on218752),
+                    on697776.value.method.split(
+                      (on402355) => encodeValue(on402355),
+                      (on526329) => encodeValue(on526329),
+                      (on733763) => encodeValue(on733763),
+                      (on318614) => encodeValue(on318614),
                     ),
                   ),
                   'params': encodeValue({
-                    for (final on596180 in on727056.value.params.entries)
-                      on596180.key: encodeValue(
+                    for (final on310353 in on697776.value.params.entries)
+                      on310353.key: encodeValue(
                         encodeValue(
-                          on596180.value.split(
-                            (on524088) => encodeValue(on524088),
-                            (on869856) => encodeValue(on869856),
-                            (on104519) => encodeValue(on104519),
+                          on310353.value.split(
+                            (on147273) => encodeValue(on147273),
+                            (on186577) => encodeValue(on186577),
+                            (on176217) => encodeValue(on176217),
                           ),
                         ),
                       ),
                   }),
-                  'path': encodeValue(on727056.value.path),
-                  'response': encodeValue(on727056.value.response),
+                  'path': encodeValue(on697776.value.path),
+                  'response': encodeValue(on697776.value.response),
                 }),
               ),
           }),
@@ -51,42 +66,42 @@ BTreeMapStringValue serialize(Query124Args args) {
             'requests': encodeValue(args.i.api.rateLimit.requests),
             'window': encodeValue(
               args.i.api.rateLimit.window.split(
-                (on72116) => encodeValue(on72116),
-                (on339364) => encodeValue(on339364),
-                (on543475) => encodeValue(on543475),
+                (on862512) => encodeValue(on862512),
+                (on488934) => encodeValue(on488934),
+                (on505673) => encodeValue(on505673),
               ),
             ),
           }),
         }),
         'database': encodeValue({
           'tables': encodeValue({
-            for (final on297238 in args.i.database.tables.entries)
-              on297238.key: encodeValue(
+            for (final on313179 in args.i.database.tables.entries)
+              on313179.key: encodeValue(
                 encodeValue({
                   'indexes': encodeValue(
-                    on297238.value.indexes
+                    on313179.value.indexes
                         .map(
-                          (on834713) => encodeValue({
+                          (on546046) => encodeValue({
                             'fields': encodeValue(
-                              on834713.fields
-                                  .map((on273642) => encodeValue(on273642))
+                              on546046.fields
+                                  .map((on482850) => encodeValue(on482850))
                                   .toIList(),
                             ),
-                            'name': encodeValue(on834713.name),
-                            'unique': encodeValue(on834713.unique),
+                            'name': encodeValue(on546046.name),
+                            'unique': encodeValue(on546046.unique),
                           }),
                         )
                         .toIList(),
                   ),
                   'schema': encodeValue({
-                    for (final on483010 in on297238.value.schema.entries)
-                      on483010.key: encodeValue(
+                    for (final on300114 in on313179.value.schema.entries)
+                      on300114.key: encodeValue(
                         encodeValue(
-                          on483010.value.split(
-                            (on530260) => encodeValue(on530260),
-                            (on297734) => encodeValue(on297734),
-                            (on23894) => encodeValue(on23894),
-                            (on846093) => encodeValue(on846093),
+                          on300114.value.split(
+                            (on978336) => encodeValue(on978336),
+                            (on355023) => encodeValue(on355023),
+                            (on686392) => encodeValue(on686392),
+                            (on140857) => encodeValue(on140857),
                           ),
                         ),
                       ),
@@ -100,20 +115,21 @@ BTreeMapStringValue serialize(Query124Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query124Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on641960) => (
-      i: (on641960['i'] as IMap<String, dynamic>).then(
-        (on912050) => (
-          api: (on912050['api'] as IMap<String, dynamic>).then(
-            (on314657) => (
-              endpoints: (on314657['endpoints'] as IMap<String, dynamic>).map(
-                (on423542, on980563) => MapEntry(
-                  on423542,
-                  (on980563 as IMap<String, dynamic>).then(
-                    (on579041) => (
-                      auth: on579041.containsKey('auth')
-                          ? Defined((on579041['auth'] as bool))
+    (on269252) => (
+      i: (on269252['i'] as IMap<String, dynamic>).then(
+        (on606498) => (
+          api: (on606498['api'] as IMap<String, dynamic>).then(
+            (on439574) => (
+              endpoints: (on439574['endpoints'] as IMap<String, dynamic>).map(
+                (on271806, on841443) => MapEntry(
+                  on271806,
+                  (on841443 as IMap<String, dynamic>).then(
+                    (on773809) => (
+                      auth: on773809.containsKey('auth')
+                          ? Defined((on773809['auth'] as bool))
                           : Undefined<bool>(),
                       method: Union4<$GET, $POST, $PUT, $DELETE>(() {
                         final map = {
@@ -122,57 +138,57 @@ Query124Response deserialize(DartValue map) {
                           'PUT': $PUT(),
                           'DELETE': $DELETE(),
                         };
-                        if (map.containsKey(on579041['method'])) {
-                          return map[on579041['method']];
+                        if (map.containsKey(on773809['method'])) {
+                          return map[on773809['method']];
                         }
                         throw Exception(
-                          (on579041['method'].toString() ?? "null") +
+                          (on773809['method'].toString() ?? "null") +
                               r" cannot be deserialized into a Union4<$GET, $POST, $PUT, $DELETE>",
                         );
                       }()),
-                      params: (on579041['params'] as IMap<String, dynamic>).map(
-                        (on925621, on125186) => MapEntry(
-                          on925621,
+                      params: (on773809['params'] as IMap<String, dynamic>).map(
+                        (on70337, on870898) => MapEntry(
+                          on70337,
                           Union3<String, double, bool>(() {
                             try {
-                              return (on125186 as String);
+                              return (on870898 as String);
                             } catch (e) {}
 
                             try {
-                              return (on125186 as double);
+                              return (on870898 as double);
                             } catch (e) {}
 
                             try {
-                              return (on125186 as bool);
+                              return (on870898 as bool);
                             } catch (e) {}
 
                             throw Exception(
-                              (on125186.toString() ?? "null") +
+                              (on870898.toString() ?? "null") +
                                   r" cannot be deserialized into a Union3<String, double, bool>",
                             );
                           }()),
                         ),
                       ),
-                      path: (on579041['path'] as String),
-                      response: on579041['response'],
+                      path: (on773809['path'] as String),
+                      response: on773809['response'],
                     ),
                   ),
                 ),
               ),
-              rateLimit: (on314657['rateLimit'] as IMap<String, dynamic>).then(
-                (on545554) => (
-                  requests: (on545554['requests'] as double),
+              rateLimit: (on439574['rateLimit'] as IMap<String, dynamic>).then(
+                (on980249) => (
+                  requests: (on980249['requests'] as double),
                   window: Union3<$minute, $hour, $day>(() {
                     final map = {
                       'minute': $minute(),
                       'hour': $hour(),
                       'day': $day(),
                     };
-                    if (map.containsKey(on545554['window'])) {
-                      return map[on545554['window']];
+                    if (map.containsKey(on980249['window'])) {
+                      return map[on980249['window']];
                     }
                     throw Exception(
-                      (on545554['window'].toString() ?? "null") +
+                      (on980249['window'].toString() ?? "null") +
                           r" cannot be deserialized into a Union3<$minute, $hour, $day>",
                     );
                   }()),
@@ -180,31 +196,31 @@ Query124Response deserialize(DartValue map) {
               ),
             ),
           ),
-          database: (on912050['database'] as IMap<String, dynamic>).then(
-            (on906803) => (
-              tables: (on906803['tables'] as IMap<String, dynamic>).map(
-                (on56839, on968524) => MapEntry(
-                  on56839,
-                  (on968524 as IMap<String, dynamic>).then(
-                    (on874249) => (
-                      indexes: (on874249['indexes'] as IList<dynamic>)
+          database: (on606498['database'] as IMap<String, dynamic>).then(
+            (on382387) => (
+              tables: (on382387['tables'] as IMap<String, dynamic>).map(
+                (on470867, on800807) => MapEntry(
+                  on470867,
+                  (on800807 as IMap<String, dynamic>).then(
+                    (on594982) => (
+                      indexes: (on594982['indexes'] as IList<dynamic>)
                           .map(
                             (
-                              on245471,
-                            ) => (on245471 as IMap<String, dynamic>).then(
-                              (on73065) => (
-                                fields: (on73065['fields'] as IList<dynamic>)
-                                    .map((on150121) => (on150121 as String))
+                              on74219,
+                            ) => (on74219 as IMap<String, dynamic>).then(
+                              (on789095) => (
+                                fields: (on789095['fields'] as IList<dynamic>)
+                                    .map((on130463) => (on130463 as String))
                                     .toIList(),
-                                name: (on73065['name'] as String),
-                                unique: (on73065['unique'] as bool),
+                                name: (on789095['name'] as String),
+                                unique: (on789095['unique'] as bool),
                               ),
                             ),
                           )
                           .toIList(),
-                      schema: (on874249['schema'] as IMap<String, dynamic>).map(
-                        (on852643, on791719) => MapEntry(
-                          on852643,
+                      schema: (on594982['schema'] as IMap<String, dynamic>).map(
+                        (on429946, on437795) => MapEntry(
+                          on429946,
                           Union4<$string, $number, $boolean, $date>(() {
                             final map = {
                               'string': $string(),
@@ -212,11 +228,11 @@ Query124Response deserialize(DartValue map) {
                               'boolean': $boolean(),
                               'date': $date(),
                             };
-                            if (map.containsKey(on791719)) {
-                              return map[on791719];
+                            if (map.containsKey(on437795)) {
+                              return map[on437795];
                             }
                             throw Exception(
-                              (on791719.toString() ?? "null") +
+                              (on437795.toString() ?? "null") +
                                   r" cannot be deserialized into a Union4<$string, $number, $boolean, $date>",
                             );
                           }()),

@@ -6,15 +6,31 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final unionReturn = createQueryOperation<void, UnionReturnResponse>(
-  'primitive_returns:unionReturn',
-  serialize,
-  deserialize,
-);
+Future<UnionReturnResponse> unionReturn() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.query(
+    name: 'primitive_returns:unionReturn',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<UnionReturnResponse> unionReturnStream() {
+  final serializedArgs = serialize(null);
+  return InternalConvexClient.instance.stream(
+    name: 'primitive_returns:unionReturn',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 UnionReturnResponse deserialize(DartValue map) {
   return (
     body: Union2<String, double>(() {

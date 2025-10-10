@@ -6,23 +6,39 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final getTask = createQueryOperation<GetTaskArgs, GetTaskResponse>(
-  'tasks:getTask',
-  serialize,
-  deserialize,
-);
+Future<GetTaskResponse> getTask(GetTaskArgs args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'tasks:getTask',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<GetTaskResponse> getTaskStream(GetTaskArgs args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'tasks:getTask',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(GetTaskArgs args) {
   return hashmapToBtreemap(hashmap: {'id': encodeValue(args.id)});
 }
 
+@pragma("vm:prefer-inline")
 GetTaskResponse deserialize(DartValue map) {
   return (
     body: (decodeValue(map) as IMap<String, dynamic>?)?.then(
-      (on678683) => (
-        $_creationTime: (on678683['_creationTime'] as double),
-        $_id: TasksId(on678683['_id'] as String),
-        isCompleted: (on678683['isCompleted'] as bool),
-        text: (on678683['text'] as String),
+      (on729947) => (
+        $_creationTime: (on729947['_creationTime'] as double),
+        $_id: TasksId(on729947['_id'] as String),
+        isCompleted: (on729947['isCompleted'] as bool),
+        text: (on729947['text'] as String),
       ),
     ),
   );

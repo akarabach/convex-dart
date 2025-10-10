@@ -6,18 +6,33 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query132 = createQueryOperation<Query132Args, Query132Response>(
-  'generic_functions:query132',
-  serialize,
-  deserialize,
-);
+Future<Query132Response> query132(Query132Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query132',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query132Response> query132Stream(Query132Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query132',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query132Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'a': encodeValue(
           args.i.a
-              .map((on65554) => encodeValue({'b': encodeValue(on65554.b)}))
+              .map((on835186) => encodeValue({'b': encodeValue(on835186.b)}))
               .toIList(),
         ),
       }),
@@ -25,15 +40,16 @@ BTreeMapStringValue serialize(Query132Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query132Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on642917) => (
-      i: (on642917['i'] as IMap<String, dynamic>).then(
-        (on862392) => (
-          a: (on862392['a'] as IList<dynamic>)
+    (on694228) => (
+      i: (on694228['i'] as IMap<String, dynamic>).then(
+        (on164260) => (
+          a: (on164260['a'] as IList<dynamic>)
               .map(
-                (on94847) => (on94847 as IMap<String, dynamic>).then(
-                  (on463759) => (b: (on463759['b'] as String)),
+                (on123293) => (on123293 as IMap<String, dynamic>).then(
+                  (on383856) => (b: (on383856['b'] as String)),
                 ),
               )
               .toIList(),

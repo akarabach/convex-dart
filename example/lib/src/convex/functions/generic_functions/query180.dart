@@ -6,18 +6,34 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query180 = createQueryOperation<Query180Args, Query180Response>(
-  'generic_functions:query180',
-  serialize,
-  deserialize,
-);
+Future<Query180Response> query180(Query180Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query180',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query180Response> query180Stream(Query180Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query180',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query180Args args) {
   return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i)});
 }
 
+@pragma("vm:prefer-inline")
 Query180Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on21600) => (i: $3_14.validate(on21600['i'])),
+    (on38832) => (i: $3_14.validate(on38832['i'])),
   );
 }
 

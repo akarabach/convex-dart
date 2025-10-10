@@ -310,7 +310,7 @@ class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
     _$convexFunctionIdentifier,
     mode: FieldMode.member,
   );
-  static String _$argsTypeName(FunctionSpec v) => v.argsTypeName;
+  static String? _$argsTypeName(FunctionSpec v) => v.argsTypeName;
   static const Field<FunctionSpec, String> _f$argsTypeName = Field(
     'argsTypeName',
     _$argsTypeName,

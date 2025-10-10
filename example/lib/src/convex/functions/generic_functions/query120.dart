@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query120 = createQueryOperation<Query120Args, Query120Response>(
-  'generic_functions:query120',
-  serialize,
-  deserialize,
-);
+Future<Query120Response> query120(Query120Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query120',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query120Response> query120Stream(Query120Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query120',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query120Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,17 +33,17 @@ BTreeMapStringValue serialize(Query120Args args) {
         'items': encodeValue(
           args.i.items
               .map(
-                (on148622) => encodeValue({
-                  'id': encodeValue(on148622.id),
+                (on201247) => encodeValue({
+                  'id': encodeValue(on201247.id),
                   'metadata': encodeValue({
-                    for (final on498925 in on148622.metadata.entries)
-                      on498925.key: encodeValue(encodeValue(on498925.value)),
+                    for (final on545249 in on201247.metadata.entries)
+                      on545249.key: encodeValue(encodeValue(on545249.value)),
                   }),
-                  'name': encodeValue(on148622.name),
-                  'price': encodeValue(on148622.price),
-                  if (on148622.quantity.isDefined)
+                  'name': encodeValue(on201247.name),
+                  'price': encodeValue(on201247.price),
+                  if (on201247.quantity.isDefined)
                     'quantity': encodeValue(
-                      on148622.quantity.asDefined().value,
+                      on201247.quantity.asDefined().value,
                     ),
                 }),
               )
@@ -40,30 +55,29 @@ BTreeMapStringValue serialize(Query120Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query120Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on119759) => (
-      i: (on119759['i'] as IMap<String, dynamic>).then(
-        (on896659) => (
-          items: (on896659['items'] as IList<dynamic>)
+    (on328847) => (
+      i: (on328847['i'] as IMap<String, dynamic>).then(
+        (on93642) => (
+          items: (on93642['items'] as IList<dynamic>)
               .map(
-                (on243989) => (on243989 as IMap<String, dynamic>).then(
-                  (on24867) => (
-                    id: (on24867['id'] as String),
-                    metadata: (on24867['metadata'] as IMap<String, dynamic>)
-                        .map(
-                          (on108900, on264309) => MapEntry(on108900, on264309),
-                        ),
-                    name: (on24867['name'] as String),
-                    price: (on24867['price'] as double?),
-                    quantity: on24867.containsKey('quantity')
-                        ? Defined((on24867['quantity'] as double))
+                (on779211) => (on779211 as IMap<String, dynamic>).then(
+                  (on363046) => (
+                    id: (on363046['id'] as String),
+                    metadata: (on363046['metadata'] as IMap<String, dynamic>)
+                        .map((on280529, on9252) => MapEntry(on280529, on9252)),
+                    name: (on363046['name'] as String),
+                    price: (on363046['price'] as double?),
+                    quantity: on363046.containsKey('quantity')
+                        ? Defined((on363046['quantity'] as double))
                         : Undefined<double>(),
                   ),
                 ),
               )
               .toIList(),
-          total: (on896659['total'] as double),
+          total: (on93642['total'] as double),
         ),
       ),
     ),

@@ -6,15 +6,31 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final nullReturn = createQueryOperation<void, NullReturnResponse>(
-  'primitive_returns:nullReturn',
-  serialize,
-  deserialize,
-);
+Future<NullReturnResponse> nullReturn() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.query(
+    name: 'primitive_returns:nullReturn',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<NullReturnResponse> nullReturnStream() {
+  final serializedArgs = serialize(null);
+  return InternalConvexClient.instance.stream(
+    name: 'primitive_returns:nullReturn',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 NullReturnResponse deserialize(DartValue map) {
   return (body: null);
 }

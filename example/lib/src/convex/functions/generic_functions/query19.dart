@@ -6,21 +6,39 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query19 = createQueryOperation<Query19Args, Query19Response>(
-  'generic_functions:query19',
-  serialize,
-  deserialize,
-);
+Future<Query19Response> query19(Query19Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query19',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query19Response> query19Stream(Query19Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query19',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query19Args args) {
   return hashmapToBtreemap(
     hashmap: {if (args.i.isDefined) 'i': encodeValue(args.i.asDefined().value)},
   );
 }
 
+@pragma("vm:prefer-inline")
 Query19Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on4473) => (
-      i: on4473.containsKey('i') ? Defined(on4473['i']) : Undefined<dynamic>(),
+    (on455845) => (
+      i: on455845.containsKey('i')
+          ? Defined(on455845['i'])
+          : Undefined<dynamic>(),
     ),
   );
 }

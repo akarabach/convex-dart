@@ -6,26 +6,42 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query39 = createQueryOperation<Query39Args, Query39Response>(
-  'generic_functions:query39',
-  serialize,
-  deserialize,
-);
+Future<Query39Response> query39(Query39Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query39',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query39Response> query39Stream(Query39Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query39',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query39Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on392950) => encodeValue(on392950)).toIList(),
+        args.i.map((on536635) => encodeValue(on536635)).toIList(),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query39Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on766466) => (
-      i: (on766466['i'] as IList<dynamic>)
-          .map((on523018) => (on523018 as Uint8ListWithEquality))
+    (on748537) => (
+      i: (on748537['i'] as IList<dynamic>)
+          .map((on665676) => (on665676 as Uint8ListWithEquality))
           .toIList(),
     ),
   );

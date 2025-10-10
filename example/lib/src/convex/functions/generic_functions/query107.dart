@@ -6,42 +6,58 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query107 = createQueryOperation<Query107Args, Query107Response>(
-  'generic_functions:query107',
-  serialize,
-  deserialize,
-);
+Future<Query107Response> query107(Query107Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query107',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query107Response> query107Stream(Query107Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query107',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query107Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i?.split(
-          (on692989) => encodeValue(on692989),
-          (on598793) => encodeValue(on598793),
+          (on284613) => encodeValue(on284613),
+          (on727976) => encodeValue(on727976),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query107Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on979991) => (
+    (on601228) => (
       i: Union2<Uint8ListWithEquality, int>(() {
         try {
-          return (on979991['i'] as Uint8ListWithEquality?);
+          return (on601228['i'] as Uint8ListWithEquality?);
         } catch (e) {}
 
         try {
-          return (on979991['i'] as int?);
+          return (on601228['i'] as int?);
         } catch (e) {}
 
-        if (on979991['i'] == null) {
+        if (on601228['i'] == null) {
           return null;
         }
 
         throw Exception(
-          (on979991['i']?.toString() ?? "null") +
+          (on601228['i']?.toString() ?? "null") +
               r" cannot be deserialized into a Union2<Uint8ListWithEquality, int>",
         );
       }()),

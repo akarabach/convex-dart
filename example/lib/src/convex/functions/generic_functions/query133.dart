@@ -6,35 +6,51 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query133 = createQueryOperation<Query133Args, Query133Response>(
-  'generic_functions:query133',
-  serialize,
-  deserialize,
-);
+Future<Query133Response> query133(Query133Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query133',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query133Response> query133Stream(Query133Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query133',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query133Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         if (args.i.a.isDefined)
           'a': encodeValue({
-            for (final on993502 in args.i.a.asDefined().value.entries)
-              on993502.key: encodeValue(encodeValue(on993502.value)),
+            for (final on469981 in args.i.a.asDefined().value.entries)
+              on469981.key: encodeValue(encodeValue(on469981.value)),
           }),
       }),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query133Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on70445) => (
-      i: (on70445['i'] as IMap<String, dynamic>).then(
-        (on410249) => (
-          a: on410249.containsKey('a')
+    (on267914) => (
+      i: (on267914['i'] as IMap<String, dynamic>).then(
+        (on324561) => (
+          a: on324561.containsKey('a')
               ? Defined(
-                  (on410249['a'] as IMap<String, dynamic>).map(
-                    (on128602, on619349) =>
-                        MapEntry(on128602, (on619349 as double)),
+                  (on324561['a'] as IMap<String, dynamic>).map(
+                    (on467306, on310578) =>
+                        MapEntry(on467306, (on310578 as double)),
                   ),
                 )
               : Undefined<IMap<String, double>>(),

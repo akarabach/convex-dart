@@ -6,25 +6,40 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query127 = createQueryOperation<Query127Args, Query127Response>(
-  'generic_functions:query127',
-  serialize,
-  deserialize,
-);
+Future<Query127Response> query127(Query127Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query127',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query127Response> query127Stream(Query127Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query127',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query127Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'variables': encodeValue({
-          for (final on86731 in args.i.variables.entries)
-            on86731.key: encodeValue(
+          for (final on845051 in args.i.variables.entries)
+            on845051.key: encodeValue(
               encodeValue(
-                on86731.value.split(
-                  (on320977) => encodeValue(on320977),
-                  (on456816) => encodeValue(on456816),
-                  (on538084) => encodeValue(on538084),
-                  (on733126) => encodeValue(
-                    on733126.map((on566995) => encodeValue(on566995)).toIList(),
+                on845051.value.split(
+                  (on731492) => encodeValue(on731492),
+                  (on447496) => encodeValue(on447496),
+                  (on847973) => encodeValue(on847973),
+                  (on68427) => encodeValue(
+                    on68427.map((on66932) => encodeValue(on66932)).toIList(),
                   ),
                 ),
               ),
@@ -35,35 +50,36 @@ BTreeMapStringValue serialize(Query127Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query127Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on669069) => (
-      i: (on669069['i'] as IMap<String, dynamic>).then(
-        (on368130) => (
-          variables: (on368130['variables'] as IMap<String, dynamic>).map(
-            (on110128, on866908) => MapEntry(
-              on110128,
+    (on50307) => (
+      i: (on50307['i'] as IMap<String, dynamic>).then(
+        (on311027) => (
+          variables: (on311027['variables'] as IMap<String, dynamic>).map(
+            (on176836, on675846) => MapEntry(
+              on176836,
               Union4<String, double, bool, IList<dynamic>>(() {
                 try {
-                  return (on866908 as String);
+                  return (on675846 as String);
                 } catch (e) {}
 
                 try {
-                  return (on866908 as double);
+                  return (on675846 as double);
                 } catch (e) {}
 
                 try {
-                  return (on866908 as bool);
+                  return (on675846 as bool);
                 } catch (e) {}
 
                 try {
-                  return (on866908 as IList<dynamic>)
-                      .map((on567577) => on567577)
+                  return (on675846 as IList<dynamic>)
+                      .map((on274303) => on274303)
                       .toIList();
                 } catch (e) {}
 
                 throw Exception(
-                  (on866908.toString() ?? "null") +
+                  (on675846.toString() ?? "null") +
                       r" cannot be deserialized into a Union4<String, double, bool, IList<dynamic>>",
                 );
               }()),

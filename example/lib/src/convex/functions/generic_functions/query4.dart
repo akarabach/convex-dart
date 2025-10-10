@@ -6,18 +6,34 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query4 = createQueryOperation<Query4Args, Query4Response>(
-  'generic_functions:query4',
-  serialize,
-  deserialize,
-);
+Future<Query4Response> query4(Query4Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query4',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query4Response> query4Stream(Query4Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query4',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query4Args args) {
   return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i)});
 }
 
+@pragma("vm:prefer-inline")
 Query4Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on879471) => (i: (on879471['i'] as int)),
+    (on353606) => (i: (on353606['i'] as int)),
   );
 }
 

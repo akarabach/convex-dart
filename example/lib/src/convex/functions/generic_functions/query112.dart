@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query112 = createQueryOperation<Query112Args, Query112Response>(
-  'generic_functions:query112',
-  serialize,
-  deserialize,
-);
+Future<Query112Response> query112(Query112Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query112',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query112Response> query112Stream(Query112Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query112',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query112Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -23,14 +38,15 @@ BTreeMapStringValue serialize(Query112Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query112Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on84402) => (
-      i: (on84402['i'] as IMap<String, dynamic>).then(
-        (on257450) => (
-          completed: (on257450['completed'] as bool),
-          id: TasksId(on257450['id'] as String),
-          title: (on257450['title'] as String),
+    (on638591) => (
+      i: (on638591['i'] as IMap<String, dynamic>).then(
+        (on895644) => (
+          completed: (on895644['completed'] as bool),
+          id: TasksId(on895644['id'] as String),
+          title: (on895644['title'] as String),
         ),
       ),
     ),

@@ -6,38 +6,54 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query98 = createQueryOperation<Query98Args, Query98Response>(
-  'generic_functions:query98',
-  serialize,
-  deserialize,
-);
+Future<Query98Response> query98(Query98Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query98',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query98Response> query98Stream(Query98Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query98',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query98Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on756772) => encodeValue(on756772),
-          (on43669) => encodeValue(on43669),
+          (on53240) => encodeValue(on53240),
+          (on944871) => encodeValue(on944871),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query98Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on627112) => (
+    (on526137) => (
       i: Union2<Uint8ListWithEquality, String>(() {
         try {
-          return (on627112['i'] as Uint8ListWithEquality);
+          return (on526137['i'] as Uint8ListWithEquality);
         } catch (e) {}
 
         try {
-          return (on627112['i'] as String);
+          return (on526137['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on627112['i'].toString() ?? "null") +
+          (on526137['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<Uint8ListWithEquality, String>",
         );
       }()),

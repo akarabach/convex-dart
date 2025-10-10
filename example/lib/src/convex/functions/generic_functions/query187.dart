@@ -6,20 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query187 = createQueryOperation<Query187Args, Query187Response>(
-  'generic_functions:query187',
-  serialize,
-  deserialize,
-);
+Future<Query187Response> query187(Query187Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query187',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query187Response> query187Stream(Query187Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query187',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query187Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on213723 in args.i.entries)
-          on213723.key: encodeValue(
+        for (final on371753 in args.i.entries)
+          on371753.key: encodeValue(
             encodeValue({
-              for (final on894534 in on213723.value.entries)
-                on894534.key: encodeValue(encodeValue(on894534.value)),
+              for (final on499692 in on371753.value.entries)
+                on499692.key: encodeValue(encodeValue(on499692.value)),
             }),
           ),
       }),
@@ -27,14 +42,15 @@ BTreeMapStringValue serialize(Query187Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query187Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on976560) => (
-      i: (on976560['i'] as IMap<String, dynamic>).map(
-        (on383698, on399525) => MapEntry(
-          on383698,
-          (on399525 as IMap<String, dynamic>).map(
-            (on555744, on583307) => MapEntry(on555744, (on583307 as String)),
+    (on246165) => (
+      i: (on246165['i'] as IMap<String, dynamic>).map(
+        (on681173, on282679) => MapEntry(
+          on681173,
+          (on282679 as IMap<String, dynamic>).map(
+            (on808322, on523) => MapEntry(on808322, (on523 as String)),
           ),
         ),
       ),

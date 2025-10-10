@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query129 = createQueryOperation<Query129Args, Query129Response>(
-  'generic_functions:query129',
-  serialize,
-  deserialize,
-);
+Future<Query129Response> query129(Query129Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query129',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query129Response> query129Stream(Query129Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query129',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query129Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -28,20 +43,21 @@ BTreeMapStringValue serialize(Query129Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query129Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on765827) => (
-      i: (on765827['i'] as IMap<String, dynamic>).then(
-        (on188413) => (
-          error: on188413.containsKey('error')
+    (on516487) => (
+      i: (on516487['i'] as IMap<String, dynamic>).then(
+        (on146734) => (
+          error: on146734.containsKey('error')
               ? Defined(
-                  (on188413['error'] as IMap<String, dynamic>).then(
-                    (on685243) => (
-                      handler: (on685243['handler'] as String),
-                      retry: (on685243['retry'] as IMap<String, dynamic>).then(
-                        (on376674) => (
-                          count: (on376674['count'] as double),
-                          delay: (on376674['delay'] as double),
+                  (on146734['error'] as IMap<String, dynamic>).then(
+                    (on257412) => (
+                      handler: (on257412['handler'] as String),
+                      retry: (on257412['retry'] as IMap<String, dynamic>).then(
+                        (on680101) => (
+                          count: (on680101['count'] as double),
+                          delay: (on680101['delay'] as double),
                         ),
                       ),
                     ),

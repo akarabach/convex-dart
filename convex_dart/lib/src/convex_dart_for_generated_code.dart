@@ -10,14 +10,6 @@ export 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 export 'rust/lib.dart' show BTreeMapStringValue;
 export 'internal_convex_client.dart' show InternalConvexClient;
-export 'opperations.dart'
-    show
-        QueryOperation,
-        MutationOperation,
-        ActionOperation,
-        createQueryOperation,
-        createMutationOperation,
-        createActionOperation;
 export 'optional.dart';
 export './rust/dart_value.dart' show DartValue;
 export './rust/dart_value/conversion.dart'

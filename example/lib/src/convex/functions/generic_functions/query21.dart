@@ -6,22 +6,38 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query21 = createQueryOperation<Query21Args, Query21Response>(
-  'generic_functions:query21',
-  serialize,
-  deserialize,
-);
+Future<Query21Response> query21(Query21Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query21',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query21Response> query21Stream(Query21Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query21',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query21Args args) {
   return hashmapToBtreemap(
     hashmap: {if (args.i.isDefined) 'i': encodeValue(args.i.asDefined().value)},
   );
 }
 
+@pragma("vm:prefer-inline")
 Query21Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on237545) => (
-      i: on237545.containsKey('i')
-          ? Defined($1_0.validate(on237545['i']))
+    (on223411) => (
+      i: on223411.containsKey('i')
+          ? Defined($1_0.validate(on223411['i']))
           : Undefined<$1_0>(),
     ),
   );

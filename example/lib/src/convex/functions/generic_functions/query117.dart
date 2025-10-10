@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query117 = createQueryOperation<Query117Args, Query117Response>(
-  'generic_functions:query117',
-  serialize,
-  deserialize,
-);
+Future<Query117Response> query117(Query117Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query117',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query117Response> query117Stream(Query117Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query117',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query117Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,10 +33,10 @@ BTreeMapStringValue serialize(Query117Args args) {
         'comments': encodeValue(
           args.i.comments
               .map(
-                (on527223) => encodeValue({
-                  'author': encodeValue(on527223.author),
-                  'text': encodeValue(on527223.text),
-                  'timestamp': encodeValue(on527223.timestamp),
+                (on426120) => encodeValue({
+                  'author': encodeValue(on426120.author),
+                  'text': encodeValue(on426120.text),
+                  'timestamp': encodeValue(on426120.timestamp),
                 }),
               )
               .toIList(),
@@ -33,9 +48,9 @@ BTreeMapStringValue serialize(Query117Args args) {
           }),
         'status': encodeValue(
           args.i.status.split(
-            (on87428) => encodeValue(on87428),
-            (on15011) => encodeValue(on15011),
-            (on222262) => encodeValue(on222262),
+            (on308277) => encodeValue(on308277),
+            (on456508) => encodeValue(on456508),
+            (on542529) => encodeValue(on542529),
           ),
         ),
       }),
@@ -43,28 +58,29 @@ BTreeMapStringValue serialize(Query117Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query117Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on434983) => (
-      i: (on434983['i'] as IMap<String, dynamic>).then(
-        (on157608) => (
-          comments: (on157608['comments'] as IList<dynamic>)
+    (on132294) => (
+      i: (on132294['i'] as IMap<String, dynamic>).then(
+        (on239216) => (
+          comments: (on239216['comments'] as IList<dynamic>)
               .map(
-                (on564259) => (on564259 as IMap<String, dynamic>).then(
-                  (on41036) => (
-                    author: (on41036['author'] as String),
-                    text: (on41036['text'] as String),
-                    timestamp: (on41036['timestamp'] as double),
+                (on702876) => (on702876 as IMap<String, dynamic>).then(
+                  (on742557) => (
+                    author: (on742557['author'] as String),
+                    text: (on742557['text'] as String),
+                    timestamp: (on742557['timestamp'] as double),
                   ),
                 ),
               )
               .toIList(),
-          reviewer: on157608.containsKey('reviewer')
+          reviewer: on239216.containsKey('reviewer')
               ? Defined(
-                  (on157608['reviewer'] as IMap<String, dynamic>).then(
-                    (on927760) => (
-                      id: TasksId(on927760['id'] as String),
-                      name: (on927760['name'] as String),
+                  (on239216['reviewer'] as IMap<String, dynamic>).then(
+                    (on35983) => (
+                      id: TasksId(on35983['id'] as String),
+                      name: (on35983['name'] as String),
                     ),
                   ),
                 )
@@ -75,11 +91,11 @@ Query117Response deserialize(DartValue map) {
               'approved': $approved(),
               'rejected': $rejected(),
             };
-            if (map.containsKey(on157608['status'])) {
-              return map[on157608['status']];
+            if (map.containsKey(on239216['status'])) {
+              return map[on239216['status']];
             }
             throw Exception(
-              (on157608['status'].toString() ?? "null") +
+              (on239216['status'].toString() ?? "null") +
                   r" cannot be deserialized into a Union3<$pending, $approved, $rejected>",
             );
           }()),

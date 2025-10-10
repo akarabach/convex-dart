@@ -6,16 +6,22 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final deleteCompletedTasks =
-    createMutationOperation<void, DeleteCompletedTasksResponse>(
-      'tasks:deleteCompletedTasks',
-      serialize,
-      deserialize,
-    );
+Future<DeleteCompletedTasksResponse> deleteCompletedTasks() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.mutation(
+    name: 'tasks:deleteCompletedTasks',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 DeleteCompletedTasksResponse deserialize(DartValue map) {
   return (body: (decodeValue(map) as double));
 }

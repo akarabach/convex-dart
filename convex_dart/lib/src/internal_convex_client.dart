@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 import 'package:convex_dart/src/rust/dart_value.dart';
 import 'package:convex_dart/src/rust/dart_value/function.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
 import 'package:convex_dart/src/rust/lib.dart';
+import 'package:convex_dart/src/task_queue.dart';
 
 /// A client for interacting with a Convex backend service.
 ///
@@ -65,7 +69,10 @@ class InternalConvexClient {
   /// Returns the query result as a JSON string
   ///
   /// Will throw an [ClientError] if the query fails
-  Future<DartValue> query(String name, BTreeMapStringValue args) async {
+  Future<DartValue> query({
+    required String name,
+    required BTreeMapStringValue args,
+  }) async {
     return await _client.query(name: name, args: args);
   }
 
@@ -88,6 +95,75 @@ class InternalConvexClient {
       args: args,
       onUpdate: (value) => onUpdate(value),
     );
+  }
+
+  Stream<Output> stream<Output>({
+    required String name,
+    required BTreeMapStringValue args,
+    required Output Function(DartValue) decodeResult,
+  }) {
+    final lock = LockedTask();
+
+    late StreamController<Output> controller;
+    SubscriptionHandle? subscriptionHandle;
+
+    void startSubscription() {
+      lock.run((state) async {
+        if (state.isCancelled) {
+          return;
+        }
+        try {
+          final newHandle = await _client.subscribe(
+            name: name,
+            args: args,
+            onUpdate: (value) {
+              if (state.isCancelled || controller.isClosed) {
+                return;
+              }
+              switch (value) {
+                case DartFunctionResult_Value result:
+                  controller.add(decodeResult(result.field0));
+                case DartFunctionResult_ErrorMessage result:
+                  controller.addError(ClientError(result.field0));
+                case DartFunctionResult_ConvexError result:
+                  controller.addError(
+                    ConvexError(
+                      result.field0.message,
+                      decodeValue(result.field0.data),
+                    ),
+                  );
+              }
+            },
+          );
+          if (state.isCancelled) {
+            newHandle.cancel();
+          } else {
+            subscriptionHandle = newHandle;
+          }
+        } catch (e, s) {
+          if (state.isCancelled) {
+            return;
+          }
+          controller.addError(e, s);
+        }
+      });
+    }
+
+    void stopSubscription() {
+      lock.run((state) async {
+        if (state.isCancelled) {
+          return;
+        }
+        subscriptionHandle?.cancel();
+        subscriptionHandle = null;
+      });
+    }
+
+    controller = StreamController<Output>(
+      onListen: startSubscription,
+      onCancel: stopSubscription,
+    );
+    return controller.stream;
   }
 
   /// Executes a Convex mutation operation
@@ -127,5 +203,26 @@ class InternalConvexClient {
   /// Used to authenticate requests to the Convex backend
   Future<void> setAuth({required String? token}) async {
     return await _client.setAuth(token: token);
+  }
+}
+
+class ConvexError implements Exception {
+  final String message;
+  final dynamic data;
+  ConvexError(this.message, this.data);
+
+  @override
+  String toString() {
+    return 'ConvexError(message: $message, data: $data)';
+  }
+}
+
+class ClientError implements Exception {
+  final String message;
+  ClientError(this.message);
+
+  @override
+  String toString() {
+    return 'ClientError(message: $message)';
   }
 }

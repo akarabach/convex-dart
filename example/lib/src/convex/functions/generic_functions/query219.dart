@@ -6,20 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query219 = createQueryOperation<Query219Args, Query219Response>(
-  'generic_functions:query219',
-  serialize,
-  deserialize,
-);
+Future<Query219Response> query219(Query219Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query219',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query219Response> query219Stream(Query219Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query219',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query219Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on166456) => encodeValue({
-                for (final on22894 in on166456.entries)
-                  on22894.key: encodeValue(encodeValue(on22894.value)),
+              (on922540) => encodeValue({
+                for (final on837009 in on922540.entries)
+                  on837009.key: encodeValue(encodeValue(on837009.value)),
               }),
             )
             .toIList(),
@@ -28,13 +43,14 @@ BTreeMapStringValue serialize(Query219Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query219Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on89476) => (
-      i: (on89476['i'] as IList<dynamic>)
+    (on946272) => (
+      i: (on946272['i'] as IList<dynamic>)
           .map(
-            (on683528) => (on683528 as IMap<String, dynamic>).map(
-              (on501985, on815850) => MapEntry(on501985, on815850),
+            (on97170) => (on97170 as IMap<String, dynamic>).map(
+              (on655880, on153119) => MapEntry(on655880, on153119),
             ),
           )
           .toIList(),

@@ -10,4 +10,8 @@ class ConvexClient {
       deploymentUrl: "https://outgoing-akita-910.convex.cloud",
     );
   }
+
+  Future<void> setAuth({required String? token}) async {
+    await internal.InternalConvexClient.instance.setAuth(token: token);
+  }
 }

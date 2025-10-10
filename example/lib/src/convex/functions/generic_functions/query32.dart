@@ -6,19 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query32 = createQueryOperation<Query32Args, Query32Response>(
-  'generic_functions:query32',
-  serialize,
-  deserialize,
-);
+Future<Query32Response> query32(Query32Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query32',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query32Response> query32Stream(Query32Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query32',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query32Args args) {
   return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i)});
 }
 
+@pragma("vm:prefer-inline")
 Query32Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on192687) =>
-        (i: on192687['i'] == null ? null : $1_0.validate(on192687['i'])),
+    (on539630) =>
+        (i: on539630['i'] == null ? null : $1_0.validate(on539630['i'])),
   );
 }
 

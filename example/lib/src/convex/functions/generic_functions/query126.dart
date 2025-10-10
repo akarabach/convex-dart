@@ -6,20 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query126 = createQueryOperation<Query126Args, Query126Response>(
-  'generic_functions:query126',
-  serialize,
-  deserialize,
-);
+Future<Query126Response> query126(Query126Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query126',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query126Response> query126Stream(Query126Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query126',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query126Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'stepType': encodeValue(
           args.i.stepType.split(
-            (on52395) => encodeValue(on52395),
-            (on433674) => encodeValue(on433674),
-            (on387496) => encodeValue(on387496),
+            (on76121) => encodeValue(on76121),
+            (on105370) => encodeValue(on105370),
+            (on204568) => encodeValue(on204568),
           ),
         ),
       }),
@@ -27,22 +42,23 @@ BTreeMapStringValue serialize(Query126Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query126Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on77129) => (
-      i: (on77129['i'] as IMap<String, dynamic>).then(
-        (on859396) => (
+    (on888887) => (
+      i: (on888887['i'] as IMap<String, dynamic>).then(
+        (on760990) => (
           stepType: Union3<$action, $condition, $loop>(() {
             final map = {
               'action': $action(),
               'condition': $condition(),
               'loop': $loop(),
             };
-            if (map.containsKey(on859396['stepType'])) {
-              return map[on859396['stepType']];
+            if (map.containsKey(on760990['stepType'])) {
+              return map[on760990['stepType']];
             }
             throw Exception(
-              (on859396['stepType'].toString() ?? "null") +
+              (on760990['stepType'].toString() ?? "null") +
                   r" cannot be deserialized into a Union3<$action, $condition, $loop>",
             );
           }()),

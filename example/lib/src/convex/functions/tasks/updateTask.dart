@@ -6,11 +6,17 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final updateTask = createMutationOperation<UpdateTaskArgs, UpdateTaskResponse>(
-  'tasks:updateTask',
-  serialize,
-  deserialize,
-);
+Future<UpdateTaskResponse> updateTask(UpdateTaskArgs args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.mutation(
+    name: 'tasks:updateTask',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(UpdateTaskArgs args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -22,6 +28,7 @@ BTreeMapStringValue serialize(UpdateTaskArgs args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 UpdateTaskResponse deserialize(DartValue map) {
   return (body: null);
 }

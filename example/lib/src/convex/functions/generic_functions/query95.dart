@@ -6,43 +6,59 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query95 = createQueryOperation<Query95Args, Query95Response>(
-  'generic_functions:query95',
-  serialize,
-  deserialize,
-);
+Future<Query95Response> query95(Query95Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query95',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query95Response> query95Stream(Query95Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query95',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query95Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on448143) => encodeValue(on448143),
-          (on985033) => encodeValue(on985033),
-          (on154806) => encodeValue(on154806),
+          (on453195) => encodeValue(on453195),
+          (on61246) => encodeValue(on61246),
+          (on779983) => encodeValue(on779983),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query95Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on913211) => (
+    (on400196) => (
       i: Union3<String, double, bool>(() {
         try {
-          return (on913211['i'] as String);
+          return (on400196['i'] as String);
         } catch (e) {}
 
         try {
-          return (on913211['i'] as double);
+          return (on400196['i'] as double);
         } catch (e) {}
 
         try {
-          return (on913211['i'] as bool);
+          return (on400196['i'] as bool);
         } catch (e) {}
 
         throw Exception(
-          (on913211['i'].toString() ?? "null") +
+          (on400196['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union3<String, double, bool>",
         );
       }()),

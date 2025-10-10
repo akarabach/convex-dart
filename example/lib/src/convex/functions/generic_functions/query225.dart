@@ -6,41 +6,57 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query225 = createQueryOperation<Query225Args, Query225Response>(
-  'generic_functions:query225',
-  serialize,
-  deserialize,
-);
+Future<Query225Response> query225(Query225Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query225',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query225Response> query225Stream(Query225Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query225',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query225Args args) {
   return hashmapToBtreemap(
     hashmap: {
       if (args.i.isDefined)
         'i': encodeValue(
           args.i.asDefined().value.split(
-            (on870112) => encodeValue(on870112),
-            (on206925) => encodeValue(on206925),
+            (on296993) => encodeValue(on296993),
+            (on757507) => encodeValue(on757507),
           ),
         ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query225Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on8301) => (
-      i: on8301.containsKey('i')
+    (on65204) => (
+      i: on65204.containsKey('i')
           ? Defined(
               Union2<String, double>(() {
                 try {
-                  return (on8301['i'] as String);
+                  return (on65204['i'] as String);
                 } catch (e) {}
 
                 try {
-                  return (on8301['i'] as double);
+                  return (on65204['i'] as double);
                 } catch (e) {}
 
                 throw Exception(
-                  (on8301['i'].toString() ?? "null") +
+                  (on65204['i'].toString() ?? "null") +
                       r" cannot be deserialized into a Union2<String, double>",
                 );
               }()),

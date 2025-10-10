@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query113 = createQueryOperation<Query113Args, Query113Response>(
-  'generic_functions:query113',
-  serialize,
-  deserialize,
-);
+Future<Query113Response> query113(Query113Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query113',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query113Response> query113Stream(Query113Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query113',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query113Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -28,21 +43,22 @@ BTreeMapStringValue serialize(Query113Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query113Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on220316) => (
-      i: (on220316['i'] as IMap<String, dynamic>).then(
-        (on737051) => (
-          settings: (on737051['settings'] as IMap<String, dynamic>).then(
-            (on757527) => (
-              notifications: (on757527['notifications'] as bool),
-              theme: (on757527['theme'] as String),
+    (on566526) => (
+      i: (on566526['i'] as IMap<String, dynamic>).then(
+        (on263979) => (
+          settings: (on263979['settings'] as IMap<String, dynamic>).then(
+            (on129610) => (
+              notifications: (on129610['notifications'] as bool),
+              theme: (on129610['theme'] as String),
             ),
           ),
-          user: (on737051['user'] as IMap<String, dynamic>).then(
-            (on737332) => (
-              email: (on737332['email'] as String),
-              name: (on737332['name'] as String),
+          user: (on263979['user'] as IMap<String, dynamic>).then(
+            (on512267) => (
+              email: (on512267['email'] as String),
+              name: (on512267['name'] as String),
             ),
           ),
         ),

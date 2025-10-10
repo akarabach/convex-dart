@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query216 = createQueryOperation<Query216Args, Query216Response>(
-  'generic_functions:query216',
-  serialize,
-  deserialize,
-);
+Future<Query216Response> query216(Query216Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query216',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query216Response> query216Stream(Query216Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query216',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query216Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -22,13 +37,14 @@ BTreeMapStringValue serialize(Query216Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query216Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on324338) => (
-      i: (on324338['i'] as IMap<String, dynamic>).then(
-        (on101557) => (
-          payload: on101557['payload'],
-          timestamp: (on101557['timestamp'] as double),
+    (on186756) => (
+      i: (on186756['i'] as IMap<String, dynamic>).then(
+        (on166635) => (
+          payload: on166635['payload'],
+          timestamp: (on166635['timestamp'] as double),
         ),
       ),
     ),

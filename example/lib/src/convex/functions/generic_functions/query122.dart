@@ -6,46 +6,61 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query122 = createQueryOperation<Query122Args, Query122Response>(
-  'generic_functions:query122',
-  serialize,
-  deserialize,
-);
+Future<Query122Response> query122(Query122Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query122',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query122Response> query122Stream(Query122Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query122',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query122Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on468006 in args.i.entries)
-          on468006.key: encodeValue(
+        for (final on530316 in args.i.entries)
+          on530316.key: encodeValue(
             encodeValue({
-              'required': encodeValue(on468006.value.required),
+              'required': encodeValue(on530316.value.required),
               'schema': encodeValue(
-                on468006.value.schema.split(
-                  (on423519) => encodeValue({
+                on530316.value.schema.split(
+                  (on411493) => encodeValue({
                     'primitive': encodeValue(
-                      on423519.primitive.split(
-                        (on73914) => encodeValue(on73914),
-                        (on779758) => encodeValue(on779758),
-                        (on960037) => encodeValue(on960037),
+                      on411493.primitive.split(
+                        (on755112) => encodeValue(on755112),
+                        (on469462) => encodeValue(on469462),
+                        (on34685) => encodeValue(on34685),
                       ),
                     ),
                   }),
-                  (on591600) => encodeValue({
+                  (on751896) => encodeValue({
                     'fields': encodeValue({
-                      for (final on462013 in on591600.fields.entries)
-                        on462013.key: encodeValue(encodeValue(on462013.value)),
+                      for (final on403444 in on751896.fields.entries)
+                        on403444.key: encodeValue(encodeValue(on403444.value)),
                     }),
                   }),
-                  (on811080) => encodeValue({
-                    'elementType': encodeValue(on811080.elementType),
+                  (on121853) => encodeValue({
+                    'elementType': encodeValue(on121853.elementType),
                   }),
                 ),
               ),
               'type': encodeValue(
-                on468006.value.type.split(
-                  (on832321) => encodeValue(on832321),
-                  (on15293) => encodeValue(on15293),
-                  (on482484) => encodeValue(on482484),
+                on530316.value.type.split(
+                  (on760006) => encodeValue(on760006),
+                  (on818932) => encodeValue(on818932),
+                  (on134874) => encodeValue(on134874),
                 ),
               ),
             }),
@@ -55,15 +70,16 @@ BTreeMapStringValue serialize(Query122Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query122Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on123342) => (
-      i: (on123342['i'] as IMap<String, dynamic>).map(
-        (on417158, on267433) => MapEntry(
-          on417158,
-          (on267433 as IMap<String, dynamic>).then(
-            (on329811) => (
-              required: (on329811['required'] as bool),
+    (on335828) => (
+      i: (on335828['i'] as IMap<String, dynamic>).map(
+        (on546221, on682725) => MapEntry(
+          on546221,
+          (on682725 as IMap<String, dynamic>).then(
+            (on901023) => (
+              required: (on901023['required'] as bool),
               schema:
                   Union3<
                     ({Union3<$string, $number, $boolean> primitive}),
@@ -71,19 +87,19 @@ Query122Response deserialize(DartValue map) {
                     ({String elementType})
                   >(() {
                     try {
-                      return (on329811['schema'] as IMap<String, dynamic>).then(
-                        (on497804) => (
+                      return (on901023['schema'] as IMap<String, dynamic>).then(
+                        (on119936) => (
                           primitive: Union3<$string, $number, $boolean>(() {
                             final map = {
                               'string': $string(),
                               'number': $number(),
                               'boolean': $boolean(),
                             };
-                            if (map.containsKey(on497804['primitive'])) {
-                              return map[on497804['primitive']];
+                            if (map.containsKey(on119936['primitive'])) {
+                              return map[on119936['primitive']];
                             }
                             throw Exception(
-                              (on497804['primitive'].toString() ?? "null") +
+                              (on119936['primitive'].toString() ?? "null") +
                                   r" cannot be deserialized into a Union3<$string, $number, $boolean>",
                             );
                           }()),
@@ -92,26 +108,26 @@ Query122Response deserialize(DartValue map) {
                     } catch (e) {}
 
                     try {
-                      return (on329811['schema'] as IMap<String, dynamic>).then(
-                        (on552742) => (
-                          fields: (on552742['fields'] as IMap<String, dynamic>)
+                      return (on901023['schema'] as IMap<String, dynamic>).then(
+                        (on363971) => (
+                          fields: (on363971['fields'] as IMap<String, dynamic>)
                               .map(
-                                (on346472, on155459) =>
-                                    MapEntry(on346472, (on155459 as String)),
+                                (on43488, on831950) =>
+                                    MapEntry(on43488, (on831950 as String)),
                               ),
                         ),
                       );
                     } catch (e) {}
 
                     try {
-                      return (on329811['schema'] as IMap<String, dynamic>).then(
-                        (on224040) =>
-                            (elementType: (on224040['elementType'] as String)),
+                      return (on901023['schema'] as IMap<String, dynamic>).then(
+                        (on649275) =>
+                            (elementType: (on649275['elementType'] as String)),
                       );
                     } catch (e) {}
 
                     throw Exception(
-                      (on329811['schema'].toString() ?? "null") +
+                      (on901023['schema'].toString() ?? "null") +
                           r" cannot be deserialized into a Union3<({Union3<$string, $number, $boolean> primitive}), ({IMap<String, String> fields}), ({String elementType})>",
                     );
                   }()),
@@ -121,11 +137,11 @@ Query122Response deserialize(DartValue map) {
                   'object': $object(),
                   'array': $array(),
                 };
-                if (map.containsKey(on329811['type'])) {
-                  return map[on329811['type']];
+                if (map.containsKey(on901023['type'])) {
+                  return map[on901023['type']];
                 }
                 throw Exception(
-                  (on329811['type'].toString() ?? "null") +
+                  (on901023['type'].toString() ?? "null") +
                       r" cannot be deserialized into a Union3<$primitive, $object, $array>",
                 );
               }()),

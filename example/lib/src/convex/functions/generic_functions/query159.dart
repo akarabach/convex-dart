@@ -6,34 +6,50 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query159 = createQueryOperation<Query159Args, Query159Response>(
-  'generic_functions:query159',
-  serialize,
-  deserialize,
-);
+Future<Query159Response> query159(Query159Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query159',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query159Response> query159Stream(Query159Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query159',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query159Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on36084) => encodeValue(on36084),
-          (on504230) => encodeValue(on504230),
+          (on429089) => encodeValue(on429089),
+          (on83797) => encodeValue(on83797),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query159Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on366125) => (
+    (on325257) => (
       i: Union2<$1_0, $2_0>(() {
         final map = {1.0: $1_0(), 2.0: $2_0()};
-        if (map.containsKey(on366125['i'])) {
-          return map[on366125['i']];
+        if (map.containsKey(on325257['i'])) {
+          return map[on325257['i']];
         }
         throw Exception(
-          (on366125['i'].toString() ?? "null") +
+          (on325257['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<$1_0, $2_0>",
         );
       }()),

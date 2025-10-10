@@ -6,42 +6,58 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query97 = createQueryOperation<Query97Args, Query97Response>(
-  'generic_functions:query97',
-  serialize,
-  deserialize,
-);
+Future<Query97Response> query97(Query97Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query97',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query97Response> query97Stream(Query97Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query97',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query97Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i?.split(
-          (on499167) => encodeValue(on499167),
-          (on762964) => encodeValue(on762964),
+          (on636824) => encodeValue(on636824),
+          (on349118) => encodeValue(on349118),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query97Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on9343) => (
+    (on344848) => (
       i: Union2<double, bool>(() {
         try {
-          return (on9343['i'] as double?);
+          return (on344848['i'] as double?);
         } catch (e) {}
 
         try {
-          return (on9343['i'] as bool?);
+          return (on344848['i'] as bool?);
         } catch (e) {}
 
-        if (on9343['i'] == null) {
+        if (on344848['i'] == null) {
           return null;
         }
 
         throw Exception(
-          (on9343['i']?.toString() ?? "null") +
+          (on344848['i']?.toString() ?? "null") +
               r" cannot be deserialized into a Union2<double, bool>",
         );
       }()),

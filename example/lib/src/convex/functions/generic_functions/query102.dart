@@ -6,35 +6,51 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query102 = createQueryOperation<Query102Args, Query102Response>(
-  'generic_functions:query102',
-  serialize,
-  deserialize,
-);
+Future<Query102Response> query102(Query102Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query102',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query102Response> query102Stream(Query102Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query102',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query102Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on255348) => encodeValue(on255348),
-          (on593221) => encodeValue(on593221),
-          (on11978) => encodeValue(on11978),
+          (on398464) => encodeValue(on398464),
+          (on26325) => encodeValue(on26325),
+          (on43234) => encodeValue(on43234),
         ),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query102Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on497626) => (
+    (on282081) => (
       i: Union3<$admin, $user, $guest>(() {
         final map = {'admin': $admin(), 'user': $user(), 'guest': $guest()};
-        if (map.containsKey(on497626['i'])) {
-          return map[on497626['i']];
+        if (map.containsKey(on282081['i'])) {
+          return map[on282081['i']];
         }
         throw Exception(
-          (on497626['i'].toString() ?? "null") +
+          (on282081['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union3<$admin, $user, $guest>",
         );
       }()),

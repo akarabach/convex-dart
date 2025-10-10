@@ -157,6 +157,9 @@ class ConvexClient {
       deploymentUrl: "$url",
     );
   }
+  Future<void> setAuth({required String? token}) async {
+    await internal.InternalConvexClient.instance.setAuth(token: token);
+  }
 }
     """;
   }
@@ -235,10 +238,10 @@ class FunctionSpec with FunctionSpecMappable {
 
   // The name of the typedef for the arguments
   // e.g. "MyFunctionArgs or void"
-  String get argsTypeName {
+  String? get argsTypeName {
     switch (args) {
       case JsAny():
-        return "void";
+        return null;
       case JsObject():
         return "${functionName.pascalCase}Args";
       default:
@@ -289,14 +292,38 @@ import "../../literals.dart";
     );
 
     final opperationType = switch (functionType) {
-      FunctionType.query => "createQueryOperation",
-      FunctionType.mutation => "createMutationOperation",
-      FunctionType.action => "createActionOperation",
+      FunctionType.query => "query",
+      FunctionType.mutation => "mutation",
+      FunctionType.action => "action",
     };
 
-    context.functionBuffer.writeln(
-      "final $functionName = $opperationType<$argsTypeName,$returnsTypeName>('$convexFunctionIdentifier',$serializeMethodName,$deserializeMethodName);",
-    );
+    context.functionBuffer.writeln('''
+Future<$returnsTypeName> $functionName(${argsTypeName != null ? "$argsTypeName args" : ""}) async {
+  ${switch (argsTypeName) {
+      String() => "final serializedArgs = $serializeMethodName(args);",
+      null => "final serializedArgs = $serializeMethodName(null);",
+    }}
+  final response = await InternalConvexClient.instance.$opperationType(name: '$convexFunctionIdentifier', args: serializedArgs);
+  final deserializedResponse = $deserializeMethodName(response);
+  return deserializedResponse;
+}
+''');
+
+    if (functionType == FunctionType.query) {
+      context.functionBuffer.writeln("""
+Stream<$returnsTypeName> ${functionName}Stream(${argsTypeName != null ? "$argsTypeName args" : ""}) {
+ ${switch (argsTypeName) {
+        String() => "final serializedArgs = $serializeMethodName(args);",
+        null => "final serializedArgs = $serializeMethodName(null);",
+      }}
+  return InternalConvexClient.instance.stream(
+    name: '$convexFunctionIdentifier', 
+    args: serializedArgs,
+    decodeResult: $deserializeMethodName,
+  );
+}
+""");
+    }
 
     String serializeCode;
     if (args is JsAny) {
@@ -317,12 +344,14 @@ import "../../literals.dart";
     }
 
     context.functionBuffer.writeln("""
-BTreeMapStringValue $serializeMethodName($argsTypeName args) {
+@pragma("vm:prefer-inline")
+BTreeMapStringValue $serializeMethodName(${argsTypeName ?? "void"} args) {
   return hashmapToBtreemap(hashmap: $serializeCode);
 }
 
 """);
     context.functionBuffer.writeln("""
+@pragma("vm:prefer-inline")
 $returnsTypeName $deserializeMethodName(DartValue map) {
   return $deserializeCode;
 }
@@ -863,7 +892,6 @@ class JsObject extends JsType with JsObjectMappable {
       "($name as IMap<String, dynamic>$suffix)${dot}then(($argName) => (",
     );
     for (final entry in value.entries) {
-      // then(...) will only run if the map is not null
       if (entry.value.optional) {
         buffer.write(
           "${dartSafeName(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",

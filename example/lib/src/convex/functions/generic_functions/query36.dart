@@ -6,26 +6,42 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query36 = createQueryOperation<Query36Args, Query36Response>(
-  'generic_functions:query36',
-  serialize,
-  deserialize,
-);
+Future<Query36Response> query36(Query36Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query36',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query36Response> query36Stream(Query36Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query36',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query36Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on440728) => encodeValue(on440728)).toIList(),
+        args.i.map((on886990) => encodeValue(on886990)).toIList(),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query36Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on513696) => (
-      i: (on513696['i'] as IList<dynamic>)
-          .map((on218163) => (on218163 as double))
+    (on963526) => (
+      i: (on963526['i'] as IList<dynamic>)
+          .map((on145181) => (on145181 as double))
           .toIList(),
     ),
   );

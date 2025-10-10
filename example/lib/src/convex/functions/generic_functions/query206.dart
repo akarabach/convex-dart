@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query206 = createQueryOperation<Query206Args, Query206Response>(
-  'generic_functions:query206',
-  serialize,
-  deserialize,
-);
+Future<Query206Response> query206(Query206Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query206',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query206Response> query206Stream(Query206Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query206',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query206Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,8 +33,8 @@ BTreeMapStringValue serialize(Query206Args args) {
         'data': encodeValue(
           args.i.data
               .map(
-                (on746608) =>
-                    encodeValue({'value': encodeValue(on746608.value)}),
+                (on195630) =>
+                    encodeValue({'value': encodeValue(on195630.value)}),
               )
               .toIList(),
         ),
@@ -28,15 +43,16 @@ BTreeMapStringValue serialize(Query206Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query206Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on26452) => (
-      i: (on26452['i'] as IMap<String, dynamic>).then(
-        (on913075) => (
-          data: (on913075['data'] as IList<dynamic>)
+    (on347565) => (
+      i: (on347565['i'] as IMap<String, dynamic>).then(
+        (on926626) => (
+          data: (on926626['data'] as IList<dynamic>)
               .map(
-                (on888822) => (on888822 as IMap<String, dynamic>).then(
-                  (on83068) => (value: (on83068['value'] as double)),
+                (on648399) => (on648399 as IMap<String, dynamic>).then(
+                  (on387723) => (value: (on387723['value'] as double)),
                 ),
               )
               .toIList(),

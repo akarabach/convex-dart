@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query181 = createQueryOperation<Query181Args, Query181Response>(
-  'generic_functions:query181',
-  serialize,
-  deserialize,
-);
+Future<Query181Response> query181(Query181Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query181',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query181Response> query181Stream(Query181Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query181',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query181Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -25,15 +40,16 @@ BTreeMapStringValue serialize(Query181Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query181Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on356155) => (
-      i: (on356155['i'] as IMap<String, dynamic>).then(
-        (on881620) => (
-          deeply: (on881620['deeply'] as IMap<String, dynamic>).then(
-            (on872012) => (
-              nested: (on872012['nested'] as IMap<String, dynamic>).then(
-                (on291489) => (value: (on291489['value'] as String)),
+    (on616891) => (
+      i: (on616891['i'] as IMap<String, dynamic>).then(
+        (on856598) => (
+          deeply: (on856598['deeply'] as IMap<String, dynamic>).then(
+            (on352207) => (
+              nested: (on352207['nested'] as IMap<String, dynamic>).then(
+                (on887792) => (value: (on887792['value'] as String)),
               ),
             ),
           ),

@@ -6,22 +6,38 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query13 = createQueryOperation<Query13Args, Query13Response>(
-  'generic_functions:query13',
-  serialize,
-  deserialize,
-);
+Future<Query13Response> query13(Query13Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query13',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query13Response> query13Stream(Query13Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query13',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query13Args args) {
   return hashmapToBtreemap(
     hashmap: {if (args.i.isDefined) 'i': encodeValue(args.i.asDefined().value)},
   );
 }
 
+@pragma("vm:prefer-inline")
 Query13Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on529930) => (
-      i: on529930.containsKey('i')
-          ? Defined((on529930['i'] as String))
+    (on89590) => (
+      i: on89590.containsKey('i')
+          ? Defined((on89590['i'] as String))
           : Undefined<String>(),
     ),
   );

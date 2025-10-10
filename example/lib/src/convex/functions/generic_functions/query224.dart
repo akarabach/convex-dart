@@ -6,21 +6,36 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query224 = createQueryOperation<Query224Args, Query224Response>(
-  'generic_functions:query224',
-  serialize,
-  deserialize,
-);
+Future<Query224Response> query224(Query224Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query224',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query224Response> query224Stream(Query224Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query224',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query224Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on387353) => encodeValue(
-                on387353.split(
-                  (on180598) => encodeValue(on180598),
-                  (on86605) => encodeValue(on86605),
+              (on315435) => encodeValue(
+                on315435.split(
+                  (on418578) => encodeValue(on418578),
+                  (on947446) => encodeValue(on947446),
                 ),
               ),
             )
@@ -30,18 +45,19 @@ BTreeMapStringValue serialize(Query224Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query224Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on810627) => (
-      i: (on810627['i'] as IList<dynamic>)
+    (on354796) => (
+      i: (on354796['i'] as IList<dynamic>)
           .map(
-            (on215032) => Union2<$cat, $dog>(() {
+            (on676480) => Union2<$cat, $dog>(() {
               final map = {'cat': $cat(), 'dog': $dog()};
-              if (map.containsKey(on215032)) {
-                return map[on215032];
+              if (map.containsKey(on676480)) {
+                return map[on676480];
               }
               throw Exception(
-                (on215032.toString() ?? "null") +
+                (on676480.toString() ?? "null") +
                     r" cannot be deserialized into a Union2<$cat, $dog>",
               );
             }()),

@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query146 = createQueryOperation<Query146Args, Query146Response>(
-  'generic_functions:query146',
-  serialize,
-  deserialize,
-);
+Future<Query146Response> query146(Query146Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query146',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query146Response> query146Stream(Query146Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query146',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query146Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -23,14 +38,15 @@ BTreeMapStringValue serialize(Query146Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query146Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on326394) => (
-      i: (on326394['i'] as IMap<String, dynamic>).then(
-        (on75717) => (
-          data: (on75717['data'] as Uint8ListWithEquality),
-          metadata: on75717.containsKey('metadata')
-              ? Defined(on75717['metadata'])
+    (on300072) => (
+      i: (on300072['i'] as IMap<String, dynamic>).then(
+        (on76468) => (
+          data: (on76468['data'] as Uint8ListWithEquality),
+          metadata: on76468.containsKey('metadata')
+              ? Defined(on76468['metadata'])
               : Undefined<dynamic>(),
         ),
       ),

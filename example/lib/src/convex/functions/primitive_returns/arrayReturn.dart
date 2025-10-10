@@ -6,19 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final arrayReturn = createQueryOperation<void, ArrayReturnResponse>(
-  'primitive_returns:arrayReturn',
-  serialize,
-  deserialize,
-);
+Future<ArrayReturnResponse> arrayReturn() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.query(
+    name: 'primitive_returns:arrayReturn',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<ArrayReturnResponse> arrayReturnStream() {
+  final serializedArgs = serialize(null);
+  return InternalConvexClient.instance.stream(
+    name: 'primitive_returns:arrayReturn',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 ArrayReturnResponse deserialize(DartValue map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
-        .map((on632033) => (on632033 as String))
+        .map((on85942) => (on85942 as String))
         .toIList(),
   );
 }

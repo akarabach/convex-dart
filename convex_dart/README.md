@@ -2,6 +2,18 @@
 
 A Flutter package for seamless integration with [Convex](https://convex.dev) backends. This package provides type-safe, real-time connectivity to your Convex functions with automatic code generation and serialization.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Advanced Usage](#advanced-usage)
+- [CLI Integration](#cli-integration)
+- [Type System](#type-system)
+- [Performance & Best Practices](#performance--best-practices)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+
 ## Features
 
 - 🔒 **Type Safety**: Fully type-safe API calls with compile-time error checking
@@ -96,10 +108,10 @@ void main() async {
 
 ```dart
 // lib/pages/tasks_page.dart
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:your_app/src/convex/functions/tasks/getTasks.dart';
 import 'package:your_app/src/convex/functions/tasks/createTask.dart';
-import 'package:your_app/src/convex/functions/tasks/toggleTask.dart';
 
 class TasksPage extends StatefulWidget {
   @override
@@ -157,10 +169,12 @@ class _TasksPageState extends State<TasksPage> {
     }
   }
 
-  // Toggle task completion
+  // Toggle task completion (example - implement your own toggle logic)
   Future<void> _toggleTask(TasksId taskId) async {
     try {
-      await toggleTask.execute(ToggleTaskArgs(id: taskId));
+      // This would be your own toggle mutation
+      // await toggleTask.execute(ToggleTaskArgs(id: taskId));
+      print('Toggle task: $taskId');
       // No need to reload - subscription will update automatically
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -333,6 +347,14 @@ final subscription = stream.listen((data) {
   });
 });
 
+// Avoid duplicate events (optional)
+final distinctStream = stream.distinct();
+final subscription = distinctStream.listen((data) {
+  setState(() {
+    this.data = data;
+  });
+});
+
 // Clean up when done
 subscription.cancel();
 ```
@@ -357,18 +379,30 @@ final uppercaseName = user.nickname.map((name) => name.toUpperCase());
 
 ## CLI Integration
 
-The `convex_dart_cli` tool integrates seamlessly with your development workflow:
+The `convex_dart_cli` tool integrates seamlessly with your development workflow.
+It wraps the `convex dev` command and generates the Dart client code when any changes are detected.
 
 ```bash
-# Generate and watch for changes
-convex_dart_cli generate --js ./jsProject --output ./lib/src/convex
+# Generate and watch for changes (basic usage)
+convex_dart_cli generate
 
-# The CLI will:
-# 1. Monitor your Convex functions for changes
-# 2. Automatically regenerate Dart code when needed
-# 3. Provide helpful error messages and troubleshooting tips
-# 4. Support all Convex types and complex schemas
+# Specify custom paths
+convex_dart_cli generate --js ./my-convex-project --output ./lib/src/api
+
+# Generate with public serialization methods (useful for testing)
+convex_dart_cli generate --public-serialize
+
+# Production mode
+convex_dart_cli generate --prod
 ```
+
+### CLI Features
+
+- **🔄 Auto-regeneration**: Monitors your Convex functions and regenerates Dart code automatically
+- **⚡ Fast builds**: Incremental generation only rebuilds changed functions
+- **🛠️ Development integration**: Runs `convex dev` in the background
+- **📝 Helpful errors**: Provides detailed error messages and troubleshooting tips
+- **🎯 Type validation**: Ensures all Convex types are supported before generation
 
 ## Type System
 
@@ -390,6 +424,135 @@ Convex Dart provides complete type safety for all Convex types:
 | `v.array(T)`         | `IList<T>`                  |
 | `v.record(K, V)`     | `IMap<K, V>`                |
 | `v.object({...})`    | Generated record type       |
+
+### Tips
+
+#### Undefined Values
+
+This package strictly follows the TypeScript types. This means that there is a meaningful difference between `null` and `undefined`.
+Types which are `v.optional(T)` are `Optional<T>` instead of `T?`.
+
+To avoid dealing with this complex type, consider using `v.union(v.null(), T)` instead of `v.optional(T)`.
+This will return a `T?` on the Dart side, which is more familiar to Dart developers:
+
+```typescript
+// Instead of this:
+args: { name: v.optional(v.string()) }
+
+// Consider this:
+args: { name: v.union(v.string(), v.null()) }
+```
+
+```dart
+// Results in familiar nullable syntax:
+final name = args.name; // String? instead of Optional<String>
+```
+
+#### Duplicate Stream Events
+
+The Convex client can sometimes report the same event multiple times. 
+To avoid triggering unnecessary re-renders, use `.distinct()` on the stream.
+You may need to override the equality check to perform a deep equality comparison:
+
+```dart
+// Use distinct to avoid duplicate events
+final stream = myQuery.subscribe(args).distinct();
+
+// For complex objects, provide custom equality
+final stream = myQuery.subscribe(args).distinct((prev, next) {
+  // Custom equality logic
+  return DeepCollectionEquality().equals(prev, next);
+});
+```
+
+## Performance & Best Practices
+
+### Stream Management
+
+```dart
+// ✅ Good: Cancel subscriptions in dispose
+@override
+void dispose() {
+  subscription?.cancel();
+  super.dispose();
+}
+
+// ✅ Good: Use StreamBuilder for reactive UI
+StreamBuilder<List<Task>>(
+  stream: getTasks.subscribe(null),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      return TasksList(tasks: snapshot.data!);
+    }
+    return CircularProgressIndicator();
+  },
+)
+```
+
+### Error Handling Best Practices
+
+```dart
+// ✅ Good: Handle specific error types
+try {
+  await createTask.execute(args);
+} on ConvexException catch (e) {
+  // Handle Convex-specific errors (network, validation, etc.)
+  showErrorSnackBar('Failed to create task: ${e.message}');
+} on TimeoutException {
+  // Handle timeout specifically
+  showErrorSnackBar('Request timed out. Please try again.');
+} catch (e) {
+  // Handle unexpected errors
+  showErrorSnackBar('An unexpected error occurred.');
+  // Log for debugging
+  debugPrint('Unexpected error: $e');
+}
+```
+
+### Memory Management
+
+```dart
+// ✅ Good: Use distinct() to prevent unnecessary rebuilds
+final stream = getTasks.subscribe(null)
+  .distinct((a, b) => listEquals(a, b));
+
+// Note: For advanced stream operations like debounce, consider using rxdart:
+// Add 'rxdart: ^0.27.0' to your pubspec.yaml
+// final debouncedStream = searchQuery.subscribe(args)
+//   .debounceTime(Duration(milliseconds: 300));
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**"ConvexClient not initialized"**
+```dart
+// Ensure you call init() before using any functions
+await ConvexClient.init();
+```
+
+**"Function not found"**
+- Regenerate your Dart client: `convex_dart_cli generate`
+- Ensure your Convex function is exported
+- Check that the function name matches exactly
+
+**"Type mismatch errors"**
+- Verify your Convex function return types match the generated Dart types
+- Regenerate after changing Convex schemas
+- Check for typos in field names
+
+**"Stream not updating"**
+- Ensure you're subscribing to a query (not a mutation or action)
+- Check that your Convex function is properly exported
+- Verify network connectivity
+
+### Debug Mode
+
+```dart
+// Enable debug logging (in development)
+ConvexClient.enableDebugLogging = true;
+```
 
 ## Contributing
 

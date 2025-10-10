@@ -6,20 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query176 = createQueryOperation<Query176Args, Query176Response>(
-  'generic_functions:query176',
-  serialize,
-  deserialize,
-);
+Future<Query176Response> query176(Query176Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query176',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query176Response> query176Stream(Query176Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query176',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query176Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'metadata': encodeValue({
-          for (final on134746 in args.i.metadata.entries)
-            on134746.key: encodeValue(
+          for (final on835226 in args.i.metadata.entries)
+            on835226.key: encodeValue(
               encodeValue({
-                'lastUpdated': encodeValue(on134746.value.lastUpdated),
+                'lastUpdated': encodeValue(on835226.value.lastUpdated),
               }),
             ),
         }),
@@ -28,17 +43,18 @@ BTreeMapStringValue serialize(Query176Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query176Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on697639) => (
-      i: (on697639['i'] as IMap<String, dynamic>).then(
-        (on50163) => (
-          metadata: (on50163['metadata'] as IMap<String, dynamic>).map(
-            (on83445, on414964) => MapEntry(
-              on83445,
-              (on414964 as IMap<String, dynamic>).then(
-                (on117767) =>
-                    (lastUpdated: (on117767['lastUpdated'] as double)),
+    (on595855) => (
+      i: (on595855['i'] as IMap<String, dynamic>).then(
+        (on157867) => (
+          metadata: (on157867['metadata'] as IMap<String, dynamic>).map(
+            (on428574, on398289) => MapEntry(
+              on428574,
+              (on398289 as IMap<String, dynamic>).then(
+                (on944257) =>
+                    (lastUpdated: (on944257['lastUpdated'] as double)),
               ),
             ),
           ),

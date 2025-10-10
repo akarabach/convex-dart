@@ -6,22 +6,37 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query150 = createQueryOperation<Query150Args, Query150Response>(
-  'generic_functions:query150',
-  serialize,
-  deserialize,
-);
+Future<Query150Response> query150(Query150Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query150',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query150Response> query150Stream(Query150Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query150',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query150Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on474282) => encodeValue(
-                on474282.split(
-                  (on638716) => encodeValue(on638716),
-                  (on154729) => encodeValue(on154729),
-                  (on68344) => encodeValue(on68344),
+              (on104363) => encodeValue(
+                on104363.split(
+                  (on687377) => encodeValue(on687377),
+                  (on257199) => encodeValue(on257199),
+                  (on343543) => encodeValue(on343543),
                 ),
               ),
             )
@@ -31,26 +46,27 @@ BTreeMapStringValue serialize(Query150Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query150Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on3531) => (
-      i: (on3531['i'] as IList<dynamic>)
+    (on670285) => (
+      i: (on670285['i'] as IList<dynamic>)
           .map(
-            (on155664) => Union3<String, double, bool>(() {
+            (on813994) => Union3<String, double, bool>(() {
               try {
-                return (on155664 as String);
+                return (on813994 as String);
               } catch (e) {}
 
               try {
-                return (on155664 as double);
+                return (on813994 as double);
               } catch (e) {}
 
               try {
-                return (on155664 as bool);
+                return (on813994 as bool);
               } catch (e) {}
 
               throw Exception(
-                (on155664.toString() ?? "null") +
+                (on813994.toString() ?? "null") +
                     r" cannot be deserialized into a Union3<String, double, bool>",
               );
             }()),

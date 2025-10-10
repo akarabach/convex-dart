@@ -6,26 +6,42 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query64 = createQueryOperation<Query64Args, Query64Response>(
-  'generic_functions:query64',
-  serialize,
-  deserialize,
-);
+Future<Query64Response> query64(Query64Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query64',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query64Response> query64Stream(Query64Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query64',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query64Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on559965) => encodeValue(on559965)).toIList(),
+        args.i.map((on674101) => encodeValue(on674101)).toIList(),
       ),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query64Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on658453) => (
-      i: (on658453['i'] as IList<dynamic>)
-          .map((on717024) => on717024)
+    (on270915) => (
+      i: (on270915['i'] as IList<dynamic>)
+          .map((on723815) => on723815)
           .toIList(),
     ),
   );

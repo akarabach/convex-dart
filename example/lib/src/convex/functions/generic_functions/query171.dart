@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query171 = createQueryOperation<Query171Args, Query171Response>(
-  'generic_functions:query171',
-  serialize,
-  deserialize,
-);
+Future<Query171Response> query171(Query171Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query171',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query171Response> query171Stream(Query171Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query171',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query171Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,24 +33,25 @@ BTreeMapStringValue serialize(Query171Args args) {
         'a': encodeValue(args.i.a),
         if (args.i.b.isDefined) 'b': encodeValue(args.i.b.asDefined().value),
         'c': encodeValue(
-          args.i.c.map((on179979) => encodeValue(on179979)).toIList(),
+          args.i.c.map((on301565) => encodeValue(on301565)).toIList(),
         ),
       }),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query171Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on617232) => (
-      i: (on617232['i'] as IMap<String, dynamic>).then(
-        (on359170) => (
-          a: (on359170['a'] as String),
-          b: on359170.containsKey('b')
-              ? Defined((on359170['b'] as double))
+    (on115567) => (
+      i: (on115567['i'] as IMap<String, dynamic>).then(
+        (on892150) => (
+          a: (on892150['a'] as String),
+          b: on892150.containsKey('b')
+              ? Defined((on892150['b'] as double))
               : Undefined<double>(),
-          c: (on359170['c'] as IList<dynamic>)
-              .map((on481385) => (on481385 as bool))
+          c: (on892150['c'] as IList<dynamic>)
+              .map((on681929) => (on681929 as bool))
               .toIList(),
         ),
       ),

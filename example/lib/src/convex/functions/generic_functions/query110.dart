@@ -6,19 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query110 = createQueryOperation<Query110Args, Query110Response>(
-  'generic_functions:query110',
-  serialize,
-  deserialize,
-);
+Future<Query110Response> query110(Query110Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query110',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query110Response> query110Stream(Query110Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query110',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query110Args args) {
   return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i)});
 }
 
+@pragma("vm:prefer-inline")
 Query110Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on677774) =>
-        (i: on677774['i'] == null ? null : $mixed.validate(on677774['i'])),
+    (on966998) =>
+        (i: on966998['i'] == null ? null : $mixed.validate(on966998['i'])),
   );
 }
 

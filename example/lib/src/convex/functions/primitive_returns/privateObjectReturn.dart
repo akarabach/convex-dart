@@ -6,19 +6,34 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final privateObjectReturn =
-    createQueryOperation<void, PrivateObjectReturnResponse>(
-      'primitive_returns:privateObjectReturn',
-      serialize,
-      deserialize,
-    );
+Future<PrivateObjectReturnResponse> privateObjectReturn() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.query(
+    name: 'primitive_returns:privateObjectReturn',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<PrivateObjectReturnResponse> privateObjectReturnStream() {
+  final serializedArgs = serialize(null);
+  return InternalConvexClient.instance.stream(
+    name: 'primitive_returns:privateObjectReturn',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 PrivateObjectReturnResponse deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on514305) => ($_i: (on514305['_i'] as String)),
+    (on586175) => ($_i: (on586175['_i'] as String)),
   );
 }
 

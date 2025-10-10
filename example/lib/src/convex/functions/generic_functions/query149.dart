@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query149 = createQueryOperation<Query149Args, Query149Response>(
-  'generic_functions:query149',
-  serialize,
-  deserialize,
-);
+Future<Query149Response> query149(Query149Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query149',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query149Response> query149Stream(Query149Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query149',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query149Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -23,14 +38,15 @@ BTreeMapStringValue serialize(Query149Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query149Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on125833) => (
-      i: (on125833['i'] as IMap<String, dynamic>).then(
-        (on28850) => (
-          a: $foo.validate(on28850['a']),
-          b: $123_0.validate(on28850['b']),
-          c: $false.validate(on28850['c']),
+    (on279700) => (
+      i: (on279700['i'] as IMap<String, dynamic>).then(
+        (on215054) => (
+          a: $foo.validate(on215054['a']),
+          b: $123_0.validate(on215054['b']),
+          c: $false.validate(on215054['c']),
         ),
       ),
     ),

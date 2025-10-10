@@ -1,4 +1,3 @@
-import 'package:api/src/convex/schema.dart';
 import 'package:convex_dart/convex_dart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:api/src/convex/client.dart';
@@ -6,7 +5,6 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:api/src/convex/functions/primitive_returns/anyReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/objectReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/recordReturn.dart';
-import 'package:api/src/convex/functions/primitive_returns/idReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/arrayReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/strReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/numReturn.dart';
@@ -22,54 +20,50 @@ void main() {
   });
 
   test('anyReturn', () async {
-    final result = await anyReturn.execute(null);
+    final result = await anyReturn();
     expect(result.body, "Hello");
   });
   test('objectReturn', () async {
-    final result = await objectReturn.execute(null);
+    final result = await objectReturn();
     expect(result.i, "Hello");
   });
   test('recordReturn', () async {
-    final result = await recordReturn.execute(null);
+    final result = await recordReturn();
     expect(result.body, {"i": "Hello"}.lock);
   });
-  test('idReturn', () async {
-    final result = await idReturn.execute(null);
-    expect(result.body, TasksId("j579e7k3cjcwj3jmzf9be7rva97q5w2c"));
-  });
   test('arrayReturn', () async {
-    final result = await arrayReturn.execute(null);
+    final result = await arrayReturn();
     expect(result.body, ["Hi", "Hello"].lock);
   });
   test('strReturn', () async {
-    final result = await strReturn.execute(null);
+    final result = await strReturn();
     expect(result.body, "Hi");
   });
   test('numReturn', () async {
-    final result = await numReturn.execute(null);
+    final result = await numReturn();
     expect(result.body, 1.0);
   });
   test('boolReturn', () async {
-    final result = await boolReturn.execute(null);
+    final result = await boolReturn();
     expect(result.body, true);
   });
   test('int64Return', () async {
-    final result = await int64Return.execute(null);
+    final result = await int64Return();
     expect(result.body, 1);
   });
   test('bytesReturn', () async {
-    final result = await bytesReturn.execute(null);
+    final result = await bytesReturn();
     expect(
       result.body,
       Uint8ListWithEquality.fromList([1, 2, 3, 4, 5, 6, 7, 8]),
     );
   });
   test('nullReturn', () async {
-    await nullReturn.execute(null);
+    await nullReturn();
     // expect(result, null); Cannot test this because it is a void return
   });
   test('unionReturn', () async {
-    final result = await unionReturn.execute(null);
+    final result = await unionReturn();
     expect(result.body, "Hi");
   });
 }

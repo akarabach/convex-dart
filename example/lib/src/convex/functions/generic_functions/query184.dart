@@ -6,20 +6,35 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query184 = createQueryOperation<Query184Args, Query184Response>(
-  'generic_functions:query184',
-  serialize,
-  deserialize,
-);
+Future<Query184Response> query184(Query184Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query184',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query184Response> query184Stream(Query184Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query184',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query184Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on204485) => encodeValue({
-                for (final on507675 in on204485.entries)
-                  on507675.key: encodeValue(encodeValue(on507675.value)),
+              (on736862) => encodeValue({
+                for (final on988599 in on736862.entries)
+                  on988599.key: encodeValue(encodeValue(on988599.value)),
               }),
             )
             .toIList(),
@@ -28,13 +43,14 @@ BTreeMapStringValue serialize(Query184Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query184Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on463450) => (
-      i: (on463450['i'] as IList<dynamic>)
+    (on109012) => (
+      i: (on109012['i'] as IList<dynamic>)
           .map(
-            (on582764) => (on582764 as IMap<String, dynamic>).map(
-              (on977460, on95799) => MapEntry(on977460, (on95799 as bool)),
+            (on206672) => (on206672 as IMap<String, dynamic>).map(
+              (on608694, on746988) => MapEntry(on608694, (on746988 as bool)),
             ),
           )
           .toIList(),

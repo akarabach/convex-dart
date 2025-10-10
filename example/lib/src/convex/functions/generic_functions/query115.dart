@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query115 = createQueryOperation<Query115Args, Query115Response>(
-  'generic_functions:query115',
-  serialize,
-  deserialize,
-);
+Future<Query115Response> query115(Query115Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query115',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query115Response> query115Stream(Query115Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query115',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query115Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -18,49 +33,50 @@ BTreeMapStringValue serialize(Query115Args args) {
         'categories': encodeValue(
           args.i.categories
               .map(
-                (on36155) => encodeValue(
-                  on36155.split(
-                    (on722806) => encodeValue(on722806),
-                    (on921948) => encodeValue(on921948),
-                    (on8764) => encodeValue(on8764),
+                (on264503) => encodeValue(
+                  on264503.split(
+                    (on145131) => encodeValue(on145131),
+                    (on162320) => encodeValue(on162320),
+                    (on827161) => encodeValue(on827161),
                   ),
                 ),
               )
               .toIList(),
         ),
         'tags': encodeValue(
-          args.i.tags.map((on151147) => encodeValue(on151147)).toIList(),
+          args.i.tags.map((on601108) => encodeValue(on601108)).toIList(),
         ),
       }),
     },
   );
 }
 
+@pragma("vm:prefer-inline")
 Query115Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on661722) => (
-      i: (on661722['i'] as IMap<String, dynamic>).then(
-        (on720779) => (
-          categories: (on720779['categories'] as IList<dynamic>)
+    (on841201) => (
+      i: (on841201['i'] as IMap<String, dynamic>).then(
+        (on886618) => (
+          categories: (on886618['categories'] as IList<dynamic>)
               .map(
-                (on431463) => Union3<$work, $personal, $urgent>(() {
+                (on988537) => Union3<$work, $personal, $urgent>(() {
                   final map = {
                     'work': $work(),
                     'personal': $personal(),
                     'urgent': $urgent(),
                   };
-                  if (map.containsKey(on431463)) {
-                    return map[on431463];
+                  if (map.containsKey(on988537)) {
+                    return map[on988537];
                   }
                   throw Exception(
-                    (on431463.toString() ?? "null") +
+                    (on988537.toString() ?? "null") +
                         r" cannot be deserialized into a Union3<$work, $personal, $urgent>",
                   );
                 }()),
               )
               .toIList(),
-          tags: (on720779['tags'] as IList<dynamic>)
-              .map((on199190) => (on199190 as String))
+          tags: (on886618['tags'] as IList<dynamic>)
+              .map((on754553) => (on754553 as String))
               .toIList(),
         ),
       ),

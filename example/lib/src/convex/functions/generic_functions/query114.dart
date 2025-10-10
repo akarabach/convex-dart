@@ -6,11 +6,26 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query114 = createQueryOperation<Query114Args, Query114Response>(
-  'generic_functions:query114',
-  serialize,
-  deserialize,
-);
+Future<Query114Response> query114(Query114Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query114',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query114Response> query114Stream(Query114Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query114',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query114Args args) {
   return hashmapToBtreemap(
     hashmap: {
@@ -25,18 +40,19 @@ BTreeMapStringValue serialize(Query114Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query114Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on523985) => (
-      i: (on523985['i'] as IMap<String, dynamic>).then(
-        (on767815) => (
-          email: on767815.containsKey('email')
-              ? Defined((on767815['email'] as String))
+    (on133286) => (
+      i: (on133286['i'] as IMap<String, dynamic>).then(
+        (on496891) => (
+          email: on496891.containsKey('email')
+              ? Defined((on496891['email'] as String))
               : Undefined<String>(),
-          name: on767815.containsKey('name')
-              ? Defined((on767815['name'] as String))
+          name: on496891.containsKey('name')
+              ? Defined((on496891['name'] as String))
               : Undefined<String>(),
-          phone: (on767815['phone'] as String?),
+          phone: (on496891['phone'] as String?),
         ),
       ),
     ),

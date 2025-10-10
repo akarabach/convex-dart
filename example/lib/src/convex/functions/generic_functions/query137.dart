@@ -6,23 +6,38 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query137 = createQueryOperation<Query137Args, Query137Response>(
-  'generic_functions:query137',
-  serialize,
-  deserialize,
-);
+Future<Query137Response> query137(Query137Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query137',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query137Response> query137Stream(Query137Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query137',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query137Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on252934) => encodeValue({
-            'a': encodeValue(on252934.a),
-            'type': encodeValue(on252934.type),
+          (on742581) => encodeValue({
+            'a': encodeValue(on742581.a),
+            'type': encodeValue(on742581.type),
           }),
-          (on169486) => encodeValue({
-            'b': encodeValue(on169486.b),
-            'type': encodeValue(on169486.type),
+          (on808720) => encodeValue({
+            'b': encodeValue(on808720.b),
+            'type': encodeValue(on808720.type),
           }),
         ),
       ),
@@ -30,30 +45,31 @@ BTreeMapStringValue serialize(Query137Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query137Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on144333) => (
+    (on572987) => (
       i: Union2<({String a, $A type}), ({double b, $B type})>(() {
         try {
-          return (on144333['i'] as IMap<String, dynamic>).then(
-            (on289667) => (
-              a: (on289667['a'] as String),
-              type: $A.validate(on289667['type']),
+          return (on572987['i'] as IMap<String, dynamic>).then(
+            (on473674) => (
+              a: (on473674['a'] as String),
+              type: $A.validate(on473674['type']),
             ),
           );
         } catch (e) {}
 
         try {
-          return (on144333['i'] as IMap<String, dynamic>).then(
-            (on917782) => (
-              b: (on917782['b'] as double),
-              type: $B.validate(on917782['type']),
+          return (on572987['i'] as IMap<String, dynamic>).then(
+            (on412029) => (
+              b: (on412029['b'] as double),
+              type: $B.validate(on412029['type']),
             ),
           );
         } catch (e) {}
 
         throw Exception(
-          (on144333['i'].toString() ?? "null") +
+          (on572987['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<({String a,$A type}), ({double b,$B type})>",
         );
       }()),

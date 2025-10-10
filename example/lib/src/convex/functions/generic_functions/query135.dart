@@ -6,21 +6,36 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query135 = createQueryOperation<Query135Args, Query135Response>(
-  'generic_functions:query135',
-  serialize,
-  deserialize,
-);
+Future<Query135Response> query135(Query135Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query135',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query135Response> query135Stream(Query135Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query135',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query135Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
         args.i
             .map(
-              (on107914) => encodeValue({
-                'a': encodeValue(on107914.a),
-                if (on107914.b.isDefined)
-                  'b': encodeValue(on107914.b.asDefined().value),
+              (on889912) => encodeValue({
+                'a': encodeValue(on889912.a),
+                if (on889912.b.isDefined)
+                  'b': encodeValue(on889912.b.asDefined().value),
               }),
             )
             .toIList(),
@@ -29,16 +44,17 @@ BTreeMapStringValue serialize(Query135Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query135Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on775426) => (
-      i: (on775426['i'] as IList<dynamic>)
+    (on441566) => (
+      i: (on441566['i'] as IList<dynamic>)
           .map(
-            (on646357) => (on646357 as IMap<String, dynamic>).then(
-              (on246118) => (
-                a: (on246118['a'] as String),
-                b: on246118.containsKey('b')
-                    ? Defined((on246118['b'] as double))
+            (on103939) => (on103939 as IMap<String, dynamic>).then(
+              (on470033) => (
+                a: (on470033['a'] as String),
+                b: on470033.containsKey('b')
+                    ? Defined((on470033['b'] as double))
                     : Undefined<double>(),
               ),
             ),

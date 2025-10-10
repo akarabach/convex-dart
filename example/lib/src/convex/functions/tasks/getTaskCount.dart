@@ -6,21 +6,37 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final getTaskCount = createQueryOperation<void, GetTaskCountResponse>(
-  'tasks:getTaskCount',
-  serialize,
-  deserialize,
-);
+Future<GetTaskCountResponse> getTaskCount() async {
+  final serializedArgs = serialize(null);
+  final response = await InternalConvexClient.instance.query(
+    name: 'tasks:getTaskCount',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<GetTaskCountResponse> getTaskCountStream() {
+  final serializedArgs = serialize(null);
+  return InternalConvexClient.instance.stream(
+    name: 'tasks:getTaskCount',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(void args) {
   return hashmapToBtreemap(hashmap: {});
 }
 
+@pragma("vm:prefer-inline")
 GetTaskCountResponse deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on222796) => (
-      completed: (on222796['completed'] as double),
-      pending: (on222796['pending'] as double),
-      total: (on222796['total'] as double),
+    (on702514) => (
+      completed: (on702514['completed'] as double),
+      pending: (on702514['pending'] as double),
+      total: (on702514['total'] as double),
     ),
   );
 }

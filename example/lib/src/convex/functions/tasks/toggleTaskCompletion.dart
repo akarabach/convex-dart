@@ -6,15 +6,24 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final toggleTaskCompletion =
-    createMutationOperation<
-      ToggleTaskCompletionArgs,
-      ToggleTaskCompletionResponse
-    >('tasks:toggleTaskCompletion', serialize, deserialize);
+Future<ToggleTaskCompletionResponse> toggleTaskCompletion(
+  ToggleTaskCompletionArgs args,
+) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.mutation(
+    name: 'tasks:toggleTaskCompletion',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(ToggleTaskCompletionArgs args) {
   return hashmapToBtreemap(hashmap: {'id': encodeValue(args.id)});
 }
 
+@pragma("vm:prefer-inline")
 ToggleTaskCompletionResponse deserialize(DartValue map) {
   return (body: (decodeValue(map) as bool));
 }

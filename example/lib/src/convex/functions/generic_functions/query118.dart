@@ -6,23 +6,38 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-final query118 = createQueryOperation<Query118Args, Query118Response>(
-  'generic_functions:query118',
-  serialize,
-  deserialize,
-);
+Future<Query118Response> query118(Query118Args args) async {
+  final serializedArgs = serialize(args);
+  final response = await InternalConvexClient.instance.query(
+    name: 'generic_functions:query118',
+    args: serializedArgs,
+  );
+  final deserializedResponse = deserialize(response);
+  return deserializedResponse;
+}
+
+Stream<Query118Response> query118Stream(Query118Args args) {
+  final serializedArgs = serialize(args);
+  return InternalConvexClient.instance.stream(
+    name: 'generic_functions:query118',
+    args: serializedArgs,
+    decodeResult: deserialize,
+  );
+}
+
+@pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query118Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
         'config': encodeValue({
-          for (final on906766 in args.i.config.entries)
-            on906766.key: encodeValue(
+          for (final on803182 in args.i.config.entries)
+            on803182.key: encodeValue(
               encodeValue(
-                on906766.value.split(
-                  (on750121) => encodeValue(on750121),
-                  (on21673) => encodeValue(on21673),
-                  (on848447) => encodeValue(on848447),
+                on803182.value.split(
+                  (on211312) => encodeValue(on211312),
+                  (on482775) => encodeValue(on482775),
+                  (on978256) => encodeValue(on978256),
                 ),
               ),
             ),
@@ -36,38 +51,39 @@ BTreeMapStringValue serialize(Query118Args args) {
   );
 }
 
+@pragma("vm:prefer-inline")
 Query118Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on671287) => (
-      i: (on671287['i'] as IMap<String, dynamic>).then(
-        (on577964) => (
-          config: (on577964['config'] as IMap<String, dynamic>).map(
-            (on160834, on913120) => MapEntry(
-              on160834,
+    (on665357) => (
+      i: (on665357['i'] as IMap<String, dynamic>).then(
+        (on948690) => (
+          config: (on948690['config'] as IMap<String, dynamic>).map(
+            (on125268, on223216) => MapEntry(
+              on125268,
               Union3<String, double, bool>(() {
                 try {
-                  return (on913120 as String);
+                  return (on223216 as String);
                 } catch (e) {}
 
                 try {
-                  return (on913120 as double);
+                  return (on223216 as double);
                 } catch (e) {}
 
                 try {
-                  return (on913120 as bool);
+                  return (on223216 as bool);
                 } catch (e) {}
 
                 throw Exception(
-                  (on913120.toString() ?? "null") +
+                  (on223216.toString() ?? "null") +
                       r" cannot be deserialized into a Union3<String, double, bool>",
                 );
               }()),
             ),
           ),
-          fallback: (on577964['fallback'] as IMap<String, dynamic>).then(
-            (on663395) => (
-              enabled: (on663395['enabled'] as bool),
-              value: on663395['value'],
+          fallback: (on948690['fallback'] as IMap<String, dynamic>).then(
+            (on117776) => (
+              enabled: (on117776['enabled'] as bool),
+              value: on117776['value'],
             ),
           ),
         ),
