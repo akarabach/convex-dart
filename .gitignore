@@ -197,3 +197,5 @@ target
 # Ignore all Dart Mapper generated files
 *.dll
 *.so
+/.idea/
+/.vscode/settings.json
