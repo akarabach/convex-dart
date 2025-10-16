@@ -6,7 +6,7 @@ import 'package:path/path.dart' as path;
 import 'package:synchronized/synchronized.dart';
 import 'package:convex_dart_cli/src/types.dart';
 import 'package:cli_tools/cli_tools.dart';
-import 'package:convex_dart_cli/src/task_queue.dart';
+import 'package:locked_async/locked_async.dart';
 
 Future<int> main(List<String> args) async {
   final commandRunner = BetterCommandRunner(
@@ -49,7 +49,7 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
     return _logger!;
   }
 
-  final LockedTask _lockedTask = LockedTask();
+  final LockedAsync _lockedTask = LockedAsync();
 
   /// Build the command which will watch the convex project and rebuild the backend
   /// when changes are made.

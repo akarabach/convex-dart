@@ -697,14 +697,17 @@ fn wire__crate__dart_value__conversion__hashmap_to_btreemap_dart_value_impl(
 
 fn decode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
     dart_opaque: flutter_rust_bridge::DartOpaque,
-) -> impl Fn(crate::dart_value::function::DartFunctionResult) -> flutter_rust_bridge::DartFnFuture<()>
-{
+) -> impl Fn(
+    crate::dart_value::function::DartFunctionResult,
+) -> flutter_rust_bridge::DartFnFuture<
+    std::result::Result<(), flutter_rust_bridge::for_generated::anyhow::Error>,
+> {
     use flutter_rust_bridge::IntoDart;
 
     async fn body(
         dart_opaque: flutter_rust_bridge::DartOpaque,
         arg0: crate::dart_value::function::DartFunctionResult,
-    ) -> () {
+    ) -> std::result::Result<(), flutter_rust_bridge::for_generated::anyhow::Error> {
         let args = vec![arg0.into_into_dart().into_dart()];
         let message = FLUTTER_RUST_BRIDGE_HANDLER
             .dart_fn_invoke(dart_opaque, args)
@@ -720,7 +723,6 @@ fn decode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
             _ => unreachable!(),
         };
         deserializer.end();
-        let ans = ans.expect("Dart throws exception but Rust side assume it is not failable");
         ans
     }
 

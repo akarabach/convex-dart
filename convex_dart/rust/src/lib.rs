@@ -53,18 +53,22 @@ trait QuerySubscriber: Send + Sync {
 
 /// Adapter for Dart functions as subscribers, handling async callbacks.
 struct DartQuerySubscriber {
-    on_update: Box<dyn Fn(DartFunctionResult) -> DartFnFuture<()> + Send + Sync>,
+    on_update: Box<dyn Fn(DartFunctionResult) -> DartFnFuture<anyhow::Result<()>> + Send + Sync>,
 }
 
 impl DartQuerySubscriber {
-    fn new(on_update: Box<dyn Fn(DartFunctionResult) -> DartFnFuture<()> + Send + Sync>) -> Self {
+    fn new(
+        on_update: Box<
+            dyn Fn(DartFunctionResult) -> DartFnFuture<anyhow::Result<()>> + Send + Sync,
+        >,
+    ) -> Self {
         DartQuerySubscriber { on_update }
     }
 }
 
 impl QuerySubscriber for DartQuerySubscriber {
     async fn on_update(&self, value: DartFunctionResult) {
-        (self.on_update)(value).await;
+        let _ = (self.on_update)(value).await;
     }
 }
 
@@ -179,7 +183,10 @@ impl MobileConvexClient {
         &self,
         name: String,
         args: BTreeMap<String, Value>,
-        on_update: impl Fn(DartFunctionResult) -> DartFnFuture<()> + Send + Sync + 'static,
+        on_update: impl Fn(DartFunctionResult) -> DartFnFuture<anyhow::Result<()>>
+            + Send
+            + Sync
+            + 'static,
     ) -> Result<SubscriptionHandle, ClientError> {
         let subscriber = Arc::new(DartQuerySubscriber::new(Box::new(on_update)));
         self.internal_subscribe(name, args, subscriber)

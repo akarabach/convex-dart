@@ -4,7 +4,7 @@ import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 import 'package:convex_dart/src/rust/dart_value/function.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
 import 'package:convex_dart/src/rust/lib.dart';
-import 'package:convex_dart/src/task_queue.dart';
+import 'package:locked_async/locked_async.dart';
 
 /// A client for interacting with a Convex backend service.
 ///
@@ -140,22 +140,22 @@ class InternalConvexClient {
     required BTreeMapStringValue args,
     required Output Function(DartValue) decodeResult,
   }) {
-    final lock = LockedTask();
+    final lock = LockedAsync();
 
     late StreamController<Output> controller;
     SubscriptionHandle? subscriptionHandle;
 
     void startSubscription() {
       lock.run((state) async {
-        if (state.isCancelled) {
-          return;
-        }
+        state.guard();
         try {
           final newHandle = await _client.subscribe(
             name: name,
             args: args,
             onUpdate: (value) {
-              if (state.isCancelled || controller.isClosed) {
+              state.guard();
+
+              if (controller.isClosed) {
                 return;
               }
               switch (value) {
@@ -173,15 +173,10 @@ class InternalConvexClient {
               }
             },
           );
-          if (state.isCancelled) {
-            newHandle.cancel();
-          } else {
-            subscriptionHandle = newHandle;
-          }
+          state.guard();
+          subscriptionHandle = newHandle;
         } catch (e, s) {
-          if (state.isCancelled) {
-            return;
-          }
+          state.guard();
           controller.addError(e, s);
         }
       });
@@ -189,9 +184,7 @@ class InternalConvexClient {
 
     void stopSubscription() {
       lock.run((state) async {
-        if (state.isCancelled) {
-          return;
-        }
+        state.guard();
         subscriptionHandle?.cancel();
         subscriptionHandle = null;
       });
