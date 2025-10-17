@@ -1,11 +1,10 @@
-
 name: Dart
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   Precompile:
@@ -19,8 +18,7 @@ jobs:
           - windows-latest
     steps:
       - uses: actions/checkout@v4
-          steps:
-      - uses: actions/checkout@v2
+
       - uses: dart-lang/setup-dart@v1
       - name: Install GTK
         if: (matrix.os == 'ubuntu-latest')
