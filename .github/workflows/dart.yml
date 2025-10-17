@@ -31,12 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
           PRIVATE_KEY: ${{ secrets.RELEASE_PRIVATE_KEY }}
-      - name: Install build, CMake, Go, and Bindgen dependencies
-        if: (matrix.os == 'ubuntu-latest')
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential cmake golang libclang1
-          cargo install --force --locked bindgen-cli
       - name: Precompile (with Android)
         if: (matrix.os == 'ubuntu-latest')
         run: dart run build_tool precompile-binaries -v --manifest-dir=../../rust --repository=dickermoshe/convex-dart --android-sdk-location=/usr/local/lib/android/sdk --android-ndk-version=27.3.13750724 --android-min-sdk-version=23
