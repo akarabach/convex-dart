@@ -97,13 +97,14 @@ class AndroidEnvironment {
         math.max(target.androidMinSdkVersion!, this.minSdkVersion);
 
     final exe = Platform.isWindows ? '.exe' : '';
-
+    final toolchainDir = Directory(toolchainPath);
     final arKey = 'AR_${target.rust}';
     final arValue = ['${target.rust}-ar', 'llvm-ar', 'llvm-ar.exe']
         .map((e) => path.join(toolchainPath, e))
         .firstWhereOrNull((element) => File(element).existsSync());
     if (arValue == null) {
-      throw Exception('Failed to find ar for $target in $toolchainPath');
+      throw Exception(
+          'Failed to find ar for $target in $toolchainPath, ${toolchainDir.listSync().map((e) => e.path).join(', ')}');
     }
 
     final targetArg = '--target=${target.rust}$minSdkVersion';
