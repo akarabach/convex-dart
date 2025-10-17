@@ -1,3 +1,7 @@
+## 0.3.0
+- Use `convex` 0.9
+- Remove `rustls` and `aws-lc-rs` dependencies
+
 ## 0.2.2
 - Remove `rustls` and `aws-lc-rs` dependencies
 
