@@ -60,25 +60,8 @@ example/
    convex_dart_cli generate --public-serialize
    ```
 
-3. **Build the shared library:**
+3. **Run the tests:**
     Build the shared library in `convex_dart/rust`.
    ```bash
-   cargo build --release
+   puro flutter test integration_test/test_all.dart 
    ```
-4. **Make the library available to your Dart code:**  
-   On Windows, place the library in a directory on PATH.   
-   On Linux, place it in the `example` directory and add it to the LD_LIBRARY_PATH environment variable.  
-   ```bash
-   export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
-   ```
-   On MacOS, place it in the `example` directory and add it to the DYLD_LIBRARY_PATH environment variable.  
-   ```bash
-   export DYLD_LIBRARY_PATH=$PWD:$DYLD_LIBRARY_PATH
-   ```
-
-5. **Run the tests:**
-   ```bash
-   flutter test
-   ```
-
-

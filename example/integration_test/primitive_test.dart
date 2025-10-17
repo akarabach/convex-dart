@@ -1,5 +1,6 @@
 import 'package:convex_dart/convex_dart.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:api/src/convex/client.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:api/src/convex/functions/primitive_returns/anyReturn.dart';
@@ -15,10 +16,6 @@ import 'package:api/src/convex/functions/primitive_returns/nullReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/unionReturn.dart';
 
 void main() {
-  setUpAll(() async {
-    await ConvexClient.init();
-  });
-
   test('anyReturn', () async {
     final result = await anyReturn();
     expect(result.body, "Hello");

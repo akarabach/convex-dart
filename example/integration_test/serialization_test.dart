@@ -6,6 +6,7 @@ import 'package:api/src/convex/schema.dart';
 import 'package:convex_dart/convex_dart.dart';
 import 'package:convex_dart/src/rust/dart_value.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:convex_dart/src/rust/dart_value/conversion.dart';
 import 'package:api/src/convex/functions/generic_functions/query1.dart'
@@ -212,10 +213,6 @@ import 'package:api/src/convex/functions/generic_functions/query124.dart'
     as tasksQuery124;
 
 void main() {
-  setUpAll(() async {
-    await ConvexClient.init();
-  });
-
   test('query1', () async {
     final datas = <tasksQuery1.Query1Args>[
       (i: 'sem'),
