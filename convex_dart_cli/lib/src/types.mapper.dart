@@ -285,16 +285,10 @@ class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
     'visibility',
     _$visibility,
   );
-  static String _$folderName(FunctionSpec v) => v.folderName;
-  static const Field<FunctionSpec, String> _f$folderName = Field(
-    'folderName',
-    _$folderName,
-    mode: FieldMode.member,
-  );
-  static String _$fileName(FunctionSpec v) => v.fileName;
-  static const Field<FunctionSpec, String> _f$fileName = Field(
-    'fileName',
-    _$fileName,
+  static List<String> _$pathParts(FunctionSpec v) => v.pathParts;
+  static const Field<FunctionSpec, List<String>> _f$pathParts = Field(
+    'pathParts',
+    _$pathParts,
     mode: FieldMode.member,
   );
   static String _$functionName(FunctionSpec v) => v.functionName;
@@ -330,8 +324,7 @@ class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
     #functionType: _f$functionType,
     #identifier: _f$identifier,
     #visibility: _f$visibility,
-    #folderName: _f$folderName,
-    #fileName: _f$fileName,
+    #pathParts: _f$pathParts,
     #functionName: _f$functionName,
     #convexFunctionIdentifier: _f$convexFunctionIdentifier,
     #argsTypeName: _f$argsTypeName,

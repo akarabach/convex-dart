@@ -55,11 +55,7 @@ class FunctionsSpec with FunctionsSpecMappable {
             "${functionContext.headerBuffer}"
             "\n${functionContext.functionBuffer}"
             "\n${functionContext.typedefBuffer}";
-        final filePath = path.join(
-          "functions",
-          function.folderName,
-          function.fileName,
-        );
+        final filePath = path.joinAll(["functions", ...function.pathParts]);
         context.outputs[filePath] = code;
         successFunctions.add(function);
       } catch (e, stackTrace) {
@@ -224,14 +220,20 @@ class FunctionSpec with FunctionSpecMappable {
     this.visibility,
   );
   // The name of the folder where the function will be created
-  String get folderName {
-    final jsFileName = identifier.split(":").first;
-    final baseName = path.basenameWithoutExtension(jsFileName);
-    return baseName;
-  }
+  // String get folderName {
+  //   final jsFileName = identifier.split(":").first;
+  //   final baseName = path.basenameWithoutExtension(jsFileName);
+  //   return baseName;
+  // }
 
-  String get fileName {
-    return "$functionName.dart";
+  // String get fileName {
+  //   return;
+  // }
+
+  List<String> get pathParts {
+    final parts = convexFunctionIdentifier.split(":").first.split("/");
+    parts[parts.length - 1] = "${parts[parts.length - 1]}.dart";
+    return parts;
   }
 
   String get functionName {
@@ -239,7 +241,9 @@ class FunctionSpec with FunctionSpecMappable {
   }
 
   String get convexFunctionIdentifier {
-    return "$folderName:$functionName";
+    // folder/file.ts:fnName
+    // remove the .ts
+    return identifier.replaceAll(RegExp(r"\.[^.:\s]+(?=:)"), "");
   }
 
   // The name of the typedef for the arguments

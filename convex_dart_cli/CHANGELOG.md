@@ -1,3 +1,7 @@
+## 0.4.1
+
+- Improve function path generation
+
 ## 0.4.0
 
 - Improve enum serialization
