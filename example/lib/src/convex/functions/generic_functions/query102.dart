@@ -27,36 +27,15 @@ Stream<Query102Response> query102Stream(Query102Args args) {
 
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query102Args args) {
-  return hashmapToBtreemap(
-    hashmap: {
-      'i': encodeValue(
-        args.i.split(
-          (on398464) => encodeValue(on398464),
-          (on26325) => encodeValue(on26325),
-          (on43234) => encodeValue(on43234),
-        ),
-      ),
-    },
-  );
+  return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i.value)});
 }
 
 @pragma("vm:prefer-inline")
 Query102Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on282081) => (
-      i: Union3<$admin, $user, $guest>(() {
-        final map = {'admin': $admin(), 'user': $user(), 'guest': $guest()};
-        if (map.containsKey(on282081['i'])) {
-          return map[on282081['i']];
-        }
-        throw Exception(
-          (on282081['i'].toString() ?? "null") +
-              r" cannot be deserialized into a Union3<$admin, $user, $guest>",
-        );
-      }()),
-    ),
+    (on726396) => (i: $admin$user$guest.fromValue(on726396['i'])),
   );
 }
 
-typedef Query102Args = ({Union3<$admin, $user, $guest> i});
-typedef Query102Response = ({Union3<$admin, $user, $guest> i});
+typedef Query102Args = ({$admin$user$guest i});
+typedef Query102Response = ({$admin$user$guest i});

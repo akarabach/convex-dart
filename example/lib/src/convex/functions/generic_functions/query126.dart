@@ -29,15 +29,7 @@ Stream<Query126Response> query126Stream(Query126Args args) {
 BTreeMapStringValue serialize(Query126Args args) {
   return hashmapToBtreemap(
     hashmap: {
-      'i': encodeValue({
-        'stepType': encodeValue(
-          args.i.stepType.split(
-            (on76121) => encodeValue(on76121),
-            (on105370) => encodeValue(on105370),
-            (on204568) => encodeValue(on204568),
-          ),
-        ),
-      }),
+      'i': encodeValue({'stepType': encodeValue(args.i.stepType.value)}),
     },
   );
 }
@@ -45,30 +37,14 @@ BTreeMapStringValue serialize(Query126Args args) {
 @pragma("vm:prefer-inline")
 Query126Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on888887) => (
-      i: (on888887['i'] as IMap<String, dynamic>).then(
-        (on760990) => (
-          stepType: Union3<$action, $condition, $loop>(() {
-            final map = {
-              'action': $action(),
-              'condition': $condition(),
-              'loop': $loop(),
-            };
-            if (map.containsKey(on760990['stepType'])) {
-              return map[on760990['stepType']];
-            }
-            throw Exception(
-              (on760990['stepType'].toString() ?? "null") +
-                  r" cannot be deserialized into a Union3<$action, $condition, $loop>",
-            );
-          }()),
-        ),
+    (on929726) => (
+      i: (on929726['i'] as IMap<String, dynamic>).then(
+        (on436783) =>
+            (stepType: $action$condition$loop.fromValue(on436783['stepType'])),
       ),
     ),
   );
 }
 
-typedef Query126Args = ({({Union3<$action, $condition, $loop> stepType}) i});
-typedef Query126Response = ({
-  ({Union3<$action, $condition, $loop> stepType}) i,
-});
+typedef Query126Args = ({({$action$condition$loop stepType}) i});
+typedef Query126Response = ({({$action$condition$loop stepType}) i});

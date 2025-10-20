@@ -6062,16 +6062,16 @@ void main() {
 
   test('query100', () async {
     final datas = <tasksQuery100.Query100Args>[
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
-      (i: Union2<$yes, $no>.in1($yes())),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
+      (i: $yes$no.$yesMember),
     ];
     for (final data in datas) {
       final serialized = tasksQuery100.serialize(data);
@@ -6085,16 +6085,16 @@ void main() {
 
   test('query101', () async {
     final datas = <tasksQuery101.Query101Args>[
-      (i: Union3<$1_0, $2_0, $3_0>.in1($1_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in1($1_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in2($2_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in1($1_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in1($1_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in1($1_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in2($2_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in2($2_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in2($2_0())),
-      (i: Union3<$1_0, $2_0, $3_0>.in2($2_0())),
+      (i: $10$20$30.$1_0Member),
+      (i: $10$20$30.$1_0Member),
+      (i: $10$20$30.$2_0Member),
+      (i: $10$20$30.$1_0Member),
+      (i: $10$20$30.$1_0Member),
+      (i: $10$20$30.$1_0Member),
+      (i: $10$20$30.$2_0Member),
+      (i: $10$20$30.$2_0Member),
+      (i: $10$20$30.$2_0Member),
+      (i: $10$20$30.$2_0Member),
     ];
     for (final data in datas) {
       final serialized = tasksQuery101.serialize(data);
@@ -6108,16 +6108,16 @@ void main() {
 
   test('query102', () async {
     final datas = <tasksQuery102.Query102Args>[
-      (i: Union3<$admin, $user, $guest>.in1($admin())),
-      (i: Union3<$admin, $user, $guest>.in2($user())),
-      (i: Union3<$admin, $user, $guest>.in1($admin())),
-      (i: Union3<$admin, $user, $guest>.in2($user())),
-      (i: Union3<$admin, $user, $guest>.in1($admin())),
-      (i: Union3<$admin, $user, $guest>.in1($admin())),
-      (i: Union3<$admin, $user, $guest>.in2($user())),
-      (i: Union3<$admin, $user, $guest>.in2($user())),
-      (i: Union3<$admin, $user, $guest>.in1($admin())),
-      (i: Union3<$admin, $user, $guest>.in2($user())),
+      (i: $admin$user$guest.$adminMember),
+      (i: $admin$user$guest.$guestMember),
+      (i: $admin$user$guest.$adminMember),
+      (i: $admin$user$guest.$guestMember),
+      (i: $admin$user$guest.$adminMember),
+      (i: $admin$user$guest.$adminMember),
+      (i: $admin$user$guest.$guestMember),
+      (i: $admin$user$guest.$guestMember),
+      (i: $admin$user$guest.$adminMember),
+      (i: $admin$user$guest.$guestMember),
     ];
     for (final data in datas) {
       final serialized = tasksQuery102.serialize(data);
@@ -6200,16 +6200,16 @@ void main() {
 
   test('query106', () async {
     final datas = <tasksQuery106.Query106Args>[
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
-      (i: Union2<$true, $false>.in1($true())),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
+      (i: $true$false.$trueMember),
     ];
     for (final data in datas) {
       final serialized = tasksQuery106.serialize(data);
@@ -6606,7 +6606,7 @@ void main() {
     final datas = <tasksQuery115.Query115Args>[
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[].lock,
+          categories: <$work$personal$urgent>[].lock,
           tags: <String>[
             'sodales',
             'eu',
@@ -6620,28 +6620,28 @@ void main() {
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>['fringilla', 'ultrices', 'nullam', 'libero'].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>[
             'et',
@@ -6658,9 +6658,9 @@ void main() {
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>[
             'sem',
@@ -6674,70 +6674,70 @@ void main() {
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>['condimentum', 'habitant', 'dolor'].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
           ].lock,
           tags: <String>['ullamcorper', 'netus'].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>[].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
           ].lock,
           tags: <String>[].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
-            Union3<$work, $personal, $urgent>.in1($work()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
+            $work$personal$urgent.$workMember,
           ].lock,
           tags: <String>['dapibus', 'dui', 'hendrerit', 'lectus', 'quis'].lock,
         ),
       ),
       (
         i: (
-          categories: <Union3<$work, $personal, $urgent>>[
-            Union3<$work, $personal, $urgent>.in2($personal()),
-            Union3<$work, $personal, $urgent>.in1($work()),
+          categories: <$work$personal$urgent>[
+            $work$personal$urgent.$personalMember,
+            $work$personal$urgent.$workMember,
           ].lock,
           tags: <String>[
             'penatibus',
@@ -6763,10 +6763,7 @@ void main() {
     final datas = <tasksQuery116.Query116Args>[
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in2($number()),
-            value: true,
-          ),
+          data: (type: $text$number$boolean.$numberMember, value: true),
           metadata: <String, dynamic>{
             'tellus': 0.3049274284898943,
             'rhoncus': 639042,
@@ -6782,26 +6779,20 @@ void main() {
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in1($text()),
-            value: false,
-          ),
+          data: (type: $text$number$boolean.$textMember, value: false),
           metadata: <String, dynamic>{'orci': 'tempus'}.lock,
         ),
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in2($number()),
-            value: 'fringilla',
-          ),
+          data: (type: $text$number$boolean.$numberMember, value: 'fringilla'),
           metadata: <String, dynamic>{}.lock,
         ),
       ),
       (
         i: (
           data: (
-            type: Union3<$text, $number, $boolean>.in1($text()),
+            type: $text$number$boolean.$textMember,
             value: 0.3914990081795784,
           ),
           metadata: <String, dynamic>{
@@ -6817,10 +6808,7 @@ void main() {
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in1($text()),
-            value: 808661,
-          ),
+          data: (type: $text$number$boolean.$textMember, value: 808661),
           metadata: <String, dynamic>{
             'ante': 'convallis',
             'magna': 0.9056663904421407,
@@ -6835,10 +6823,7 @@ void main() {
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in1($text()),
-            value: true,
-          ),
+          data: (type: $text$number$boolean.$textMember, value: true),
           metadata: <String, dynamic>{
             'nam': 77231,
             'est': 'velit',
@@ -6851,7 +6836,7 @@ void main() {
       (
         i: (
           data: (
-            type: Union3<$text, $number, $boolean>.in2($number()),
+            type: $text$number$boolean.$numberMember,
             value: 'condimentum',
           ),
           metadata: <String, dynamic>{
@@ -6868,10 +6853,7 @@ void main() {
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in2($number()),
-            value: 'vel',
-          ),
+          data: (type: $text$number$boolean.$numberMember, value: 'vel'),
           metadata: <String, dynamic>{
             'ipsum': false,
             'lectus': 125618,
@@ -6885,19 +6867,13 @@ void main() {
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in1($text()),
-            value: 418153,
-          ),
+          data: (type: $text$number$boolean.$textMember, value: 418153),
           metadata: <String, dynamic>{}.lock,
         ),
       ),
       (
         i: (
-          data: (
-            type: Union3<$text, $number, $boolean>.in2($number()),
-            value: 'fermentum',
-          ),
+          data: (type: $text$number$boolean.$numberMember, value: 'fermentum'),
           metadata: <String, dynamic>{
             'potenti': 0.537499271316356,
             'dolor': 'malesuada',
@@ -6943,7 +6919,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'tristique',
           )),
-          status: Union3<$pending, $approved, $rejected>.in1($pending()),
+          status: $pending$approved$rejected.$pendingMember,
         ),
       ),
       (
@@ -6963,7 +6939,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'curabitur',
           )),
-          status: Union3<$pending, $approved, $rejected>.in1($pending()),
+          status: $pending$approved$rejected.$pendingMember,
         ),
       ),
       (
@@ -6985,7 +6961,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'nam',
           )),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7006,7 +6982,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'id',
           )),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7025,7 +7001,7 @@ void main() {
             (author: 'elementum', text: 'erat', timestamp: 0.0453143360687327),
           ].lock,
           reviewer: Undefined(),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7048,7 +7024,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'sapien',
           )),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7077,7 +7053,7 @@ void main() {
             ),
           ].lock,
           reviewer: Undefined(),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7095,7 +7071,7 @@ void main() {
             (author: 'felis', text: 'posuere', timestamp: 0.044392514763201496),
           ].lock,
           reviewer: Undefined(),
-          status: Union3<$pending, $approved, $rejected>.in1($pending()),
+          status: $pending$approved$rejected.$pendingMember,
         ),
       ),
       (
@@ -7105,7 +7081,7 @@ void main() {
             id: TasksId('j579e7k3cjcwj3jmzf9be7rva97q5w2c'),
             name: 'volutpat',
           )),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
       (
@@ -7123,7 +7099,7 @@ void main() {
             (author: 'dolor', text: 'fringilla', timestamp: 0.9242274126380371),
           ].lock,
           reviewer: Undefined(),
-          status: Union3<$pending, $approved, $rejected>.in2($approved()),
+          status: $pending$approved$rejected.$approvedMember,
         ),
       ),
     ];
@@ -13318,33 +13294,31 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'consequat': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'dictumst': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13358,27 +13332,25 @@ void main() {
                             'platea': 'cras',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'sagittis': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'convallis': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13388,43 +13360,41 @@ void main() {
                             'phasellus': 'posuere',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'ultricies': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((fields: <String, String>{}.lock)),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'egestas': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
                           fields: <String, String>{'dui': 'natoque'}.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'ipsum': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                 }
                 .lock,
@@ -13436,33 +13406,31 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'congue': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'nullam': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13477,63 +13445,55 @@ void main() {
                             'duis': 'a',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'pellentesque': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'tempor': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'magna': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'mattis': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                 }
                 .lock,
@@ -13545,12 +13505,12 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{}
                 .lock,
@@ -13562,73 +13522,67 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'adipiscing': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'sit': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'sodales': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'curabitur': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
                           fields: <String, String>{'metus': 'gravida'}.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'dapibus': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13638,21 +13592,19 @@ void main() {
                             'elit': 'eu',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'augue': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                 }
                 .lock,
@@ -13664,33 +13616,31 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'laoreet': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'orci': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13705,13 +13655,13 @@ void main() {
                             'accumsan': 'rhoncus',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'parturient': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13723,7 +13673,7 @@ void main() {
                             'proin': 'lectus',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                 }
                 .lock,
@@ -13735,43 +13685,41 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'velit': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((fields: <String, String>{}.lock)),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'mi': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'congue': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13787,35 +13735,31 @@ void main() {
                             'fusce': 'arcu',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'porttitor': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'iaculis': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                 }
                 .lock,
@@ -13827,12 +13771,12 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{}
                 .lock,
@@ -13844,19 +13788,19 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'natoque': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13869,13 +13813,13 @@ void main() {
                             'cum': 'commodo',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'hac': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13886,27 +13830,25 @@ void main() {
                             'sodales': 'iaculis',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'lectus': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'rhoncus': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -13917,47 +13859,43 @@ void main() {
                             'eu': 'porta',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'mattis': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
                           fields: <String, String>{'habitant': 'ac'}.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'fermentum': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'ridiculus': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                 }
                 .lock,
@@ -13969,61 +13907,55 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'erat': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'mattis': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'aliquam': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'luctus': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -14034,27 +13966,25 @@ void main() {
                             'tristique': 'arcu',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'facilisi': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'ultrices': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -14067,27 +13997,25 @@ void main() {
                             'cum': 'dui',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'blandit': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'suscipit': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -14096,7 +14024,7 @@ void main() {
                             'integer': 'posuere',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                 }
                 .lock,
@@ -14108,19 +14036,19 @@ void main() {
                   ({
                     bool required,
                     Union3<
-                      ({Union3<$string, $number, $boolean> primitive}),
+                      ({$string$number$boolean primitive}),
                       ({IMap<String, String> fields}),
                       ({String elementType})
                     >
                     schema,
-                    Union3<$primitive, $object, $array> type,
+                    $primitive$object$array type,
                   })
                 >{
                   'rhoncus': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -14130,39 +14058,37 @@ void main() {
                             'magnis': 'vitae',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'justo': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in2(
-                            $number(),
-                          ),
+                          primitive: $string$number$boolean.$numberMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'nec': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
                           fields: <String, String>{'ante': 'aliquet'}.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'fames': (
                     required: false,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
@@ -14173,33 +14099,31 @@ void main() {
                             'iaculis': 'eu',
                           }.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in2($object()),
+                    type: $primitive$object$array.$objectMember,
                   ),
                   'mattis': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in1((
-                          primitive: Union3<$string, $number, $boolean>.in1(
-                            $string(),
-                          ),
+                          primitive: $string$number$boolean.$stringMember,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                   'convallis': (
                     required: true,
                     schema:
                         Union3<
-                          ({Union3<$string, $number, $boolean> primitive}),
+                          ({$string$number$boolean primitive}),
                           ({IMap<String, String> fields}),
                           ({String elementType})
                         >.in2((
                           fields: <String, String>{'auctor': 'tincidunt'}.lock,
                         )),
-                    type: Union3<$primitive, $object, $array>.in1($primitive()),
+                    type: $primitive$object$array.$primitiveMember,
                   ),
                 }
                 .lock,
@@ -14222,9 +14146,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14250,9 +14172,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14278,9 +14198,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14298,9 +14216,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14326,9 +14242,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14343,7 +14257,7 @@ void main() {
               content: 'eu',
               formatting: Defined((
                 bold: false,
-                color: Union3<$red, $blue, $green>.in2($blue()),
+                color: $red$blue$green.$blueMember,
                 italic: false,
               )),
               type: $text(),
@@ -14354,9 +14268,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14382,9 +14294,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14410,9 +14320,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14434,9 +14342,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14462,9 +14368,7 @@ void main() {
             Union3<
               ({
                 String content,
-                Optional<
-                  ({bool bold, Union3<$red, $blue, $green> color, bool italic})
-                >
+                Optional<({bool bold, $red$blue$green color, bool italic})>
                 formatting,
                 $text type,
               }),
@@ -14506,7 +14410,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -14514,7 +14418,7 @@ void main() {
                     >{
                       'morbi': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'integer': Union3<String, double, bool>.in2(
                             0.6246804105638981,
@@ -14534,7 +14438,7 @@ void main() {
                       ),
                       'volutpat': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'eleifend': Union3<String, double, bool>.in2(
                             0.07735084764769962,
@@ -14566,7 +14470,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.6373730258414819,
-              window: Union3<$minute, $hour, $day>.in2($hour()),
+              window: $minute$hour$day.$hourMember,
             ),
           ),
           database: (
@@ -14578,8 +14482,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'eget': (
@@ -14655,37 +14558,17 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'tempus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'condimentum':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'diam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'mi':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'adipiscing':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'pretium':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'aliquam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'tempus': $string$number$boolean$date.$stringMember,
+                          'condimentum':
+                              $string$number$boolean$date.$stringMember,
+                          'diam': $string$number$boolean$date.$booleanMember,
+                          'mi': $string$number$boolean$date.$numberMember,
+                          'adipiscing':
+                              $string$number$boolean$date.$stringMember,
+                          'pretium': $string$number$boolean$date.$stringMember,
+                          'aliquam': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'ullamcorper': (
                         indexes:
@@ -14697,17 +14580,10 @@ void main() {
                                   })
                                 >[]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'mauris':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'vitae':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'mauris': $string$number$boolean$date.$numberMember,
+                          'vitae': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'habitant': (
                         indexes:
@@ -14789,21 +14665,13 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'mollis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'mus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'at':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'mollis': $string$number$boolean$date.$booleanMember,
+
+                          'mus': $string$number$boolean$date.$booleanMember,
+
+                          'at': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -14818,7 +14686,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -14826,7 +14694,7 @@ void main() {
                     >{
                       'ornare': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'pharetra': Union3<String, double, bool>.in2(
                             0.7342229297578315,
@@ -14846,7 +14714,7 @@ void main() {
                       ),
                       'enim': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'natoque': Union3<String, double, bool>.in1('elit'),
                           'volutpat': Union3<String, double, bool>.in1('a'),
@@ -14874,7 +14742,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.8617487864029679,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -14886,8 +14754,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'potenti': (
@@ -14906,33 +14773,16 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'quisque':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'vel':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'iaculis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'nisl':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'vestibulum':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'id':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'quisque': $string$number$boolean$date.$numberMember,
+
+                          'vel': $string$number$boolean$date.$booleanMember,
+                          'iaculis': $string$number$boolean$date.$stringMember,
+                          'nisl': $string$number$boolean$date.$numberMember,
+                          'vestibulum':
+                              $string$number$boolean$date.$numberMember,
+                          'id': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'eros': (
                         indexes:
@@ -14972,13 +14822,10 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'praesent':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'praesent':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'integer': (
                         indexes:
@@ -14996,33 +14843,14 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'enim':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'posuere':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'sociis':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'justo':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tellus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'arcu':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'enim': $string$number$boolean$date.$numberMember,
+                          'posuere': $string$number$boolean$date.$stringMember,
+                          'sociis': $string$number$boolean$date.$numberMember,
+                          'justo': $string$number$boolean$date.$stringMember,
+                          'tellus': $string$number$boolean$date.$booleanMember,
+                          'arcu': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'bibendum': (
                         indexes:
@@ -15122,17 +14950,10 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'vitae':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'sem':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'vitae': $string$number$boolean$date.$numberMember,
+                          'sem': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'ultricies': (
                         indexes:
@@ -15246,45 +15067,21 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'tincidunt':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'sociis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'suscipit':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'erat':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'elementum':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tempor':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'quis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'nullam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'convallis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'tincidunt':
+                              $string$number$boolean$date.$numberMember,
+                          'sociis': $string$number$boolean$date.$stringMember,
+                          'suscipit':
+                              $string$number$boolean$date.$booleanMember,
+                          'erat': $string$number$boolean$date.$booleanMember,
+                          'elementum':
+                              $string$number$boolean$date.$stringMember,
+                          'tempor': $string$number$boolean$date.$booleanMember,
+                          'quis': $string$number$boolean$date.$booleanMember,
+                          'nullam': $string$number$boolean$date.$booleanMember,
+                          'convallis':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'hac': (
                         indexes:
@@ -15311,41 +15108,20 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'netus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'habitasse':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'eleifend':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'parturient':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'convallis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'risus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'vivamus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'ante':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'netus': $string$number$boolean$date.$stringMember,
+                          'habitasse':
+                              $string$number$boolean$date.$stringMember,
+                          'eleifend':
+                              $string$number$boolean$date.$booleanMember,
+                          'parturient':
+                              $string$number$boolean$date.$booleanMember,
+                          'convallis':
+                              $string$number$boolean$date.$stringMember,
+                          'risus': $string$number$boolean$date.$stringMember,
+                          'vivamus': $string$number$boolean$date.$stringMember,
+                          'ante': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'tincidunt': (
                         indexes:
@@ -15433,33 +15209,17 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'condimentum':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'vel':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'cras':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'nullam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'penatibus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'consectetur':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'condimentum':
+                              $string$number$boolean$date.$booleanMember,
+                          'vel': $string$number$boolean$date.$booleanMember,
+                          'cras': $string$number$boolean$date.$booleanMember,
+                          'nullam': $string$number$boolean$date.$booleanMember,
+                          'penatibus':
+                              $string$number$boolean$date.$stringMember,
+                          'consectetur':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -15474,7 +15234,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -15482,7 +15242,7 @@ void main() {
                     >{
                       'venenatis': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'vulputate': Union3<String, double, bool>.in2(
                             0.18515035066838592,
@@ -15494,7 +15254,7 @@ void main() {
                       ),
                       'lacinia': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'sodales': Union3<String, double, bool>.in1('nibh'),
                           'ipsum': Union3<String, double, bool>.in2(
@@ -15517,7 +15277,7 @@ void main() {
                       ),
                       'habitasse': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'augue': Union3<String, double, bool>.in1('ipsum'),
                           'ut': Union3<String, double, bool>.in2(
@@ -15545,7 +15305,7 @@ void main() {
                       ),
                       'sollicitudin': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'gravida': Union3<String, double, bool>.in2(
                             0.13577651363061305,
@@ -15566,7 +15326,7 @@ void main() {
                       ),
                       'augue': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'proin': Union3<String, double, bool>.in2(
                             0.2463381817600354,
@@ -15583,7 +15343,7 @@ void main() {
                       ),
                       'habitant': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'montes': Union3<String, double, bool>.in1('feugiat'),
                           'metus': Union3<String, double, bool>.in2(
@@ -15605,7 +15365,7 @@ void main() {
                       ),
                       'malesuada': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'tempor': Union3<String, double, bool>.in2(
                             0.19337056554821797,
@@ -15623,7 +15383,7 @@ void main() {
                       ),
                       'montes': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'posuere': Union3<String, double, bool>.in2(
                             0.7523764561668164,
@@ -15652,7 +15412,7 @@ void main() {
                       ),
                       'aenean': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'nisi': Union3<String, double, bool>.in1('interdum'),
                           'dictum': Union3<String, double, bool>.in1('dictum'),
@@ -15674,7 +15434,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.9187285577097377,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -15686,8 +15446,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'adipiscing': (
@@ -15712,25 +15471,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'gravida':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'nullam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'elit':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'senectus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'gravida': $string$number$boolean$date.$booleanMember,
+                          'nullam': $string$number$boolean$date.$booleanMember,
+                          'elit': $string$number$boolean$date.$booleanMember,
+                          'senectus': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -15745,7 +15491,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -15753,14 +15499,14 @@ void main() {
                     >{
                       'lobortis': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{}.lock,
                         path: 'cum',
                         response: false,
                       ),
                       'lobortis': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'ridiculus': Union3<String, double, bool>.in2(
                             0.3747989175404546,
@@ -15774,7 +15520,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.6121170089961255,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -15786,8 +15532,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'parturient': (
@@ -15884,17 +15629,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'pellentesque':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'tristique':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'pellentesque':
+                              $string$number$boolean$date.$numberMember,
+                          'tristique':
+                              $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'metus': (
                         indexes:
@@ -15983,21 +15723,11 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'cum':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'congue':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'vitae':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'cum': $string$number$boolean$date.$booleanMember,
+                          'congue': $string$number$boolean$date.$numberMember,
+                          'vitae': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'eget': (
                         indexes:
@@ -16024,37 +15754,16 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'nulla':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'nulla':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'purus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'et':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tincidunt':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'volutpat':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'aenean':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'nulla': $string$number$boolean$date.$numberMember,
+                          'nulla': $string$number$boolean$date.$booleanMember,
+                          'purus': $string$number$boolean$date.$booleanMember,
+                          'et': $string$number$boolean$date.$stringMember,
+                          'tincidunt':
+                              $string$number$boolean$date.$numberMember,
+                          'volutpat': $string$number$boolean$date.$stringMember,
+                          'aenean': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'magna': (
                         indexes:
@@ -16077,33 +15786,16 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'ipsum':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'venenatis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'varius':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'malesuada':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'volutpat':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'massa':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'ipsum': $string$number$boolean$date.$stringMember,
+                          'venenatis':
+                              $string$number$boolean$date.$booleanMember,
+                          'varius': $string$number$boolean$date.$numberMember,
+                          'malesuada':
+                              $string$number$boolean$date.$numberMember,
+                          'volutpat': $string$number$boolean$date.$numberMember,
+                          'massa': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -16118,7 +15810,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -16126,7 +15818,7 @@ void main() {
                     >{
                       'netus': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'ligula': Union3<String, double, bool>.in1('egestas'),
                         }.lock,
@@ -16135,7 +15827,7 @@ void main() {
                       ),
                       'venenatis': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'non': Union3<String, double, bool>.in2(
                             0.690545941789356,
@@ -16156,7 +15848,7 @@ void main() {
                       ),
                       'nullam': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'erat': Union3<String, double, bool>.in2(
                             0.059120234276913264,
@@ -16176,7 +15868,7 @@ void main() {
                       ),
                       'interdum': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'tristique': Union3<String, double, bool>.in1(
                             'viverra',
@@ -16203,7 +15895,7 @@ void main() {
                       ),
                       'hac': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'sapien': Union3<String, double, bool>.in1('proin'),
                         }.lock,
@@ -16212,7 +15904,7 @@ void main() {
                       ),
                       'mollis': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'accumsan': Union3<String, double, bool>.in2(
                             0.3481722718746002,
@@ -16238,7 +15930,7 @@ void main() {
                       ),
                       'nulla': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'luctus': Union3<String, double, bool>.in1('lacus'),
                           'viverra': Union3<String, double, bool>.in2(
@@ -16257,7 +15949,7 @@ void main() {
                       ),
                       'diam': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'sodales': Union3<String, double, bool>.in2(
                             0.7685651829632346,
@@ -16289,7 +15981,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.43192065034659766,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -16301,8 +15993,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'malesuada': (
@@ -16351,13 +16042,9 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'in':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'in': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'ipsum': (
                         indexes:
@@ -16462,17 +16149,10 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'blandit':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'nisl':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'blandit': $string$number$boolean$date.$numberMember,
+                          'nisl': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'ultricies': (
                         indexes:
@@ -16497,21 +16177,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'pretium':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'sociis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'lobortis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'pretium': $string$number$boolean$date.$booleanMember,
+                          'sociis': $string$number$boolean$date.$booleanMember,
+                          'lobortis':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'iaculis': (
                         indexes:
@@ -16597,33 +16268,15 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'mus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'ridiculus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'quisque':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'quisque':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'suscipit':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'dapibus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'mus': $string$number$boolean$date.$booleanMember,
+                          'ridiculus':
+                              $string$number$boolean$date.$booleanMember,
+                          'quisque': $string$number$boolean$date.$booleanMember,
+                          'quisque': $string$number$boolean$date.$stringMember,
+                          'suscipit': $string$number$boolean$date.$numberMember,
+                          'dapibus': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'vivamus': (
                         indexes:
@@ -16681,41 +16334,18 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'mus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'curabitur':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'et':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'platea':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'penatibus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'quam':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'dis':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'vitae':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'mus': $string$number$boolean$date.$numberMember,
+                          'curabitur':
+                              $string$number$boolean$date.$booleanMember,
+                          'et': $string$number$boolean$date.$booleanMember,
+                          'platea': $string$number$boolean$date.$booleanMember,
+                          'penatibus':
+                              $string$number$boolean$date.$stringMember,
+                          'quam': $string$number$boolean$date.$stringMember,
+                          'dis': $string$number$boolean$date.$numberMember,
+                          'vitae': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'ridiculus': (
                         indexes:
@@ -16733,13 +16363,10 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'dignissim':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'dignissim':
+                              $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -16754,7 +16381,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -16762,7 +16389,7 @@ void main() {
                     >{
                       'non': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'erat': Union3<String, double, bool>.in2(
                             0.018070797659062388,
@@ -16784,7 +16411,7 @@ void main() {
                       ),
                       'posuere': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'etiam': Union3<String, double, bool>.in1('pulvinar'),
                           'viverra': Union3<String, double, bool>.in2(
@@ -16797,7 +16424,7 @@ void main() {
                       ),
                       'metus': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'porta': Union3<String, double, bool>.in2(
                             0.8707839643618555,
@@ -16814,7 +16441,7 @@ void main() {
                       ),
                       'in': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'ultricies': Union3<String, double, bool>.in1(
                             'pretium',
@@ -16838,14 +16465,14 @@ void main() {
                       ),
                       'nibh': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{}.lock,
                         path: 'eu',
                         response: 'parturient',
                       ),
                       'quis': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'cum': Union3<String, double, bool>.in2(
                             0.7766784498619181,
@@ -16866,7 +16493,7 @@ void main() {
                       ),
                       'fames': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'ornare': Union3<String, double, bool>.in2(
                             0.2943930999344986,
@@ -16898,7 +16525,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.3240248691636042,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -16910,8 +16537,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'interdum': (
@@ -16969,37 +16595,16 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'malesuada':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'nisi':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'quis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'in':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'ut':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'nam':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'ligula':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'malesuada':
+                              $string$number$boolean$date.$stringMember,
+                          'nisi': $string$number$boolean$date.$stringMember,
+                          'quis': $string$number$boolean$date.$booleanMember,
+                          'in': $string$number$boolean$date.$stringMember,
+                          'ut': $string$number$boolean$date.$stringMember,
+                          'nam': $string$number$boolean$date.$stringMember,
+                          'ligula': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'potenti': (
                         indexes:
@@ -17088,13 +16693,9 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'eleifend':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'eleifend': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'euismod': (
                         indexes:
@@ -17139,12 +16740,7 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <
-                                  String,
-                                  Union4<$string, $number, $boolean, $date>
-                                >{}
-                                .lock,
+                        schema: <String, $string$number$boolean$date>{}.lock,
                       ),
                       'cum': (
                         indexes:
@@ -17179,21 +16775,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'imperdiet':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'odio':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'libero':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'imperdiet':
+                              $string$number$boolean$date.$booleanMember,
+                          'odio': $string$number$boolean$date.$numberMember,
+                          'libero': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'suscipit': (
                         indexes:
@@ -17288,45 +16875,21 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'suspendisse':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'dignissim':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'commodo':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'justo':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'magna':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'tincidunt':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'risus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'placerat':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'habitasse':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'suspendisse':
+                              $string$number$boolean$date.$stringMember,
+                          'dignissim':
+                              $string$number$boolean$date.$numberMember,
+                          'commodo': $string$number$boolean$date.$numberMember,
+                          'justo': $string$number$boolean$date.$numberMember,
+                          'magna': $string$number$boolean$date.$numberMember,
+                          'tincidunt':
+                              $string$number$boolean$date.$booleanMember,
+                          'risus': $string$number$boolean$date.$stringMember,
+                          'placerat': $string$number$boolean$date.$stringMember,
+                          'habitasse':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'neque': (
                         indexes:
@@ -17399,13 +16962,10 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'pellentesque':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'pellentesque':
+                              $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'sodales': (
                         indexes:
@@ -17455,13 +17015,9 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'netus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'netus': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'facilisis': (
                         indexes:
@@ -17503,12 +17059,7 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <
-                                  String,
-                                  Union4<$string, $number, $boolean, $date>
-                                >{}
-                                .lock,
+                        schema: <String, $string$number$boolean$date>{}.lock,
                       ),
                     }
                     .lock,
@@ -17523,7 +17074,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -17531,7 +17082,7 @@ void main() {
                     >{
                       'neque': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'ornare': Union3<String, double, bool>.in2(
                             0.5671394068271388,
@@ -17553,7 +17104,7 @@ void main() {
                       ),
                       'congue': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'sociis': Union3<String, double, bool>.in2(
                             0.9499772129781181,
@@ -17579,7 +17130,7 @@ void main() {
                       ),
                       'libero': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'magnis': Union3<String, double, bool>.in1('egestas'),
                           'at': Union3<String, double, bool>.in2(
@@ -17606,7 +17157,7 @@ void main() {
                       ),
                       'malesuada': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'ac': Union3<String, double, bool>.in1('nunc'),
                           'varius': Union3<String, double, bool>.in1(
@@ -17637,7 +17188,7 @@ void main() {
                       ),
                       'orci': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'sociis': Union3<String, double, bool>.in1('quis'),
                           'accumsan': Union3<String, double, bool>.in1('in'),
@@ -17664,7 +17215,7 @@ void main() {
                       ),
                       'tincidunt': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'odio': Union3<String, double, bool>.in1('dolor'),
                           'vestibulum': Union3<String, double, bool>.in2(
@@ -17683,21 +17234,21 @@ void main() {
                       ),
                       'orci': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{}.lock,
                         path: 'nunc',
                         response: 0.7922557461251128,
                       ),
                       'hac': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{}.lock,
                         path: 'augue',
                         response: 563586,
                       ),
                       'convallis': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'netus': Union3<String, double, bool>.in1('nam'),
                           'suscipit': Union3<String, double, bool>.in1(
@@ -17725,7 +17276,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.2773834523671487,
-              window: Union3<$minute, $hour, $day>.in2($hour()),
+              window: $minute$hour$day.$hourMember,
             ),
           ),
           database: (
@@ -17737,8 +17288,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'venenatis': (
@@ -17822,12 +17372,7 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <
-                                  String,
-                                  Union4<$string, $number, $boolean, $date>
-                                >{}
-                                .lock,
+                        schema: <String, $string$number$boolean$date>{}.lock,
                       ),
                       'vel': (
                         indexes:
@@ -17852,45 +17397,18 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'posuere':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'imperdiet':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'luctus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'ornare':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'dui':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'nec':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'laoreet':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'cras':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'proin':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'posuere': $string$number$boolean$date.$stringMember,
+                          'imperdiet':
+                              $string$number$boolean$date.$booleanMember,
+                          'luctus': $string$number$boolean$date.$numberMember,
+                          'ornare': $string$number$boolean$date.$booleanMember,
+                          'dui': $string$number$boolean$date.$booleanMember,
+                          'nec': $string$number$boolean$date.$stringMember,
+                          'laoreet': $string$number$boolean$date.$numberMember,
+                          'cras': $string$number$boolean$date.$stringMember,
+                          'proin': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'dictum': (
                         indexes:
@@ -17908,17 +17426,11 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'cras':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'phasellus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'cras': $string$number$boolean$date.$booleanMember,
+                          'phasellus':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -17933,7 +17445,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -17941,7 +17453,7 @@ void main() {
                     >{
                       'senectus': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'porta': Union3<String, double, bool>.in1('a'),
                           'bibendum': Union3<String, double, bool>.in2(
@@ -17974,7 +17486,7 @@ void main() {
                       ),
                       'in': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'in': Union3<String, double, bool>.in2(
                             0.4228617741590788,
@@ -18002,7 +17514,7 @@ void main() {
                       ),
                       'magna': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'eros': Union3<String, double, bool>.in1('tincidunt'),
                           'natoque': Union3<String, double, bool>.in1(
@@ -18014,7 +17526,7 @@ void main() {
                       ),
                       'quam': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'felis': Union3<String, double, bool>.in2(
                             0.5292393928664202,
@@ -18037,7 +17549,7 @@ void main() {
                       ),
                       'id': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'facilisis': Union3<String, double, bool>.in2(
                             0.32195648306267,
@@ -18062,7 +17574,7 @@ void main() {
                       ),
                       'condimentum': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'posuere': Union3<String, double, bool>.in1(
                             'imperdiet',
@@ -18087,7 +17599,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.7928799085471827,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -18099,8 +17611,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'iaculis': (
@@ -18113,29 +17624,13 @@ void main() {
                                   })
                                 >[]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'purus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'molestie':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'mattis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'blandit':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'nullam':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'purus': $string$number$boolean$date.$stringMember,
+                          'molestie': $string$number$boolean$date.$stringMember,
+                          'mattis': $string$number$boolean$date.$stringMember,
+                          'blandit': $string$number$boolean$date.$stringMember,
+                          'nullam': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'a': (
                         indexes:
@@ -18217,21 +17712,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'proin':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'imperdiet':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'donec':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'proin': $string$number$boolean$date.$booleanMember,
+                          'imperdiet':
+                              $string$number$boolean$date.$stringMember,
+                          'donec': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'duis': (
                         indexes:
@@ -18256,33 +17742,16 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'curabitur':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'velit':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'ante':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'porttitor':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'lacus':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'volutpat':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'curabitur':
+                              $string$number$boolean$date.$numberMember,
+                          'velit': $string$number$boolean$date.$booleanMember,
+                          'ante': $string$number$boolean$date.$numberMember,
+                          'porttitor':
+                              $string$number$boolean$date.$booleanMember,
+                          'lacus': $string$number$boolean$date.$booleanMember,
+                          'volutpat': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'fermentum': (
                         indexes:
@@ -18362,21 +17831,11 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'magna':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tempus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'ipsum':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'magna': $string$number$boolean$date.$stringMember,
+                          'tempus': $string$number$boolean$date.$stringMember,
+                          'ipsum': $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'amet': (
                         indexes:
@@ -18388,25 +17847,13 @@ void main() {
                                   })
                                 >[]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'potenti':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'phasellus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'sit':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'urna':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'potenti': $string$number$boolean$date.$stringMember,
+                          'phasellus':
+                              $string$number$boolean$date.$stringMember,
+                          'sit': $string$number$boolean$date.$booleanMember,
+                          'urna': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'lacinia': (
                         indexes:
@@ -18424,45 +17871,21 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'eget':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tellus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'venenatis':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'ridiculus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'cras':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'ullamcorper':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'lobortis':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'cursus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'fames':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'eget': $string$number$boolean$date.$stringMember,
+                          'tellus': $string$number$boolean$date.$numberMember,
+                          'venenatis':
+                              $string$number$boolean$date.$numberMember,
+                          'ridiculus':
+                              $string$number$boolean$date.$numberMember,
+                          'cras': $string$number$boolean$date.$stringMember,
+                          'ullamcorper':
+                              $string$number$boolean$date.$numberMember,
+                          'lobortis':
+                              $string$number$boolean$date.$booleanMember,
+                          'cursus': $string$number$boolean$date.$numberMember,
+                          'fames': $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -18477,7 +17900,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -18485,7 +17908,7 @@ void main() {
                     >{
                       'tortor': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'luctus': Union3<String, double, bool>.in2(
                             0.502111823185978,
@@ -18502,7 +17925,7 @@ void main() {
                       ),
                       'erat': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'diam': Union3<String, double, bool>.in1('sed'),
                           'bibendum': Union3<String, double, bool>.in2(
@@ -18523,7 +17946,7 @@ void main() {
                       ),
                       'quis': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'fames': Union3<String, double, bool>.in2(
                             0.8915833988934908,
@@ -18547,7 +17970,7 @@ void main() {
                       ),
                       'viverra': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'praesent': Union3<String, double, bool>.in1('ut'),
                           'consectetur': Union3<String, double, bool>.in1(
@@ -18559,7 +17982,7 @@ void main() {
                       ),
                       'tellus': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'nec': Union3<String, double, bool>.in2(
                             0.24931470454811155,
@@ -18570,7 +17993,7 @@ void main() {
                       ),
                       'cursus': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in3($PUT()),
+                        method: $get$post$put$delete.$PUTMember,
                         params: <String, Union3<String, double, bool>>{
                           'eleifend': Union3<String, double, bool>.in1(
                             'fringilla',
@@ -18584,7 +18007,7 @@ void main() {
                       ),
                       'orci': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'interdum': Union3<String, double, bool>.in2(
                             0.5023113140535086,
@@ -18613,7 +18036,7 @@ void main() {
                       ),
                       'maecenas': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'dolor': Union3<String, double, bool>.in2(
                             0.7762127165066646,
@@ -18635,7 +18058,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.5122731114076133,
-              window: Union3<$minute, $hour, $day>.in2($hour()),
+              window: $minute$hour$day.$hourMember,
             ),
           ),
           database: (
@@ -18647,8 +18070,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'feugiat': (
@@ -18677,17 +18099,11 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'fermentum':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'varius':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'fermentum':
+                              $string$number$boolean$date.$booleanMember,
+                          'varius': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                     }
                     .lock,
@@ -18702,7 +18118,7 @@ void main() {
                       String,
                       ({
                         Optional<bool> auth,
-                        Union4<$GET, $POST, $PUT, $DELETE> method,
+                        $get$post$put$delete method,
                         IMap<String, Union3<String, double, bool>> params,
                         String path,
                         dynamic response,
@@ -18710,7 +18126,7 @@ void main() {
                     >{
                       'nam': (
                         auth: Undefined(),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'hendrerit': Union3<String, double, bool>.in2(
                             0.31614217724154337,
@@ -18740,7 +18156,7 @@ void main() {
                       ),
                       'molestie': (
                         auth: Defined(false),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in1($GET()),
+                        method: $get$post$put$delete.$GETMember,
                         params: <String, Union3<String, double, bool>>{
                           'dignissim': Union3<String, double, bool>.in1(
                             'congue',
@@ -18752,7 +18168,7 @@ void main() {
                       ),
                       'at': (
                         auth: Defined(true),
-                        method: Union4<$GET, $POST, $PUT, $DELETE>.in2($POST()),
+                        method: $get$post$put$delete.$POSTMember,
                         params: <String, Union3<String, double, bool>>{
                           'sit': Union3<String, double, bool>.in2(
                             0.3034230759750749,
@@ -18784,7 +18200,7 @@ void main() {
                     .lock,
             rateLimit: (
               requests: 0.6278338394588041,
-              window: Union3<$minute, $hour, $day>.in1($minute()),
+              window: $minute$hour$day.$minuteMember,
             ),
           ),
           database: (
@@ -18796,8 +18212,7 @@ void main() {
                           ({IList<String> fields, String name, bool unique})
                         >
                         indexes,
-                        IMap<String, Union4<$string, $number, $boolean, $date>>
-                        schema,
+                        IMap<String, $string$number$boolean$date> schema,
                       })
                     >{
                       'interdum': (
@@ -18857,21 +18272,12 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'proin':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'semper':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'interdum':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'proin': $string$number$boolean$date.$stringMember,
+                          'semper': $string$number$boolean$date.$numberMember,
+                          'interdum':
+                              $string$number$boolean$date.$booleanMember,
+                        }.lock,
                       ),
                       'viverra': (
                         indexes:
@@ -18893,12 +18299,7 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <
-                                  String,
-                                  Union4<$string, $number, $boolean, $date>
-                                >{}
-                                .lock,
+                        schema: <String, $string$number$boolean$date>{}.lock,
                       ),
                       'dolor': (
                         indexes:
@@ -18966,37 +18367,18 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'fringilla':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'aenean':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'sollicitudin':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'ut':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'mollis':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'habitasse':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'turpis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'fringilla':
+                              $string$number$boolean$date.$numberMember,
+                          'aenean': $string$number$boolean$date.$stringMember,
+                          'sollicitudin':
+                              $string$number$boolean$date.$numberMember,
+                          'ut': $string$number$boolean$date.$booleanMember,
+                          'mollis': $string$number$boolean$date.$numberMember,
+                          'habitasse':
+                              $string$number$boolean$date.$booleanMember,
+                          'turpis': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'maecenas': (
                         indexes:
@@ -19085,29 +18467,13 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'duis':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'nunc':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'rhoncus':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'tempor':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'mauris':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'duis': $string$number$boolean$date.$stringMember,
+                          'nunc': $string$number$boolean$date.$stringMember,
+                          'rhoncus': $string$number$boolean$date.$stringMember,
+                          'tempor': $string$number$boolean$date.$stringMember,
+                          'mauris': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'nulla': (
                         indexes:
@@ -19193,13 +18559,9 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'velit':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'velit': $string$number$boolean$date.$stringMember,
+                        }.lock,
                       ),
                       'arcu': (
                         indexes:
@@ -19310,33 +18672,15 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'et':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'mauris':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'sem':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'lacus':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'ornare':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'vestibulum':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'et': $string$number$boolean$date.$stringMember,
+                          'mauris': $string$number$boolean$date.$booleanMember,
+                          'sem': $string$number$boolean$date.$numberMember,
+                          'lacus': $string$number$boolean$date.$numberMember,
+                          'ornare': $string$number$boolean$date.$stringMember,
+                          'vestibulum':
+                              $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                       'sed': (
                         indexes:
@@ -19462,25 +18806,14 @@ void main() {
                                   ),
                                 ]
                                 .lock,
-                        schema:
-                            <String, Union4<$string, $number, $boolean, $date>>{
-                              'odio':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                              'volutpat':
-                                  Union4<$string, $number, $boolean, $date>.in3(
-                                    $boolean(),
-                                  ),
-                              'pulvinar':
-                                  Union4<$string, $number, $boolean, $date>.in1(
-                                    $string(),
-                                  ),
-                              'vulputate':
-                                  Union4<$string, $number, $boolean, $date>.in2(
-                                    $number(),
-                                  ),
-                            }.lock,
+                        schema: <String, $string$number$boolean$date>{
+                          'odio': $string$number$boolean$date.$numberMember,
+                          'volutpat':
+                              $string$number$boolean$date.$booleanMember,
+                          'pulvinar': $string$number$boolean$date.$stringMember,
+                          'vulputate':
+                              $string$number$boolean$date.$numberMember,
+                        }.lock,
                       ),
                     }
                     .lock,

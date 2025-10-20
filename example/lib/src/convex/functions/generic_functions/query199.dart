@@ -27,36 +27,15 @@ Stream<Query199Response> query199Stream(Query199Args args) {
 
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query199Args args) {
-  return hashmapToBtreemap(
-    hashmap: {
-      'i': encodeValue(
-        args.i.split(
-          (on422826) => encodeValue(on422826),
-          (on652345) => encodeValue(on652345),
-          (on647697) => encodeValue(on647697),
-        ),
-      ),
-    },
-  );
+  return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i.value)});
 }
 
 @pragma("vm:prefer-inline")
 Query199Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on609641) => (
-      i: Union3<$A, $B, $C>(() {
-        final map = {'A': $A(), 'B': $B(), 'C': $C()};
-        if (map.containsKey(on609641['i'])) {
-          return map[on609641['i']];
-        }
-        throw Exception(
-          (on609641['i'].toString() ?? "null") +
-              r" cannot be deserialized into a Union3<$A, $B, $C>",
-        );
-      }()),
-    ),
+    (on630889) => (i: $a$b$c.fromValue(on630889['i'])),
   );
 }
 
-typedef Query199Args = ({Union3<$A, $B, $C> i});
-typedef Query199Response = ({Union3<$A, $B, $C> i});
+typedef Query199Args = ({$a$b$c i});
+typedef Query199Response = ({$a$b$c i});

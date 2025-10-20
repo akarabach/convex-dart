@@ -27,35 +27,15 @@ Stream<Query106Response> query106Stream(Query106Args args) {
 
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query106Args args) {
-  return hashmapToBtreemap(
-    hashmap: {
-      'i': encodeValue(
-        args.i.split(
-          (on513869) => encodeValue(on513869),
-          (on807205) => encodeValue(on807205),
-        ),
-      ),
-    },
-  );
+  return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i.value)});
 }
 
 @pragma("vm:prefer-inline")
 Query106Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on106336) => (
-      i: Union2<$true, $false>(() {
-        final map = {true: $true(), false: $false()};
-        if (map.containsKey(on106336['i'])) {
-          return map[on106336['i']];
-        }
-        throw Exception(
-          (on106336['i'].toString() ?? "null") +
-              r" cannot be deserialized into a Union2<$true, $false>",
-        );
-      }()),
-    ),
+    (on441143) => (i: $true$false.fromValue(on441143['i'])),
   );
 }
 
-typedef Query106Args = ({Union2<$true, $false> i});
-typedef Query106Response = ({Union2<$true, $false> i});
+typedef Query106Args = ({$true$false i});
+typedef Query106Response = ({$true$false i});

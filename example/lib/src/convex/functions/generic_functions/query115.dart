@@ -32,19 +32,11 @@ BTreeMapStringValue serialize(Query115Args args) {
       'i': encodeValue({
         'categories': encodeValue(
           args.i.categories
-              .map(
-                (on264503) => encodeValue(
-                  on264503.split(
-                    (on145131) => encodeValue(on145131),
-                    (on162320) => encodeValue(on162320),
-                    (on827161) => encodeValue(on827161),
-                  ),
-                ),
-              )
+              .map((on432866) => encodeValue(on432866.value))
               .toIList(),
         ),
         'tags': encodeValue(
-          args.i.tags.map((on601108) => encodeValue(on601108)).toIList(),
+          args.i.tags.map((on357484) => encodeValue(on357484)).toIList(),
         ),
       }),
     },
@@ -54,29 +46,14 @@ BTreeMapStringValue serialize(Query115Args args) {
 @pragma("vm:prefer-inline")
 Query115Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on841201) => (
-      i: (on841201['i'] as IMap<String, dynamic>).then(
-        (on886618) => (
-          categories: (on886618['categories'] as IList<dynamic>)
-              .map(
-                (on988537) => Union3<$work, $personal, $urgent>(() {
-                  final map = {
-                    'work': $work(),
-                    'personal': $personal(),
-                    'urgent': $urgent(),
-                  };
-                  if (map.containsKey(on988537)) {
-                    return map[on988537];
-                  }
-                  throw Exception(
-                    (on988537.toString() ?? "null") +
-                        r" cannot be deserialized into a Union3<$work, $personal, $urgent>",
-                  );
-                }()),
-              )
+    (on653731) => (
+      i: (on653731['i'] as IMap<String, dynamic>).then(
+        (on182) => (
+          categories: (on182['categories'] as IList<dynamic>)
+              .map((on72029) => $work$personal$urgent.fromValue(on72029))
               .toIList(),
-          tags: (on886618['tags'] as IList<dynamic>)
-              .map((on754553) => (on754553 as String))
+          tags: (on182['tags'] as IList<dynamic>)
+              .map((on343228) => (on343228 as String))
               .toIList(),
         ),
       ),
@@ -85,8 +62,8 @@ Query115Response deserialize(DartValue map) {
 }
 
 typedef Query115Args = ({
-  ({IList<Union3<$work, $personal, $urgent>> categories, IList<String> tags}) i,
+  ({IList<$work$personal$urgent> categories, IList<String> tags}) i,
 });
 typedef Query115Response = ({
-  ({IList<Union3<$work, $personal, $urgent>> categories, IList<String> tags}) i,
+  ({IList<$work$personal$urgent> categories, IList<String> tags}) i,
 });

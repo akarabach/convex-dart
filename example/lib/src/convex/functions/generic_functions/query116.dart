@@ -31,18 +31,12 @@ BTreeMapStringValue serialize(Query116Args args) {
     hashmap: {
       'i': encodeValue({
         'data': encodeValue({
-          'type': encodeValue(
-            args.i.data.type.split(
-              (on533592) => encodeValue(on533592),
-              (on438028) => encodeValue(on438028),
-              (on639233) => encodeValue(on639233),
-            ),
-          ),
+          'type': encodeValue(args.i.data.type.value),
           'value': encodeValue(args.i.data.value),
         }),
         'metadata': encodeValue({
-          for (final on212652 in args.i.metadata.entries)
-            on212652.key: encodeValue(encodeValue(on212652.value)),
+          for (final on328039 in args.i.metadata.entries)
+            on328039.key: encodeValue(encodeValue(on328039.value)),
         }),
       }),
     },
@@ -52,30 +46,17 @@ BTreeMapStringValue serialize(Query116Args args) {
 @pragma("vm:prefer-inline")
 Query116Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on217827) => (
-      i: (on217827['i'] as IMap<String, dynamic>).then(
-        (on253643) => (
-          data: (on253643['data'] as IMap<String, dynamic>).then(
-            (on351924) => (
-              type: Union3<$text, $number, $boolean>(() {
-                final map = {
-                  'text': $text(),
-                  'number': $number(),
-                  'boolean': $boolean(),
-                };
-                if (map.containsKey(on351924['type'])) {
-                  return map[on351924['type']];
-                }
-                throw Exception(
-                  (on351924['type'].toString() ?? "null") +
-                      r" cannot be deserialized into a Union3<$text, $number, $boolean>",
-                );
-              }()),
-              value: on351924['value'],
+    (on327999) => (
+      i: (on327999['i'] as IMap<String, dynamic>).then(
+        (on712335) => (
+          data: (on712335['data'] as IMap<String, dynamic>).then(
+            (on745265) => (
+              type: $text$number$boolean.fromValue(on745265['type']),
+              value: on745265['value'],
             ),
           ),
-          metadata: (on253643['metadata'] as IMap<String, dynamic>).map(
-            (on375463, on335749) => MapEntry(on375463, on335749),
+          metadata: (on712335['metadata'] as IMap<String, dynamic>).map(
+            (on5486, on535824) => MapEntry(on5486, on535824),
           ),
         ),
       ),
@@ -85,14 +66,14 @@ Query116Response deserialize(DartValue map) {
 
 typedef Query116Args = ({
   ({
-    ({Union3<$text, $number, $boolean> type, dynamic value}) data,
+    ({$text$number$boolean type, dynamic value}) data,
     IMap<String, dynamic> metadata,
   })
   i,
 });
 typedef Query116Response = ({
   ({
-    ({Union3<$text, $number, $boolean> type, dynamic value}) data,
+    ({$text$number$boolean type, dynamic value}) data,
     IMap<String, dynamic> metadata,
   })
   i,

@@ -102,10 +102,7 @@ class AndroidEnvironment {
     final arValue = ['${target.rust}-ar', 'llvm-ar', 'llvm-ar.exe']
         .map((e) => path.join(toolchainPath, e))
         .firstWhereOrNull((element) => File(element).existsSync());
-    print(Directory('/usr/local/lib/android/sdk/ndk/')
-        .listSync()
-        .map((e) => e.path)
-        .join(', '));
+
     if (arValue == null) {
       throw Exception(
           'Failed to find ar for $target in $toolchainPath, ${toolchainDir.listSync().map((e) => e.path).join(', ')}');

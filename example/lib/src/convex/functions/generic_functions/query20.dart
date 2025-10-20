@@ -35,9 +35,9 @@ BTreeMapStringValue serialize(Query20Args args) {
 @pragma("vm:prefer-inline")
 Query20Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on44158) => (
-      i: on44158.containsKey('i')
-          ? Defined($hi.validate(on44158['i']))
+    (on151758) => (
+      i: on151758.containsKey('i')
+          ? Defined($hi.validate(on151758['i']))
           : Undefined<$hi>(),
     ),
   );

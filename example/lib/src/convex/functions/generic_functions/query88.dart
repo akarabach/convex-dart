@@ -30,8 +30,8 @@ BTreeMapStringValue serialize(Query88Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on190754 in args.i.entries)
-          on190754.key: encodeValue(encodeValue(on190754.value)),
+        for (final on724225 in args.i.entries)
+          on724225.key: encodeValue(encodeValue(on724225.value)),
       }),
     },
   );
@@ -40,11 +40,11 @@ BTreeMapStringValue serialize(Query88Args args) {
 @pragma("vm:prefer-inline")
 Query88Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on926042) => (
-      i: (on926042['i'] as IMap<String, dynamic>).map(
-        (on117309, on245974) => MapEntry(
-          on117309,
-          on245974 == null ? null : $hi.validate(on245974),
+    (on496105) => (
+      i: (on496105['i'] as IMap<String, dynamic>).map(
+        (on399254, on925790) => MapEntry(
+          on399254,
+          on925790 == null ? null : $hi.validate(on925790),
         ),
       ),
     ),

@@ -16,7 +16,6 @@ example/
 ├── pubspec.yaml                     # Dart dependencies
 ```
 
-
 ## How the Generation Works
 
 1. **Convex Functions**: TypeScript functions in `convex/` define your backend API
@@ -32,17 +31,20 @@ example/
 ## Running the Example
 
 1. **Install dependencies:**
+
    ```bash
    npm install  # For Convex backend
    flutter pub get  # For Dart dependencies
    ```
 
 2. **Generate Dart client:**
+
    ```bash
    convex_dart_cli generate --public-serialize
    ```
 
 3. **Run the example:**
+
    ```bash
    flutter run
    ```
@@ -50,18 +52,21 @@ example/
 ## Run the tests
 
 1. **Install dependencies:**
+
    ```bash
    npm install  # For Convex backend
    flutter pub get  # For Dart dependencies
    ```
 
 2. **Generate Dart client:**
+
    ```bash
    convex_dart_cli generate --public-serialize
    ```
 
 3. **Run the tests:**
     Build the shared library in `convex_dart/rust`.
+
    ```bash
    puro flutter test integration_test/test_all.dart 
    ```

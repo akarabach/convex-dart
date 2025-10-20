@@ -30,16 +30,7 @@ BTreeMapStringValue serialize(Query224Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i
-            .map(
-              (on315435) => encodeValue(
-                on315435.split(
-                  (on418578) => encodeValue(on418578),
-                  (on947446) => encodeValue(on947446),
-                ),
-              ),
-            )
-            .toIList(),
+        args.i.map((on515950) => encodeValue(on515950.value)).toIList(),
       ),
     },
   );
@@ -48,24 +39,13 @@ BTreeMapStringValue serialize(Query224Args args) {
 @pragma("vm:prefer-inline")
 Query224Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on354796) => (
-      i: (on354796['i'] as IList<dynamic>)
-          .map(
-            (on676480) => Union2<$cat, $dog>(() {
-              final map = {'cat': $cat(), 'dog': $dog()};
-              if (map.containsKey(on676480)) {
-                return map[on676480];
-              }
-              throw Exception(
-                (on676480.toString() ?? "null") +
-                    r" cannot be deserialized into a Union2<$cat, $dog>",
-              );
-            }()),
-          )
+    (on689464) => (
+      i: (on689464['i'] as IList<dynamic>)
+          .map((on923770) => $cat$dog.fromValue(on923770))
           .toIList(),
     ),
   );
 }
 
-typedef Query224Args = ({IList<Union2<$cat, $dog>> i});
-typedef Query224Response = ({IList<Union2<$cat, $dog>> i});
+typedef Query224Args = ({IList<$cat$dog> i});
+typedef Query224Response = ({IList<$cat$dog> i});

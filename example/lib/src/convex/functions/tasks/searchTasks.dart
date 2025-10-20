@@ -37,12 +37,12 @@ SearchTasksResponse deserialize(DartValue map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on9828) => (on9828 as IMap<String, dynamic>).then(
-            (on989229) => (
-              $_creationTime: (on989229['_creationTime'] as double),
-              $_id: TasksId(on989229['_id'] as String),
-              isCompleted: (on989229['isCompleted'] as bool),
-              text: (on989229['text'] as String),
+          (on677550) => (on677550 as IMap<String, dynamic>).then(
+            (on998966) => (
+              $_creationTime: (on998966['_creationTime'] as double),
+              $_id: TasksId(on998966['_id'] as String),
+              isCompleted: (on998966['isCompleted'] as bool),
+              text: (on998966['text'] as String),
             ),
           ),
         )

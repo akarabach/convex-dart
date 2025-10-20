@@ -35,12 +35,12 @@ GetAllTasksResponse deserialize(DartValue map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on177081) => (on177081 as IMap<String, dynamic>).then(
-            (on275935) => (
-              $_creationTime: (on275935['_creationTime'] as double),
-              $_id: TasksId(on275935['_id'] as String),
-              isCompleted: (on275935['isCompleted'] as bool),
-              text: (on275935['text'] as String),
+          (on825272) => (on825272 as IMap<String, dynamic>).then(
+            (on158362) => (
+              $_creationTime: (on158362['_creationTime'] as double),
+              $_id: TasksId(on158362['_id'] as String),
+              isCompleted: (on158362['isCompleted'] as bool),
+              text: (on158362['text'] as String),
             ),
           ),
         )

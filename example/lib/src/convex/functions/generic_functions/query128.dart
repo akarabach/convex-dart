@@ -33,19 +33,19 @@ BTreeMapStringValue serialize(Query128Args args) {
         'triggers': encodeValue(
           args.i.triggers
               .map(
-                (on542079) => encodeValue(
-                  on542079.split(
-                    (on465166) => encodeValue({
-                      'cron': encodeValue(on465166.cron),
-                      'type': encodeValue(on465166.type),
+                (on542184) => encodeValue(
+                  on542184.split(
+                    (on733724) => encodeValue({
+                      'cron': encodeValue(on733724.cron),
+                      'type': encodeValue(on733724.type),
                     }),
-                    (on650138) => encodeValue({
-                      'type': encodeValue(on650138.type),
-                      'url': encodeValue(on650138.url),
+                    (on486759) => encodeValue({
+                      'type': encodeValue(on486759.type),
+                      'url': encodeValue(on486759.url),
                     }),
-                    (on547035) => encodeValue({
-                      'eventType': encodeValue(on547035.eventType),
-                      'type': encodeValue(on547035.type),
+                    (on208831) => encodeValue({
+                      'eventType': encodeValue(on208831.eventType),
+                      'type': encodeValue(on208831.type),
                     }),
                   ),
                 ),
@@ -60,46 +60,46 @@ BTreeMapStringValue serialize(Query128Args args) {
 @pragma("vm:prefer-inline")
 Query128Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on730604) => (
-      i: (on730604['i'] as IMap<String, dynamic>).then(
-        (on403384) => (
-          triggers: (on403384['triggers'] as IList<dynamic>)
+    (on670437) => (
+      i: (on670437['i'] as IMap<String, dynamic>).then(
+        (on81060) => (
+          triggers: (on81060['triggers'] as IList<dynamic>)
               .map(
-                (on474691) =>
+                (on169907) =>
                     Union3<
                       ({String cron, $schedule type}),
                       ({$webhook type, String url}),
                       ({String eventType, $event type})
                     >(() {
                       try {
-                        return (on474691 as IMap<String, dynamic>).then(
-                          (on502390) => (
-                            cron: (on502390['cron'] as String),
-                            type: $schedule.validate(on502390['type']),
+                        return (on169907 as IMap<String, dynamic>).then(
+                          (on747421) => (
+                            cron: (on747421['cron'] as String),
+                            type: $schedule.validate(on747421['type']),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on474691 as IMap<String, dynamic>).then(
-                          (on685319) => (
-                            type: $webhook.validate(on685319['type']),
-                            url: (on685319['url'] as String),
+                        return (on169907 as IMap<String, dynamic>).then(
+                          (on352833) => (
+                            type: $webhook.validate(on352833['type']),
+                            url: (on352833['url'] as String),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on474691 as IMap<String, dynamic>).then(
-                          (on904742) => (
-                            eventType: (on904742['eventType'] as String),
-                            type: $event.validate(on904742['type']),
+                        return (on169907 as IMap<String, dynamic>).then(
+                          (on594405) => (
+                            eventType: (on594405['eventType'] as String),
+                            type: $event.validate(on594405['type']),
                           ),
                         );
                       } catch (e) {}
 
                       throw Exception(
-                        (on474691.toString() ?? "null") +
+                        (on169907.toString() ?? "null") +
                             r" cannot be deserialized into a Union3<({String cron,$schedule type}), ({$webhook type,String url}), ({String eventType,$event type})>",
                       );
                     }()),

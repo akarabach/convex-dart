@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:equatable/equatable.dart';
 import 'package:recase/recase.dart';
 import 'package:path/path.dart' as path;
 import 'package:collection/collection.dart';
@@ -15,6 +16,8 @@ final random = Random();
 class ClientBuildContext {
   final Map<String, String> outputs = {};
   final Set<JsLiteral> literals = {};
+  // ignore: library_private_types_in_public_api
+  final Set<_LiteralsUnion> enums = {};
   final Set<String> tables = {};
   ClientBuildContext();
 }
@@ -172,6 +175,9 @@ class ConvexClient {
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
 """);
 
+    for (final $enum in context.enums) {
+      literalsBuffer.writeln($enum.enumCode(context));
+    }
     for (final literal in context.literals) {
       literalsBuffer.writeln(literal._literalCode);
     }
@@ -649,53 +655,32 @@ class $literalTypeName implements Literal {
   }
 }
 
-@MappableClass(discriminatorValue: 'union')
-class JsUnion extends JsType with JsUnionMappable {
-  final List<JsType> value;
-  const JsUnion(this.value, super.type);
+sealed class _BaseUnion {
+  // Does this union contain a JsNull.
+  final bool nullable;
+  _BaseUnion({required this.nullable});
 
-  // Whether this uses the real union type, or is only a nullable type
-  bool get isRealUnion => value.where((e) => e is! JsNull).length > 1;
+  String dartType(FunctionBuildContext context);
+  String serialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  });
+  String deserialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  });
+}
+
+// A union of a single type, this is really just a wrapper around a built in type
+class _WrapperUnion extends _BaseUnion {
+  final JsType wrappedType;
+  _WrapperUnion({required super.nullable, required this.wrappedType});
 
   @override
   String dartType(FunctionBuildContext context) {
-    // A union may not contain a String type and a ConvexId type
-    // We have no way to differentiate between the two
-    // So we need to throw an error
-    if (value.any((e) => e is JsString) && value.any((e) => e is ConvexId)) {
-      throw UnimplementedError(
-        "A union may not contain a String type and a ConvexId type. If you are seeing this and are having trouble, please file an issue on GitHub.",
-      );
-    }
-
-    final realTypes = value.where((e) => e is! JsNull).toList();
-    // Ensure we don't have a union between literal and a non-literal type
-    if (realTypes.any((e) => e is JsLiteral) &&
-        realTypes.any((e) => e is! JsLiteral)) {
-      throw UnimplementedError(
-        "A union may not contain a literal type and a non-literal type. If you are seeing this and are having trouble, please file an issue on GitHub.",
-      );
-    }
-    final containsNull = value.any((e) => e is JsNull);
-
-    if (realTypes.isEmpty) {
-      throw UnimplementedError(
-        "Your union most contain at least one type which is not null.",
-      );
-    }
-    String type;
-    // If there is only one type, then we can just return the type
-    if (realTypes.length == 1) {
-      type = realTypes[0].dartType(context);
-    } else {
-      // If there are multiple types, then we need to create a union type
-      type =
-          "Union${realTypes.length}<${realTypes.map((e) => e.dartType(context)).join(', ')}>";
-    }
-    if (containsNull) {
-      type = "$type?";
-    }
-    return type;
+    return "${wrappedType.dartType(context)}${nullable ? "?" : ""}";
   }
 
   @override
@@ -704,24 +689,8 @@ class JsUnion extends JsType with JsUnionMappable {
     String name, {
     required bool nullable,
   }) {
-    // Do we need to cast?
-
-    final realTypes = value.where((e) => e is! JsNull).toList();
-    if (realTypes.length == 1) {
-      return realTypes[0].serialize(context, name, nullable: true);
-    } else {
-      final List<String> ons = [];
-      for (final type in realTypes) {
-        final argName = "on${random.nextInt(1000000)}";
-        ons.add(
-          "($argName) => ${type.serialize(context, argName, nullable: nullable)}",
-        );
-      }
-      nullable = nullable || value.any((e) => e is JsNull);
-      final dot = nullable ? "?." : ".";
-
-      return "encodeValue($name${dot}split(${ons.join(", ")}))";
-    }
+    nullable = nullable || this.nullable;
+    return wrappedType.serialize(context, name, nullable: nullable);
   }
 
   @override
@@ -730,61 +699,226 @@ class JsUnion extends JsType with JsUnionMappable {
     String name, {
     required bool nullable,
   }) {
-    nullable = nullable || value.any((e) => e is JsNull);
-    final dot = nullable ? "?." : ".";
-    // Do we need to cast?
-    final realTypes = value.where((e) => e is! JsNull).toList();
-    if (realTypes.length == 1) {
-      return realTypes[0].deserialize(context, name, nullable: true);
-    } else {
-      String type =
-          "Union${realTypes.length}<${realTypes.map((e) => e.dartType(context)).join(', ')}>";
-      // If it is a union of literals, we need to use the fromValue method
-      if (realTypes.every((e) => e is JsLiteral)) {
-        // ignore: prefer_interpolation_to_compose_strings
-        final fnBuffer = StringBuffer();
-        final StringBuffer map = StringBuffer("{");
-        for (final literal in realTypes.whereType<JsLiteral>()) {
-          map.write(
-            "${literal.literalValueCode} : ${literal.literalTypeName}(),",
-          );
-        }
-        if (nullable) {
-          map.write("null:null,");
-        }
-        map.write("}");
-        fnBuffer.writeln("""
-final map = $map;
-if (map.containsKey($name)){
-  return map[$name];
+    nullable = nullable || this.nullable;
+    return wrappedType.deserialize(context, name, nullable: nullable);
+  }
 }
-throw Exception(($name${dot}toString() ?? "null") + r" cannot be deserialized into a $type");
+
+// A union of literals, we will use an enhanced enum for this
+class _LiteralsUnion extends _BaseUnion with EquatableMixin {
+  final Set<JsLiteral> literals;
+  _LiteralsUnion({required super.nullable, required this.literals});
+
+  @override
+  List<Object?> get props => [literals, nullable];
+
+  @override
+  String dartType(FunctionBuildContext context) {
+    context.clientContext.enums.add(this);
+    return enumName;
+  }
+
+  String get enumName {
+    return literals.map((e) => e.literalTypeName.pascalCase).join("");
+  }
+
+  String enumCode(ClientBuildContext context) {
+    for (final literal in literals) {
+      context.literals.add(literal);
+    }
+    final enumBuffer = StringBuffer("enum $enumName {");
+    for (final literal in literals) {
+      enumBuffer.writeln(
+        "${literal.literalTypeName}Member(${literal.literalTypeName}()),",
+      );
+    }
+    enumBuffer.writeln(";");
+    enumBuffer.writeln("""
+const $enumName(this.value);
+final Literal value;
+static final _map = {""");
+
+    for (final literal in literals) {
+      enumBuffer.write(
+        "${literal.literalValueCode} : ${literal.literalTypeName}Member,",
+      );
+    }
+    if (nullable) {
+      enumBuffer.write("null:null,");
+    }
+    enumBuffer.writeln("};");
+    final nullableSuffix = nullable ? "?" : "";
+    enumBuffer.writeln("""
+static $enumName$nullableSuffix fromValue(dynamic value) {
+  if (_map.containsKey(value)) {
+    return _map[value] as $enumName$nullableSuffix;
+  }
+  throw Exception(value.toString() + r" cannot be converted to a $enumName");
+}
 """);
-        type = """$type((){$fnBuffer}())""";
-      } else {
-        final fnBuffer = StringBuffer();
-        for (final type in realTypes) {
-          fnBuffer.writeln("""
+    enumBuffer.writeln("}");
+
+    return enumBuffer.toString();
+  }
+
+  @override
+  String serialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    nullable = nullable || this.nullable;
+    final dot = nullable ? "?." : ".";
+    return "encodeValue($name${dot}value)";
+  }
+
+  @override
+  String deserialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    return "${dartType(context)}.fromValue($name)";
+  }
+}
+
+// A union of assorted objects, we will use Union#<> for this
+class _ObjectsUnion extends _BaseUnion {
+  final Iterable<JsType> types;
+  _ObjectsUnion({required super.nullable, required this.types});
+
+  @override
+  String dartType(FunctionBuildContext context) {
+    final type =
+        "Union${types.length}<${types.map((e) => e.dartType(context)).join(', ')}>";
+    return "$type${nullable ? "?" : ""}";
+  }
+
+  @override
+  String serialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    nullable = nullable || this.nullable;
+
+    final List<String> ons = [];
+    for (final type in types) {
+      final argName = "on${random.nextInt(1000000)}";
+      ons.add(
+        "($argName) => ${type.serialize(context, argName, nullable: nullable)}",
+      );
+    }
+    final dot = nullable ? "?." : ".";
+
+    return "encodeValue($name${dot}split(${ons.join(", ")}))";
+  }
+
+  @override
+  String deserialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    nullable = nullable || this.nullable;
+    final dot = nullable ? "?." : ".";
+
+    String type =
+        "Union${types.length}<${types.map((e) => e.dartType(context)).join(', ')}>";
+    final fnBuffer = StringBuffer();
+    for (final type in types) {
+      fnBuffer.writeln("""
 try{
   return ${type.deserialize(context, name, nullable: nullable)};
 } catch(e){}
 """);
-        }
-        if (nullable) {
-          fnBuffer.writeln("""
+    }
+    if (nullable) {
+      fnBuffer.writeln("""
 if ($name == null){
   return null;
 }
 """);
-        }
-        fnBuffer.writeln("""
+    }
+    fnBuffer.writeln("""
 throw Exception(($name${dot}toString() ?? "null") + r" cannot be deserialized into a $type");
 """);
 
-        type = """$type((){$fnBuffer}())""";
-      }
-      return type;
+    type = """$type((){$fnBuffer}())""";
+    return type;
+  }
+}
+
+@MappableClass(discriminatorValue: 'union')
+class JsUnion extends JsType with JsUnionMappable {
+  final List<JsType> value;
+  const JsUnion(this.value, super.type);
+
+  _BaseUnion _buildUnion() {
+    final isNullable = value.any((e) => e is JsNull);
+    final objects = value.where((e) => e is! JsNull && e is! JsLiteral);
+    final literals = value.whereType<JsLiteral>();
+
+    // A union may not contain a String type and a ConvexId type
+    // We have no way to differentiate between the two
+    // So we need to throw an error
+    if (objects.any((e) => e is JsString) && value.any((e) => e is ConvexId)) {
+      throw UnimplementedError(
+        "A union may not contain a String type and a ConvexId type. If you are seeing this and are having trouble, please file an issue on GitHub.",
+      );
     }
+    // Ensure we don't have a union between literal and a non-literal type
+    if (objects.isNotEmpty && literals.isNotEmpty) {
+      throw UnimplementedError(
+        "A union may not contain a literal type and a non-literal type. If you are seeing this and are having trouble, please file an issue on GitHub.",
+      );
+    }
+    // A union of more than 9 objects is not supported (Union2..9<> only goes up to Union9)
+    if (objects.length > 9) {
+      throw UnimplementedError(
+        "Your cannot have a union of more than 9 objects",
+      );
+    }
+    if (objects.length == 1) {
+      return _WrapperUnion(nullable: isNullable, wrappedType: objects.first);
+    }
+    if (objects.length > 1) {
+      return _ObjectsUnion(nullable: isNullable, types: objects);
+    }
+    if (literals.length == 1) {
+      return _WrapperUnion(nullable: isNullable, wrappedType: literals.first);
+    }
+    if (literals.length > 1) {
+      return _LiteralsUnion(nullable: isNullable, literals: {...literals});
+    }
+
+    throw UnimplementedError("Your union most contain at least one real type");
+  }
+
+  // Whether this uses the real union type, or is only a nullable type
+  bool get isRealUnion => value.where((e) => e is! JsNull).length > 1;
+
+  @override
+  String dartType(FunctionBuildContext context) {
+    return _buildUnion().dartType(context);
+  }
+
+  @override
+  String serialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    return _buildUnion().serialize(context, name, nullable: nullable);
+  }
+
+  @override
+  String deserialize(
+    FunctionBuildContext context,
+    String name, {
+    required bool nullable,
+  }) {
+    return _buildUnion().deserialize(context, name, nullable: nullable);
   }
 }
 

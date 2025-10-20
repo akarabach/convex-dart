@@ -29,9 +29,7 @@ Stream<Query38Response> query38Stream(Query38Args args) {
 BTreeMapStringValue serialize(Query38Args args) {
   return hashmapToBtreemap(
     hashmap: {
-      'i': encodeValue(
-        args.i.map((on174431) => encodeValue(on174431)).toIList(),
-      ),
+      'i': encodeValue(args.i.map((on96545) => encodeValue(on96545)).toIList()),
     },
   );
 }
@@ -39,9 +37,9 @@ BTreeMapStringValue serialize(Query38Args args) {
 @pragma("vm:prefer-inline")
 Query38Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on18597) => (
-      i: (on18597['i'] as IList<dynamic>)
-          .map((on258113) => (on258113 as int))
+    (on722687) => (
+      i: (on722687['i'] as IList<dynamic>)
+          .map((on104903) => (on104903 as int))
           .toIList(),
     ),
   );

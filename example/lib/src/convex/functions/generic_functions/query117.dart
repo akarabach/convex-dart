@@ -33,10 +33,10 @@ BTreeMapStringValue serialize(Query117Args args) {
         'comments': encodeValue(
           args.i.comments
               .map(
-                (on426120) => encodeValue({
-                  'author': encodeValue(on426120.author),
-                  'text': encodeValue(on426120.text),
-                  'timestamp': encodeValue(on426120.timestamp),
+                (on121633) => encodeValue({
+                  'author': encodeValue(on121633.author),
+                  'text': encodeValue(on121633.text),
+                  'timestamp': encodeValue(on121633.timestamp),
                 }),
               )
               .toIList(),
@@ -46,13 +46,7 @@ BTreeMapStringValue serialize(Query117Args args) {
             'id': encodeValue(args.i.reviewer.asDefined().value.id),
             'name': encodeValue(args.i.reviewer.asDefined().value.name),
           }),
-        'status': encodeValue(
-          args.i.status.split(
-            (on308277) => encodeValue(on308277),
-            (on456508) => encodeValue(on456508),
-            (on542529) => encodeValue(on542529),
-          ),
-        ),
+        'status': encodeValue(args.i.status.value),
       }),
     },
   );
@@ -61,44 +55,31 @@ BTreeMapStringValue serialize(Query117Args args) {
 @pragma("vm:prefer-inline")
 Query117Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on132294) => (
-      i: (on132294['i'] as IMap<String, dynamic>).then(
-        (on239216) => (
-          comments: (on239216['comments'] as IList<dynamic>)
+    (on936496) => (
+      i: (on936496['i'] as IMap<String, dynamic>).then(
+        (on554882) => (
+          comments: (on554882['comments'] as IList<dynamic>)
               .map(
-                (on702876) => (on702876 as IMap<String, dynamic>).then(
-                  (on742557) => (
-                    author: (on742557['author'] as String),
-                    text: (on742557['text'] as String),
-                    timestamp: (on742557['timestamp'] as double),
+                (on513857) => (on513857 as IMap<String, dynamic>).then(
+                  (on684501) => (
+                    author: (on684501['author'] as String),
+                    text: (on684501['text'] as String),
+                    timestamp: (on684501['timestamp'] as double),
                   ),
                 ),
               )
               .toIList(),
-          reviewer: on239216.containsKey('reviewer')
+          reviewer: on554882.containsKey('reviewer')
               ? Defined(
-                  (on239216['reviewer'] as IMap<String, dynamic>).then(
-                    (on35983) => (
-                      id: TasksId(on35983['id'] as String),
-                      name: (on35983['name'] as String),
+                  (on554882['reviewer'] as IMap<String, dynamic>).then(
+                    (on427321) => (
+                      id: TasksId(on427321['id'] as String),
+                      name: (on427321['name'] as String),
                     ),
                   ),
                 )
               : Undefined<({TasksId id, String name})>(),
-          status: Union3<$pending, $approved, $rejected>(() {
-            final map = {
-              'pending': $pending(),
-              'approved': $approved(),
-              'rejected': $rejected(),
-            };
-            if (map.containsKey(on239216['status'])) {
-              return map[on239216['status']];
-            }
-            throw Exception(
-              (on239216['status'].toString() ?? "null") +
-                  r" cannot be deserialized into a Union3<$pending, $approved, $rejected>",
-            );
-          }()),
+          status: $pending$approved$rejected.fromValue(on554882['status']),
         ),
       ),
     ),
@@ -109,7 +90,7 @@ typedef Query117Args = ({
   ({
     IList<({String author, String text, double timestamp})> comments,
     Optional<({TasksId id, String name})> reviewer,
-    Union3<$pending, $approved, $rejected> status,
+    $pending$approved$rejected status,
   })
   i,
 });
@@ -117,7 +98,7 @@ typedef Query117Response = ({
   ({
     IList<({String author, String text, double timestamp})> comments,
     Optional<({TasksId id, String name})> reviewer,
-    Union3<$pending, $approved, $rejected> status,
+    $pending$approved$rejected status,
   })
   i,
 });

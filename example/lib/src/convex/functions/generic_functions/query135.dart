@@ -32,10 +32,10 @@ BTreeMapStringValue serialize(Query135Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on889912) => encodeValue({
-                'a': encodeValue(on889912.a),
-                if (on889912.b.isDefined)
-                  'b': encodeValue(on889912.b.asDefined().value),
+              (on961398) => encodeValue({
+                'a': encodeValue(on961398.a),
+                if (on961398.b.isDefined)
+                  'b': encodeValue(on961398.b.asDefined().value),
               }),
             )
             .toIList(),
@@ -47,14 +47,14 @@ BTreeMapStringValue serialize(Query135Args args) {
 @pragma("vm:prefer-inline")
 Query135Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on441566) => (
-      i: (on441566['i'] as IList<dynamic>)
+    (on638090) => (
+      i: (on638090['i'] as IList<dynamic>)
           .map(
-            (on103939) => (on103939 as IMap<String, dynamic>).then(
-              (on470033) => (
-                a: (on470033['a'] as String),
-                b: on470033.containsKey('b')
-                    ? Defined((on470033['b'] as double))
+            (on816534) => (on816534 as IMap<String, dynamic>).then(
+              (on590319) => (
+                a: (on590319['a'] as String),
+                b: on590319.containsKey('b')
+                    ? Defined((on590319['b'] as double))
                     : Undefined<double>(),
               ),
             ),

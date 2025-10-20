@@ -32,15 +32,7 @@ BTreeMapStringValue serialize(Query186Args args) {
       'i': encodeValue({
         'permissions': encodeValue(
           args.i.permissions
-              .map(
-                (on825989) => encodeValue(
-                  on825989.split(
-                    (on90444) => encodeValue(on90444),
-                    (on929411) => encodeValue(on929411),
-                    (on753395) => encodeValue(on753395),
-                  ),
-                ),
-              )
+              .map((on560145) => encodeValue(on560145.value))
               .toIList(),
         ),
       }),
@@ -51,26 +43,11 @@ BTreeMapStringValue serialize(Query186Args args) {
 @pragma("vm:prefer-inline")
 Query186Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on415458) => (
-      i: (on415458['i'] as IMap<String, dynamic>).then(
-        (on620196) => (
-          permissions: (on620196['permissions'] as IList<dynamic>)
-              .map(
-                (on168578) => Union3<$read, $write, $admin>(() {
-                  final map = {
-                    'read': $read(),
-                    'write': $write(),
-                    'admin': $admin(),
-                  };
-                  if (map.containsKey(on168578)) {
-                    return map[on168578];
-                  }
-                  throw Exception(
-                    (on168578.toString() ?? "null") +
-                        r" cannot be deserialized into a Union3<$read, $write, $admin>",
-                  );
-                }()),
-              )
+    (on324193) => (
+      i: (on324193['i'] as IMap<String, dynamic>).then(
+        (on916638) => (
+          permissions: (on916638['permissions'] as IList<dynamic>)
+              .map((on942248) => $read$write$admin.fromValue(on942248))
               .toIList(),
         ),
       ),
@@ -78,9 +55,5 @@ Query186Response deserialize(DartValue map) {
   );
 }
 
-typedef Query186Args = ({
-  ({IList<Union3<$read, $write, $admin>> permissions}) i,
-});
-typedef Query186Response = ({
-  ({IList<Union3<$read, $write, $admin>> permissions}) i,
-});
+typedef Query186Args = ({({IList<$read$write$admin> permissions}) i});
+typedef Query186Response = ({({IList<$read$write$admin> permissions}) i});

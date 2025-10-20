@@ -33,28 +33,22 @@ BTreeMapStringValue serialize(Query131Args args) {
         'steps': encodeValue(
           args.i.steps
               .map(
-                (on438752) => encodeValue({
-                  if (on438752.error.isDefined)
+                (on920539) => encodeValue({
+                  if (on920539.error.isDefined)
                     'error': encodeValue({
                       'handler': encodeValue(
-                        on438752.error.asDefined().value.handler,
+                        on920539.error.asDefined().value.handler,
                       ),
                       'retry': encodeValue({
                         'count': encodeValue(
-                          on438752.error.asDefined().value.retry.count,
+                          on920539.error.asDefined().value.retry.count,
                         ),
                         'delay': encodeValue(
-                          on438752.error.asDefined().value.retry.delay,
+                          on920539.error.asDefined().value.retry.delay,
                         ),
                       }),
                     }),
-                  'type': encodeValue(
-                    on438752.type.split(
-                      (on721396) => encodeValue(on721396),
-                      (on687758) => encodeValue(on687758),
-                      (on551244) => encodeValue(on551244),
-                    ),
-                  ),
+                  'type': encodeValue(on920539.type.value),
                 }),
               )
               .toIList(),
@@ -62,19 +56,19 @@ BTreeMapStringValue serialize(Query131Args args) {
         'triggers': encodeValue(
           args.i.triggers
               .map(
-                (on357587) => encodeValue(
-                  on357587.split(
-                    (on188418) => encodeValue({
-                      'cron': encodeValue(on188418.cron),
-                      'type': encodeValue(on188418.type),
+                (on831843) => encodeValue(
+                  on831843.split(
+                    (on263950) => encodeValue({
+                      'cron': encodeValue(on263950.cron),
+                      'type': encodeValue(on263950.type),
                     }),
-                    (on592462) => encodeValue({
-                      'type': encodeValue(on592462.type),
-                      'url': encodeValue(on592462.url),
+                    (on418286) => encodeValue({
+                      'type': encodeValue(on418286.type),
+                      'url': encodeValue(on418286.url),
                     }),
-                    (on148217) => encodeValue({
-                      'eventType': encodeValue(on148217.eventType),
-                      'type': encodeValue(on148217.type),
+                    (on59932) => encodeValue({
+                      'eventType': encodeValue(on59932.eventType),
+                      'type': encodeValue(on59932.type),
                     }),
                   ),
                 ),
@@ -82,15 +76,15 @@ BTreeMapStringValue serialize(Query131Args args) {
               .toIList(),
         ),
         'variables': encodeValue({
-          for (final on915246 in args.i.variables.entries)
-            on915246.key: encodeValue(
+          for (final on412826 in args.i.variables.entries)
+            on412826.key: encodeValue(
               encodeValue(
-                on915246.value.split(
-                  (on796329) => encodeValue(on796329),
-                  (on481664) => encodeValue(on481664),
-                  (on576710) => encodeValue(on576710),
-                  (on168126) => encodeValue(
-                    on168126.map((on952313) => encodeValue(on952313)).toIList(),
+                on412826.value.split(
+                  (on273671) => encodeValue(on273671),
+                  (on516644) => encodeValue(on516644),
+                  (on620417) => encodeValue(on620417),
+                  (on834936) => encodeValue(
+                    on834936.map((on644865) => encodeValue(on644865)).toIList(),
                   ),
                 ),
               ),
@@ -104,26 +98,26 @@ BTreeMapStringValue serialize(Query131Args args) {
 @pragma("vm:prefer-inline")
 Query131Response deserialize(DartValue map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on496486) => (
-      i: (on496486['i'] as IMap<String, dynamic>).then(
-        (on721982) => (
-          steps: (on721982['steps'] as IList<dynamic>)
+    (on767104) => (
+      i: (on767104['i'] as IMap<String, dynamic>).then(
+        (on274943) => (
+          steps: (on274943['steps'] as IList<dynamic>)
               .map(
-                (on524119) => (on524119 as IMap<String, dynamic>).then(
-                  (on214852) => (
-                    error: on214852.containsKey('error')
+                (on632296) => (on632296 as IMap<String, dynamic>).then(
+                  (on625958) => (
+                    error: on625958.containsKey('error')
                         ? Defined(
-                            (on214852['error'] as IMap<String, dynamic>).then(
-                              (on835157) => (
-                                handler: (on835157['handler'] as String),
+                            (on625958['error'] as IMap<String, dynamic>).then(
+                              (on727440) => (
+                                handler: (on727440['handler'] as String),
                                 retry:
-                                    (on835157['retry'] as IMap<String, dynamic>)
+                                    (on727440['retry'] as IMap<String, dynamic>)
                                         .then(
-                                          (on976510) => (
+                                          (on819289) => (
                                             count:
-                                                (on976510['count'] as double),
+                                                (on819289['count'] as double),
                                             delay:
-                                                (on976510['delay'] as double),
+                                                (on819289['delay'] as double),
                                           ),
                                         ),
                               ),
@@ -135,90 +129,77 @@ Query131Response deserialize(DartValue map) {
                               ({double count, double delay}) retry,
                             })
                           >(),
-                    type: Union3<$action, $condition, $loop>(() {
-                      final map = {
-                        'action': $action(),
-                        'condition': $condition(),
-                        'loop': $loop(),
-                      };
-                      if (map.containsKey(on214852['type'])) {
-                        return map[on214852['type']];
-                      }
-                      throw Exception(
-                        (on214852['type'].toString() ?? "null") +
-                            r" cannot be deserialized into a Union3<$action, $condition, $loop>",
-                      );
-                    }()),
+                    type: $action$condition$loop.fromValue(on625958['type']),
                   ),
                 ),
               )
               .toIList(),
-          triggers: (on721982['triggers'] as IList<dynamic>)
+          triggers: (on274943['triggers'] as IList<dynamic>)
               .map(
-                (on509034) =>
+                (on626433) =>
                     Union3<
                       ({String cron, $schedule type}),
                       ({$webhook type, String url}),
                       ({String eventType, $event type})
                     >(() {
                       try {
-                        return (on509034 as IMap<String, dynamic>).then(
-                          (on206072) => (
-                            cron: (on206072['cron'] as String),
-                            type: $schedule.validate(on206072['type']),
+                        return (on626433 as IMap<String, dynamic>).then(
+                          (on366834) => (
+                            cron: (on366834['cron'] as String),
+                            type: $schedule.validate(on366834['type']),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on509034 as IMap<String, dynamic>).then(
-                          (on945580) => (
-                            type: $webhook.validate(on945580['type']),
-                            url: (on945580['url'] as String),
+                        return (on626433 as IMap<String, dynamic>).then(
+                          (on67843) => (
+                            type: $webhook.validate(on67843['type']),
+                            url: (on67843['url'] as String),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on509034 as IMap<String, dynamic>).then(
-                          (on132180) => (
-                            eventType: (on132180['eventType'] as String),
-                            type: $event.validate(on132180['type']),
+                        return (on626433 as IMap<String, dynamic>).then(
+                          (on483840) => (
+                            eventType: (on483840['eventType'] as String),
+                            type: $event.validate(on483840['type']),
                           ),
                         );
                       } catch (e) {}
 
                       throw Exception(
-                        (on509034.toString() ?? "null") +
+                        (on626433.toString() ?? "null") +
                             r" cannot be deserialized into a Union3<({String cron,$schedule type}), ({$webhook type,String url}), ({String eventType,$event type})>",
                       );
                     }()),
               )
               .toIList(),
-          variables: (on721982['variables'] as IMap<String, dynamic>).map(
-            (on277275, on238559) => MapEntry(
-              on277275,
+          variables: (on274943['variables'] as IMap<String, dynamic>).map(
+            (on606249, on275750) => MapEntry(
+              on606249,
               Union4<String, double, bool, IList<dynamic>>(() {
                 try {
-                  return (on238559 as String);
+                  return (on275750 as String);
                 } catch (e) {}
 
                 try {
-                  return (on238559 as double);
+                  return (on275750 as double);
                 } catch (e) {}
 
                 try {
-                  return (on238559 as bool);
+                  return (on275750 as bool);
                 } catch (e) {}
 
                 try {
-                  return (on238559 as IList<dynamic>)
-                      .map((on862698) => on862698)
+                  return (on275750 as IList<dynamic>)
+                      .map((on197443) => on197443)
                       .toIList();
                 } catch (e) {}
 
                 throw Exception(
-                  (on238559.toString() ?? "null") +
+                  (on275750.toString() ?? "null") +
                       r" cannot be deserialized into a Union4<String, double, bool, IList<dynamic>>",
                 );
               }()),
@@ -236,7 +217,7 @@ typedef Query131Args = ({
       ({
         Optional<({String handler, ({double count, double delay}) retry})>
         error,
-        Union3<$action, $condition, $loop> type,
+        $action$condition$loop type,
       })
     >
     steps,
@@ -258,7 +239,7 @@ typedef Query131Response = ({
       ({
         Optional<({String handler, ({double count, double delay}) retry})>
         error,
-        Union3<$action, $condition, $loop> type,
+        $action$condition$loop type,
       })
     >
     steps,
