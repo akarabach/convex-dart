@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:config/config.dart';
 import 'dart:convert';
 import 'package:path/path.dart' as path;
-import 'package:synchronized/synchronized.dart';
 import 'package:convex_dart_cli/src/types.dart';
 import 'package:cli_tools/cli_tools.dart';
 import 'package:locked_async/locked_async.dart';
@@ -58,7 +57,7 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
   ) {
     var convexDevArgs = config.optionalValue(CliOptions.convexDevArgs);
     final prod = config.value(CliOptions.prod);
-    if (prod && convexDevArgs != null && !convexDevArgs.contains("--prod")) {
+    if (prod && convexDevArgs?.contains("--prod") != true) {
       convexDevArgs = "$convexDevArgs --prod";
     }
     final jsPackageManager = config.value(CliOptions.jsPackageManager);
@@ -74,7 +73,7 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
   ) {
     var convexSpecArgs = config.optionalValue(CliOptions.convexSpecArgs);
     final prod = config.value(CliOptions.prod);
-    if (prod && convexSpecArgs != null && !convexSpecArgs.contains("--prod")) {
+    if (prod && convexSpecArgs?.contains("--prod") != true) {
       convexSpecArgs = "$convexSpecArgs --prod";
     }
     final jsPackageManager = config.value(CliOptions.jsPackageManager);
@@ -401,61 +400,4 @@ enum CliOptions<V> implements OptionDefinition<V> {
 
   @override
   final ConfigOptionBase<V> option;
-}
-
-class CancelState {
-  bool _isCancelled = false;
-  final List<Function> _onCancelled = [];
-  void onCancelled(Function fn) {
-    _onCancelled.add(fn);
-  }
-
-  bool get isCancelled => _isCancelled;
-  void cancel() {
-    _isCancelled = true;
-    for (final fn in _onCancelled) {
-      try {
-        fn();
-        // ignore: empty_catches
-      } catch (e) {}
-    }
-  }
-
-  Future<T> wait<T>(Future<T> future) async {
-    if (isCancelled) {
-      throw Exception("Cancelled");
-    }
-    final result = await future;
-    if (isCancelled) {
-      throw Exception("Cancelled");
-    }
-    return result;
-  }
-}
-
-/// A lock which ensures that only one execution is running at a time
-/// and allows cancelling the previous execution
-class CancelableLock {
-  Lock? lock;
-  CancelState? cancelState;
-
-  final Future<void> Function(CancelState) fn;
-
-  CancelableLock(this.fn);
-
-  Future<void> run() async {
-    if (cancelState?.isCancelled ?? false) {
-      return;
-    }
-    cancelState?._isCancelled = true;
-    if (lock != null) {
-      await lock?.synchronized(() {});
-      lock = null;
-    }
-    cancelState = CancelState();
-    lock = Lock();
-    await lock?.synchronized(() async {
-      await fn(cancelState!);
-    });
-  }
 }
