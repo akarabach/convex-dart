@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Improve enum serialization
+
 ## 0.2.1
 
 - Use `locked_async` instead of `synchronized`
