@@ -1,3 +1,7 @@
+## 0.4.3
+
+- Improve import path generation
+
 ## 0.4.2
 
 - Fix prod mode flag handling

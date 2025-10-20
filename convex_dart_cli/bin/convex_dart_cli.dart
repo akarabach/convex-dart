@@ -73,8 +73,12 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
   ) {
     var convexSpecArgs = config.optionalValue(CliOptions.convexSpecArgs);
     final prod = config.value(CliOptions.prod);
-    if (prod && convexSpecArgs?.contains("--prod") != true) {
-      convexSpecArgs = "$convexSpecArgs --prod";
+    if (prod) {
+      if (convexSpecArgs == null) {
+        convexSpecArgs = "--prod";
+      } else if (!convexSpecArgs.contains("--prod")) {
+        convexSpecArgs = "$convexSpecArgs --prod";
+      }
     }
     final jsPackageManager = config.value(CliOptions.jsPackageManager);
     return (
@@ -227,6 +231,28 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
     } else {
       logger.debug('No existing Dart files found to clean up');
     }
+    _removeEmptyDirectories(dir);
+  }
+
+  /// Recursively removes all empty directories inside the given [directory].
+  /// The root [directory] itself is not removed, even if it becomes empty.
+  void _removeEmptyDirectories(Directory directory) {
+    // Recurse into subdirectories first (post-order traversal)
+    for (final entity in directory.listSync()) {
+      if (entity is Directory) {
+        _removeEmptyDirectories(entity);
+      }
+    }
+
+    // After processing subdirectories, check if the current directory is empty
+    if (directory.listSync().isEmpty) {
+      try {
+        directory.deleteSync();
+        logger.debug('Removed empty directory: ${directory.path}');
+      } catch (e) {
+        logger.error('Failed to remove ${directory.path}: $e');
+      }
+    }
   }
 
   @override
@@ -240,6 +266,11 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
         buildDartClient(config);
       }
     });
+    if (config.value(CliOptions.prod)) {
+      logger.info("Generating Dart client in production mode...");
+      buildDartClient(config);
+      return;
+    }
 
     // Run convex dev command in the background
     final workingDirectory = config.value(CliOptions.jsRoot);
