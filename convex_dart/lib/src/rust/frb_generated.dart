@@ -3,16 +3,19 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
+import 'base_client/query_result.dart';
+import 'dart.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'dart_value.dart';
-import 'dart_value/conversion.dart';
-import 'dart_value/function.dart';
 import 'frb_generated.dart';
 import 'frb_generated.io.dart'
     if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'lib.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'value.dart';
+import 'value/json/bytes.dart';
+import 'value/json/float.dart';
+import 'value/json/integer.dart';
 
 /// Main entrypoint of the Rust API
 class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
@@ -67,91 +70,92 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => 1838872697;
+  int get rustContentHash => 109629658;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
-        stem: 'convex_dart',
+        stem: 'convex',
         ioDirectory: 'rust/target/release/',
         webPrefix: 'pkg/',
       );
 }
 
 abstract class RustLibApi extends BaseApi {
-  Future<void> crateDartQuerySubscriberOnUpdate({
+  Value crateValueConvexErrorAutoAccessorGetData({required ConvexError that});
+
+  String crateValueConvexErrorAutoAccessorGetMessage({
+    required ConvexError that,
+  });
+
+  void crateValueConvexErrorAutoAccessorSetData({
+    required ConvexError that,
+    required Value data,
+  });
+
+  void crateValueConvexErrorAutoAccessorSetMessage({
+    required ConvexError that,
+    required String message,
+  });
+
+  Future<void> crateDartDartQuerySubscriberOnUpdate({
     required DartQuerySubscriber that,
-    required DartFunctionResult value,
+    required FunctionResult value,
   });
 
-  Future<DartValue> crateMobileConvexClientAction({
+  Future<Value> crateDartMobileConvexClientAction({
     required MobileConvexClient that,
     required String name,
     required BTreeMapStringValue args,
   });
 
-  Future<DartValue> crateMobileConvexClientMutation({
+  Future<Value> crateDartMobileConvexClientMutation({
     required MobileConvexClient that,
     required String name,
     required BTreeMapStringValue args,
   });
 
-  MobileConvexClient crateMobileConvexClientNew({
+  MobileConvexClient crateDartMobileConvexClientNew({
     required String deploymentUrl,
     required String clientId,
   });
 
-  Future<DartValue> crateMobileConvexClientQuery({
+  Future<Value> crateDartMobileConvexClientQuery({
     required MobileConvexClient that,
     required String name,
     required BTreeMapStringValue args,
   });
 
-  Future<void> crateMobileConvexClientSetAuth({
+  Future<void> crateDartMobileConvexClientSetAuth({
     required MobileConvexClient that,
     String? token,
   });
 
-  Future<SubscriptionHandle> crateMobileConvexClientSubscribe({
+  Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({
     required MobileConvexClient that,
     required String name,
     required BTreeMapStringValue args,
-    required FutureOr<void> Function(DartFunctionResult) onUpdate,
+    required FutureOr<void> Function(FunctionResult) onUpdate,
   });
 
-  void crateSubscriptionHandleCancel({required SubscriptionHandle that});
+  void crateDartSubscriptionHandleCancel({required SubscriptionHandle that});
 
-  BTreeMapStringValue crateDartValueConversionBtreemapDartValueToBtreemap({
-    required BTreeMapStringDartValue btreemap,
+  Future<JsonValue> crateValueValueExport({required Value that});
+
+  Future<Uint8List> crateValueJsonBytesJsonBytesDecode({required String s});
+
+  Future<String> crateValueJsonBytesJsonBytesEncode({required List<int> bytes});
+
+  Future<double> crateValueJsonFloatJsonFloatDecode({required String s});
+
+  Future<String> crateValueJsonFloatJsonFloatEncode({required double n});
+
+  Future<PlatformInt64> crateValueJsonIntegerJsonIntegerDecode({
+    required String s,
   });
 
-  BTreeMapStringDartValue crateDartValueConversionBtreemapToBtreemapDartValue({
-    required BTreeMapStringValue btreemap,
+  Future<String> crateValueJsonIntegerJsonIntegerEncode({
+    required PlatformInt64 n,
   });
-
-  Map<String, DartValue> crateDartValueConversionBtreemapToHashmap({
-    required BTreeMapStringValue btreemap,
-  });
-
-  Map<String, DartValue> crateDartValueConversionBtreemapToHashmapDartValue({
-    required BTreeMapStringDartValue btreemap,
-  });
-
-  BTreeMapStringValue crateDartValueConversionHashmapToBtreemap({
-    required Map<String, DartValue> hashmap,
-  });
-
-  BTreeMapStringDartValue crateDartValueConversionHashmapToBtreemapDartValue({
-    required Map<String, DartValue> hashmap,
-  });
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_BTreeMapStringDartValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_BTreeMapStringDartValue;
-
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_BTreeMapStringDartValuePtr;
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_BTreeMapStringValue;
@@ -163,6 +167,22 @@ abstract class RustLibApi extends BaseApi {
   get rust_arc_decrement_strong_count_BTreeMapStringValuePtr;
 
   RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ClientError;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ClientError;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ClientErrorPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ConvexError;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ConvexError;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ConvexErrorPtr;
+
+  RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_DartQuerySubscriber;
 
   RustArcDecrementStrongCountFnType
@@ -170,6 +190,23 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_DartQuerySubscriberPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_FunctionResult;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_FunctionResult;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_FunctionResultPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_JsonValue;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_JsonValue;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JsonValuePtr;
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_MobileConvexClient;
@@ -188,6 +225,12 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_SubscriptionHandlePtr;
+
+  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Value;
+
+  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Value;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ValuePtr;
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -199,9 +242,139 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  Future<void> crateDartQuerySubscriberOnUpdate({
+  Value crateValueConvexErrorAutoAccessorGetData({required ConvexError that}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+            that,
+            serializer,
+          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateValueConvexErrorAutoAccessorGetDataConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateValueConvexErrorAutoAccessorGetDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvexError_auto_accessor_get_data",
+        argNames: ["that"],
+      );
+
+  @override
+  String crateValueConvexErrorAutoAccessorGetMessage({
+    required ConvexError that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+            that,
+            serializer,
+          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_String,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateValueConvexErrorAutoAccessorGetMessageConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateValueConvexErrorAutoAccessorGetMessageConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvexError_auto_accessor_get_message",
+        argNames: ["that"],
+      );
+
+  @override
+  void crateValueConvexErrorAutoAccessorSetData({
+    required ConvexError that,
+    required Value data,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+            that,
+            serializer,
+          );
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+            data,
+            serializer,
+          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_unit,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateValueConvexErrorAutoAccessorSetDataConstMeta,
+        argValues: [that, data],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateValueConvexErrorAutoAccessorSetDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvexError_auto_accessor_set_data",
+        argNames: ["that", "data"],
+      );
+
+  @override
+  void crateValueConvexErrorAutoAccessorSetMessage({
+    required ConvexError that,
+    required String message,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+            that,
+            serializer,
+          );
+          sse_encode_String(message, serializer);
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_unit,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateValueConvexErrorAutoAccessorSetMessageConstMeta,
+        argValues: [that, message],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateValueConvexErrorAutoAccessorSetMessageConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvexError_auto_accessor_set_message",
+        argNames: ["that", "message"],
+      );
+
+  @override
+  Future<void> crateDartDartQuerySubscriberOnUpdate({
     required DartQuerySubscriber that,
-    required DartFunctionResult value,
+    required FunctionResult value,
   }) {
     return handler.executeNormal(
       NormalTask(
@@ -211,164 +384,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that,
             serializer,
           );
-          sse_encode_box_autoadd_dart_function_result(value, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 1,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateDartQuerySubscriberOnUpdateConstMeta,
-        argValues: [that, value],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartQuerySubscriberOnUpdateConstMeta =>
-      const TaskConstMeta(
-        debugName: "DartQuerySubscriber_on_update",
-        argNames: ["that", "value"],
-      );
-
-  @override
-  Future<DartValue> crateMobileConvexClientAction({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 2,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_dart_value,
-          decodeErrorData: sse_decode_client_error,
-        ),
-        constMeta: kCrateMobileConvexClientActionConstMeta,
-        argValues: [that, name, args],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateMobileConvexClientActionConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_action",
-        argNames: ["that", "name", "args"],
-      );
-
-  @override
-  Future<DartValue> crateMobileConvexClientMutation({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 3,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_dart_value,
-          decodeErrorData: sse_decode_client_error,
-        ),
-        constMeta: kCrateMobileConvexClientMutationConstMeta,
-        argValues: [that, name, args],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateMobileConvexClientMutationConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_mutation",
-        argNames: ["that", "name", "args"],
-      );
-
-  @override
-  MobileConvexClient crateMobileConvexClientNew({
-    required String deploymentUrl,
-    required String clientId,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(deploymentUrl, serializer);
-          sse_encode_String(clientId, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateMobileConvexClientNewConstMeta,
-        argValues: [deploymentUrl, clientId],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateMobileConvexClientNewConstMeta => const TaskConstMeta(
-    debugName: "MobileConvexClient_new",
-    argNames: ["deploymentUrl", "clientId"],
-  );
-
-  @override
-  Future<DartValue> crateMobileConvexClientQuery({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+            value,
             serializer,
           );
           pdeCallFfi(
@@ -379,24 +396,190 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_dart_value,
-          decodeErrorData: sse_decode_client_error,
+          decodeSuccessData: sse_decode_unit,
+          decodeErrorData: null,
         ),
-        constMeta: kCrateMobileConvexClientQueryConstMeta,
+        constMeta: kCrateDartDartQuerySubscriberOnUpdateConstMeta,
+        argValues: [that, value],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateDartDartQuerySubscriberOnUpdateConstMeta =>
+      const TaskConstMeta(
+        debugName: "DartQuerySubscriber_on_update",
+        argNames: ["that", "value"],
+      );
+
+  @override
+  Future<Value> crateDartMobileConvexClientAction({
+    required MobileConvexClient that,
+    required String name,
+    required BTreeMapStringValue args,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
+            that,
+            serializer,
+          );
+          sse_encode_String(name, serializer);
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+            args,
+            serializer,
+          );
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 6,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
+          decodeErrorData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
+        ),
+        constMeta: kCrateDartMobileConvexClientActionConstMeta,
         argValues: [that, name, args],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateMobileConvexClientQueryConstMeta =>
+  TaskConstMeta get kCrateDartMobileConvexClientActionConstMeta =>
+      const TaskConstMeta(
+        debugName: "MobileConvexClient_action",
+        argNames: ["that", "name", "args"],
+      );
+
+  @override
+  Future<Value> crateDartMobileConvexClientMutation({
+    required MobileConvexClient that,
+    required String name,
+    required BTreeMapStringValue args,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
+            that,
+            serializer,
+          );
+          sse_encode_String(name, serializer);
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+            args,
+            serializer,
+          );
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 7,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
+          decodeErrorData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
+        ),
+        constMeta: kCrateDartMobileConvexClientMutationConstMeta,
+        argValues: [that, name, args],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateDartMobileConvexClientMutationConstMeta =>
+      const TaskConstMeta(
+        debugName: "MobileConvexClient_mutation",
+        argNames: ["that", "name", "args"],
+      );
+
+  @override
+  MobileConvexClient crateDartMobileConvexClientNew({
+    required String deploymentUrl,
+    required String clientId,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_String(deploymentUrl, serializer);
+          sse_encode_String(clientId, serializer);
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 8)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateDartMobileConvexClientNewConstMeta,
+        argValues: [deploymentUrl, clientId],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateDartMobileConvexClientNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "MobileConvexClient_new",
+        argNames: ["deploymentUrl", "clientId"],
+      );
+
+  @override
+  Future<Value> crateDartMobileConvexClientQuery({
+    required MobileConvexClient that,
+    required String name,
+    required BTreeMapStringValue args,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
+            that,
+            serializer,
+          );
+          sse_encode_String(name, serializer);
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+            args,
+            serializer,
+          );
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 9,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
+          decodeErrorData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
+        ),
+        constMeta: kCrateDartMobileConvexClientQueryConstMeta,
+        argValues: [that, name, args],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateDartMobileConvexClientQueryConstMeta =>
       const TaskConstMeta(
         debugName: "MobileConvexClient_query",
         argNames: ["that", "name", "args"],
       );
 
   @override
-  Future<void> crateMobileConvexClientSetAuth({
+  Future<void> crateDartMobileConvexClientSetAuth({
     required MobileConvexClient that,
     String? token,
   }) {
@@ -412,33 +595,34 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           pdeCallFfi(
             generalizedFrbRustBinding,
             serializer,
-            funcId: 6,
+            funcId: 10,
             port: port_,
           );
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_unit,
-          decodeErrorData: sse_decode_client_error,
+          decodeErrorData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
         ),
-        constMeta: kCrateMobileConvexClientSetAuthConstMeta,
+        constMeta: kCrateDartMobileConvexClientSetAuthConstMeta,
         argValues: [that, token],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateMobileConvexClientSetAuthConstMeta =>
+  TaskConstMeta get kCrateDartMobileConvexClientSetAuthConstMeta =>
       const TaskConstMeta(
         debugName: "MobileConvexClient_set_auth",
         argNames: ["that", "token"],
       );
 
   @override
-  Future<SubscriptionHandle> crateMobileConvexClientSubscribe({
+  Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({
     required MobileConvexClient that,
     required String name,
     required BTreeMapStringValue args,
-    required FutureOr<void> Function(DartFunctionResult) onUpdate,
+    required FutureOr<void> Function(FunctionResult) onUpdate,
   }) {
     return handler.executeNormal(
       NormalTask(
@@ -453,37 +637,38 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             args,
             serializer,
           );
-          sse_encode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
+          sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
             onUpdate,
             serializer,
           );
           pdeCallFfi(
             generalizedFrbRustBinding,
             serializer,
-            funcId: 7,
+            funcId: 11,
             port: port_,
           );
         },
         codec: SseCodec(
           decodeSuccessData:
               sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle,
-          decodeErrorData: sse_decode_client_error,
+          decodeErrorData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
         ),
-        constMeta: kCrateMobileConvexClientSubscribeConstMeta,
+        constMeta: kCrateDartMobileConvexClientSubscribeConstMeta,
         argValues: [that, name, args, onUpdate],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateMobileConvexClientSubscribeConstMeta =>
+  TaskConstMeta get kCrateDartMobileConvexClientSubscribeConstMeta =>
       const TaskConstMeta(
         debugName: "MobileConvexClient_subscribe",
         argNames: ["that", "name", "args", "onUpdate"],
       );
 
   @override
-  void crateSubscriptionHandleCancel({required SubscriptionHandle that}) {
+  void crateDartSubscriptionHandleCancel({required SubscriptionHandle that}) {
     return handler.executeSync(
       SyncTask(
         callFfi: () {
@@ -492,221 +677,240 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that,
             serializer,
           );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 8)!;
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 12)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_unit,
           decodeErrorData: null,
         ),
-        constMeta: kCrateSubscriptionHandleCancelConstMeta,
+        constMeta: kCrateDartSubscriptionHandleCancelConstMeta,
         argValues: [that],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateSubscriptionHandleCancelConstMeta =>
+  TaskConstMeta get kCrateDartSubscriptionHandleCancelConstMeta =>
       const TaskConstMeta(
         debugName: "SubscriptionHandle_cancel",
         argNames: ["that"],
       );
 
   @override
-  BTreeMapStringValue crateDartValueConversionBtreemapDartValueToBtreemap({
-    required BTreeMapStringDartValue btreemap,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+  Future<JsonValue> crateValueValueExport({required Value that}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-            btreemap,
+          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+            that,
             serializer,
           );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 10)!;
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 14,
+            port: port_,
+          );
         },
         codec: SseCodec(
           decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue,
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue,
           decodeErrorData: null,
         ),
-        constMeta:
-            kCrateDartValueConversionBtreemapDartValueToBtreemapConstMeta,
-        argValues: [btreemap],
+        constMeta: kCrateValueValueExportConstMeta,
+        argValues: [that],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta
-  get kCrateDartValueConversionBtreemapDartValueToBtreemapConstMeta =>
-      const TaskConstMeta(
-        debugName: "btreemap_dart_value_to_btreemap",
-        argNames: ["btreemap"],
-      );
+  TaskConstMeta get kCrateValueValueExportConstMeta =>
+      const TaskConstMeta(debugName: "Value_export", argNames: ["that"]);
 
   @override
-  BTreeMapStringDartValue crateDartValueConversionBtreemapToBtreemapDartValue({
-    required BTreeMapStringValue btreemap,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+  Future<Uint8List> crateValueJsonBytesJsonBytesDecode({required String s}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            btreemap,
+          sse_encode_String(s, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
             serializer,
+            funcId: 15,
+            port: port_,
           );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 11)!;
         },
         codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue,
-          decodeErrorData: null,
+          decodeSuccessData: sse_decode_list_prim_u_8_strict,
+          decodeErrorData: sse_decode_AnyhowException,
         ),
-        constMeta:
-            kCrateDartValueConversionBtreemapToBtreemapDartValueConstMeta,
-        argValues: [btreemap],
+        constMeta: kCrateValueJsonBytesJsonBytesDecodeConstMeta,
+        argValues: [s],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta
-  get kCrateDartValueConversionBtreemapToBtreemapDartValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "btreemap_to_btreemap_dart_value",
-        argNames: ["btreemap"],
-      );
+  TaskConstMeta get kCrateValueJsonBytesJsonBytesDecodeConstMeta =>
+      const TaskConstMeta(debugName: "json_bytes_decode", argNames: ["s"]);
 
   @override
-  Map<String, DartValue> crateDartValueConversionBtreemapToHashmap({
-    required BTreeMapStringValue btreemap,
+  Future<String> crateValueJsonBytesJsonBytesEncode({
+    required List<int> bytes,
   }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            btreemap,
+          sse_encode_list_prim_u_8_loose(bytes, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
             serializer,
+            funcId: 16,
+            port: port_,
           );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 12)!;
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_Map_String_dart_value_None,
+          decodeSuccessData: sse_decode_String,
           decodeErrorData: null,
         ),
-        constMeta: kCrateDartValueConversionBtreemapToHashmapConstMeta,
-        argValues: [btreemap],
+        constMeta: kCrateValueJsonBytesJsonBytesEncodeConstMeta,
+        argValues: [bytes],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateDartValueConversionBtreemapToHashmapConstMeta =>
-      const TaskConstMeta(
-        debugName: "btreemap_to_hashmap",
-        argNames: ["btreemap"],
-      );
+  TaskConstMeta get kCrateValueJsonBytesJsonBytesEncodeConstMeta =>
+      const TaskConstMeta(debugName: "json_bytes_encode", argNames: ["bytes"]);
 
   @override
-  Map<String, DartValue> crateDartValueConversionBtreemapToHashmapDartValue({
-    required BTreeMapStringDartValue btreemap,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+  Future<double> crateValueJsonFloatJsonFloatDecode({required String s}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-            btreemap,
+          sse_encode_String(s, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
             serializer,
+            funcId: 17,
+            port: port_,
           );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 13)!;
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_Map_String_dart_value_None,
-          decodeErrorData: null,
+          decodeSuccessData: sse_decode_f_64,
+          decodeErrorData: sse_decode_AnyhowException,
         ),
-        constMeta: kCrateDartValueConversionBtreemapToHashmapDartValueConstMeta,
-        argValues: [btreemap],
+        constMeta: kCrateValueJsonFloatJsonFloatDecodeConstMeta,
+        argValues: [s],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta
-  get kCrateDartValueConversionBtreemapToHashmapDartValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "btreemap_to_hashmap_dart_value",
-        argNames: ["btreemap"],
-      );
+  TaskConstMeta get kCrateValueJsonFloatJsonFloatDecodeConstMeta =>
+      const TaskConstMeta(debugName: "json_float_decode", argNames: ["s"]);
 
   @override
-  BTreeMapStringValue crateDartValueConversionHashmapToBtreemap({
-    required Map<String, DartValue> hashmap,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+  Future<String> crateValueJsonFloatJsonFloatEncode({required double n}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Map_String_dart_value_None(hashmap, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 14)!;
+          sse_encode_f_64(n, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 18,
+            port: port_,
+          );
         },
         codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue,
+          decodeSuccessData: sse_decode_String,
           decodeErrorData: null,
         ),
-        constMeta: kCrateDartValueConversionHashmapToBtreemapConstMeta,
-        argValues: [hashmap],
+        constMeta: kCrateValueJsonFloatJsonFloatEncodeConstMeta,
+        argValues: [n],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateDartValueConversionHashmapToBtreemapConstMeta =>
-      const TaskConstMeta(
-        debugName: "hashmap_to_btreemap",
-        argNames: ["hashmap"],
-      );
+  TaskConstMeta get kCrateValueJsonFloatJsonFloatEncodeConstMeta =>
+      const TaskConstMeta(debugName: "json_float_encode", argNames: ["n"]);
 
   @override
-  BTreeMapStringDartValue crateDartValueConversionHashmapToBtreemapDartValue({
-    required Map<String, DartValue> hashmap,
+  Future<PlatformInt64> crateValueJsonIntegerJsonIntegerDecode({
+    required String s,
   }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Map_String_dart_value_None(hashmap, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
+          sse_encode_String(s, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 19,
+            port: port_,
+          );
         },
         codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue,
-          decodeErrorData: null,
+          decodeSuccessData: sse_decode_i_64,
+          decodeErrorData: sse_decode_AnyhowException,
         ),
-        constMeta: kCrateDartValueConversionHashmapToBtreemapDartValueConstMeta,
-        argValues: [hashmap],
+        constMeta: kCrateValueJsonIntegerJsonIntegerDecodeConstMeta,
+        argValues: [s],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta
-  get kCrateDartValueConversionHashmapToBtreemapDartValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "hashmap_to_btreemap_dart_value",
-        argNames: ["hashmap"],
-      );
+  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerDecodeConstMeta =>
+      const TaskConstMeta(debugName: "json_integer_decode", argNames: ["s"]);
+
+  @override
+  Future<String> crateValueJsonIntegerJsonIntegerEncode({
+    required PlatformInt64 n,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_i_64(n, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 20,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_String,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateValueJsonIntegerJsonIntegerEncodeConstMeta,
+        argValues: [n],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerEncodeConstMeta =>
+      const TaskConstMeta(debugName: "json_integer_encode", argNames: ["n"]);
 
   Future<void> Function(int, dynamic)
-  encode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
-    FutureOr<void> Function(DartFunctionResult) raw,
+  encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
+    FutureOr<void> Function(FunctionResult) raw,
   ) {
     return (callId, rawArg0) async {
-      final arg0 = dco_decode_dart_function_result(rawArg0);
+      final arg0 =
+          dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+            rawArg0,
+          );
 
       Box<void>? rawOutput;
       Box<AnyhowException>? rawError;
@@ -737,14 +941,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_BTreeMapStringDartValue => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_BTreeMapStringDartValue => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue;
-
-  RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_BTreeMapStringValue => wire
       .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
 
@@ -753,12 +949,44 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
 
   RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ClientError => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ClientError => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ConvexError => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ConvexError => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError;
+
+  RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_DartQuerySubscriber => wire
       .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
 
   RustArcDecrementStrongCountFnType
   get rust_arc_decrement_strong_count_DartQuerySubscriber => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_FunctionResult => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_FunctionResult => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_JsonValue => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_JsonValue => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_MobileConvexClient => wire
@@ -776,21 +1004,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   get rust_arc_decrement_strong_count_SubscriptionHandle => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle;
 
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_Value => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_Value => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue;
+
   @protected
   AnyhowException dco_decode_AnyhowException(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AnyhowException(raw as String);
-  }
-
-  @protected
-  BTreeMapStringDartValue
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return BTreeMapStringDartValueImpl.frbInternalDcoDecode(
-      raw as List<dynamic>,
-    );
   }
 
   @protected
@@ -803,12 +1028,48 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  ClientError
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ClientErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ConvexError
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   DartQuerySubscriber
   dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     dynamic raw,
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  FunctionResult
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return FunctionResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  JsonValue
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -827,6 +1088,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  Value
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ConvexError
+  dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ConvexError
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -857,8 +1145,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  FutureOr<void> Function(DartFunctionResult)
-  dco_decode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
+  FutureOr<void> Function(FunctionResult)
+  dco_decode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
     dynamic raw,
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
@@ -872,27 +1160,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  Map<String, DartValue> dco_decode_Map_String_dart_value_None(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return Map.fromEntries(
-      dco_decode_list_record_string_dart_value(
-        raw,
-      ).map((e) => MapEntry(e.$1, e.$2)),
-    );
-  }
-
-  @protected
-  BTreeMapStringDartValue
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return BTreeMapStringDartValueImpl.frbInternalDcoDecode(
-      raw as List<dynamic>,
-    );
-  }
-
-  @protected
   BTreeMapStringValue
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     dynamic raw,
@@ -902,12 +1169,48 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  ClientError
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ClientErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ConvexError
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   DartQuerySubscriber
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     dynamic raw,
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  FunctionResult
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return FunctionResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  JsonValue
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -929,6 +1232,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  Value
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   String dco_decode_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as String;
@@ -941,110 +1253,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  bool dco_decode_bool(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as bool;
-  }
-
-  @protected
-  DartConvexError dco_decode_box_autoadd_dart_convex_error(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_dart_convex_error(raw);
-  }
-
-  @protected
-  DartFunctionResult dco_decode_box_autoadd_dart_function_result(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_dart_function_result(raw);
-  }
-
-  @protected
-  DartValue dco_decode_box_autoadd_dart_value(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_dart_value(raw);
-  }
-
-  @protected
-  ClientError dco_decode_client_error(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return ClientError_InternalError(msg: dco_decode_String(raw[1]));
-      case 1:
-        return ClientError_ConvexError(
-          err: dco_decode_box_autoadd_dart_convex_error(raw[1]),
-        );
-      case 2:
-        return ClientError_ServerError(msg: dco_decode_String(raw[1]));
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
-  DartConvexError dco_decode_dart_convex_error(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2)
-      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
-    return DartConvexError(
-      message: dco_decode_String(arr[0]),
-      data: dco_decode_dart_value(arr[1]),
-    );
-  }
-
-  @protected
-  DartFunctionResult dco_decode_dart_function_result(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return DartFunctionResult_Value(
-          dco_decode_box_autoadd_dart_value(raw[1]),
-        );
-      case 1:
-        return DartFunctionResult_ErrorMessage(dco_decode_String(raw[1]));
-      case 2:
-        return DartFunctionResult_ConvexError(
-          dco_decode_box_autoadd_dart_convex_error(raw[1]),
-        );
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
-  DartValue dco_decode_dart_value(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return DartValue_Null();
-      case 1:
-        return DartValue_Int64(dco_decode_i_64(raw[1]));
-      case 2:
-        return DartValue_Float64(dco_decode_f_64(raw[1]));
-      case 3:
-        return DartValue_Boolean(dco_decode_bool(raw[1]));
-      case 4:
-        return DartValue_String(dco_decode_String(raw[1]));
-      case 5:
-        return DartValue_Bytes(dco_decode_list_prim_u_8_strict(raw[1]));
-      case 6:
-        return DartValue_Array(dco_decode_list_dart_value(raw[1]));
-      case 7:
-        return DartValue_Object(
-          dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-            raw[1],
-          ),
-        );
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
   double dco_decode_f_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as double;
+  }
+
+  @protected
+  int dco_decode_i_32(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
   }
 
   @protected
@@ -1060,9 +1277,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  List<DartValue> dco_decode_list_dart_value(dynamic raw) {
+  JsonBytes dco_decode_json_bytes(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>).map(dco_decode_dart_value).toList();
+    return JsonBytes.values[raw as int];
+  }
+
+  @protected
+  JsonFloat dco_decode_json_float(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return JsonFloat.values[raw as int];
+  }
+
+  @protected
+  JsonInteger dco_decode_json_integer(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return JsonInteger.values[raw as int];
+  }
+
+  @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as List<int>;
   }
 
   @protected
@@ -1072,29 +1307,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  List<(String, DartValue)> dco_decode_list_record_string_dart_value(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>)
-        .map(dco_decode_record_string_dart_value)
-        .toList();
-  }
-
-  @protected
   String? dco_decode_opt_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_String(raw);
-  }
-
-  @protected
-  (String, DartValue) dco_decode_record_string_dart_value(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2) {
-      throw Exception('Expected 2 elements, got ${arr.length}');
-    }
-    return (dco_decode_String(arr[0]), dco_decode_dart_value(arr[1]));
   }
 
   @protected
@@ -1123,18 +1338,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  BTreeMapStringDartValue
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return BTreeMapStringDartValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
   BTreeMapStringValue
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     SseDeserializer deserializer,
@@ -1147,12 +1350,60 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  ClientError
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ClientErrorImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ConvexError
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   DartQuerySubscriber
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     SseDeserializer deserializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return DartQuerySubscriberImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  FunctionResult
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return FunctionResultImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  JsonValue
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return JsonValueImpl.frbInternalSseDecode(
       sse_decode_usize(deserializer),
       sse_decode_i_32(deserializer),
     );
@@ -1177,6 +1428,42 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return SubscriptionHandleImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  Value
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ValueImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ConvexError
+  sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ConvexError
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalSseDecode(
       sse_decode_usize(deserializer),
       sse_decode_i_32(deserializer),
     );
@@ -1226,27 +1513,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  Map<String, DartValue> sse_decode_Map_String_dart_value_None(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_list_record_string_dart_value(deserializer);
-    return Map.fromEntries(inner.map((e) => MapEntry(e.$1, e.$2)));
-  }
-
-  @protected
-  BTreeMapStringDartValue
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return BTreeMapStringDartValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
   BTreeMapStringValue
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     SseDeserializer deserializer,
@@ -1259,12 +1525,60 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  ClientError
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ClientErrorImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ConvexError
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ConvexErrorImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   DartQuerySubscriber
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     SseDeserializer deserializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return DartQuerySubscriberImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  FunctionResult
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return FunctionResultImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  JsonValue
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return JsonValueImpl.frbInternalSseDecode(
       sse_decode_usize(deserializer),
       sse_decode_i_32(deserializer),
     );
@@ -1295,6 +1609,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  Value
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ValueImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   String sse_decode_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_list_prim_u_8_strict(deserializer);
@@ -1302,124 +1628,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  bool sse_decode_bool(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint8() != 0;
-  }
-
-  @protected
-  DartConvexError sse_decode_box_autoadd_dart_convex_error(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_dart_convex_error(deserializer));
-  }
-
-  @protected
-  DartFunctionResult sse_decode_box_autoadd_dart_function_result(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_dart_function_result(deserializer));
-  }
-
-  @protected
-  DartValue sse_decode_box_autoadd_dart_value(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_dart_value(deserializer));
-  }
-
-  @protected
-  ClientError sse_decode_client_error(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        var var_msg = sse_decode_String(deserializer);
-        return ClientError_InternalError(msg: var_msg);
-      case 1:
-        var var_err = sse_decode_box_autoadd_dart_convex_error(deserializer);
-        return ClientError_ConvexError(err: var_err);
-      case 2:
-        var var_msg = sse_decode_String(deserializer);
-        return ClientError_ServerError(msg: var_msg);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
-  DartConvexError sse_decode_dart_convex_error(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_message = sse_decode_String(deserializer);
-    var var_data = sse_decode_dart_value(deserializer);
-    return DartConvexError(message: var_message, data: var_data);
-  }
-
-  @protected
-  DartFunctionResult sse_decode_dart_function_result(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        var var_field0 = sse_decode_box_autoadd_dart_value(deserializer);
-        return DartFunctionResult_Value(var_field0);
-      case 1:
-        var var_field0 = sse_decode_String(deserializer);
-        return DartFunctionResult_ErrorMessage(var_field0);
-      case 2:
-        var var_field0 = sse_decode_box_autoadd_dart_convex_error(deserializer);
-        return DartFunctionResult_ConvexError(var_field0);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
-  DartValue sse_decode_dart_value(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        return DartValue_Null();
-      case 1:
-        var var_field0 = sse_decode_i_64(deserializer);
-        return DartValue_Int64(var_field0);
-      case 2:
-        var var_field0 = sse_decode_f_64(deserializer);
-        return DartValue_Float64(var_field0);
-      case 3:
-        var var_field0 = sse_decode_bool(deserializer);
-        return DartValue_Boolean(var_field0);
-      case 4:
-        var var_field0 = sse_decode_String(deserializer);
-        return DartValue_String(var_field0);
-      case 5:
-        var var_field0 = sse_decode_list_prim_u_8_strict(deserializer);
-        return DartValue_Bytes(var_field0);
-      case 6:
-        var var_field0 = sse_decode_list_dart_value(deserializer);
-        return DartValue_Array(var_field0);
-      case 7:
-        var var_field0 =
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-              deserializer,
-            );
-        return DartValue_Object(var_field0);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
   double sse_decode_f_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getFloat64();
+  }
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt32();
   }
 
   @protected
@@ -1435,15 +1652,31 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  List<DartValue> sse_decode_list_dart_value(SseDeserializer deserializer) {
+  JsonBytes sse_decode_json_bytes(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return JsonBytes.values[inner];
+  }
 
+  @protected
+  JsonFloat sse_decode_json_float(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return JsonFloat.values[inner];
+  }
+
+  @protected
+  JsonInteger sse_decode_json_integer(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return JsonInteger.values[inner];
+  }
+
+  @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <DartValue>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(sse_decode_dart_value(deserializer));
-    }
-    return ans_;
+    return deserializer.buffer.getUint8List(len_);
   }
 
   @protected
@@ -1451,20 +1684,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
     return deserializer.buffer.getUint8List(len_);
-  }
-
-  @protected
-  List<(String, DartValue)> sse_decode_list_record_string_dart_value(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <(String, DartValue)>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(sse_decode_record_string_dart_value(deserializer));
-    }
-    return ans_;
   }
 
   @protected
@@ -1476,16 +1695,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     } else {
       return null;
     }
-  }
-
-  @protected
-  (String, DartValue) sse_decode_record_string_dart_value(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_field0 = sse_decode_String(deserializer);
-    var var_field1 = sse_decode_dart_value(deserializer);
-    return (var_field0, var_field1);
   }
 
   @protected
@@ -1506,9 +1715,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
+  bool sse_decode_bool(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
+    return deserializer.buffer.getUint8() != 0;
   }
 
   @protected
@@ -1518,19 +1727,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.message, serializer);
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    BTreeMapStringDartValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as BTreeMapStringDartValueImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
   }
 
   @protected
@@ -1548,6 +1744,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    ClientError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ClientErrorImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    ConvexError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ConvexErrorImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     DartQuerySubscriber self,
     SseSerializer serializer,
@@ -1555,6 +1777,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as DartQuerySubscriberImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    FunctionResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as FunctionResultImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    JsonValue self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as JsonValueImpl).frbInternalSseEncode(move: true),
       serializer,
     );
   }
@@ -1581,6 +1829,45 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as SubscriptionHandleImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    Value self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ValueImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    ConvexError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ConvexErrorImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    ConvexError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ConvexErrorImpl).frbInternalSseEncode(move: false),
       serializer,
     );
   }
@@ -1626,13 +1913,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
-  sse_encode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
-    FutureOr<void> Function(DartFunctionResult) self,
+  sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
+    FutureOr<void> Function(FunctionResult) self,
     SseSerializer serializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_DartOpaque(
-      encode_DartFn_Inputs_dart_function_result_Output_unit_AnyhowException(
+      encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
         self,
       ),
       serializer,
@@ -1655,31 +1942,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_Map_String_dart_value_None(
-    Map<String, DartValue> self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_list_record_string_dart_value(
-      self.entries.map((e) => (e.key, e.value)).toList(),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-    BTreeMapStringDartValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as BTreeMapStringDartValueImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
   void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     BTreeMapStringValue self,
@@ -1694,6 +1956,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
+    ClientError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ClientErrorImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
+    ConvexError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ConvexErrorImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
     DartQuerySubscriber self,
     SseSerializer serializer,
@@ -1701,6 +1989,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as DartQuerySubscriberImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
+    FunctionResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as FunctionResultImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
+    JsonValue self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as JsonValueImpl).frbInternalSseEncode(move: null),
       serializer,
     );
   }
@@ -1732,126 +2046,34 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
+    Value self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ValueImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
   void sse_encode_String(String self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
   }
 
   @protected
-  void sse_encode_bool(bool self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint8(self ? 1 : 0);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_dart_convex_error(
-    DartConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_dart_convex_error(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_dart_function_result(
-    DartFunctionResult self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_dart_function_result(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_dart_value(
-    DartValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_dart_value(self, serializer);
-  }
-
-  @protected
-  void sse_encode_client_error(ClientError self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case ClientError_InternalError(msg: final msg):
-        sse_encode_i_32(0, serializer);
-        sse_encode_String(msg, serializer);
-      case ClientError_ConvexError(err: final err):
-        sse_encode_i_32(1, serializer);
-        sse_encode_box_autoadd_dart_convex_error(err, serializer);
-      case ClientError_ServerError(msg: final msg):
-        sse_encode_i_32(2, serializer);
-        sse_encode_String(msg, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_dart_convex_error(
-    DartConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_String(self.message, serializer);
-    sse_encode_dart_value(self.data, serializer);
-  }
-
-  @protected
-  void sse_encode_dart_function_result(
-    DartFunctionResult self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case DartFunctionResult_Value(field0: final field0):
-        sse_encode_i_32(0, serializer);
-        sse_encode_box_autoadd_dart_value(field0, serializer);
-      case DartFunctionResult_ErrorMessage(field0: final field0):
-        sse_encode_i_32(1, serializer);
-        sse_encode_String(field0, serializer);
-      case DartFunctionResult_ConvexError(field0: final field0):
-        sse_encode_i_32(2, serializer);
-        sse_encode_box_autoadd_dart_convex_error(field0, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_dart_value(DartValue self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case DartValue_Null():
-        sse_encode_i_32(0, serializer);
-      case DartValue_Int64(field0: final field0):
-        sse_encode_i_32(1, serializer);
-        sse_encode_i_64(field0, serializer);
-      case DartValue_Float64(field0: final field0):
-        sse_encode_i_32(2, serializer);
-        sse_encode_f_64(field0, serializer);
-      case DartValue_Boolean(field0: final field0):
-        sse_encode_i_32(3, serializer);
-        sse_encode_bool(field0, serializer);
-      case DartValue_String(field0: final field0):
-        sse_encode_i_32(4, serializer);
-        sse_encode_String(field0, serializer);
-      case DartValue_Bytes(field0: final field0):
-        sse_encode_i_32(5, serializer);
-        sse_encode_list_prim_u_8_strict(field0, serializer);
-      case DartValue_Array(field0: final field0):
-        sse_encode_i_32(6, serializer);
-        sse_encode_list_dart_value(field0, serializer);
-      case DartValue_Object(field0: final field0):
-        sse_encode_i_32(7, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringDartValue(
-          field0,
-          serializer,
-        );
-    }
-  }
-
-  @protected
   void sse_encode_f_64(double self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putFloat64(self);
+  }
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt32(self);
   }
 
   @protected
@@ -1867,15 +2089,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_list_dart_value(
-    List<DartValue> self,
+  void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_json_float(JsonFloat self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_json_integer(JsonInteger self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_list_prim_u_8_loose(
+    List<int> self,
     SseSerializer serializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_dart_value(item, serializer);
-    }
+    serializer.buffer.putUint8List(
+      self is Uint8List ? self : Uint8List.fromList(self),
+    );
   }
 
   @protected
@@ -1889,18 +2129,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_list_record_string_dart_value(
-    List<(String, DartValue)> self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_record_string_dart_value(item, serializer);
-    }
-  }
-
-  @protected
   void sse_encode_opt_String(String? self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -1908,16 +2136,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     if (self != null) {
       sse_encode_String(self, serializer);
     }
-  }
-
-  @protected
-  void sse_encode_record_string_dart_value(
-    (String, DartValue) self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_String(self.$1, serializer);
-    sse_encode_dart_value(self.$2, serializer);
   }
 
   @protected
@@ -1938,39 +2156,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
+  void sse_encode_bool(bool self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
+    serializer.buffer.putUint8(self ? 1 : 0);
   }
-}
-
-@sealed
-class BTreeMapStringDartValueImpl extends RustOpaque
-    implements BTreeMapStringDartValue {
-  // Not to be used by end users
-  BTreeMapStringDartValueImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BTreeMapStringDartValueImpl.frbInternalSseDecode(
-    BigInt ptr,
-    int externalSizeOnNative,
-  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_increment_strong_count_BTreeMapStringDartValue,
-    rustArcDecrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_BTreeMapStringDartValue,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_BTreeMapStringDartValuePtr,
-  );
 }
 
 @sealed
@@ -2003,6 +2192,61 @@ class BTreeMapStringValueImpl extends RustOpaque
 }
 
 @sealed
+class ClientErrorImpl extends RustOpaque implements ClientError {
+  // Not to be used by end users
+  ClientErrorImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ClientErrorImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_ClientError,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ClientError,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ClientErrorPtr,
+  );
+}
+
+@sealed
+class ConvexErrorImpl extends RustOpaque implements ConvexError {
+  // Not to be used by end users
+  ConvexErrorImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ConvexErrorImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_ConvexError,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ConvexError,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ConvexErrorPtr,
+  );
+
+  Value get data =>
+      RustLib.instance.api.crateValueConvexErrorAutoAccessorGetData(that: this);
+
+  String get message => RustLib.instance.api
+      .crateValueConvexErrorAutoAccessorGetMessage(that: this);
+
+  set data(Value data) => RustLib.instance.api
+      .crateValueConvexErrorAutoAccessorSetData(that: this, data: data);
+
+  set message(String message) =>
+      RustLib.instance.api.crateValueConvexErrorAutoAccessorSetMessage(
+        that: this,
+        message: message,
+      );
+}
+
+@sealed
 class DartQuerySubscriberImpl extends RustOpaque
     implements DartQuerySubscriber {
   // Not to be used by end users
@@ -2030,10 +2274,48 @@ class DartQuerySubscriberImpl extends RustOpaque
         .rust_arc_decrement_strong_count_DartQuerySubscriberPtr,
   );
 
-  Future<void> onUpdate({required DartFunctionResult value}) => RustLib
-      .instance
-      .api
-      .crateDartQuerySubscriberOnUpdate(that: this, value: value);
+  Future<void> onUpdate({required FunctionResult value}) => RustLib.instance.api
+      .crateDartDartQuerySubscriberOnUpdate(that: this, value: value);
+}
+
+@sealed
+class FunctionResultImpl extends RustOpaque implements FunctionResult {
+  // Not to be used by end users
+  FunctionResultImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  FunctionResultImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_FunctionResult,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_FunctionResult,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_FunctionResultPtr,
+  );
+}
+
+@sealed
+class JsonValueImpl extends RustOpaque implements JsonValue {
+  // Not to be used by end users
+  JsonValueImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  JsonValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_JsonValue,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_JsonValue,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_JsonValuePtr,
+  );
 }
 
 @sealed
@@ -2060,30 +2342,30 @@ class MobileConvexClientImpl extends RustOpaque implements MobileConvexClient {
   );
 
   /// Executes an action on the Convex backend.
-  Future<DartValue> action({
+  Future<Value> action({
     required String name,
     required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateMobileConvexClientAction(
+  }) => RustLib.instance.api.crateDartMobileConvexClientAction(
     that: this,
     name: name,
     args: args,
   );
 
   /// Executes a mutation on the Convex backend.
-  Future<DartValue> mutation({
+  Future<Value> mutation({
     required String name,
     required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateMobileConvexClientMutation(
+  }) => RustLib.instance.api.crateDartMobileConvexClientMutation(
     that: this,
     name: name,
     args: args,
   );
 
   /// Executes a query on the Convex backend.
-  Future<DartValue> query({
+  Future<Value> query({
     required String name,
     required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateMobileConvexClientQuery(
+  }) => RustLib.instance.api.crateDartMobileConvexClientQuery(
     that: this,
     name: name,
     args: args,
@@ -2097,7 +2379,7 @@ class MobileConvexClientImpl extends RustOpaque implements MobileConvexClient {
   /// Passing [None] for the token will disassociate a previous token,
   /// effectively returning to a logged out state.
   Future<void> setAuth({String? token}) => RustLib.instance.api
-      .crateMobileConvexClientSetAuth(that: this, token: token);
+      .crateDartMobileConvexClientSetAuth(that: this, token: token);
 
   /// Subscribe to updates to a query against the Convex backend.
   ///
@@ -2109,8 +2391,8 @@ class MobileConvexClientImpl extends RustOpaque implements MobileConvexClient {
   Future<SubscriptionHandle> subscribe({
     required String name,
     required BTreeMapStringValue args,
-    required FutureOr<void> Function(DartFunctionResult) onUpdate,
-  }) => RustLib.instance.api.crateMobileConvexClientSubscribe(
+    required FutureOr<void> Function(FunctionResult) onUpdate,
+  }) => RustLib.instance.api.crateDartMobileConvexClientSubscribe(
     that: this,
     name: name,
     args: args,
@@ -2143,5 +2425,49 @@ class SubscriptionHandleImpl extends RustOpaque implements SubscriptionHandle {
 
   /// Cancels the subscription by sending a cancellation signal.
   void cancel() =>
-      RustLib.instance.api.crateSubscriptionHandleCancel(that: this);
+      RustLib.instance.api.crateDartSubscriptionHandleCancel(that: this);
+}
+
+@sealed
+class ValueImpl extends RustOpaque implements Value {
+  // Not to be used by end users
+  ValueImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_Value,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_Value,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ValuePtr,
+  );
+
+  /// Converts this value to a JSON value in the `json` export format.
+  /// <https://docs.convex.dev/database/types>
+  ///
+  /// It is possible for distinct Convex values to be serialized to the same
+  /// JSON value by this method. For instance, strings and binary values are
+  /// both exported as JSON strings. However, it is possible to convert the
+  /// exported value back to a unique Convex value if you also have the `Type`
+  /// value associated with the original Convex value (see `roundtrip.rs`).
+  ///
+  /// # Example
+  /// ```
+  /// use convex::Value;
+  /// use serde_json::{
+  ///     json,
+  ///     Value as JsonValue,
+  /// };
+  ///
+  /// let value = Value::Bytes(vec![0b00000000, 0b00010000, 0b10000011]);
+  /// assert_eq!(JsonValue::from(value.clone()), json!({ "$bytes": "ABCD" }));
+  /// assert_eq!(value.export(), json!("ABCD"));
+  /// ```
+  Future<JsonValue> export_() =>
+      RustLib.instance.api.crateValueValueExport(that: this);
 }

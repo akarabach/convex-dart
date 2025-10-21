@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
-import 'package:convex_dart/src/rust/dart_value/function.dart';
+import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
 import 'package:convex_dart/src/rust/lib.dart';
 import 'package:locked_async/locked_async.dart';
