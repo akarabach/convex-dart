@@ -40,6 +40,7 @@ use flutter_rust_bridge::{
         Lifetimeable,
         Lockable,
     },
+    DartFnFuture,
     Handler,
     IntoIntoDart,
 };
@@ -1646,6 +1647,7 @@ mod io {
             Lifetimeable,
             Lockable,
         },
+        DartFnFuture,
         Handler,
         IntoIntoDart,
     };
@@ -1768,6 +1770,7 @@ mod web {
             Lifetimeable,
             Lockable,
         },
+        DartFnFuture,
         Handler,
         IntoIntoDart,
     };

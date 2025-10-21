@@ -6,3 +6,4 @@ rust_preamble: |
   use std::collections::BTreeMap;
   use crate::base_client::query_result::FunctionResult;
   use anyhow::Result;
+  use flutter_rust_bridge::DartFnFuture;
