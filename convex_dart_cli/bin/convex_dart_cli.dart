@@ -137,7 +137,7 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
           "Parse Error Details:\n"
           "  Error: $e\n"
           "  Raw Output Length: ${stdout.toString().length} characters\n"
-          "  Output Preview: ${stdout.toString().length > 200 ? '${stdout.toString().substring(0, 200)}...' : stdout.toString()}",
+          "  Output Preview: ${stdout.toString().length > 2000 ? '${stdout.toString().substring(0, 2000)}...' : stdout.toString()}",
         );
         logger.debug("Full command stdout for debugging:");
         logger.debug("Stack trace: $stackTrace");
