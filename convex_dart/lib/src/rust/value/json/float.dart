@@ -6,39 +6,23 @@
 import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+/// Helper functions for encoding `f64`s as `String`s.
+class JsonFloat {
+  const JsonFloat();
 
-            
+  /// Decode an `f64` from a string.
+  static double decode({required String s}) =>
+      RustLib.instance.api.crateValueJsonFloatJsonFloatDecode(s: s);
 
-            
+  /// Encode an `f64` as a string.
+  static String encode({required double n}) =>
+      RustLib.instance.api.crateValueJsonFloatJsonFloatEncode(n: n);
 
-            /// Helper functions for encoding `f64`s as `String`s.
-class JsonFloat  {
-                
+  @override
+  int get hashCode => 0;
 
-                const JsonFloat();
-
-                /// Decode an `f64` from a string.
-static double  decode({required String s })=>RustLib.instance.api.crateValueJsonFloatJsonFloatDecode(s: s);
-
-
-/// Encode an `f64` as a string.
-static String  encode({required double n })=>RustLib.instance.api.crateValueJsonFloatJsonFloatEncode(n: n);
-
-
-                
-
-                
-        @override
-        int get hashCode => 0;
-        
-
-                
-        @override
-        bool operator ==(Object other) =>
-            identical(this, other) ||
-            other is JsonFloat &&
-                runtimeType == other.runtimeType
-                ;
-        
-            }
-            
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is JsonFloat && runtimeType == other.runtimeType;
+}

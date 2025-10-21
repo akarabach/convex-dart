@@ -1,5 +1,4 @@
-import 'package:convex_dart/src/rust/dart_value.dart';
-import 'package:convex_dart/src/rust/dart_value/conversion.dart';
+import 'package:convex_dart/src/rust/value.dart';
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 
 BTreeMapStringValue encodeMap(Map<String, dynamic> value) {
@@ -8,35 +7,35 @@ BTreeMapStringValue encodeMap(Map<String, dynamic> value) {
   );
 }
 
-DartValue encodeValue(dynamic value) {
-  if (value is DartValue) {
+Value encodeValue(dynamic value) {
+  if (value is Value) {
     return value;
   }
   return switch (value) {
-    null => DartValue.null_(),
-    int i => DartValue.int64(i),
-    double d => DartValue.float64(d),
-    bool b => DartValue.boolean(b),
-    String s => DartValue.string(s),
-    Uint8ListWithEquality bytes => DartValue.bytes(bytes.value),
-    List<dynamic> list => DartValue.array(list.map(encodeValue).toList()),
-    IList<dynamic> list => DartValue.array(list.map(encodeValue).toList()),
-    Map<String, dynamic> map => DartValue.object(
-      hashmapToBtreemapDartValue(
+    null => Value.null_(),
+    int i => Value.int64(i),
+    double d => Value.float64(d),
+    bool b => Value.boolean(b),
+    String s => Value.string(s),
+    Uint8ListWithEquality bytes => Value.bytes(bytes.value),
+    List<dynamic> list => Value.array(list.map(encodeValue).toList()),
+    IList<dynamic> list => Value.array(list.map(encodeValue).toList()),
+    Map<String, dynamic> map => Value.object(
+      hashmapToBtreemapValue(
         hashmap: map.map((k, v) => MapEntry(k, encodeValue(v))),
       ),
     ),
-    IMap<String, dynamic> map => DartValue.object(
-      hashmapToBtreemapDartValue(
+    IMap<String, dynamic> map => Value.object(
+      hashmapToBtreemapValue(
         hashmap: map.map((k, v) => MapEntry(k, encodeValue(v))).unlockLazy,
       ),
     ),
-    TableId id => DartValue.string(id.name),
+    TableId id => Value.string(id.name),
     Literal literal => switch (literal.value) {
-      String s => DartValue.string(s),
-      int i => DartValue.int64(i),
-      double d => DartValue.float64(d),
-      bool b => DartValue.boolean(b),
+      String s => Value.string(s),
+      int i => Value.int64(i),
+      double d => Value.float64(d),
+      bool b => Value.boolean(b),
       _ => throw UnimplementedError("Unsupported literal type: $literal"),
     },
 
@@ -46,16 +45,16 @@ DartValue encodeValue(dynamic value) {
   };
 }
 
-dynamic decodeValue(DartValue value) {
+dynamic decodeValue(Value value) {
   return switch (value) {
-    DartValue_Null() => null,
-    DartValue_Int64 i => i.field0,
-    DartValue_Float64 d => d.field0,
-    DartValue_Boolean b => b.field0,
-    DartValue_String s => s.field0,
-    DartValue_Bytes b => Uint8ListWithEquality(b.field0),
-    DartValue_Array a => a.field0.map(decodeValue).toIList(),
-    DartValue_Object o => btreemapToHashmapDartValue(
+    Value_Null() => null,
+    Value_Int64 i => i.field0,
+    Value_Float64 d => d.field0,
+    Value_Boolean b => b.field0,
+    Value_String s => s.field0,
+    Value_Bytes b => Uint8ListWithEquality(b.field0),
+    Value_Array a => a.field0.map(decodeValue).toIList(),
+    Value_Object o => btreemapToHashmapValue(
       btreemap: o.field0,
     ).map((k, v) => MapEntry(k, decodeValue(v))).lock,
   };
