@@ -41,6 +41,9 @@
 #![cfg_attr(not(test), warn(missing_docs))]
 #![warn(rustdoc::missing_crate_level_docs)]
 
+mod frb_generated; /* AUTO INJECTED BY flutter_rust_bridge. This line may not be accurate, and
+                    * you can change it according to your needs. */
+
 mod value;
 #[cfg(any(test, feature = "testing"))]
 pub use value::export::roundtrip::ExportContext;

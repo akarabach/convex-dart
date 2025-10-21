@@ -13,9 +13,6 @@ import 'frb_generated.io.dart'
 import 'lib.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'value.dart';
-import 'value/json/bytes.dart';
-import 'value/json/float.dart';
-import 'value/json/integer.dart';
 
 /// Main entrypoint of the Rust API
 class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
@@ -70,7 +67,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => -1437392883;
+  int get rustContentHash => 1191927947;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -134,18 +131,6 @@ abstract class RustLibApi extends BaseApi {
   BTreeMapStringValue crateDartHashmapToBtreemap({
     required Map<String, Value> hashmap,
   });
-
-  Uint8List crateValueJsonBytesJsonBytesDecode({required String s});
-
-  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes});
-
-  double crateValueJsonFloatJsonFloatDecode({required String s});
-
-  String crateValueJsonFloatJsonFloatEncode({required double n});
-
-  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s});
-
-  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n});
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_BTreeMapStringValue;
@@ -605,144 +590,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     argNames: ["hashmap"],
   );
 
-  @override
-  Uint8List crateValueJsonBytesJsonBytesDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 13)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_list_prim_u_8_strict,
-          decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonBytesJsonBytesDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonBytesJsonBytesDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_bytes_decode", argNames: ["s"]);
-
-  @override
-  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_list_prim_u_8_loose(bytes, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 14)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonBytesJsonBytesEncodeConstMeta,
-        argValues: [bytes],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonBytesJsonBytesEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_bytes_encode", argNames: ["bytes"]);
-
-  @override
-  double crateValueJsonFloatJsonFloatDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_f_64,
-          decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonFloatJsonFloatDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonFloatJsonFloatDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_float_decode", argNames: ["s"]);
-
-  @override
-  String crateValueJsonFloatJsonFloatEncode({required double n}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_f_64(n, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 16)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonFloatJsonFloatEncodeConstMeta,
-        argValues: [n],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonFloatJsonFloatEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_float_encode", argNames: ["n"]);
-
-  @override
-  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 17)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_i_64,
-          decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonIntegerJsonIntegerDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_integer_decode", argNames: ["s"]);
-
-  @override
-  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_i_64(n, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 18)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonIntegerJsonIntegerEncodeConstMeta,
-        argValues: [n],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_integer_encode", argNames: ["n"]);
-
   Future<void> Function(int, dynamic)
   encode_DartFn_Inputs_function_result_Output_unit_AnyhowException(
     FutureOr<void> Function(FunctionResult) raw,
@@ -1066,39 +913,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   PlatformInt64 dco_decode_isize(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
-  }
-
-  @protected
-  JsonBytes dco_decode_json_bytes(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonBytes();
-  }
-
-  @protected
-  JsonFloat dco_decode_json_float(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonFloat();
-  }
-
-  @protected
-  JsonInteger dco_decode_json_integer(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonInteger();
-  }
-
-  @protected
-  List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as List<int>;
   }
 
   @protected
@@ -1460,31 +1274,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   PlatformInt64 sse_decode_isize(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
-  }
-
-  @protected
-  JsonBytes sse_decode_json_bytes(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonBytes();
-  }
-
-  @protected
-  JsonFloat sse_decode_json_float(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonFloat();
-  }
-
-  @protected
-  JsonInteger sse_decode_json_integer(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonInteger();
-  }
-
-  @protected
-  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var len_ = sse_decode_i_32(deserializer);
-    return deserializer.buffer.getUint8List(len_);
   }
 
   @protected
@@ -1914,33 +1703,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
-  }
-
-  @protected
-  void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_json_float(JsonFloat self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_json_integer(JsonInteger self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_list_prim_u_8_loose(
-    List<int> self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    serializer.buffer.putUint8List(
-      self is Uint8List ? self : Uint8List.fromList(self),
-    );
   }
 
   @protected

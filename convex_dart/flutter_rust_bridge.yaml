@@ -2,3 +2,7 @@ rust_input: crate::dart,crate::value
 rust_root: rust/
 dart_output: lib/src/rust
 enable_lifetime: true
+rust_preamble: |
+  use std::collections::BTreeMap;
+  use crate::base_client::query_result::FunctionResult;
+  use anyhow::Result;

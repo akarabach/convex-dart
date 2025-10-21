@@ -14,9 +14,6 @@ import 'frb_generated.dart';
 import 'lib.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
 import 'value.dart';
-import 'value/json/bytes.dart';
-import 'value/json/float.dart';
-import 'value/json/integer.dart';
 
 abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   RustLibApiImplPlatform({
@@ -176,18 +173,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 dco_decode_isize(dynamic raw);
 
   @protected
-  JsonBytes dco_decode_json_bytes(dynamic raw);
-
-  @protected
-  JsonFloat dco_decode_json_float(dynamic raw);
-
-  @protected
-  JsonInteger dco_decode_json_integer(dynamic raw);
-
-  @protected
-  List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
-
-  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
   @protected
@@ -337,18 +322,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PlatformInt64 sse_decode_isize(SseDeserializer deserializer);
-
-  @protected
-  JsonBytes sse_decode_json_bytes(SseDeserializer deserializer);
-
-  @protected
-  JsonFloat sse_decode_json_float(SseDeserializer deserializer);
-
-  @protected
-  JsonInteger sse_decode_json_integer(SseDeserializer deserializer);
-
-  @protected
-  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
 
   @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
@@ -535,18 +508,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_json_float(JsonFloat self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_json_integer(JsonInteger self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_strict(
