@@ -6,23 +6,39 @@
 import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-/// Helper functions for encoding `Int64`s as `String`s.
-class JsonInteger {
-  const JsonInteger();
 
-  /// Decode an integer from a string.
-  static PlatformInt64 decode({required String s}) =>
-      RustLib.instance.api.crateValueJsonIntegerJsonIntegerDecode(s: s);
+            
 
-  /// Encode an integer as a string.
-  static String encode({required PlatformInt64 n}) =>
-      RustLib.instance.api.crateValueJsonIntegerJsonIntegerEncode(n: n);
+            
 
-  @override
-  int get hashCode => 0;
+            /// Helper functions for encoding `Int64`s as `String`s.
+class JsonInteger  {
+                
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is JsonInteger && runtimeType == other.runtimeType;
-}
+                const JsonInteger();
+
+                /// Decode an integer from a string.
+static PlatformInt64  decode({required String s })=>RustLib.instance.api.crateValueJsonIntegerJsonIntegerDecode(s: s);
+
+
+/// Encode an integer as a string.
+static String  encode({required PlatformInt64 n })=>RustLib.instance.api.crateValueJsonIntegerJsonIntegerEncode(n: n);
+
+
+                
+
+                
+        @override
+        int get hashCode => 0;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is JsonInteger &&
+                runtimeType == other.runtimeType
+                ;
+        
+            }
+            

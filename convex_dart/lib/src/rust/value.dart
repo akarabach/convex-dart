@@ -6,42 +6,81 @@
 import 'frb_generated.dart';
 import 'lib.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'value.freezed.dart';
 
-// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`
+            // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ConvexError>>
-abstract class ConvexError implements RustOpaqueInterface {
-  Value get data;
 
-  String get message;
+            
 
-  set data(Value data);
+            /// An application error that can be returned from Convex functions. To learn
+/// more about throwing custom application errors, see [Convex Errors](https://docs.convex.dev/functions/error-handling/application-errors#throwing-application-errors).
+class ConvexError  {
+                /// From any error, redacted from prod deployments.
+final String message;
+/// Custom application error data payload that can be passed from your
+/// function to a client.
+final Value data;
 
-  set message(String message);
-}
+                const ConvexError({required this.message ,required this.data ,});
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Value>>
-abstract class Value implements RustOpaqueInterface {
-  /// Converts this value to a JSON value in the `json` export format.
-  /// <https://docs.convex.dev/database/types>
-  ///
-  /// It is possible for distinct Convex values to be serialized to the same
-  /// JSON value by this method. For instance, strings and binary values are
-  /// both exported as JSON strings. However, it is possible to convert the
-  /// exported value back to a unique Convex value if you also have the `Type`
-  /// value associated with the original Convex value (see `roundtrip.rs`).
-  ///
-  /// # Example
-  /// ```
-  /// use convex::Value;
-  /// use serde_json::{
-  ///     json,
-  ///     Value as JsonValue,
-  /// };
-  ///
-  /// let value = Value::Bytes(vec![0b00000000, 0b00010000, 0b10000011]);
-  /// assert_eq!(JsonValue::from(value.clone()), json!({ "$bytes": "ABCD" }));
-  /// assert_eq!(value.export(), json!("ABCD"));
-  /// ```
-  Future<JsonValue> export_();
-}
+                
+                
+
+                
+        @override
+        int get hashCode => message.hashCode^data.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ConvexError &&
+                runtimeType == other.runtimeType
+                && message == other.message&& data == other.data;
+        
+            }
+
+@freezed
+                sealed class Value with _$Value  {
+                    const Value._();
+
+                     const factory Value.null_() = Value_Null;
+ const factory Value.int64(  PlatformInt64 field0,) = Value_Int64;
+ const factory Value.float64(  double field0,) = Value_Float64;
+ const factory Value.boolean(  bool field0,) = Value_Boolean;
+ const factory Value.string(  String field0,) = Value_String;
+ const factory Value.bytes(  Uint8List field0,) = Value_Bytes;
+ const factory Value.array(  List<Value> field0,) = Value_Array;
+ const factory Value.object(  BTreeMapStringValue field0,) = Value_Object;
+
+                    
+
+                    /// Converts this value to a JSON value in the `json` export format.
+/// <https://docs.convex.dev/database/types>
+///
+/// It is possible for distinct Convex values to be serialized to the same
+/// JSON value by this method. For instance, strings and binary values are
+/// both exported as JSON strings. However, it is possible to convert the
+/// exported value back to a unique Convex value if you also have the `Type`
+/// value associated with the original Convex value (see `roundtrip.rs`).
+///
+/// # Example
+/// ```
+/// use convex::Value;
+/// use serde_json::{
+///     json,
+///     Value as JsonValue,
+/// };
+///
+/// let value = Value::Bytes(vec![0b00000000, 0b00010000, 0b10000011]);
+/// assert_eq!(JsonValue::from(value.clone()), json!({ "$bytes": "ABCD" }));
+/// assert_eq!(value.export(), json!("ABCD"));
+/// ```
+ Future<JsonValue>  export_()=>RustLib.instance.api.crateValueValueExport(that: this, );
+
+
+                }
+            

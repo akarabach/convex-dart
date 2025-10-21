@@ -4,7 +4,31 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
+import '../lib.dart';
+import '../value.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'query_result.freezed.dart';
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<FunctionResult>>
-abstract class FunctionResult implements RustOpaqueInterface {}
+            
+
+            
+
+            @freezed
+                sealed class FunctionResult with _$FunctionResult  {
+                    const FunctionResult._();
+
+                     /// The Convex value returned on a successful run of a Convex function
+const factory FunctionResult.value(  Value field0,) = FunctionResult_Value;
+ /// The error message of a Convex function run that does not complete
+/// successfully.
+const factory FunctionResult.errorMessage(  String field0,) = FunctionResult_ErrorMessage;
+ /// The error payload of a Convex function run that doesn't complete
+/// successfully, with an application-level error.
+const factory FunctionResult.convexError(  ConvexError field0,) = FunctionResult_ConvexError;
+
+                    
+
+                    
+                }
+            

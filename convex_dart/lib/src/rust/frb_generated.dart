@@ -8,8 +8,7 @@ import 'dart.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
-import 'frb_generated.io.dart'
-    if (dart.library.js_interop) 'frb_generated.web.dart';
+import 'frb_generated.io.dart' if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'lib.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'value.dart';
@@ -17,2414 +16,1145 @@ import 'value/json/bytes.dart';
 import 'value/json/float.dart';
 import 'value/json/integer.dart';
 
-/// Main entrypoint of the Rust API
-class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
-  @internal
-  static final instance = RustLib._();
 
-  RustLib._();
+                /// Main entrypoint of the Rust API
+                class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
+                  @internal
+                  static final instance = RustLib._();
 
-  /// Initialize flutter_rust_bridge
-  static Future<void> init({
-    RustLibApi? api,
-    BaseHandler? handler,
-    ExternalLibrary? externalLibrary,
-    bool forceSameCodegenVersion = true,
-  }) async {
-    await instance.initImpl(
-      api: api,
-      handler: handler,
-      externalLibrary: externalLibrary,
-      forceSameCodegenVersion: forceSameCodegenVersion,
-    );
-  }
+                  RustLib._();
 
-  /// Initialize flutter_rust_bridge in mock mode.
-  /// No libraries for FFI are loaded.
-  static void initMock({required RustLibApi api}) {
-    instance.initMockImpl(api: api);
-  }
+                  /// Initialize flutter_rust_bridge
+                  static Future<void> init({
+                    RustLibApi? api,
+                    BaseHandler? handler,
+                    ExternalLibrary? externalLibrary,
+                    bool forceSameCodegenVersion = true,
+                  }) async {
+                    await instance.initImpl(
+                      api: api,
+                      handler: handler,
+                      externalLibrary: externalLibrary,
+                      forceSameCodegenVersion: forceSameCodegenVersion,
+                    );
+                  }
 
-  /// Dispose flutter_rust_bridge
-  ///
-  /// The call to this function is optional, since flutter_rust_bridge (and everything else)
-  /// is automatically disposed when the app stops.
-  static void dispose() => instance.disposeImpl();
+                  /// Initialize flutter_rust_bridge in mock mode.
+                  /// No libraries for FFI are loaded.
+                  static void initMock({
+                    required RustLibApi api,
+                  }) {
+                    instance.initMockImpl(
+                      api: api,
+                    );
+                  }
 
-  @override
-  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor =>
-      RustLibApiImpl.new;
+                  /// Dispose flutter_rust_bridge
+                  ///
+                  /// The call to this function is optional, since flutter_rust_bridge (and everything else)
+                  /// is automatically disposed when the app stops.
+                  static void dispose() => instance.disposeImpl();
 
-  @override
-  WireConstructor<RustLibWire> get wireConstructor =>
-      RustLibWire.fromExternalLibrary;
+                  @override
+                  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor => RustLibApiImpl.new;
 
-  @override
-  Future<void> executeRustInitializers() async {}
+                  @override
+                  WireConstructor<RustLibWire> get wireConstructor => RustLibWire.fromExternalLibrary;
 
-  @override
-  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig =>
-      kDefaultExternalLibraryLoaderConfig;
+                  @override
+                  Future<void> executeRustInitializers() async {
+                    
+                  }
 
-  @override
-  String get codegenVersion => '2.11.1';
+                  @override
+                  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig => kDefaultExternalLibraryLoaderConfig;
 
-  @override
-  int get rustContentHash => 109629658;
+                  @override
+                  String get codegenVersion => '2.11.1';
 
-  static const kDefaultExternalLibraryLoaderConfig =
-      ExternalLibraryLoaderConfig(
-        stem: 'convex',
-        ioDirectory: 'rust/target/release/',
-        webPrefix: 'pkg/',
-      );
-}
+                  @override
+                  int get rustContentHash => -1168770857;
 
-abstract class RustLibApi extends BaseApi {
-  Value crateValueConvexErrorAutoAccessorGetData({required ConvexError that});
+                  static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
+                    stem: 'convex',
+                    ioDirectory: 'rust/target/release/',
+                    webPrefix: 'pkg/',
+                  );
+                }
+                
 
-  String crateValueConvexErrorAutoAccessorGetMessage({
-    required ConvexError that,
-  });
+                abstract class RustLibApi extends BaseApi {
+                  Future<void> crateDartDartQuerySubscriberOnUpdate({required DartQuerySubscriber that , required FunctionResult value });
 
-  void crateValueConvexErrorAutoAccessorSetData({
-    required ConvexError that,
-    required Value data,
-  });
+Future<Value> crateDartMobileConvexClientAction({required MobileConvexClient that , required String name , required BTreeMapStringValue args });
 
-  void crateValueConvexErrorAutoAccessorSetMessage({
-    required ConvexError that,
-    required String message,
-  });
+Future<Value> crateDartMobileConvexClientMutation({required MobileConvexClient that , required String name , required BTreeMapStringValue args });
 
-  Future<void> crateDartDartQuerySubscriberOnUpdate({
-    required DartQuerySubscriber that,
-    required FunctionResult value,
-  });
+MobileConvexClient crateDartMobileConvexClientNew({required String deploymentUrl , required String clientId });
 
-  Future<Value> crateDartMobileConvexClientAction({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  });
+Future<Value> crateDartMobileConvexClientQuery({required MobileConvexClient that , required String name , required BTreeMapStringValue args });
 
-  Future<Value> crateDartMobileConvexClientMutation({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  });
+Future<void> crateDartMobileConvexClientSetAuth({required MobileConvexClient that , String? token });
 
-  MobileConvexClient crateDartMobileConvexClientNew({
-    required String deploymentUrl,
-    required String clientId,
-  });
+Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({required MobileConvexClient that , required String name , required BTreeMapStringValue args , required FutureOr<void> Function(FunctionResult) onUpdate });
 
-  Future<Value> crateDartMobileConvexClientQuery({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  });
+void crateDartSubscriptionHandleCancel({required SubscriptionHandle that });
 
-  Future<void> crateDartMobileConvexClientSetAuth({
-    required MobileConvexClient that,
-    String? token,
-  });
+Uint8List crateValueJsonBytesJsonBytesDecode({required String s });
 
-  Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-    required FutureOr<void> Function(FunctionResult) onUpdate,
-  });
+String crateValueJsonBytesJsonBytesEncode({required List<int> bytes });
 
-  void crateDartSubscriptionHandleCancel({required SubscriptionHandle that});
+double crateValueJsonFloatJsonFloatDecode({required String s });
 
-  Future<JsonValue> crateValueValueExport({required Value that});
+String crateValueJsonFloatJsonFloatEncode({required double n });
 
-  Uint8List crateValueJsonBytesJsonBytesDecode({required String s});
+PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s });
 
-  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes});
+String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n });
 
-  double crateValueJsonFloatJsonFloatDecode({required String s});
+Future<JsonValue> crateValueValueExport({required Value that });
 
-  String crateValueJsonFloatJsonFloatEncode({required double n});
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_BTreeMapStringValue;
 
-  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s});
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_BTreeMapStringValue;
 
-  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n});
+CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BTreeMapStringValuePtr;
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_BTreeMapStringValue;
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_DartQuerySubscriber;
 
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_BTreeMapStringValue;
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_DartQuerySubscriber;
 
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_BTreeMapStringValuePtr;
+CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_DartQuerySubscriberPtr;
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ClientError;
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_JsonValue;
 
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ClientError;
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_JsonValue;
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ClientErrorPtr;
+CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JsonValuePtr;
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ConvexError;
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_MobileConvexClient;
 
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ConvexError;
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_MobileConvexClient;
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ConvexErrorPtr;
+CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_MobileConvexClientPtr;
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_DartQuerySubscriber;
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_SubscriptionHandle;
 
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_DartQuerySubscriber;
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_SubscriptionHandle;
 
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_DartQuerySubscriberPtr;
+CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SubscriptionHandlePtr;
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_FunctionResult;
 
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_FunctionResult;
+                }
+                
 
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_FunctionResultPtr;
+                class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
+                  RustLibApiImpl({
+                    required super.handler,
+                    required super.wire,
+                    required super.generalizedFrbRustBinding,
+                    required super.portManager,
+                  });
 
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_JsonValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_JsonValue;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JsonValuePtr;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_MobileConvexClient;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_MobileConvexClient;
-
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_MobileConvexClientPtr;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_SubscriptionHandle;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_SubscriptionHandle;
-
-  CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_SubscriptionHandlePtr;
-
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Value;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Value;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ValuePtr;
-}
-
-class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
-  RustLibApiImpl({
-    required super.handler,
-    required super.wire,
-    required super.generalizedFrbRustBinding,
-    required super.portManager,
-  });
-
-  @override
-  Value crateValueConvexErrorAutoAccessorGetData({required ConvexError that}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-            that,
-            serializer,
-          );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueConvexErrorAutoAccessorGetDataConstMeta,
-        argValues: [that],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueConvexErrorAutoAccessorGetDataConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvexError_auto_accessor_get_data",
-        argNames: ["that"],
-      );
-
-  @override
-  String crateValueConvexErrorAutoAccessorGetMessage({
-    required ConvexError that,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-            that,
-            serializer,
-          );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueConvexErrorAutoAccessorGetMessageConstMeta,
-        argValues: [that],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueConvexErrorAutoAccessorGetMessageConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvexError_auto_accessor_get_message",
-        argNames: ["that"],
-      );
-
-  @override
-  void crateValueConvexErrorAutoAccessorSetData({
-    required ConvexError that,
-    required Value data,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-            that,
-            serializer,
-          );
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-            data,
-            serializer,
-          );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
-        },
-        codec: SseCodec(
+                  @override Future<void> crateDartDartQuerySubscriberOnUpdate({required DartQuerySubscriber that , required FunctionResult value })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(that, serializer);
+sse_encode_box_autoadd_function_result(value, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_unit,
           decodeErrorData: null,
-        ),
-        constMeta: kCrateValueConvexErrorAutoAccessorSetDataConstMeta,
-        argValues: [that, data],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateDartDartQuerySubscriberOnUpdateConstMeta,
+            argValues: [that, value],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueConvexErrorAutoAccessorSetDataConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvexError_auto_accessor_set_data",
-        argNames: ["that", "data"],
-      );
 
-  @override
-  void crateValueConvexErrorAutoAccessorSetMessage({
-    required ConvexError that,
-    required String message,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-            that,
-            serializer,
-          );
-          sse_encode_String(message, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateDartDartQuerySubscriberOnUpdateConstMeta => const TaskConstMeta(
+            debugName: "DartQuerySubscriber_on_update",
+            argNames: ["that", "value"],
+        );
+        
+
+@override Future<Value> crateDartMobileConvexClientAction({required MobileConvexClient that , required String name , required BTreeMapStringValue args })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(that, serializer);
+sse_encode_String(name, serializer);
+sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(args, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_value,
+          decodeErrorData: sse_decode_client_error,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientActionConstMeta,
+            argValues: [that, name, args],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientActionConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_action",
+            argNames: ["that", "name", "args"],
+        );
+        
+
+@override Future<Value> crateDartMobileConvexClientMutation({required MobileConvexClient that , required String name , required BTreeMapStringValue args })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(that, serializer);
+sse_encode_String(name, serializer);
+sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(args, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_value,
+          decodeErrorData: sse_decode_client_error,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientMutationConstMeta,
+            argValues: [that, name, args],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientMutationConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_mutation",
+            argNames: ["that", "name", "args"],
+        );
+        
+
+@override MobileConvexClient crateDartMobileConvexClientNew({required String deploymentUrl , required String clientId })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_String(deploymentUrl, serializer);
+sse_encode_String(clientId, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient,
+          decodeErrorData: null,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientNewConstMeta,
+            argValues: [deploymentUrl, clientId],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientNewConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_new",
+            argNames: ["deploymentUrl", "clientId"],
+        );
+        
+
+@override Future<Value> crateDartMobileConvexClientQuery({required MobileConvexClient that , required String name , required BTreeMapStringValue args })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(that, serializer);
+sse_encode_String(name, serializer);
+sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(args, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 5, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_value,
+          decodeErrorData: sse_decode_client_error,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientQueryConstMeta,
+            argValues: [that, name, args],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientQueryConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_query",
+            argNames: ["that", "name", "args"],
+        );
+        
+
+@override Future<void> crateDartMobileConvexClientSetAuth({required MobileConvexClient that , String? token })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(that, serializer);
+sse_encode_opt_String(token, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 6, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_unit,
+          decodeErrorData: sse_decode_client_error,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientSetAuthConstMeta,
+            argValues: [that, token],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientSetAuthConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_set_auth",
+            argNames: ["that", "token"],
+        );
+        
+
+@override Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({required MobileConvexClient that , required String name , required BTreeMapStringValue args , required FutureOr<void> Function(FunctionResult) onUpdate })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(that, serializer);
+sse_encode_String(name, serializer);
+sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(args, serializer);
+sse_encode_DartFn_Inputs_function_result_Output_unit_AnyhowException(onUpdate, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 7, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle,
+          decodeErrorData: sse_decode_client_error,
+        )
+        ,
+            constMeta: kCrateDartMobileConvexClientSubscribeConstMeta,
+            argValues: [that, name, args, onUpdate],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateDartMobileConvexClientSubscribeConstMeta => const TaskConstMeta(
+            debugName: "MobileConvexClient_subscribe",
+            argNames: ["that", "name", "args", "onUpdate"],
+        );
+        
+
+@override void crateDartSubscriptionHandleCancel({required SubscriptionHandle that })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(that, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 8)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_unit,
           decodeErrorData: null,
-        ),
-        constMeta: kCrateValueConvexErrorAutoAccessorSetMessageConstMeta,
-        argValues: [that, message],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateDartSubscriptionHandleCancelConstMeta,
+            argValues: [that],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueConvexErrorAutoAccessorSetMessageConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvexError_auto_accessor_set_message",
-        argNames: ["that", "message"],
-      );
 
-  @override
-  Future<void> crateDartDartQuerySubscriberOnUpdate({
-    required DartQuerySubscriber that,
-    required FunctionResult value,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-            that,
-            serializer,
-          );
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-            value,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 5,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateDartDartQuerySubscriberOnUpdateConstMeta,
-        argValues: [that, value],
-        apiImpl: this,
-      ),
-    );
-  }
+        TaskConstMeta get kCrateDartSubscriptionHandleCancelConstMeta => const TaskConstMeta(
+            debugName: "SubscriptionHandle_cancel",
+            argNames: ["that"],
+        );
+        
 
-  TaskConstMeta get kCrateDartDartQuerySubscriberOnUpdateConstMeta =>
-      const TaskConstMeta(
-        debugName: "DartQuerySubscriber_on_update",
-        argNames: ["that", "value"],
-      );
-
-  @override
-  Future<Value> crateDartMobileConvexClientAction({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 6,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
-          decodeErrorData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
-        ),
-        constMeta: kCrateDartMobileConvexClientActionConstMeta,
-        argValues: [that, name, args],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientActionConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_action",
-        argNames: ["that", "name", "args"],
-      );
-
-  @override
-  Future<Value> crateDartMobileConvexClientMutation({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 7,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
-          decodeErrorData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
-        ),
-        constMeta: kCrateDartMobileConvexClientMutationConstMeta,
-        argValues: [that, name, args],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientMutationConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_mutation",
-        argNames: ["that", "name", "args"],
-      );
-
-  @override
-  MobileConvexClient crateDartMobileConvexClientNew({
-    required String deploymentUrl,
-    required String clientId,
-  }) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(deploymentUrl, serializer);
-          sse_encode_String(clientId, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 8)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateDartMobileConvexClientNewConstMeta,
-        argValues: [deploymentUrl, clientId],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_new",
-        argNames: ["deploymentUrl", "clientId"],
-      );
-
-  @override
-  Future<Value> crateDartMobileConvexClientQuery({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 9,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue,
-          decodeErrorData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
-        ),
-        constMeta: kCrateDartMobileConvexClientQueryConstMeta,
-        argValues: [that, name, args],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientQueryConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_query",
-        argNames: ["that", "name", "args"],
-      );
-
-  @override
-  Future<void> crateDartMobileConvexClientSetAuth({
-    required MobileConvexClient that,
-    String? token,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_opt_String(token, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 10,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
-          decodeErrorData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
-        ),
-        constMeta: kCrateDartMobileConvexClientSetAuthConstMeta,
-        argValues: [that, token],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientSetAuthConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_set_auth",
-        argNames: ["that", "token"],
-      );
-
-  @override
-  Future<SubscriptionHandle> crateDartMobileConvexClientSubscribe({
-    required MobileConvexClient that,
-    required String name,
-    required BTreeMapStringValue args,
-    required FutureOr<void> Function(FunctionResult) onUpdate,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-            that,
-            serializer,
-          );
-          sse_encode_String(name, serializer);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-            args,
-            serializer,
-          );
-          sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
-            onUpdate,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 11,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle,
-          decodeErrorData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError,
-        ),
-        constMeta: kCrateDartMobileConvexClientSubscribeConstMeta,
-        argValues: [that, name, args, onUpdate],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartMobileConvexClientSubscribeConstMeta =>
-      const TaskConstMeta(
-        debugName: "MobileConvexClient_subscribe",
-        argNames: ["that", "name", "args", "onUpdate"],
-      );
-
-  @override
-  void crateDartSubscriptionHandleCancel({required SubscriptionHandle that}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-            that,
-            serializer,
-          );
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 12)!;
-        },
-        codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateDartSubscriptionHandleCancelConstMeta,
-        argValues: [that],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateDartSubscriptionHandleCancelConstMeta =>
-      const TaskConstMeta(
-        debugName: "SubscriptionHandle_cancel",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<JsonValue> crateValueValueExport({required Value that}) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-            that,
-            serializer,
-          );
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 14,
-            port: port_,
-          );
-        },
-        codec: SseCodec(
-          decodeSuccessData:
-              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue,
-          decodeErrorData: null,
-        ),
-        constMeta: kCrateValueValueExportConstMeta,
-        argValues: [that],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueValueExportConstMeta =>
-      const TaskConstMeta(debugName: "Value_export", argNames: ["that"]);
-
-  @override
-  Uint8List crateValueJsonBytesJsonBytesDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
-        },
-        codec: SseCodec(
+@override Uint8List crateValueJsonBytesJsonBytesDecode({required String s })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_String(s, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 10)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_list_prim_u_8_strict,
           decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonBytesJsonBytesDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateValueJsonBytesJsonBytesDecodeConstMeta,
+            argValues: [s],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueJsonBytesJsonBytesDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_bytes_decode", argNames: ["s"]);
 
-  @override
-  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_list_prim_u_8_loose(bytes, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 16)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateValueJsonBytesJsonBytesDecodeConstMeta => const TaskConstMeta(
+            debugName: "json_bytes_decode",
+            argNames: ["s"],
+        );
+        
+
+@override String crateValueJsonBytesJsonBytesEncode({required List<int> bytes })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_list_prim_u_8_loose(bytes, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 11)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_String,
           decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonBytesJsonBytesEncodeConstMeta,
-        argValues: [bytes],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateValueJsonBytesJsonBytesEncodeConstMeta,
+            argValues: [bytes],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueJsonBytesJsonBytesEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_bytes_encode", argNames: ["bytes"]);
 
-  @override
-  double crateValueJsonFloatJsonFloatDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 17)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateValueJsonBytesJsonBytesEncodeConstMeta => const TaskConstMeta(
+            debugName: "json_bytes_encode",
+            argNames: ["bytes"],
+        );
+        
+
+@override double crateValueJsonFloatJsonFloatDecode({required String s })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_String(s, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 12)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_f_64,
           decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonFloatJsonFloatDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateValueJsonFloatJsonFloatDecodeConstMeta,
+            argValues: [s],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueJsonFloatJsonFloatDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_float_decode", argNames: ["s"]);
 
-  @override
-  String crateValueJsonFloatJsonFloatEncode({required double n}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_f_64(n, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 18)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateValueJsonFloatJsonFloatDecodeConstMeta => const TaskConstMeta(
+            debugName: "json_float_decode",
+            argNames: ["s"],
+        );
+        
+
+@override String crateValueJsonFloatJsonFloatEncode({required double n })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_f_64(n, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 13)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_String,
           decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonFloatJsonFloatEncodeConstMeta,
-        argValues: [n],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateValueJsonFloatJsonFloatEncodeConstMeta,
+            argValues: [n],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueJsonFloatJsonFloatEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_float_encode", argNames: ["n"]);
 
-  @override
-  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(s, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 19)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateValueJsonFloatJsonFloatEncodeConstMeta => const TaskConstMeta(
+            debugName: "json_float_encode",
+            argNames: ["n"],
+        );
+        
+
+@override PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_String(s, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 14)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_i_64,
           decodeErrorData: sse_decode_AnyhowException,
-        ),
-        constMeta: kCrateValueJsonIntegerJsonIntegerDecodeConstMeta,
-        argValues: [s],
-        apiImpl: this,
-      ),
-    );
-  }
+        )
+        ,
+            constMeta: kCrateValueJsonIntegerJsonIntegerDecodeConstMeta,
+            argValues: [s],
+            apiImpl: this,
+        )); }
 
-  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerDecodeConstMeta =>
-      const TaskConstMeta(debugName: "json_integer_decode", argNames: ["s"]);
 
-  @override
-  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n}) {
-    return handler.executeSync(
-      SyncTask(
-        callFfi: () {
-          final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_i_64(n, serializer);
-          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 20)!;
-        },
-        codec: SseCodec(
+        TaskConstMeta get kCrateValueJsonIntegerJsonIntegerDecodeConstMeta => const TaskConstMeta(
+            debugName: "json_integer_decode",
+            argNames: ["s"],
+        );
+        
+
+@override String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n })  { return handler.executeSync(SyncTask(
+            callFfi: () {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_i_64(n, serializer);
+            return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
+            
+            },
+            codec: 
+        SseCodec(
           decodeSuccessData: sse_decode_String,
           decodeErrorData: null,
-        ),
-        constMeta: kCrateValueJsonIntegerJsonIntegerEncodeConstMeta,
-        argValues: [n],
-        apiImpl: this,
-      ),
-    );
-  }
-
-  TaskConstMeta get kCrateValueJsonIntegerJsonIntegerEncodeConstMeta =>
-      const TaskConstMeta(debugName: "json_integer_encode", argNames: ["n"]);
-
-  Future<void> Function(int, dynamic)
-  encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
-    FutureOr<void> Function(FunctionResult) raw,
-  ) {
-    return (callId, rawArg0) async {
-      final arg0 =
-          dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-            rawArg0,
-          );
-
-      Box<void>? rawOutput;
-      Box<AnyhowException>? rawError;
-      try {
-        rawOutput = Box(await raw(arg0));
-      } catch (e, s) {
-        rawError = Box(AnyhowException("$e\n\n$s"));
-      }
-
-      final serializer = SseSerializer(generalizedFrbRustBinding);
-      assert((rawOutput != null) ^ (rawError != null));
-      if (rawOutput != null) {
-        serializer.buffer.putUint8(0);
-        sse_encode_unit(rawOutput.value, serializer);
-      } else {
-        serializer.buffer.putUint8(1);
-        sse_encode_AnyhowException(rawError!.value, serializer);
-      }
-      final output = serializer.intoRaw();
-
-      generalizedFrbRustBinding.dartFnDeliverOutput(
-        callId: callId,
-        ptr: output.ptr,
-        rustVecLen: output.rustVecLen,
-        dataLen: output.dataLen,
-      );
-    };
-  }
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_BTreeMapStringValue => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_BTreeMapStringValue => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ClientError => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ClientError => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ConvexError => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ConvexError => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_DartQuerySubscriber => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_DartQuerySubscriber => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_FunctionResult => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_FunctionResult => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_JsonValue => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_JsonValue => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_MobileConvexClient => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_MobileConvexClient => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_SubscriptionHandle => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_SubscriptionHandle => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle;
-
-  RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_Value => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue;
-
-  RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_Value => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue;
-
-  @protected
-  AnyhowException dco_decode_AnyhowException(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return AnyhowException(raw as String);
-  }
-
-  @protected
-  BTreeMapStringValue
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return BTreeMapStringValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ClientError
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ClientErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ConvexError
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  DartQuerySubscriber
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  FunctionResult
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return FunctionResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  JsonValue
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  MobileConvexClient
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  SubscriptionHandle
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  Value
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ConvexError
-  dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ConvexError
-  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  DartQuerySubscriber
-  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  MobileConvexClient
-  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  SubscriptionHandle
-  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  FutureOr<void> Function(FunctionResult)
-  dco_decode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    throw UnimplementedError('');
-  }
-
-  @protected
-  Object dco_decode_DartOpaque(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return decodeDartOpaque(raw, generalizedFrbRustBinding);
-  }
-
-  @protected
-  BTreeMapStringValue
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return BTreeMapStringValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ClientError
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ClientErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ConvexError
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  DartQuerySubscriber
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  FunctionResult
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return FunctionResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  JsonValue
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  MobileConvexClient
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  SubscriptionHandle
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  Value
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    dynamic raw,
-  ) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ValueImpl.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  String dco_decode_String(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as String;
-  }
-
-  @protected
-  QuerySubscriber dco_decode_TraitDef_QuerySubscriber(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    throw UnimplementedError();
-  }
-
-  @protected
-  double dco_decode_f_64(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as double;
-  }
-
-  @protected
-  PlatformInt64 dco_decode_i_64(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dcoDecodeI64(raw);
-  }
-
-  @protected
-  PlatformInt64 dco_decode_isize(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dcoDecodeI64(raw);
-  }
-
-  @protected
-  JsonBytes dco_decode_json_bytes(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonBytes();
-  }
-
-  @protected
-  JsonFloat dco_decode_json_float(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonFloat();
-  }
-
-  @protected
-  JsonInteger dco_decode_json_integer(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.isNotEmpty)
-      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
-    return JsonInteger();
-  }
-
-  @protected
-  List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as List<int>;
-  }
-
-  @protected
-  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as Uint8List;
-  }
-
-  @protected
-  String? dco_decode_opt_String(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw == null ? null : dco_decode_String(raw);
-  }
-
-  @protected
-  int dco_decode_u_8(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as int;
-  }
-
-  @protected
-  void dco_decode_unit(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return;
-  }
-
-  @protected
-  BigInt dco_decode_usize(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dcoDecodeU64(raw);
-  }
-
-  @protected
-  AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_String(deserializer);
-    return AnyhowException(inner);
-  }
-
-  @protected
-  BTreeMapStringValue
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return BTreeMapStringValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ClientError
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ClientErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ConvexError
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  DartQuerySubscriber
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  FunctionResult
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return FunctionResultImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  JsonValue
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  MobileConvexClient
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  SubscriptionHandle
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  Value
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ConvexError
-  sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ConvexError
-  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  DartQuerySubscriber
-  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  MobileConvexClient
-  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  SubscriptionHandle
-  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  Object sse_decode_DartOpaque(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_isize(deserializer);
-    return decodeDartOpaque(inner, generalizedFrbRustBinding);
-  }
-
-  @protected
-  BTreeMapStringValue
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return BTreeMapStringValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ClientError
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ClientErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  ConvexError
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ConvexErrorImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  DartQuerySubscriber
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return DartQuerySubscriberImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  FunctionResult
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return FunctionResultImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  JsonValue
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  MobileConvexClient
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return MobileConvexClientImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  SubscriptionHandle
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return SubscriptionHandleImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  Value
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    SseDeserializer deserializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ValueImpl.frbInternalSseDecode(
-      sse_decode_usize(deserializer),
-      sse_decode_i_32(deserializer),
-    );
-  }
-
-  @protected
-  String sse_decode_String(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_list_prim_u_8_strict(deserializer);
-    return utf8.decoder.convert(inner);
-  }
-
-  @protected
-  double sse_decode_f_64(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getFloat64();
-  }
-
-  @protected
-  PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getPlatformInt64();
-  }
-
-  @protected
-  PlatformInt64 sse_decode_isize(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getPlatformInt64();
-  }
-
-  @protected
-  JsonBytes sse_decode_json_bytes(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonBytes();
-  }
-
-  @protected
-  JsonFloat sse_decode_json_float(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonFloat();
-  }
-
-  @protected
-  JsonInteger sse_decode_json_integer(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return JsonInteger();
-  }
-
-  @protected
-  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var len_ = sse_decode_i_32(deserializer);
-    return deserializer.buffer.getUint8List(len_);
-  }
-
-  @protected
-  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var len_ = sse_decode_i_32(deserializer);
-    return deserializer.buffer.getUint8List(len_);
-  }
-
-  @protected
-  String? sse_decode_opt_String(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    if (sse_decode_bool(deserializer)) {
-      return (sse_decode_String(deserializer));
-    } else {
-      return null;
-    }
-  }
-
-  @protected
-  int sse_decode_u_8(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint8();
-  }
-
-  @protected
-  void sse_decode_unit(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  BigInt sse_decode_usize(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getBigUint64();
-  }
-
-  @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
-  }
-
-  @protected
-  bool sse_decode_bool(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint8() != 0;
-  }
-
-  @protected
-  void sse_encode_AnyhowException(
-    AnyhowException self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_String(self.message, serializer);
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    BTreeMapStringValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as BTreeMapStringValueImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    ClientError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ClientErrorImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    ConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ConvexErrorImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    DartQuerySubscriber self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as DartQuerySubscriberImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    FunctionResult self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as FunctionResultImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    JsonValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as JsonValueImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    MobileConvexClient self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as MobileConvexClientImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SubscriptionHandle self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as SubscriptionHandleImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    Value self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ValueImpl).frbInternalSseEncode(move: true),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    ConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ConvexErrorImpl).frbInternalSseEncode(move: false),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    ConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ConvexErrorImpl).frbInternalSseEncode(move: false),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    DartQuerySubscriber self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as DartQuerySubscriberImpl).frbInternalSseEncode(move: false),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    MobileConvexClient self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as MobileConvexClientImpl).frbInternalSseEncode(move: false),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SubscriptionHandle self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as SubscriptionHandleImpl).frbInternalSseEncode(move: false),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
-    FutureOr<void> Function(FunctionResult) self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_DartOpaque(
-      encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult_Output_unit_AnyhowException(
-        self,
-      ),
-      serializer,
-    );
-  }
-
-  @protected
-  void sse_encode_DartOpaque(Object self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_isize(
-      PlatformPointerUtil.ptrToPlatformInt64(
-        encodeDartOpaque(
-          self,
-          portManager.dartHandlerPort,
-          generalizedFrbRustBinding,
-        ),
-      ),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
-    BTreeMapStringValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as BTreeMapStringValueImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerClientError(
-    ClientError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ClientErrorImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvexError(
-    ConvexError self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ConvexErrorImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(
-    DartQuerySubscriber self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as DartQuerySubscriberImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerFunctionResult(
-    FunctionResult self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as FunctionResultImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(
-    JsonValue self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as JsonValueImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(
-    MobileConvexClient self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as MobileConvexClientImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(
-    SubscriptionHandle self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as SubscriptionHandleImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerValue(
-    Value self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(
-      (self as ValueImpl).frbInternalSseEncode(move: null),
-      serializer,
-    );
-  }
-
-  @protected
-  void sse_encode_String(String self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
-  }
-
-  @protected
-  void sse_encode_f_64(double self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putFloat64(self);
-  }
-
-  @protected
-  void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putPlatformInt64(self);
-  }
-
-  @protected
-  void sse_encode_isize(PlatformInt64 self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putPlatformInt64(self);
-  }
-
-  @protected
-  void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_json_float(JsonFloat self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_json_integer(JsonInteger self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_list_prim_u_8_loose(
-    List<int> self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    serializer.buffer.putUint8List(
-      self is Uint8List ? self : Uint8List.fromList(self),
-    );
-  }
-
-  @protected
-  void sse_encode_list_prim_u_8_strict(
-    Uint8List self,
-    SseSerializer serializer,
-  ) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    serializer.buffer.putUint8List(self);
-  }
-
-  @protected
-  void sse_encode_opt_String(String? self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    sse_encode_bool(self != null, serializer);
-    if (self != null) {
-      sse_encode_String(self, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_u_8(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint8(self);
-  }
-
-  @protected
-  void sse_encode_unit(void self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_usize(BigInt self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putBigUint64(self);
-  }
-
-  @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
-  }
-
-  @protected
-  void sse_encode_bool(bool self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint8(self ? 1 : 0);
-  }
-}
-
-@sealed
-class BTreeMapStringValueImpl extends RustOpaque
-    implements BTreeMapStringValue {
-  // Not to be used by end users
-  BTreeMapStringValueImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BTreeMapStringValueImpl.frbInternalSseDecode(
-    BigInt ptr,
-    int externalSizeOnNative,
-  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_increment_strong_count_BTreeMapStringValue,
-    rustArcDecrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_BTreeMapStringValue,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_BTreeMapStringValuePtr,
-  );
-}
-
-@sealed
-class ClientErrorImpl extends RustOpaque implements ClientError {
-  // Not to be used by end users
-  ClientErrorImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ClientErrorImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ClientError,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ClientError,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ClientErrorPtr,
-  );
-}
-
-@sealed
-class ConvexErrorImpl extends RustOpaque implements ConvexError {
-  // Not to be used by end users
-  ConvexErrorImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ConvexErrorImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ConvexError,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ConvexError,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ConvexErrorPtr,
-  );
-
-  Value get data =>
-      RustLib.instance.api.crateValueConvexErrorAutoAccessorGetData(that: this);
-
-  String get message => RustLib.instance.api
-      .crateValueConvexErrorAutoAccessorGetMessage(that: this);
-
-  set data(Value data) => RustLib.instance.api
-      .crateValueConvexErrorAutoAccessorSetData(that: this, data: data);
-
-  set message(String message) =>
-      RustLib.instance.api.crateValueConvexErrorAutoAccessorSetMessage(
-        that: this,
-        message: message,
-      );
-}
-
-@sealed
-class DartQuerySubscriberImpl extends RustOpaque
-    implements DartQuerySubscriber {
-  // Not to be used by end users
-  DartQuerySubscriberImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  DartQuerySubscriberImpl.frbInternalSseDecode(
-    BigInt ptr,
-    int externalSizeOnNative,
-  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_increment_strong_count_DartQuerySubscriber,
-    rustArcDecrementStrongCount: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_DartQuerySubscriber,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_DartQuerySubscriberPtr,
-  );
-
-  Future<void> onUpdate({required FunctionResult value}) => RustLib.instance.api
-      .crateDartDartQuerySubscriberOnUpdate(that: this, value: value);
-}
-
-@sealed
-class FunctionResultImpl extends RustOpaque implements FunctionResult {
-  // Not to be used by end users
-  FunctionResultImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  FunctionResultImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_FunctionResult,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_FunctionResult,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_FunctionResultPtr,
-  );
-}
-
-@sealed
-class JsonValueImpl extends RustOpaque implements JsonValue {
-  // Not to be used by end users
-  JsonValueImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  JsonValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_JsonValue,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_JsonValue,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_JsonValuePtr,
-  );
-}
-
-@sealed
-class MobileConvexClientImpl extends RustOpaque implements MobileConvexClient {
-  // Not to be used by end users
-  MobileConvexClientImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  MobileConvexClientImpl.frbInternalSseDecode(
-    BigInt ptr,
-    int externalSizeOnNative,
-  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_MobileConvexClient,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MobileConvexClient,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_MobileConvexClientPtr,
-  );
-
-  /// Executes an action on the Convex backend.
-  Future<Value> action({
-    required String name,
-    required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateDartMobileConvexClientAction(
-    that: this,
-    name: name,
-    args: args,
-  );
-
-  /// Executes a mutation on the Convex backend.
-  Future<Value> mutation({
-    required String name,
-    required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateDartMobileConvexClientMutation(
-    that: this,
-    name: name,
-    args: args,
-  );
-
-  /// Executes a query on the Convex backend.
-  Future<Value> query({
-    required String name,
-    required BTreeMapStringValue args,
-  }) => RustLib.instance.api.crateDartMobileConvexClientQuery(
-    that: this,
-    name: name,
-    args: args,
-  );
-
-  /// Provide an OpenID Connect ID token to be associated with this client.
-  ///
-  /// Doing so will share that information with the Convex backend and a valid
-  /// token will give the backend knowledge of a logged in user.
-  ///
-  /// Passing [None] for the token will disassociate a previous token,
-  /// effectively returning to a logged out state.
-  Future<void> setAuth({String? token}) => RustLib.instance.api
-      .crateDartMobileConvexClientSetAuth(that: this, token: token);
-
-  /// Subscribe to updates to a query against the Convex backend.
-  ///
-  /// The [QuerySubscriber] will be called back with initial query results and
-  /// it will continue to get called as the underlying data changes.
-  ///
-  /// The returned [SubscriptionHandle] can be used to cancel the
-  /// subscription.
-  Future<SubscriptionHandle> subscribe({
-    required String name,
-    required BTreeMapStringValue args,
-    required FutureOr<void> Function(FunctionResult) onUpdate,
-  }) => RustLib.instance.api.crateDartMobileConvexClientSubscribe(
-    that: this,
-    name: name,
-    args: args,
-    onUpdate: onUpdate,
-  );
-}
-
-@sealed
-class SubscriptionHandleImpl extends RustOpaque implements SubscriptionHandle {
-  // Not to be used by end users
-  SubscriptionHandleImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  SubscriptionHandleImpl.frbInternalSseDecode(
-    BigInt ptr,
-    int externalSizeOnNative,
-  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_SubscriptionHandle,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_SubscriptionHandle,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance
-        .api
-        .rust_arc_decrement_strong_count_SubscriptionHandlePtr,
-  );
-
-  /// Cancels the subscription by sending a cancellation signal.
-  void cancel() =>
-      RustLib.instance.api.crateDartSubscriptionHandleCancel(that: this);
-}
-
-@sealed
-class ValueImpl extends RustOpaque implements Value {
-  // Not to be used by end users
-  ValueImpl.frbInternalDcoDecode(List<dynamic> wire)
-    : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_Value,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_Value,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ValuePtr,
-  );
-
-  /// Converts this value to a JSON value in the `json` export format.
-  /// <https://docs.convex.dev/database/types>
-  ///
-  /// It is possible for distinct Convex values to be serialized to the same
-  /// JSON value by this method. For instance, strings and binary values are
-  /// both exported as JSON strings. However, it is possible to convert the
-  /// exported value back to a unique Convex value if you also have the `Type`
-  /// value associated with the original Convex value (see `roundtrip.rs`).
-  ///
-  /// # Example
-  /// ```
-  /// use convex::Value;
-  /// use serde_json::{
-  ///     json,
-  ///     Value as JsonValue,
-  /// };
-  ///
-  /// let value = Value::Bytes(vec![0b00000000, 0b00010000, 0b10000011]);
-  /// assert_eq!(JsonValue::from(value.clone()), json!({ "$bytes": "ABCD" }));
-  /// assert_eq!(value.export(), json!("ABCD"));
-  /// ```
-  Future<JsonValue> export_() =>
-      RustLib.instance.api.crateValueValueExport(that: this);
-}
+        )
+        ,
+            constMeta: kCrateValueJsonIntegerJsonIntegerEncodeConstMeta,
+            argValues: [n],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateValueJsonIntegerJsonIntegerEncodeConstMeta => const TaskConstMeta(
+            debugName: "json_integer_encode",
+            argNames: ["n"],
+        );
+        
+
+@override Future<JsonValue> crateValueValueExport({required Value that })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_box_autoadd_value(that, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 16, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue,
+          decodeErrorData: null,
+        )
+        ,
+            constMeta: kCrateValueValueExportConstMeta,
+            argValues: [that],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateValueValueExportConstMeta => const TaskConstMeta(
+            debugName: "value_export",
+            argNames: ["that"],
+        );
+        
+
+
+            Future<void> Function(int, dynamic)
+                encode_DartFn_Inputs_function_result_Output_unit_AnyhowException(FutureOr<void> Function(FunctionResult) raw) {
+              return (callId, rawArg0) async {
+                final arg0 = dco_decode_function_result(rawArg0);
+
+
+                Box<void>? rawOutput;
+                Box<AnyhowException>? rawError;
+                try {
+                    rawOutput = Box(await raw(arg0));
+                } catch (e, s) {
+                    rawError = Box(AnyhowException("$e\n\n$s"));
+                }
+
+                final serializer = SseSerializer(generalizedFrbRustBinding);
+                assert((rawOutput != null) ^ (rawError != null));
+                if (rawOutput != null) {
+                    serializer.buffer.putUint8(0);
+                    sse_encode_unit(rawOutput.value, serializer);
+                } else {
+                    serializer.buffer.putUint8(1);
+                    sse_encode_AnyhowException(rawError!.value, serializer);
+                }
+                final output = serializer.intoRaw();
+
+                generalizedFrbRustBinding.dartFnDeliverOutput(
+                  callId: callId, ptr: output.ptr, rustVecLen: output.rustVecLen, dataLen: output.dataLen);
+              };
+            }
+            RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_BTreeMapStringValue => wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
+
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_BTreeMapStringValue => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue;
+
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_DartQuerySubscriber => wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
+
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_DartQuerySubscriber => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber;
+
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_JsonValue => wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
+
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_JsonValue => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue;
+
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_MobileConvexClient => wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient;
+
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_MobileConvexClient => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient;
+
+RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_SubscriptionHandle => wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle;
+
+RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_SubscriptionHandle => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle;
+
+
+
+                  @protected AnyhowException dco_decode_AnyhowException(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return AnyhowException(raw as String); }
+
+@protected BTreeMapStringValue dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return BTreeMapStringValueImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected DartQuerySubscriber dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected JsonValue dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected MobileConvexClient dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected SubscriptionHandle dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected DartQuerySubscriber dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected MobileConvexClient dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected SubscriptionHandle dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected FutureOr<void> Function(FunctionResult) dco_decode_DartFn_Inputs_function_result_Output_unit_AnyhowException(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+throw UnimplementedError(''); }
+
+@protected Object dco_decode_DartOpaque(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return decodeDartOpaque(raw, generalizedFrbRustBinding); }
+
+@protected BTreeMapStringValue dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return BTreeMapStringValueImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected DartQuerySubscriber dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected JsonValue dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return JsonValueImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected MobileConvexClient dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected SubscriptionHandle dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalDcoDecode(raw as List<dynamic>); }
+
+@protected String dco_decode_String(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as String; }
+
+@protected QuerySubscriber dco_decode_TraitDef_QuerySubscriber(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+throw UnimplementedError(); }
+
+@protected bool dco_decode_bool(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as bool; }
+
+@protected ConvexError dco_decode_box_autoadd_convex_error(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dco_decode_convex_error(raw); }
+
+@protected FunctionResult dco_decode_box_autoadd_function_result(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dco_decode_function_result(raw); }
+
+@protected Value dco_decode_box_autoadd_value(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dco_decode_value(raw); }
+
+@protected ClientError dco_decode_client_error(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+switch (raw[0]) {
+                case 0: return ClientError_InternalError(msg: dco_decode_String(raw[1]),);
+case 1: return ClientError_ConvexError(err: dco_decode_box_autoadd_convex_error(raw[1]),);
+case 2: return ClientError_ServerError(msg: dco_decode_String(raw[1]),);
+                default: throw Exception("unreachable");
+            } }
+
+@protected ConvexError dco_decode_convex_error(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+final arr = raw as List<dynamic>;
+                if (arr.length != 2) throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+                return ConvexError(message: dco_decode_String(arr[0]),
+data: dco_decode_value(arr[1]),); }
+
+@protected double dco_decode_f_64(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as double; }
+
+@protected FunctionResult dco_decode_function_result(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+switch (raw[0]) {
+                case 0: return FunctionResult_Value(dco_decode_box_autoadd_value(raw[1]),);
+case 1: return FunctionResult_ErrorMessage(dco_decode_String(raw[1]),);
+case 2: return FunctionResult_ConvexError(dco_decode_box_autoadd_convex_error(raw[1]),);
+                default: throw Exception("unreachable");
+            } }
+
+@protected PlatformInt64 dco_decode_i_64(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dcoDecodeI64(raw); }
+
+@protected PlatformInt64 dco_decode_isize(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dcoDecodeI64(raw); }
+
+@protected JsonBytes dco_decode_json_bytes(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+final arr = raw as List<dynamic>;
+                if (arr.length != 0) throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+                return JsonBytes(); }
+
+@protected JsonFloat dco_decode_json_float(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+final arr = raw as List<dynamic>;
+                if (arr.length != 0) throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+                return JsonFloat(); }
+
+@protected JsonInteger dco_decode_json_integer(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+final arr = raw as List<dynamic>;
+                if (arr.length != 0) throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+                return JsonInteger(); }
+
+@protected List<int> dco_decode_list_prim_u_8_loose(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as List<int>; }
+
+@protected Uint8List dco_decode_list_prim_u_8_strict(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as Uint8List; }
+
+@protected List<Value> dco_decode_list_value(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return (raw as List<dynamic>).map(dco_decode_value).toList(); }
+
+@protected String? dco_decode_opt_String(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw == null ? null : dco_decode_String(raw); }
+
+@protected int dco_decode_u_8(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return raw as int; }
+
+@protected void dco_decode_unit(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return; }
+
+@protected BigInt dco_decode_usize(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+return dcoDecodeU64(raw); }
+
+@protected Value dco_decode_value(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
+switch (raw[0]) {
+                case 0: return Value_Null();
+case 1: return Value_Int64(dco_decode_i_64(raw[1]),);
+case 2: return Value_Float64(dco_decode_f_64(raw[1]),);
+case 3: return Value_Boolean(dco_decode_bool(raw[1]),);
+case 4: return Value_String(dco_decode_String(raw[1]),);
+case 5: return Value_Bytes(dco_decode_list_prim_u_8_strict(raw[1]),);
+case 6: return Value_Array(dco_decode_list_value(raw[1]),);
+case 7: return Value_Object(dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(raw[1]),);
+                default: throw Exception("unreachable");
+            } }
+
+@protected AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var inner = sse_decode_String(deserializer);
+        return AnyhowException(inner); }
+
+@protected BTreeMapStringValue sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return BTreeMapStringValueImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected DartQuerySubscriber sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected JsonValue sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return JsonValueImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected MobileConvexClient sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected SubscriptionHandle sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected DartQuerySubscriber sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected MobileConvexClient sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected SubscriptionHandle sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected Object sse_decode_DartOpaque(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var inner = sse_decode_isize(deserializer);
+        return decodeDartOpaque(inner, generalizedFrbRustBinding); }
+
+@protected BTreeMapStringValue sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return BTreeMapStringValueImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected DartQuerySubscriber sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return DartQuerySubscriberImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected JsonValue sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return JsonValueImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected MobileConvexClient sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return MobileConvexClientImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected SubscriptionHandle sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return SubscriptionHandleImpl.frbInternalSseDecode(sse_decode_usize(deserializer), sse_decode_i_32(deserializer)); }
+
+@protected String sse_decode_String(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var inner = sse_decode_list_prim_u_8_strict(deserializer);
+        return utf8.decoder.convert(inner); }
+
+@protected bool sse_decode_bool(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getUint8() != 0; }
+
+@protected ConvexError sse_decode_box_autoadd_convex_error(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return (sse_decode_convex_error(deserializer)); }
+
+@protected FunctionResult sse_decode_box_autoadd_function_result(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return (sse_decode_function_result(deserializer)); }
+
+@protected Value sse_decode_box_autoadd_value(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return (sse_decode_value(deserializer)); }
+
+@protected ClientError sse_decode_client_error(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+            var tag_ = sse_decode_i_32(deserializer);
+            switch (tag_) { case 0: var var_msg = sse_decode_String(deserializer);
+return ClientError_InternalError(msg: var_msg);case 1: var var_err = sse_decode_box_autoadd_convex_error(deserializer);
+return ClientError_ConvexError(err: var_err);case 2: var var_msg = sse_decode_String(deserializer);
+return ClientError_ServerError(msg: var_msg); default: throw UnimplementedError(''); }
+             }
+
+@protected ConvexError sse_decode_convex_error(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var var_message = sse_decode_String(deserializer);
+var var_data = sse_decode_value(deserializer);
+return ConvexError(message: var_message, data: var_data); }
+
+@protected double sse_decode_f_64(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getFloat64(); }
+
+@protected FunctionResult sse_decode_function_result(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+            var tag_ = sse_decode_i_32(deserializer);
+            switch (tag_) { case 0: var var_field0 = sse_decode_box_autoadd_value(deserializer);
+return FunctionResult_Value(var_field0);case 1: var var_field0 = sse_decode_String(deserializer);
+return FunctionResult_ErrorMessage(var_field0);case 2: var var_field0 = sse_decode_box_autoadd_convex_error(deserializer);
+return FunctionResult_ConvexError(var_field0); default: throw UnimplementedError(''); }
+             }
+
+@protected PlatformInt64 sse_decode_i_64(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getPlatformInt64(); }
+
+@protected PlatformInt64 sse_decode_isize(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getPlatformInt64(); }
+
+@protected JsonBytes sse_decode_json_bytes(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return JsonBytes(); }
+
+@protected JsonFloat sse_decode_json_float(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return JsonFloat(); }
+
+@protected JsonInteger sse_decode_json_integer(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return JsonInteger(); }
+
+@protected List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var len_ = sse_decode_i_32(deserializer);
+                return deserializer.buffer.getUint8List(len_); }
+
+@protected Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+var len_ = sse_decode_i_32(deserializer);
+                return deserializer.buffer.getUint8List(len_); }
+
+@protected List<Value> sse_decode_list_value(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+        var len_ = sse_decode_i_32(deserializer);
+        var ans_ = <Value>[];
+        for (var idx_ = 0; idx_ < len_; ++idx_) { ans_.add(sse_decode_value(deserializer)); }
+        return ans_;
+         }
+
+@protected String? sse_decode_opt_String(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+            if (sse_decode_bool(deserializer)) {
+                return (sse_decode_String(deserializer));
+            } else {
+                return null;
+            }
+             }
+
+@protected int sse_decode_u_8(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getUint8(); }
+
+@protected void sse_decode_unit(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+ }
+
+@protected BigInt sse_decode_usize(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getBigUint64(); }
+
+@protected Value sse_decode_value(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+            var tag_ = sse_decode_i_32(deserializer);
+            switch (tag_) { case 0: return Value_Null();case 1: var var_field0 = sse_decode_i_64(deserializer);
+return Value_Int64(var_field0);case 2: var var_field0 = sse_decode_f_64(deserializer);
+return Value_Float64(var_field0);case 3: var var_field0 = sse_decode_bool(deserializer);
+return Value_Boolean(var_field0);case 4: var var_field0 = sse_decode_String(deserializer);
+return Value_String(var_field0);case 5: var var_field0 = sse_decode_list_prim_u_8_strict(deserializer);
+return Value_Bytes(var_field0);case 6: var var_field0 = sse_decode_list_value(deserializer);
+return Value_Array(var_field0);case 7: var var_field0 = sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(deserializer);
+return Value_Object(var_field0); default: throw UnimplementedError(''); }
+             }
+
+@protected int sse_decode_i_32(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+return deserializer.buffer.getInt32(); }
+
+@protected void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_String(self.message, serializer); }
+
+@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(BTreeMapStringValue self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as BTreeMapStringValueImpl).frbInternalSseEncode(move: true), serializer); }
+
+@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(DartQuerySubscriber self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as DartQuerySubscriberImpl).frbInternalSseEncode(move: true), serializer); }
+
+@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(JsonValue self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as JsonValueImpl).frbInternalSseEncode(move: true), serializer); }
+
+@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(MobileConvexClient self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as MobileConvexClientImpl).frbInternalSseEncode(move: true), serializer); }
+
+@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SubscriptionHandle self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as SubscriptionHandleImpl).frbInternalSseEncode(move: true), serializer); }
+
+@protected void sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(DartQuerySubscriber self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as DartQuerySubscriberImpl).frbInternalSseEncode(move: false), serializer); }
+
+@protected void sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(MobileConvexClient self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as MobileConvexClientImpl).frbInternalSseEncode(move: false), serializer); }
+
+@protected void sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SubscriptionHandle self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as SubscriptionHandleImpl).frbInternalSseEncode(move: false), serializer); }
+
+@protected void sse_encode_DartFn_Inputs_function_result_Output_unit_AnyhowException(FutureOr<void> Function(FunctionResult) self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_DartOpaque(encode_DartFn_Inputs_function_result_Output_unit_AnyhowException(self), serializer); }
+
+@protected void sse_encode_DartOpaque(Object self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_isize(PlatformPointerUtil.ptrToPlatformInt64(encodeDartOpaque(self, portManager.dartHandlerPort, generalizedFrbRustBinding)), serializer); }
+
+@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(BTreeMapStringValue self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as BTreeMapStringValueImpl).frbInternalSseEncode(move: null), serializer); }
+
+@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriber(DartQuerySubscriber self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as DartQuerySubscriberImpl).frbInternalSseEncode(move: null), serializer); }
+
+@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJsonValue(JsonValue self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as JsonValueImpl).frbInternalSseEncode(move: null), serializer); }
+
+@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMobileConvexClient(MobileConvexClient self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as MobileConvexClientImpl).frbInternalSseEncode(move: null), serializer); }
+
+@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSubscriptionHandle(SubscriptionHandle self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_usize((self as SubscriptionHandleImpl).frbInternalSseEncode(move: null), serializer); }
+
+@protected void sse_encode_String(String self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer); }
+
+@protected void sse_encode_bool(bool self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putUint8(self ? 1 : 0); }
+
+@protected void sse_encode_box_autoadd_convex_error(ConvexError self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_convex_error(self, serializer); }
+
+@protected void sse_encode_box_autoadd_function_result(FunctionResult self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_function_result(self, serializer); }
+
+@protected void sse_encode_box_autoadd_value(Value self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_value(self, serializer); }
+
+@protected void sse_encode_client_error(ClientError self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+switch (self) { case ClientError_InternalError(msg: final msg): sse_encode_i_32(0, serializer); sse_encode_String(msg, serializer);
+case ClientError_ConvexError(err: final err): sse_encode_i_32(1, serializer); sse_encode_box_autoadd_convex_error(err, serializer);
+case ClientError_ServerError(msg: final msg): sse_encode_i_32(2, serializer); sse_encode_String(msg, serializer);
+  } }
+
+@protected void sse_encode_convex_error(ConvexError self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_String(self.message, serializer);
+sse_encode_value(self.data, serializer);
+ }
+
+@protected void sse_encode_f_64(double self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putFloat64(self); }
+
+@protected void sse_encode_function_result(FunctionResult self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+switch (self) { case FunctionResult_Value(field0: final field0): sse_encode_i_32(0, serializer); sse_encode_box_autoadd_value(field0, serializer);
+case FunctionResult_ErrorMessage(field0: final field0): sse_encode_i_32(1, serializer); sse_encode_String(field0, serializer);
+case FunctionResult_ConvexError(field0: final field0): sse_encode_i_32(2, serializer); sse_encode_box_autoadd_convex_error(field0, serializer);
+  } }
+
+@protected void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putPlatformInt64(self); }
+
+@protected void sse_encode_isize(PlatformInt64 self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putPlatformInt64(self); }
+
+@protected void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+ }
+
+@protected void sse_encode_json_float(JsonFloat self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+ }
+
+@protected void sse_encode_json_integer(JsonInteger self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+ }
+
+@protected void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_i_32(self.length, serializer);
+                    serializer.buffer.putUint8List(self is Uint8List ? self : Uint8List.fromList(self)); }
+
+@protected void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_i_32(self.length, serializer);
+                    serializer.buffer.putUint8List(self); }
+
+@protected void sse_encode_list_value(List<Value> self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+sse_encode_i_32(self.length, serializer);
+        for (final item in self) { sse_encode_value(item, serializer); } }
+
+@protected void sse_encode_opt_String(String? self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+
+                sse_encode_bool(self != null, serializer);
+                if (self != null) {
+                    sse_encode_String(self, serializer);
+                }
+                 }
+
+@protected void sse_encode_u_8(int self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putUint8(self); }
+
+@protected void sse_encode_unit(void self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+ }
+
+@protected void sse_encode_usize(BigInt self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putBigUint64(self); }
+
+@protected void sse_encode_value(Value self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+switch (self) { case Value_Null(): sse_encode_i_32(0, serializer); case Value_Int64(field0: final field0): sse_encode_i_32(1, serializer); sse_encode_i_64(field0, serializer);
+case Value_Float64(field0: final field0): sse_encode_i_32(2, serializer); sse_encode_f_64(field0, serializer);
+case Value_Boolean(field0: final field0): sse_encode_i_32(3, serializer); sse_encode_bool(field0, serializer);
+case Value_String(field0: final field0): sse_encode_i_32(4, serializer); sse_encode_String(field0, serializer);
+case Value_Bytes(field0: final field0): sse_encode_i_32(5, serializer); sse_encode_list_prim_u_8_strict(field0, serializer);
+case Value_Array(field0: final field0): sse_encode_i_32(6, serializer); sse_encode_list_value(field0, serializer);
+case Value_Object(field0: final field0): sse_encode_i_32(7, serializer); sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(field0, serializer);
+  } }
+
+@protected void sse_encode_i_32(int self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
+serializer.buffer.putInt32(self); }
+                }
+                
+
+            @sealed class BTreeMapStringValueImpl extends RustOpaque implements BTreeMapStringValue {
+                // Not to be used by end users
+                BTreeMapStringValueImpl.frbInternalDcoDecode(List<dynamic> wire):
+                    super.frbInternalDcoDecode(wire, _kStaticData);
+
+                // Not to be used by end users
+                BTreeMapStringValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative):
+                    super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+                static final _kStaticData = RustArcStaticData(
+                    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_BTreeMapStringValue,
+                    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_BTreeMapStringValue,
+                    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_BTreeMapStringValuePtr,
+                );
+
+                
+            }
+            @sealed class DartQuerySubscriberImpl extends RustOpaque implements DartQuerySubscriber {
+                // Not to be used by end users
+                DartQuerySubscriberImpl.frbInternalDcoDecode(List<dynamic> wire):
+                    super.frbInternalDcoDecode(wire, _kStaticData);
+
+                // Not to be used by end users
+                DartQuerySubscriberImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative):
+                    super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+                static final _kStaticData = RustArcStaticData(
+                    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_DartQuerySubscriber,
+                    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_DartQuerySubscriber,
+                    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_DartQuerySubscriberPtr,
+                );
+
+                 Future<void>  onUpdate({required FunctionResult value })=>RustLib.instance.api.crateDartDartQuerySubscriberOnUpdate(that: this, value: value);
+
+
+            }
+            @sealed class JsonValueImpl extends RustOpaque implements JsonValue {
+                // Not to be used by end users
+                JsonValueImpl.frbInternalDcoDecode(List<dynamic> wire):
+                    super.frbInternalDcoDecode(wire, _kStaticData);
+
+                // Not to be used by end users
+                JsonValueImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative):
+                    super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+                static final _kStaticData = RustArcStaticData(
+                    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_JsonValue,
+                    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_JsonValue,
+                    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_JsonValuePtr,
+                );
+
+                
+            }
+            @sealed class MobileConvexClientImpl extends RustOpaque implements MobileConvexClient {
+                // Not to be used by end users
+                MobileConvexClientImpl.frbInternalDcoDecode(List<dynamic> wire):
+                    super.frbInternalDcoDecode(wire, _kStaticData);
+
+                // Not to be used by end users
+                MobileConvexClientImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative):
+                    super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+                static final _kStaticData = RustArcStaticData(
+                    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_MobileConvexClient,
+                    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_MobileConvexClient,
+                    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_MobileConvexClientPtr,
+                );
+
+                /// Executes an action on the Convex backend.
+ Future<Value>  action({required String name , required BTreeMapStringValue args })=>RustLib.instance.api.crateDartMobileConvexClientAction(that: this, name: name, args: args);
+
+
+/// Executes a mutation on the Convex backend.
+ Future<Value>  mutation({required String name , required BTreeMapStringValue args })=>RustLib.instance.api.crateDartMobileConvexClientMutation(that: this, name: name, args: args);
+
+
+/// Executes a query on the Convex backend.
+ Future<Value>  query({required String name , required BTreeMapStringValue args })=>RustLib.instance.api.crateDartMobileConvexClientQuery(that: this, name: name, args: args);
+
+
+/// Provide an OpenID Connect ID token to be associated with this client.
+///
+/// Doing so will share that information with the Convex backend and a valid
+/// token will give the backend knowledge of a logged in user.
+///
+/// Passing [None] for the token will disassociate a previous token,
+/// effectively returning to a logged out state.
+ Future<void>  setAuth({String? token })=>RustLib.instance.api.crateDartMobileConvexClientSetAuth(that: this, token: token);
+
+
+/// Subscribe to updates to a query against the Convex backend.
+///
+/// The [QuerySubscriber] will be called back with initial query results and
+/// it will continue to get called as the underlying data changes.
+///
+/// The returned [SubscriptionHandle] can be used to cancel the
+/// subscription.
+ Future<SubscriptionHandle>  subscribe({required String name , required BTreeMapStringValue args , required FutureOr<void> Function(FunctionResult) onUpdate })=>RustLib.instance.api.crateDartMobileConvexClientSubscribe(that: this, name: name, args: args, onUpdate: onUpdate);
+
+
+            }
+            @sealed class SubscriptionHandleImpl extends RustOpaque implements SubscriptionHandle {
+                // Not to be used by end users
+                SubscriptionHandleImpl.frbInternalDcoDecode(List<dynamic> wire):
+                    super.frbInternalDcoDecode(wire, _kStaticData);
+
+                // Not to be used by end users
+                SubscriptionHandleImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative):
+                    super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+                static final _kStaticData = RustArcStaticData(
+                    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_SubscriptionHandle,
+                    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_SubscriptionHandle,
+                    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_SubscriptionHandlePtr,
+                );
+
+                /// Cancels the subscription by sending a cancellation signal.
+ void  cancel()=>RustLib.instance.api.crateDartSubscriptionHandleCancel(that: this, );
+
+
+            }
