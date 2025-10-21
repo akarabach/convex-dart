@@ -35,9 +35,9 @@ BTreeMapStringValue serialize(Query22Args args) {
 @pragma("vm:prefer-inline")
 Query22Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on173293) => (
-      i: on173293.containsKey('i')
-          ? Defined($true.validate(on173293['i']))
+    (on47349) => (
+      i: on47349.containsKey('i')
+          ? Defined($true.validate(on47349['i']))
           : Undefined<$true>(),
     ),
   );

@@ -31,13 +31,13 @@ BTreeMapStringValue serialize(Query118Args args) {
     hashmap: {
       'i': encodeValue({
         'config': encodeValue({
-          for (final on207066 in args.i.config.entries)
-            on207066.key: encodeValue(
+          for (final on984999 in args.i.config.entries)
+            on984999.key: encodeValue(
               encodeValue(
-                on207066.value.split(
-                  (on93578) => encodeValue(on93578),
-                  (on902767) => encodeValue(on902767),
-                  (on599533) => encodeValue(on599533),
+                on984999.value.split(
+                  (on184667) => encodeValue(on184667),
+                  (on125672) => encodeValue(on125672),
+                  (on279265) => encodeValue(on279265),
                 ),
               ),
             ),
@@ -54,36 +54,36 @@ BTreeMapStringValue serialize(Query118Args args) {
 @pragma("vm:prefer-inline")
 Query118Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on82031) => (
-      i: (on82031['i'] as IMap<String, dynamic>).then(
-        (on572273) => (
-          config: (on572273['config'] as IMap<String, dynamic>).map(
-            (on743547, on792903) => MapEntry(
-              on743547,
+    (on328810) => (
+      i: (on328810['i'] as IMap<String, dynamic>).then(
+        (on952980) => (
+          config: (on952980['config'] as IMap<String, dynamic>).map(
+            (on282283, on194052) => MapEntry(
+              on282283,
               Union3<String, double, bool>(() {
                 try {
-                  return (on792903 as String);
+                  return (on194052 as String);
                 } catch (e) {}
 
                 try {
-                  return (on792903 as double);
+                  return (on194052 as double);
                 } catch (e) {}
 
                 try {
-                  return (on792903 as bool);
+                  return (on194052 as bool);
                 } catch (e) {}
 
                 throw Exception(
-                  (on792903.toString() ?? "null") +
+                  (on194052.toString() ?? "null") +
                       r" cannot be deserialized into a Union3<String, double, bool>",
                 );
               }()),
             ),
           ),
-          fallback: (on572273['fallback'] as IMap<String, dynamic>).then(
-            (on747874) => (
-              enabled: (on747874['enabled'] as bool),
-              value: on747874['value'],
+          fallback: (on952980['fallback'] as IMap<String, dynamic>).then(
+            (on112329) => (
+              enabled: (on112329['enabled'] as bool),
+              value: on112329['value'],
             ),
           ),
         ),

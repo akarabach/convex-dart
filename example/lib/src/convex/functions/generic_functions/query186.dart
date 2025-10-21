@@ -32,7 +32,7 @@ BTreeMapStringValue serialize(Query186Args args) {
       'i': encodeValue({
         'permissions': encodeValue(
           args.i.permissions
-              .map((on362606) => encodeValue(on362606.value))
+              .map((on674997) => encodeValue(on674997.value))
               .toIList(),
         ),
       }),
@@ -43,11 +43,11 @@ BTreeMapStringValue serialize(Query186Args args) {
 @pragma("vm:prefer-inline")
 Query186Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on513650) => (
-      i: (on513650['i'] as IMap<String, dynamic>).then(
-        (on457699) => (
-          permissions: (on457699['permissions'] as IList<dynamic>)
-              .map((on760281) => $read$write$admin.fromValue(on760281))
+    (on373059) => (
+      i: (on373059['i'] as IMap<String, dynamic>).then(
+        (on447871) => (
+          permissions: (on447871['permissions'] as IList<dynamic>)
+              .map((on399491) => $read$write$admin.fromValue(on399491))
               .toIList(),
         ),
       ),

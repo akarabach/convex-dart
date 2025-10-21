@@ -43,13 +43,13 @@ BTreeMapStringValue serialize(Query181Args args) {
 @pragma("vm:prefer-inline")
 Query181Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on8771) => (
-      i: (on8771['i'] as IMap<String, dynamic>).then(
-        (on630094) => (
-          deeply: (on630094['deeply'] as IMap<String, dynamic>).then(
-            (on785601) => (
-              nested: (on785601['nested'] as IMap<String, dynamic>).then(
-                (on501242) => (value: (on501242['value'] as String)),
+    (on60229) => (
+      i: (on60229['i'] as IMap<String, dynamic>).then(
+        (on899978) => (
+          deeply: (on899978['deeply'] as IMap<String, dynamic>).then(
+            (on488606) => (
+              nested: (on488606['nested'] as IMap<String, dynamic>).then(
+                (on785894) => (value: (on785894['value'] as String)),
               ),
             ),
           ),

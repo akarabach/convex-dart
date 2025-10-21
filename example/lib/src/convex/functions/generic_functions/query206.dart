@@ -33,8 +33,7 @@ BTreeMapStringValue serialize(Query206Args args) {
         'data': encodeValue(
           args.i.data
               .map(
-                (on167242) =>
-                    encodeValue({'value': encodeValue(on167242.value)}),
+                (on87673) => encodeValue({'value': encodeValue(on87673.value)}),
               )
               .toIList(),
         ),
@@ -46,13 +45,13 @@ BTreeMapStringValue serialize(Query206Args args) {
 @pragma("vm:prefer-inline")
 Query206Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on400815) => (
-      i: (on400815['i'] as IMap<String, dynamic>).then(
-        (on634461) => (
-          data: (on634461['data'] as IList<dynamic>)
+    (on779652) => (
+      i: (on779652['i'] as IMap<String, dynamic>).then(
+        (on986694) => (
+          data: (on986694['data'] as IList<dynamic>)
               .map(
-                (on91643) => (on91643 as IMap<String, dynamic>).then(
-                  (on895348) => (value: (on895348['value'] as double)),
+                (on936152) => (on936152 as IMap<String, dynamic>).then(
+                  (on993565) => (value: (on993565['value'] as double)),
                 ),
               )
               .toIList(),

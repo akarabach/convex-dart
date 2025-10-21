@@ -33,7 +33,7 @@ BTreeMapStringValue serialize(Query220Args args) {
 @pragma("vm:prefer-inline")
 Query220Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on842514) => (i: $.validate(on842514['i'])),
+    (on606937) => (i: $.validate(on606937['i'])),
   );
 }
 

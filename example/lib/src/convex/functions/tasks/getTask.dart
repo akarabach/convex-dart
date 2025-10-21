@@ -34,11 +34,11 @@ BTreeMapStringValue serialize(GetTaskArgs args) {
 GetTaskResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IMap<String, dynamic>?)?.then(
-      (on589430) => (
-        $_creationTime: (on589430['_creationTime'] as double),
-        $_id: TasksId(on589430['_id'] as String),
-        isCompleted: (on589430['isCompleted'] as bool),
-        text: (on589430['text'] as String),
+      (on181214) => (
+        $_creationTime: (on181214['_creationTime'] as double),
+        $_id: TasksId(on181214['_id'] as String),
+        isCompleted: (on181214['isCompleted'] as bool),
+        text: (on181214['text'] as String),
       ),
     ),
   );

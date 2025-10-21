@@ -37,12 +37,12 @@ SearchTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on420873) => (on420873 as IMap<String, dynamic>).then(
-            (on602382) => (
-              $_creationTime: (on602382['_creationTime'] as double),
-              $_id: TasksId(on602382['_id'] as String),
-              isCompleted: (on602382['isCompleted'] as bool),
-              text: (on602382['text'] as String),
+          (on107504) => (on107504 as IMap<String, dynamic>).then(
+            (on139894) => (
+              $_creationTime: (on139894['_creationTime'] as double),
+              $_id: TasksId(on139894['_id'] as String),
+              isCompleted: (on139894['isCompleted'] as bool),
+              text: (on139894['text'] as String),
             ),
           ),
         )

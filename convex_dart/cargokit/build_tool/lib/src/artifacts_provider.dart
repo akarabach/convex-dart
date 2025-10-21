@@ -66,6 +66,7 @@ class ArtifactProvider {
       builder.prepare(rustup);
       _log.info('Building ${environment.crateInfo.packageName} for $target');
       final targetDir = await builder.build();
+      _log.info('Target directory: $targetDir');
       // For local build accept both static and dynamic libraries.
       final artifactNames = <String>{
         ...getArtifactNames(
@@ -81,6 +82,7 @@ class ArtifactProvider {
           remote: false,
         )
       };
+      _log.info('Artifact names: $artifactNames');
       final artifacts = artifactNames
           .map((artifactName) => Artifact(
                 path: path.join(targetDir, artifactName),
@@ -88,6 +90,7 @@ class ArtifactProvider {
               ))
           .where((element) => File(element.path).existsSync())
           .toList();
+      _log.info('Artifacts: $artifacts');
       result[target] = artifacts;
     }
     return result;
