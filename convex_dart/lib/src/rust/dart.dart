@@ -11,12 +11,23 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 import 'value.dart';
 part 'dart.freezed.dart';
 
-// These functions are ignored because they are not marked as `pub`: `connected_client`, `handle_direct_function_result`, `internal_action`, `internal_mutation`, `internal_set_auth`, `internal_subscribe`, `new`, `new`
+// These functions are ignored because they are not marked as `pub`: `connected_client`, `handle_direct_function_result`, `internal_action`, `internal_mutation`, `internal_set_auth`, `internal_subscribe`, `new`
 // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `fmt`, `fmt`, `from`
+
+BTreeMapStringValue hashmapToBtreemap({required Map<String, Value> hashmap}) =>
+    RustLib.instance.api.crateDartHashmapToBtreemap(hashmap: hashmap);
+
+Map<String, Value> btreemapToHashmap({required BTreeMapStringValue btreemap}) =>
+    RustLib.instance.api.crateDartBtreemapToHashmap(btreemap: btreemap);
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DartQuerySubscriber>>
 abstract class DartQuerySubscriber
     implements RustOpaqueInterface, QuerySubscriber {
+  factory DartQuerySubscriber({
+    required BoxFnFunctionResultDartFnFutureResult onUpdate,
+  }) =>
+      RustLib.instance.api.crateDartDartQuerySubscriberNew(onUpdate: onUpdate);
+
   @override
   Future<void> onUpdate({required FunctionResult value});
 }

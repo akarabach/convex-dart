@@ -38,15 +38,15 @@ BTreeMapStringValue serialize(Query221Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query221Response deserialize(DartValue map) {
+Query221Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on303441) => (
-      i: (on303441['i'] as IMap<String, dynamic>).then(
-        (on831781) => (
-          a: on831781.containsKey('a')
+    (on543109) => (
+      i: (on543109['i'] as IMap<String, dynamic>).then(
+        (on49326) => (
+          a: on49326.containsKey('a')
               ? Defined(
-                  (on831781['a'] as IMap<String, dynamic>).then(
-                    (on586494) => (b: (on586494['b'] as String)),
+                  (on49326['a'] as IMap<String, dynamic>).then(
+                    (on280951) => (b: (on280951['b'] as String)),
                   ),
                 )
               : Undefined<({String b})>(),

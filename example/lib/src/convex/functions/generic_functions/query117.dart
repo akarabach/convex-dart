@@ -33,10 +33,10 @@ BTreeMapStringValue serialize(Query117Args args) {
         'comments': encodeValue(
           args.i.comments
               .map(
-                (on121633) => encodeValue({
-                  'author': encodeValue(on121633.author),
-                  'text': encodeValue(on121633.text),
-                  'timestamp': encodeValue(on121633.timestamp),
+                (on166664) => encodeValue({
+                  'author': encodeValue(on166664.author),
+                  'text': encodeValue(on166664.text),
+                  'timestamp': encodeValue(on166664.timestamp),
                 }),
               )
               .toIList(),
@@ -53,33 +53,33 @@ BTreeMapStringValue serialize(Query117Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query117Response deserialize(DartValue map) {
+Query117Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on936496) => (
-      i: (on936496['i'] as IMap<String, dynamic>).then(
-        (on554882) => (
-          comments: (on554882['comments'] as IList<dynamic>)
+    (on611343) => (
+      i: (on611343['i'] as IMap<String, dynamic>).then(
+        (on547269) => (
+          comments: (on547269['comments'] as IList<dynamic>)
               .map(
-                (on513857) => (on513857 as IMap<String, dynamic>).then(
-                  (on684501) => (
-                    author: (on684501['author'] as String),
-                    text: (on684501['text'] as String),
-                    timestamp: (on684501['timestamp'] as double),
+                (on538789) => (on538789 as IMap<String, dynamic>).then(
+                  (on126288) => (
+                    author: (on126288['author'] as String),
+                    text: (on126288['text'] as String),
+                    timestamp: (on126288['timestamp'] as double),
                   ),
                 ),
               )
               .toIList(),
-          reviewer: on554882.containsKey('reviewer')
+          reviewer: on547269.containsKey('reviewer')
               ? Defined(
-                  (on554882['reviewer'] as IMap<String, dynamic>).then(
-                    (on427321) => (
-                      id: TasksId(on427321['id'] as String),
-                      name: (on427321['name'] as String),
+                  (on547269['reviewer'] as IMap<String, dynamic>).then(
+                    (on555444) => (
+                      id: TasksId(on555444['id'] as String),
+                      name: (on555444['name'] as String),
                     ),
                   ),
                 )
               : Undefined<({TasksId id, String name})>(),
-          status: $pending$approved$rejected.fromValue(on554882['status']),
+          status: $pending$approved$rejected.fromValue(on547269['status']),
         ),
       ),
     ),

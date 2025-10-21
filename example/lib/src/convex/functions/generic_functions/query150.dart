@@ -32,11 +32,11 @@ BTreeMapStringValue serialize(Query150Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on5474) => encodeValue(
-                on5474.split(
-                  (on760607) => encodeValue(on760607),
-                  (on931327) => encodeValue(on931327),
-                  (on767478) => encodeValue(on767478),
+              (on903112) => encodeValue(
+                on903112.split(
+                  (on30762) => encodeValue(on30762),
+                  (on287512) => encodeValue(on287512),
+                  (on674529) => encodeValue(on674529),
                 ),
               ),
             )
@@ -47,26 +47,26 @@ BTreeMapStringValue serialize(Query150Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query150Response deserialize(DartValue map) {
+Query150Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on853259) => (
-      i: (on853259['i'] as IList<dynamic>)
+    (on391073) => (
+      i: (on391073['i'] as IList<dynamic>)
           .map(
-            (on184916) => Union3<String, double, bool>(() {
+            (on515730) => Union3<String, double, bool>(() {
               try {
-                return (on184916 as String);
+                return (on515730 as String);
               } catch (e) {}
 
               try {
-                return (on184916 as double);
+                return (on515730 as double);
               } catch (e) {}
 
               try {
-                return (on184916 as bool);
+                return (on515730 as bool);
               } catch (e) {}
 
               throw Exception(
-                (on184916.toString() ?? "null") +
+                (on515730.toString() ?? "null") +
                     r" cannot be deserialized into a Union3<String, double, bool>",
               );
             }()),

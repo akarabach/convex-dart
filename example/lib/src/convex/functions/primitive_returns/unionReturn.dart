@@ -31,7 +31,7 @@ BTreeMapStringValue serialize(void args) {
 }
 
 @pragma("vm:prefer-inline")
-UnionReturnResponse deserialize(DartValue map) {
+UnionReturnResponse deserialize(Value map) {
   return (
     body: Union2<String, double>(() {
       try {

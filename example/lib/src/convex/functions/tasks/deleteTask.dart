@@ -22,7 +22,7 @@ BTreeMapStringValue serialize(DeleteTaskArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-DeleteTaskResponse deserialize(DartValue map) {
+DeleteTaskResponse deserialize(Value map) {
   return (body: null);
 }
 

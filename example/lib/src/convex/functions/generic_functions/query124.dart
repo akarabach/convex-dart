@@ -32,26 +32,26 @@ BTreeMapStringValue serialize(Query124Args args) {
       'i': encodeValue({
         'api': encodeValue({
           'endpoints': encodeValue({
-            for (final on19579 in args.i.api.endpoints.entries)
-              on19579.key: encodeValue(
+            for (final on760183 in args.i.api.endpoints.entries)
+              on760183.key: encodeValue(
                 encodeValue({
-                  if (on19579.value.auth.isDefined)
-                    'auth': encodeValue(on19579.value.auth.asDefined().value),
-                  'method': encodeValue(on19579.value.method.value),
+                  if (on760183.value.auth.isDefined)
+                    'auth': encodeValue(on760183.value.auth.asDefined().value),
+                  'method': encodeValue(on760183.value.method.value),
                   'params': encodeValue({
-                    for (final on413077 in on19579.value.params.entries)
-                      on413077.key: encodeValue(
+                    for (final on176117 in on760183.value.params.entries)
+                      on176117.key: encodeValue(
                         encodeValue(
-                          on413077.value.split(
-                            (on850519) => encodeValue(on850519),
-                            (on862468) => encodeValue(on862468),
-                            (on56021) => encodeValue(on56021),
+                          on176117.value.split(
+                            (on102010) => encodeValue(on102010),
+                            (on76229) => encodeValue(on76229),
+                            (on804769) => encodeValue(on804769),
                           ),
                         ),
                       ),
                   }),
-                  'path': encodeValue(on19579.value.path),
-                  'response': encodeValue(on19579.value.response),
+                  'path': encodeValue(on760183.value.path),
+                  'response': encodeValue(on760183.value.response),
                 }),
               ),
           }),
@@ -62,28 +62,28 @@ BTreeMapStringValue serialize(Query124Args args) {
         }),
         'database': encodeValue({
           'tables': encodeValue({
-            for (final on327152 in args.i.database.tables.entries)
-              on327152.key: encodeValue(
+            for (final on879603 in args.i.database.tables.entries)
+              on879603.key: encodeValue(
                 encodeValue({
                   'indexes': encodeValue(
-                    on327152.value.indexes
+                    on879603.value.indexes
                         .map(
-                          (on989256) => encodeValue({
+                          (on459966) => encodeValue({
                             'fields': encodeValue(
-                              on989256.fields
-                                  .map((on800198) => encodeValue(on800198))
+                              on459966.fields
+                                  .map((on181410) => encodeValue(on181410))
                                   .toIList(),
                             ),
-                            'name': encodeValue(on989256.name),
-                            'unique': encodeValue(on989256.unique),
+                            'name': encodeValue(on459966.name),
+                            'unique': encodeValue(on459966.unique),
                           }),
                         )
                         .toIList(),
                   ),
                   'schema': encodeValue({
-                    for (final on323355 in on327152.value.schema.entries)
-                      on323355.key: encodeValue(
-                        encodeValue(on323355.value.value),
+                    for (final on365012 in on879603.value.schema.entries)
+                      on365012.key: encodeValue(
+                        encodeValue(on365012.value.value),
                       ),
                   }),
                 }),
@@ -96,87 +96,87 @@ BTreeMapStringValue serialize(Query124Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query124Response deserialize(DartValue map) {
+Query124Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on513840) => (
-      i: (on513840['i'] as IMap<String, dynamic>).then(
-        (on217837) => (
-          api: (on217837['api'] as IMap<String, dynamic>).then(
-            (on665929) => (
-              endpoints: (on665929['endpoints'] as IMap<String, dynamic>).map(
-                (on938418, on363578) => MapEntry(
-                  on938418,
-                  (on363578 as IMap<String, dynamic>).then(
-                    (on722750) => (
-                      auth: on722750.containsKey('auth')
-                          ? Defined((on722750['auth'] as bool))
+    (on930685) => (
+      i: (on930685['i'] as IMap<String, dynamic>).then(
+        (on871837) => (
+          api: (on871837['api'] as IMap<String, dynamic>).then(
+            (on892935) => (
+              endpoints: (on892935['endpoints'] as IMap<String, dynamic>).map(
+                (on659541, on143668) => MapEntry(
+                  on659541,
+                  (on143668 as IMap<String, dynamic>).then(
+                    (on572520) => (
+                      auth: on572520.containsKey('auth')
+                          ? Defined((on572520['auth'] as bool))
                           : Undefined<bool>(),
                       method: $get$post$put$delete.fromValue(
-                        on722750['method'],
+                        on572520['method'],
                       ),
-                      params: (on722750['params'] as IMap<String, dynamic>).map(
-                        (on540277, on599011) => MapEntry(
-                          on540277,
+                      params: (on572520['params'] as IMap<String, dynamic>).map(
+                        (on742547, on739155) => MapEntry(
+                          on742547,
                           Union3<String, double, bool>(() {
                             try {
-                              return (on599011 as String);
+                              return (on739155 as String);
                             } catch (e) {}
 
                             try {
-                              return (on599011 as double);
+                              return (on739155 as double);
                             } catch (e) {}
 
                             try {
-                              return (on599011 as bool);
+                              return (on739155 as bool);
                             } catch (e) {}
 
                             throw Exception(
-                              (on599011.toString() ?? "null") +
+                              (on739155.toString() ?? "null") +
                                   r" cannot be deserialized into a Union3<String, double, bool>",
                             );
                           }()),
                         ),
                       ),
-                      path: (on722750['path'] as String),
-                      response: on722750['response'],
+                      path: (on572520['path'] as String),
+                      response: on572520['response'],
                     ),
                   ),
                 ),
               ),
-              rateLimit: (on665929['rateLimit'] as IMap<String, dynamic>).then(
-                (on369640) => (
-                  requests: (on369640['requests'] as double),
-                  window: $minute$hour$day.fromValue(on369640['window']),
+              rateLimit: (on892935['rateLimit'] as IMap<String, dynamic>).then(
+                (on159890) => (
+                  requests: (on159890['requests'] as double),
+                  window: $minute$hour$day.fromValue(on159890['window']),
                 ),
               ),
             ),
           ),
-          database: (on217837['database'] as IMap<String, dynamic>).then(
-            (on642778) => (
-              tables: (on642778['tables'] as IMap<String, dynamic>).map(
-                (on831796, on183317) => MapEntry(
-                  on831796,
-                  (on183317 as IMap<String, dynamic>).then(
-                    (on355196) => (
-                      indexes: (on355196['indexes'] as IList<dynamic>)
+          database: (on871837['database'] as IMap<String, dynamic>).then(
+            (on825853) => (
+              tables: (on825853['tables'] as IMap<String, dynamic>).map(
+                (on927303, on85750) => MapEntry(
+                  on927303,
+                  (on85750 as IMap<String, dynamic>).then(
+                    (on613339) => (
+                      indexes: (on613339['indexes'] as IList<dynamic>)
                           .map(
                             (
-                              on124072,
-                            ) => (on124072 as IMap<String, dynamic>).then(
-                              (on170520) => (
-                                fields: (on170520['fields'] as IList<dynamic>)
-                                    .map((on471943) => (on471943 as String))
+                              on227724,
+                            ) => (on227724 as IMap<String, dynamic>).then(
+                              (on138007) => (
+                                fields: (on138007['fields'] as IList<dynamic>)
+                                    .map((on544525) => (on544525 as String))
                                     .toIList(),
-                                name: (on170520['name'] as String),
-                                unique: (on170520['unique'] as bool),
+                                name: (on138007['name'] as String),
+                                unique: (on138007['unique'] as bool),
                               ),
                             ),
                           )
                           .toIList(),
-                      schema: (on355196['schema'] as IMap<String, dynamic>).map(
-                        (on569363, on707193) => MapEntry(
-                          on569363,
-                          $string$number$boolean$date.fromValue(on707193),
+                      schema: (on613339['schema'] as IMap<String, dynamic>).map(
+                        (on996955, on749419) => MapEntry(
+                          on996955,
+                          $string$number$boolean$date.fromValue(on749419),
                         ),
                       ),
                     ),

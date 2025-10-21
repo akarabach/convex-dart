@@ -32,8 +32,8 @@ BTreeMapStringValue serialize(Query133Args args) {
       'i': encodeValue({
         if (args.i.a.isDefined)
           'a': encodeValue({
-            for (final on687953 in args.i.a.asDefined().value.entries)
-              on687953.key: encodeValue(encodeValue(on687953.value)),
+            for (final on844207 in args.i.a.asDefined().value.entries)
+              on844207.key: encodeValue(encodeValue(on844207.value)),
           }),
       }),
     },
@@ -41,16 +41,16 @@ BTreeMapStringValue serialize(Query133Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query133Response deserialize(DartValue map) {
+Query133Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on496683) => (
-      i: (on496683['i'] as IMap<String, dynamic>).then(
-        (on98458) => (
-          a: on98458.containsKey('a')
+    (on283600) => (
+      i: (on283600['i'] as IMap<String, dynamic>).then(
+        (on959268) => (
+          a: on959268.containsKey('a')
               ? Defined(
-                  (on98458['a'] as IMap<String, dynamic>).map(
-                    (on305811, on427503) =>
-                        MapEntry(on305811, (on427503 as double)),
+                  (on959268['a'] as IMap<String, dynamic>).map(
+                    (on527642, on269284) =>
+                        MapEntry(on527642, (on269284 as double)),
                   ),
                 )
               : Undefined<IMap<String, double>>(),

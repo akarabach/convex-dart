@@ -1,3 +1,4 @@
+import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/value.dart';
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 
@@ -21,12 +22,12 @@ Value encodeValue(dynamic value) {
     List<dynamic> list => Value.array(list.map(encodeValue).toList()),
     IList<dynamic> list => Value.array(list.map(encodeValue).toList()),
     Map<String, dynamic> map => Value.object(
-      hashmapToBtreemapValue(
+      hashmapToBtreemap(
         hashmap: map.map((k, v) => MapEntry(k, encodeValue(v))),
       ),
     ),
     IMap<String, dynamic> map => Value.object(
-      hashmapToBtreemapValue(
+      hashmapToBtreemap(
         hashmap: map.map((k, v) => MapEntry(k, encodeValue(v))).unlockLazy,
       ),
     ),
@@ -54,7 +55,7 @@ dynamic decodeValue(Value value) {
     Value_String s => s.field0,
     Value_Bytes b => Uint8ListWithEquality(b.field0),
     Value_Array a => a.field0.map(decodeValue).toIList(),
-    Value_Object o => btreemapToHashmapValue(
+    Value_Object o => btreemapToHashmap(
       btreemap: o.field0,
     ).map((k, v) => MapEntry(k, decodeValue(v))).lock,
   };

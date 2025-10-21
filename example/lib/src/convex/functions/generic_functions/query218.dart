@@ -31,13 +31,13 @@ BTreeMapStringValue serialize(Query218Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on71120) => encodeValue({
-            'data': encodeValue(on71120.data),
-            'success': encodeValue(on71120.success),
+          (on490563) => encodeValue({
+            'data': encodeValue(on490563.data),
+            'success': encodeValue(on490563.success),
           }),
-          (on550553) => encodeValue({
-            'error': encodeValue(on550553.error),
-            'success': encodeValue(on550553.success),
+          (on891385) => encodeValue({
+            'error': encodeValue(on891385.error),
+            'success': encodeValue(on891385.success),
           }),
         ),
       ),
@@ -46,34 +46,34 @@ BTreeMapStringValue serialize(Query218Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query218Response deserialize(DartValue map) {
+Query218Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on882014) => (
+    (on396101) => (
       i:
           Union2<
             ({dynamic data, $true success}),
             ({String error, $false success})
           >(() {
             try {
-              return (on882014['i'] as IMap<String, dynamic>).then(
-                (on10909) => (
-                  data: on10909['data'],
-                  success: $true.validate(on10909['success']),
+              return (on396101['i'] as IMap<String, dynamic>).then(
+                (on169409) => (
+                  data: on169409['data'],
+                  success: $true.validate(on169409['success']),
                 ),
               );
             } catch (e) {}
 
             try {
-              return (on882014['i'] as IMap<String, dynamic>).then(
-                (on939243) => (
-                  error: (on939243['error'] as String),
-                  success: $false.validate(on939243['success']),
+              return (on396101['i'] as IMap<String, dynamic>).then(
+                (on270893) => (
+                  error: (on270893['error'] as String),
+                  success: $false.validate(on270893['success']),
                 ),
               );
             } catch (e) {}
 
             throw Exception(
-              (on882014['i'].toString() ?? "null") +
+              (on396101['i'].toString() ?? "null") +
                   r" cannot be deserialized into a Union2<({dynamic data,$true success}), ({String error,$false success})>",
             );
           }()),

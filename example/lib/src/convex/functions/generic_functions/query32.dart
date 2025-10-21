@@ -31,10 +31,10 @@ BTreeMapStringValue serialize(Query32Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query32Response deserialize(DartValue map) {
+Query32Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on813116) =>
-        (i: on813116['i'] == null ? null : $1_0.validate(on813116['i'])),
+    (on783707) =>
+        (i: on783707['i'] == null ? null : $1_0.validate(on783707['i'])),
   );
 }
 

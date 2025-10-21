@@ -31,7 +31,7 @@ BTreeMapStringValue serialize(void args) {
 }
 
 @pragma("vm:prefer-inline")
-Int64ReturnResponse deserialize(DartValue map) {
+Int64ReturnResponse deserialize(Value map) {
   return (body: (decodeValue(map) as int));
 }
 

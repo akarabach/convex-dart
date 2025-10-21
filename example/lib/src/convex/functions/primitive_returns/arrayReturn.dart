@@ -31,10 +31,10 @@ BTreeMapStringValue serialize(void args) {
 }
 
 @pragma("vm:prefer-inline")
-ArrayReturnResponse deserialize(DartValue map) {
+ArrayReturnResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
-        .map((on577865) => (on577865 as String))
+        .map((on619755) => (on619755 as String))
         .toIList(),
   );
 }

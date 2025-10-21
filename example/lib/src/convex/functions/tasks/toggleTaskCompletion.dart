@@ -24,7 +24,7 @@ BTreeMapStringValue serialize(ToggleTaskCompletionArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-ToggleTaskCompletionResponse deserialize(DartValue map) {
+ToggleTaskCompletionResponse deserialize(Value map) {
   return (body: (decodeValue(map) as bool));
 }
 

@@ -31,22 +31,22 @@ BTreeMapStringValue serialize(Query205Args args) {
     hashmap: {
       if (args.i.isDefined)
         'i': encodeValue({
-          for (final on167950 in args.i.asDefined().value.entries)
-            on167950.key: encodeValue(encodeValue(on167950.value)),
+          for (final on531716 in args.i.asDefined().value.entries)
+            on531716.key: encodeValue(encodeValue(on531716.value)),
         }),
     },
   );
 }
 
 @pragma("vm:prefer-inline")
-Query205Response deserialize(DartValue map) {
+Query205Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on95815) => (
-      i: on95815.containsKey('i')
+    (on498455) => (
+      i: on498455.containsKey('i')
           ? Defined(
-              (on95815['i'] as IMap<String, dynamic>).map(
-                (on890512, on684209) =>
-                    MapEntry(on890512, (on684209 as String)),
+              (on498455['i'] as IMap<String, dynamic>).map(
+                (on170090, on588502) =>
+                    MapEntry(on170090, (on588502 as String)),
               ),
             )
           : Undefined<IMap<String, String>>(),

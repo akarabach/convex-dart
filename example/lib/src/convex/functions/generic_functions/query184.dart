@@ -32,9 +32,9 @@ BTreeMapStringValue serialize(Query184Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on17326) => encodeValue({
-                for (final on183247 in on17326.entries)
-                  on183247.key: encodeValue(encodeValue(on183247.value)),
+              (on296009) => encodeValue({
+                for (final on20955 in on296009.entries)
+                  on20955.key: encodeValue(encodeValue(on20955.value)),
               }),
             )
             .toIList(),
@@ -44,13 +44,13 @@ BTreeMapStringValue serialize(Query184Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query184Response deserialize(DartValue map) {
+Query184Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on843557) => (
-      i: (on843557['i'] as IList<dynamic>)
+    (on330094) => (
+      i: (on330094['i'] as IList<dynamic>)
           .map(
-            (on814938) => (on814938 as IMap<String, dynamic>).map(
-              (on719524, on895736) => MapEntry(on719524, (on895736 as bool)),
+            (on635741) => (on635741 as IMap<String, dynamic>).map(
+              (on263572, on301892) => MapEntry(on263572, (on301892 as bool)),
             ),
           )
           .toIList(),

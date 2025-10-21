@@ -31,9 +31,9 @@ BTreeMapStringValue serialize(Query6Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query6Response deserialize(DartValue map) {
+Query6Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on134565) => (i: TasksId(on134565['i'] as String)),
+    (on282715) => (i: TasksId(on282715['i'] as String)),
   );
 }
 

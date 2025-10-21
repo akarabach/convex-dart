@@ -29,7 +29,7 @@ BTreeMapStringValue serialize(SetTaskCompletionArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-SetTaskCompletionResponse deserialize(DartValue map) {
+SetTaskCompletionResponse deserialize(Value map) {
   return (body: null);
 }
 

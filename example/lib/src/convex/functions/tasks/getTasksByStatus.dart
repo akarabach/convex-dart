@@ -37,16 +37,16 @@ BTreeMapStringValue serialize(GetTasksByStatusArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-GetTasksByStatusResponse deserialize(DartValue map) {
+GetTasksByStatusResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on701594) => (on701594 as IMap<String, dynamic>).then(
-            (on28906) => (
-              $_creationTime: (on28906['_creationTime'] as double),
-              $_id: TasksId(on28906['_id'] as String),
-              isCompleted: (on28906['isCompleted'] as bool),
-              text: (on28906['text'] as String),
+          (on172081) => (on172081 as IMap<String, dynamic>).then(
+            (on311987) => (
+              $_creationTime: (on311987['_creationTime'] as double),
+              $_id: TasksId(on311987['_id'] as String),
+              isCompleted: (on311987['isCompleted'] as bool),
+              text: (on311987['text'] as String),
             ),
           ),
         )

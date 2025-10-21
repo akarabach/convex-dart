@@ -33,16 +33,16 @@ BTreeMapStringValue serialize(SearchTasksArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-SearchTasksResponse deserialize(DartValue map) {
+SearchTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on677550) => (on677550 as IMap<String, dynamic>).then(
-            (on998966) => (
-              $_creationTime: (on998966['_creationTime'] as double),
-              $_id: TasksId(on998966['_id'] as String),
-              isCompleted: (on998966['isCompleted'] as bool),
-              text: (on998966['text'] as String),
+          (on420873) => (on420873 as IMap<String, dynamic>).then(
+            (on602382) => (
+              $_creationTime: (on602382['_creationTime'] as double),
+              $_id: TasksId(on602382['_id'] as String),
+              isCompleted: (on602382['isCompleted'] as bool),
+              text: (on602382['text'] as String),
             ),
           ),
         )

@@ -24,7 +24,7 @@ BTreeMapStringValue serialize(UpdateTaskTextArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-UpdateTaskTextResponse deserialize(DartValue map) {
+UpdateTaskTextResponse deserialize(Value map) {
   return (body: null);
 }
 

@@ -28,7 +28,7 @@ BTreeMapStringValue serialize(CreateTaskArgs args) {
 }
 
 @pragma("vm:prefer-inline")
-CreateTaskResponse deserialize(DartValue map) {
+CreateTaskResponse deserialize(Value map) {
   return (body: TasksId(decodeValue(map) as String));
 }
 

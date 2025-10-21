@@ -29,6 +29,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValuePtr;
 
   CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_BoxFnFunctionResultDartFnFutureResultPtr =>
+      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSyncPtr;
+
+  CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_DartQuerySubscriberPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDartQuerySubscriberPtr;
 
@@ -46,6 +50,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BTreeMapStringValue
   dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+    dynamic raw,
+  );
+
+  @protected
+  BoxFnFunctionResultDartFnFutureResult
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
     dynamic raw,
   );
 
@@ -95,8 +105,17 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Object dco_decode_DartOpaque(dynamic raw);
 
   @protected
+  Map<String, Value> dco_decode_Map_String_value_None(dynamic raw);
+
+  @protected
   BTreeMapStringValue
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+    dynamic raw,
+  );
+
+  @protected
+  BoxFnFunctionResultDartFnFutureResult
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
     dynamic raw,
   );
 
@@ -170,10 +189,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
   @protected
+  List<(String, Value)> dco_decode_list_record_string_value(dynamic raw);
+
+  @protected
   List<Value> dco_decode_list_value(dynamic raw);
 
   @protected
   String? dco_decode_opt_String(dynamic raw);
+
+  @protected
+  (String, Value) dco_decode_record_string_value(dynamic raw);
 
   @protected
   int dco_decode_u_8(dynamic raw);
@@ -193,6 +218,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BTreeMapStringValue
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  BoxFnFunctionResultDartFnFutureResult
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
     SseDeserializer deserializer,
   );
 
@@ -236,8 +267,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Object sse_decode_DartOpaque(SseDeserializer deserializer);
 
   @protected
+  Map<String, Value> sse_decode_Map_String_value_None(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   BTreeMapStringValue
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  BoxFnFunctionResultDartFnFutureResult
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
     SseDeserializer deserializer,
   );
 
@@ -310,10 +352,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
   @protected
+  List<(String, Value)> sse_decode_list_record_string_value(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   List<Value> sse_decode_list_value(SseDeserializer deserializer);
 
   @protected
   String? sse_decode_opt_String(SseDeserializer deserializer);
+
+  @protected
+  (String, Value) sse_decode_record_string_value(SseDeserializer deserializer);
 
   @protected
   int sse_decode_u_8(SseDeserializer deserializer);
@@ -340,6 +390,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     BTreeMapStringValue self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+    BoxFnFunctionResultDartFnFutureResult self,
     SseSerializer serializer,
   );
 
@@ -395,9 +452,22 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_DartOpaque(Object self, SseSerializer serializer);
 
   @protected
+  void sse_encode_Map_String_value_None(
+    Map<String, Value> self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue(
     BTreeMapStringValue self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+    BoxFnFunctionResultDartFnFutureResult self,
     SseSerializer serializer,
   );
 
@@ -483,10 +553,22 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  void sse_encode_list_record_string_value(
+    List<(String, Value)> self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_list_value(List<Value> self, SseSerializer serializer);
 
   @protected
   void sse_encode_opt_String(String? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_record_string_value(
+    (String, Value) self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
@@ -550,6 +632,40 @@ class RustLibWire implements BaseWire {
       );
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValue =
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBTreeMapStringValuePtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSyncPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_convex_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSyncPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSyncPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_convex_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSync =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnFunctionResultDartFnFutureResultSendSyncPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void

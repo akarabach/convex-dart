@@ -22,7 +22,7 @@ BTreeMapStringValue serialize(void args) {
 }
 
 @pragma("vm:prefer-inline")
-DeleteAllTasksResponse deserialize(DartValue map) {
+DeleteAllTasksResponse deserialize(Value map) {
   return (body: (decodeValue(map) as double));
 }
 

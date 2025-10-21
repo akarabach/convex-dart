@@ -368,7 +368,7 @@ BTreeMapStringValue $serializeMethodName(${argsTypeName ?? "void"} args) {
 """);
     context.functionBuffer.writeln("""
 @pragma("vm:prefer-inline")
-$returnsTypeName $deserializeMethodName(DartValue map) {
+$returnsTypeName $deserializeMethodName(Value map) {
   return $deserializeCode;
 }
 """);

@@ -32,7 +32,7 @@ BTreeMapStringValue serialize(Query186Args args) {
       'i': encodeValue({
         'permissions': encodeValue(
           args.i.permissions
-              .map((on560145) => encodeValue(on560145.value))
+              .map((on362606) => encodeValue(on362606.value))
               .toIList(),
         ),
       }),
@@ -41,13 +41,13 @@ BTreeMapStringValue serialize(Query186Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query186Response deserialize(DartValue map) {
+Query186Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on324193) => (
-      i: (on324193['i'] as IMap<String, dynamic>).then(
-        (on916638) => (
-          permissions: (on916638['permissions'] as IList<dynamic>)
-              .map((on942248) => $read$write$admin.fromValue(on942248))
+    (on513650) => (
+      i: (on513650['i'] as IMap<String, dynamic>).then(
+        (on457699) => (
+          permissions: (on457699['permissions'] as IList<dynamic>)
+              .map((on760281) => $read$write$admin.fromValue(on760281))
               .toIList(),
         ),
       ),

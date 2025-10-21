@@ -4,7 +4,6 @@ import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 import 'package:convex_dart/src/rust/base_client/query_result.dart';
 import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
-import 'package:convex_dart/src/rust/lib.dart';
 import 'package:convex_dart/src/rust/value.dart';
 import 'package:locked_async/locked_async.dart';
 
@@ -161,11 +160,11 @@ class InternalConvexClient {
                 return;
               }
               switch (value) {
-                case DartFunctionResult_Value result:
+                case FunctionResult_Value result:
                   controller.add(decodeResult(result.field0));
-                case DartFunctionResult_ErrorMessage result:
+                case FunctionResult_ErrorMessage result:
                   controller.addError(ConvexClientError._(result.field0));
-                case DartFunctionResult_ConvexError result:
+                case FunctionResult_ConvexError result:
                   controller.addError(
                     ConvexError._(
                       result.field0.message,
@@ -204,12 +203,12 @@ class InternalConvexClient {
   /// [name] - Name of the mutation function to execute.
   /// [args] - Map of arguments to pass to the mutation.
   ///
-  /// Returns the mutation result as a [DartValue].
+  /// Returns the mutation result as a [Value].
   ///
   /// Throws:
   /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
   /// - [ConvexClientError] for other errors (network, internal, server errors).
-  Future<DartValue> mutation({
+  Future<Value> mutation({
     required String name,
     required BTreeMapStringValue args,
   }) async {
@@ -223,12 +222,12 @@ class InternalConvexClient {
   /// [name] - Name of the action function to execute.
   /// [args] - Map of arguments to pass to the action.
   ///
-  /// Returns the action result as a [DartValue].
+  /// Returns the action result as a [Value].
   ///
   /// Throws:
   /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
   /// - [ConvexClientError] for other errors (network, internal, server errors).
-  Future<DartValue> action({
+  Future<Value> action({
     required String name,
     required BTreeMapStringValue args,
   }) async {

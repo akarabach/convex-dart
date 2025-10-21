@@ -32,11 +32,11 @@ BTreeMapStringValue serialize(Query115Args args) {
       'i': encodeValue({
         'categories': encodeValue(
           args.i.categories
-              .map((on432866) => encodeValue(on432866.value))
+              .map((on320699) => encodeValue(on320699.value))
               .toIList(),
         ),
         'tags': encodeValue(
-          args.i.tags.map((on357484) => encodeValue(on357484)).toIList(),
+          args.i.tags.map((on853824) => encodeValue(on853824)).toIList(),
         ),
       }),
     },
@@ -44,16 +44,16 @@ BTreeMapStringValue serialize(Query115Args args) {
 }
 
 @pragma("vm:prefer-inline")
-Query115Response deserialize(DartValue map) {
+Query115Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on653731) => (
-      i: (on653731['i'] as IMap<String, dynamic>).then(
-        (on182) => (
-          categories: (on182['categories'] as IList<dynamic>)
-              .map((on72029) => $work$personal$urgent.fromValue(on72029))
+    (on72768) => (
+      i: (on72768['i'] as IMap<String, dynamic>).then(
+        (on909308) => (
+          categories: (on909308['categories'] as IList<dynamic>)
+              .map((on936049) => $work$personal$urgent.fromValue(on936049))
               .toIList(),
-          tags: (on182['tags'] as IList<dynamic>)
-              .map((on343228) => (on343228 as String))
+          tags: (on909308['tags'] as IList<dynamic>)
+              .map((on555545) => (on555545 as String))
               .toIList(),
         ),
       ),

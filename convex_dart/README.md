@@ -336,6 +336,7 @@ Convex Dart provides two main exception types for comprehensive error handling:
 > **Note**: `ConvexError` extends `ConvexClientError`, so you can catch `ConvexClientError` to handle both types, or catch them separately for more specific handling.
 
 #### ConvexError
+
 Thrown when a TypeScript `ConvexError` is thrown on the backend. This contains both the error message and any custom data payload.
 
 ```dart
@@ -356,7 +357,9 @@ try {
 ```
 
 #### ConvexClientError
+
 Thrown for all other types of errors, including:
+
 - Network connectivity issues
 - Internal client errors
 - Server-side errors that aren't application-specific
@@ -461,7 +464,7 @@ final name = args.name; // String? instead of Optional<String>
 
 #### Duplicate Stream Events
 
-The Convex client can sometimes report the same event multiple times. 
+The Convex client can sometimes report the same event multiple times.
 To avoid triggering unnecessary re-renders, use `.distinct()` on the stream.
 
 ```dart
@@ -474,26 +477,29 @@ final stream = myQueryStream(args).distinct();
 ### Common Issues
 
 **"ConvexClient not initialized"**
+
 ```dart
 // Ensure you call init() before using any functions
 await ConvexClient.init();
 ```
 
 **"Function not found"**
+
 - Regenerate your Dart client: `convex_dart_cli generate`
 - Ensure your Convex function is exported
 - Check that the function name matches exactly
 
 **"Type mismatch errors"**
+
 - Verify your Convex function return types match the generated Dart types
 - Regenerate after changing Convex schemas
 - Check for typos in field names
 
 **"Stream not updating"**
+
 - Ensure you're subscribing to a query (not a mutation or action)
 - Check that your Convex function is properly exported
 - Verify network connectivity
-
 
 ## Contributing
 
@@ -502,3 +508,19 @@ We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Updating Rust Client
+
+To update the Rust client, run the following command:
+
+```bash
+git subtree pull  --prefix convex_dart/rust https://github.com/dickermoshe/convex-rs branch_name --squash
+```
+
+and then rerun bindings generation:
+
+```bash
+flutter_rust_bridge_codegen generate  
+```
+
+Small fixes may be need to be done by hand after updating the bindings.
