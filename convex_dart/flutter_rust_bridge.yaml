@@ -2,6 +2,3 @@ rust_input: crate::dart,crate::value
 rust_root: rust/
 dart_output: lib/src/rust
 enable_lifetime: true
-rust_preamble: |
-  use some::Thing;
-  also_whatever_thing_here;
