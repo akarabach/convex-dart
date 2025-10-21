@@ -31,8 +31,6 @@ class BuildGradle {
         ArtifactProvider(environment: environment, userOptions: userOptions);
     final artifacts = await provider.getArtifacts(targets);
 
-    log.info('Artifacts: $artifacts');
-
     for (final target in targets) {
       final libs = artifacts[target]!;
       final outputDir = path.join(Environment.outputDir, target.android!);
@@ -40,12 +38,7 @@ class BuildGradle {
 
       for (final lib in libs) {
         if (lib.type == AritifactType.dylib) {
-          log.info(
-              'Copying ${lib.path} to ${path.join(outputDir, lib.finalFileName)}');
           File(lib.path).copySync(path.join(outputDir, lib.finalFileName));
-        } else {
-          log.info("ignoring ${lib.path} because it is not a dylib");
-          continue;
         }
       }
     }
