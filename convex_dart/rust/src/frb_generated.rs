@@ -709,16 +709,15 @@ fn wire__crate__value__Value_export_impl(
     )
 }
 fn wire__crate__value__json__bytes__json_bytes_decode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_bytes_decode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -732,28 +731,25 @@ fn wire__crate__value__json__bytes__json_bytes_decode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_s = <String>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
-                    (move || {
-                        let output_ok = crate::value::json::bytes::JsonBytes::decode(api_s)?;
-                        Ok(output_ok)
-                    })(),
-                )
-            }
+            transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                (move || {
+                    let output_ok = crate::value::json::bytes::JsonBytes::decode(api_s)?;
+                    Ok(output_ok)
+                })(),
+            )
         },
     )
 }
 fn wire__crate__value__json__bytes__json_bytes_encode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_bytes_encode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -767,28 +763,24 @@ fn wire__crate__value__json__bytes__json_bytes_encode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_bytes = <Vec<u8>>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok = Result::<_, ()>::Ok(
-                        crate::value::json::bytes::JsonBytes::encode(&api_bytes),
-                    )?;
-                    Ok(output_ok)
-                })())
-            }
+            transform_result_sse::<_, ()>((move || {
+                let output_ok =
+                    Result::<_, ()>::Ok(crate::value::json::bytes::JsonBytes::encode(&api_bytes))?;
+                Ok(output_ok)
+            })())
         },
     )
 }
 fn wire__crate__value__json__float__json_float_decode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_float_decode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -802,28 +794,25 @@ fn wire__crate__value__json__float__json_float_decode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_s = <String>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
-                    (move || {
-                        let output_ok = crate::value::json::float::JsonFloat::decode(api_s)?;
-                        Ok(output_ok)
-                    })(),
-                )
-            }
+            transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                (move || {
+                    let output_ok = crate::value::json::float::JsonFloat::decode(api_s)?;
+                    Ok(output_ok)
+                })(),
+            )
         },
     )
 }
 fn wire__crate__value__json__float__json_float_encode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_float_encode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -837,27 +826,24 @@ fn wire__crate__value__json__float__json_float_encode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_n = <f64>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok =
-                        Result::<_, ()>::Ok(crate::value::json::float::JsonFloat::encode(api_n))?;
-                    Ok(output_ok)
-                })())
-            }
+            transform_result_sse::<_, ()>((move || {
+                let output_ok =
+                    Result::<_, ()>::Ok(crate::value::json::float::JsonFloat::encode(api_n))?;
+                Ok(output_ok)
+            })())
         },
     )
 }
 fn wire__crate__value__json__integer__json_integer_decode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_integer_decode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -871,28 +857,25 @@ fn wire__crate__value__json__integer__json_integer_decode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_s = <String>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
-                    (move || {
-                        let output_ok = crate::value::json::integer::JsonInteger::decode(api_s)?;
-                        Ok(output_ok)
-                    })(),
-                )
-            }
+            transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                (move || {
+                    let output_ok = crate::value::json::integer::JsonInteger::decode(api_s)?;
+                    Ok(output_ok)
+                })(),
+            )
         },
     )
 }
 fn wire__crate__value__json__integer__json_integer_encode_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "json_integer_encode",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -906,14 +889,11 @@ fn wire__crate__value__json__integer__json_integer_encode_impl(
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
             let api_n = <i64>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok = Result::<_, ()>::Ok(
-                        crate::value::json::integer::JsonInteger::encode(api_n),
-                    )?;
-                    Ok(output_ok)
-                })())
-            }
+            transform_result_sse::<_, ()>((move || {
+                let output_ok =
+                    Result::<_, ()>::Ok(crate::value::json::integer::JsonInteger::encode(api_n))?;
+                Ok(output_ok)
+            })())
         },
     )
 }
@@ -1199,13 +1179,6 @@ impl SseDecode for f64 {
     }
 }
 
-impl SseDecode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
-    }
-}
-
 impl SseDecode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -1223,30 +1196,21 @@ impl SseDecode for isize {
 impl SseDecode for crate::value::json::bytes::JsonBytes {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <i32>::sse_decode(deserializer);
-        return match inner {
-            _ => unreachable!("Invalid variant for JsonBytes: {}", inner),
-        };
+        return crate::value::json::bytes::JsonBytes {};
     }
 }
 
 impl SseDecode for crate::value::json::float::JsonFloat {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <i32>::sse_decode(deserializer);
-        return match inner {
-            _ => unreachable!("Invalid variant for JsonFloat: {}", inner),
-        };
+        return crate::value::json::float::JsonFloat {};
     }
 }
 
 impl SseDecode for crate::value::json::integer::JsonInteger {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <i32>::sse_decode(deserializer);
-        return match inner {
-            _ => unreachable!("Invalid variant for JsonInteger: {}", inner),
-        };
+        return crate::value::json::integer::JsonInteger {};
     }
 }
 
@@ -1292,6 +1256,13 @@ impl SseDecode for usize {
     }
 }
 
+impl SseDecode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
+    }
+}
+
 impl SseDecode for bool {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -1321,42 +1292,6 @@ fn pde_ffi_dispatcher_primary_impl(
             wire__crate__dart__MobileConvexClient_subscribe_impl(port, ptr, rust_vec_len, data_len)
         },
         14 => wire__crate__value__Value_export_impl(port, ptr, rust_vec_len, data_len),
-        15 => wire__crate__value__json__bytes__json_bytes_decode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        16 => wire__crate__value__json__bytes__json_bytes_encode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        17 => wire__crate__value__json__float__json_float_decode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        18 => wire__crate__value__json__float__json_float_encode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        19 => wire__crate__value__json__integer__json_integer_decode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        20 => wire__crate__value__json__integer__json_integer_encode_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
         _ => unreachable!(),
     }
 }
@@ -1387,6 +1322,16 @@ fn pde_ffi_dispatcher_sync_impl(
         ),
         8 => wire__crate__dart__MobileConvexClient_new_impl(ptr, rust_vec_len, data_len),
         12 => wire__crate__dart__SubscriptionHandle_cancel_impl(ptr, rust_vec_len, data_len),
+        15 => wire__crate__value__json__bytes__json_bytes_decode_impl(ptr, rust_vec_len, data_len),
+        16 => wire__crate__value__json__bytes__json_bytes_encode_impl(ptr, rust_vec_len, data_len),
+        17 => wire__crate__value__json__float__json_float_decode_impl(ptr, rust_vec_len, data_len),
+        18 => wire__crate__value__json__float__json_float_encode_impl(ptr, rust_vec_len, data_len),
+        19 => {
+            wire__crate__value__json__integer__json_integer_decode_impl(ptr, rust_vec_len, data_len)
+        },
+        20 => {
+            wire__crate__value__json__integer__json_integer_encode_impl(ptr, rust_vec_len, data_len)
+        },
         _ => unreachable!(),
     }
 }
@@ -1545,9 +1490,7 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<Value>> for Value {
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::value::json::bytes::JsonBytes {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            _ => unreachable!(),
-        }
+        Vec::<u8>::new().into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
@@ -1564,9 +1507,7 @@ impl flutter_rust_bridge::IntoIntoDart<crate::value::json::bytes::JsonBytes>
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::value::json::float::JsonFloat {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            _ => unreachable!(),
-        }
+        Vec::<u8>::new().into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
@@ -1583,9 +1524,7 @@ impl flutter_rust_bridge::IntoIntoDart<crate::value::json::float::JsonFloat>
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::value::json::integer::JsonInteger {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            _ => unreachable!(),
-        }
+        Vec::<u8>::new().into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
@@ -1798,13 +1737,6 @@ impl SseEncode for f64 {
     }
 }
 
-impl SseEncode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
-    }
-}
-
 impl SseEncode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -1824,44 +1756,17 @@ impl SseEncode for isize {
 
 impl SseEncode for crate::value::json::bytes::JsonBytes {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(
-            match self {
-                _ => {
-                    unimplemented!("");
-                },
-            },
-            serializer,
-        );
-    }
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
 }
 
 impl SseEncode for crate::value::json::float::JsonFloat {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(
-            match self {
-                _ => {
-                    unimplemented!("");
-                },
-            },
-            serializer,
-        );
-    }
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
 }
 
 impl SseEncode for crate::value::json::integer::JsonInteger {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(
-            match self {
-                _ => {
-                    unimplemented!("");
-                },
-            },
-            serializer,
-        );
-    }
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
 }
 
 impl SseEncode for Vec<u8> {
@@ -1903,6 +1808,13 @@ impl SseEncode for usize {
             .cursor
             .write_u64::<NativeEndian>(self as _)
             .unwrap();
+    }
+}
+
+impl SseEncode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
     }
 }
 

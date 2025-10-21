@@ -141,21 +141,17 @@ abstract class RustLibApi extends BaseApi {
 
   Future<JsonValue> crateValueValueExport({required Value that});
 
-  Future<Uint8List> crateValueJsonBytesJsonBytesDecode({required String s});
+  Uint8List crateValueJsonBytesJsonBytesDecode({required String s});
 
-  Future<String> crateValueJsonBytesJsonBytesEncode({required List<int> bytes});
+  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes});
 
-  Future<double> crateValueJsonFloatJsonFloatDecode({required String s});
+  double crateValueJsonFloatJsonFloatDecode({required String s});
 
-  Future<String> crateValueJsonFloatJsonFloatEncode({required double n});
+  String crateValueJsonFloatJsonFloatEncode({required double n});
 
-  Future<PlatformInt64> crateValueJsonIntegerJsonIntegerDecode({
-    required String s,
-  });
+  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s});
 
-  Future<String> crateValueJsonIntegerJsonIntegerEncode({
-    required PlatformInt64 n,
-  });
+  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n});
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_BTreeMapStringValue;
@@ -729,18 +725,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "Value_export", argNames: ["that"]);
 
   @override
-  Future<Uint8List> crateValueJsonBytesJsonBytesDecode({required String s}) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  Uint8List crateValueJsonBytesJsonBytesDecode({required String s}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_String(s, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 15,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_list_prim_u_8_strict,
@@ -757,20 +748,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "json_bytes_decode", argNames: ["s"]);
 
   @override
-  Future<String> crateValueJsonBytesJsonBytesEncode({
-    required List<int> bytes,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  String crateValueJsonBytesJsonBytesEncode({required List<int> bytes}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_list_prim_u_8_loose(bytes, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 16,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 16)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_String,
@@ -787,18 +771,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "json_bytes_encode", argNames: ["bytes"]);
 
   @override
-  Future<double> crateValueJsonFloatJsonFloatDecode({required String s}) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  double crateValueJsonFloatJsonFloatDecode({required String s}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_String(s, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 17,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 17)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_f_64,
@@ -815,18 +794,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "json_float_decode", argNames: ["s"]);
 
   @override
-  Future<String> crateValueJsonFloatJsonFloatEncode({required double n}) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  String crateValueJsonFloatJsonFloatEncode({required double n}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_f_64(n, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 18,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 18)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_String,
@@ -843,20 +817,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "json_float_encode", argNames: ["n"]);
 
   @override
-  Future<PlatformInt64> crateValueJsonIntegerJsonIntegerDecode({
-    required String s,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  PlatformInt64 crateValueJsonIntegerJsonIntegerDecode({required String s}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_String(s, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 19,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 19)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_i_64,
@@ -873,20 +840,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "json_integer_decode", argNames: ["s"]);
 
   @override
-  Future<String> crateValueJsonIntegerJsonIntegerEncode({
-    required PlatformInt64 n,
-  }) {
-    return handler.executeNormal(
-      NormalTask(
-        callFfi: (port_) {
+  String crateValueJsonIntegerJsonIntegerEncode({required PlatformInt64 n}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
           sse_encode_i_64(n, serializer);
-          pdeCallFfi(
-            generalizedFrbRustBinding,
-            serializer,
-            funcId: 20,
-            port: port_,
-          );
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 20)!;
         },
         codec: SseCodec(
           decodeSuccessData: sse_decode_String,
@@ -1259,12 +1219,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int dco_decode_i_32(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as int;
-  }
-
-  @protected
   PlatformInt64 dco_decode_i_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
@@ -1279,19 +1233,28 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   JsonBytes dco_decode_json_bytes(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return JsonBytes.values[raw as int];
+    final arr = raw as List<dynamic>;
+    if (arr.isNotEmpty)
+      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+    return JsonBytes();
   }
 
   @protected
   JsonFloat dco_decode_json_float(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return JsonFloat.values[raw as int];
+    final arr = raw as List<dynamic>;
+    if (arr.isNotEmpty)
+      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+    return JsonFloat();
   }
 
   @protected
   JsonInteger dco_decode_json_integer(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return JsonInteger.values[raw as int];
+    final arr = raw as List<dynamic>;
+    if (arr.isNotEmpty)
+      throw Exception('unexpected arr length: expect 0 but see ${arr.length}');
+    return JsonInteger();
   }
 
   @protected
@@ -1634,12 +1597,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
-  }
-
-  @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
@@ -1654,22 +1611,19 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   JsonBytes sse_decode_json_bytes(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_i_32(deserializer);
-    return JsonBytes.values[inner];
+    return JsonBytes();
   }
 
   @protected
   JsonFloat sse_decode_json_float(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_i_32(deserializer);
-    return JsonFloat.values[inner];
+    return JsonFloat();
   }
 
   @protected
   JsonInteger sse_decode_json_integer(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_i_32(deserializer);
-    return JsonInteger.values[inner];
+    return JsonInteger();
   }
 
   @protected
@@ -1712,6 +1666,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   BigInt sse_decode_usize(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getBigUint64();
+  }
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt32();
   }
 
   @protected
@@ -2071,12 +2031,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
-  }
-
-  @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
@@ -2091,19 +2045,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   void sse_encode_json_bytes(JsonBytes self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
   void sse_encode_json_float(JsonFloat self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
   void sse_encode_json_integer(JsonInteger self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -2153,6 +2104,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_usize(BigInt self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putBigUint64(self);
+  }
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt32(self);
   }
 
   @protected

@@ -7,12 +7,22 @@ import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 /// Helper functions for encoding `Bytes`s as `String`s.
-enum JsonBytes {
+class JsonBytes {
+  const JsonBytes();
+
   /// Decode a binary string from a string.
-  static Future<Uint8List> decode({required String s}) =>
+  static Uint8List decode({required String s}) =>
       RustLib.instance.api.crateValueJsonBytesJsonBytesDecode(s: s);
 
   /// Encode a binary string as a string.
-  static Future<String> encode({required List<int> bytes}) =>
+  static String encode({required List<int> bytes}) =>
       RustLib.instance.api.crateValueJsonBytesJsonBytesEncode(bytes: bytes);
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is JsonBytes && runtimeType == other.runtimeType;
 }

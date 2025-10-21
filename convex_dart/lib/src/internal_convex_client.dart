@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
+import 'package:convex_dart/src/rust/base_client/query_result.dart';
 import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/frb_generated.dart';
 import 'package:convex_dart/src/rust/lib.dart';
+import 'package:convex_dart/src/rust/value.dart';
 import 'package:locked_async/locked_async.dart';
 
 /// A client for interacting with a Convex backend service.
@@ -70,7 +72,7 @@ class InternalConvexClient {
   /// Throws:
   /// - [ConvexError] if a TypeScript ConvexError is thrown on the backend.
   /// - [ConvexClientError] for other errors (network, internal, server errors).
-  Future<DartValue> query({
+  Future<Value> query({
     required String name,
     required BTreeMapStringValue args,
   }) async {
@@ -93,7 +95,7 @@ class InternalConvexClient {
   Future<SubscriptionHandle> subscribe({
     required String name,
     required BTreeMapStringValue args,
-    required void Function(DartFunctionResult) onUpdate,
+    required void Function(FunctionResult) onUpdate,
   }) async {
     return await _client.subscribe(
       name: name,
@@ -138,7 +140,7 @@ class InternalConvexClient {
   Stream<Output> stream<Output>({
     required String name,
     required BTreeMapStringValue args,
-    required Output Function(DartValue) decodeResult,
+    required Output Function(Value) decodeResult,
   }) {
     final lock = LockedAsync();
 
