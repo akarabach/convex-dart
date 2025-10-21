@@ -2,7 +2,7 @@ mod dart_value;
 mod frb_generated;
 use std::{collections::BTreeMap, sync::Arc};
 
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, target_os = "android"))]
 use android_logger::Config;
 use async_once_cell::OnceCell;
 use convex::{ConvexClient, ConvexClientBuilder, FunctionResult, Value};
@@ -12,7 +12,7 @@ use futures::{
     pin_mut, select_biased, FutureExt, StreamExt,
 };
 use log::debug; // Logging for debugging purposes
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, target_os = "android"))]
 use log::LevelFilter;
 use parking_lot::Mutex;
 
@@ -118,7 +118,7 @@ impl MobileConvexClient {
     /// the foreign client.
     #[frb(sync)]
     pub fn new(deployment_url: String, client_id: String) -> MobileConvexClient {
-        #[cfg(debug_assertions)]
+        #[cfg(all(debug_assertions, target_os = "android"))]
         android_logger::init_once(Config::default().with_max_level(LevelFilter::Error));
         let rt = tokio::runtime::Builder::new_multi_thread()
             .enable_all()
