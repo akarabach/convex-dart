@@ -1,3 +1,7 @@
+## 0.5.2
+
+- Add http client generation
+
 ## 0.5.1
 
 - Remove http actions from generated code

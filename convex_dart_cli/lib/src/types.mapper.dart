@@ -7,56 +7,6 @@
 
 part of 'types.dart';
 
-class FunctionTypeMapper extends EnumMapper<FunctionType> {
-  FunctionTypeMapper._();
-
-  static FunctionTypeMapper? _instance;
-  static FunctionTypeMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = FunctionTypeMapper._());
-    }
-    return _instance!;
-  }
-
-  static FunctionType fromValue(dynamic value) {
-    ensureInitialized();
-    return MapperContainer.globals.fromValue(value);
-  }
-
-  @override
-  FunctionType decode(dynamic value) {
-    switch (value) {
-      case 'Query':
-        return FunctionType.query;
-      case 'Mutation':
-        return FunctionType.mutation;
-      case 'Action':
-        return FunctionType.action;
-      default:
-        throw MapperException.unknownEnumValue(value);
-    }
-  }
-
-  @override
-  dynamic encode(FunctionType self) {
-    switch (self) {
-      case FunctionType.query:
-        return 'Query';
-      case FunctionType.mutation:
-        return 'Mutation';
-      case FunctionType.action:
-        return 'Action';
-    }
-  }
-}
-
-extension FunctionTypeMapperExtension on FunctionType {
-  dynamic toValue() {
-    FunctionTypeMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<FunctionType>(this);
-  }
-}
-
 class VisibilityTypeMapper extends EnumMapper<VisibilityType> {
   VisibilityTypeMapper._();
 
@@ -103,6 +53,68 @@ extension VisibilityTypeMapperExtension on VisibilityType {
   }
 }
 
+class HttpMethodMapper extends EnumMapper<HttpMethod> {
+  HttpMethodMapper._();
+
+  static HttpMethodMapper? _instance;
+  static HttpMethodMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = HttpMethodMapper._());
+    }
+    return _instance!;
+  }
+
+  static HttpMethod fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  HttpMethod decode(dynamic value) {
+    switch (value) {
+      case 'GET':
+        return HttpMethod.GET;
+      case 'POST':
+        return HttpMethod.POST;
+      case 'PUT':
+        return HttpMethod.PUT;
+      case 'DELETE':
+        return HttpMethod.DELETE;
+      case 'OPTIONS':
+        return HttpMethod.OPTIONS;
+      case 'PATCH':
+        return HttpMethod.PATCH;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(HttpMethod self) {
+    switch (self) {
+      case HttpMethod.GET:
+        return 'GET';
+      case HttpMethod.POST:
+        return 'POST';
+      case HttpMethod.PUT:
+        return 'PUT';
+      case HttpMethod.DELETE:
+        return 'DELETE';
+      case HttpMethod.OPTIONS:
+        return 'OPTIONS';
+      case HttpMethod.PATCH:
+        return 'PATCH';
+    }
+  }
+}
+
+extension HttpMethodMapperExtension on HttpMethod {
+  dynamic toValue() {
+    HttpMethodMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<HttpMethod>(this);
+  }
+}
+
 class FunctionsSpecMapper extends ClassMapperBase<FunctionsSpec> {
   FunctionsSpecMapper._();
 
@@ -110,7 +122,7 @@ class FunctionsSpecMapper extends ClassMapperBase<FunctionsSpec> {
   static FunctionsSpecMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = FunctionsSpecMapper._());
-      FunctionSpecMapper.ensureInitialized();
+      BaseFunctionSpecMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -120,12 +132,9 @@ class FunctionsSpecMapper extends ClassMapperBase<FunctionsSpec> {
 
   static String _$url(FunctionsSpec v) => v.url;
   static const Field<FunctionsSpec, String> _f$url = Field('url', _$url);
-  static List<FunctionSpec> _$functions(FunctionsSpec v) => v.functions;
-  static const Field<FunctionsSpec, List<FunctionSpec>> _f$functions = Field(
-    'functions',
-    _$functions,
-    hook: RemoveHttpActionsHook(),
-  );
+  static List<BaseFunctionSpec> _$functions(FunctionsSpec v) => v.functions;
+  static const Field<FunctionsSpec, List<BaseFunctionSpec>> _f$functions =
+      Field('functions', _$functions);
 
   @override
   final MappableFields<FunctionsSpec> fields = const {
@@ -201,11 +210,11 @@ abstract class FunctionsSpecCopyWith<$R, $In extends FunctionsSpec, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<
     $R,
-    FunctionSpec,
-    FunctionSpecCopyWith<$R, FunctionSpec, FunctionSpec>
+    BaseFunctionSpec,
+    BaseFunctionSpecCopyWith<$R, BaseFunctionSpec, BaseFunctionSpec>
   >
   get functions;
-  $R call({String? url, List<FunctionSpec>? functions});
+  $R call({String? url, List<BaseFunctionSpec>? functions});
   FunctionsSpecCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -220,8 +229,8 @@ class _FunctionsSpecCopyWithImpl<$R, $Out>
   @override
   ListCopyWith<
     $R,
-    FunctionSpec,
-    FunctionSpecCopyWith<$R, FunctionSpec, FunctionSpec>
+    BaseFunctionSpec,
+    BaseFunctionSpecCopyWith<$R, BaseFunctionSpec, BaseFunctionSpec>
   >
   get functions => ListCopyWith(
     $value.functions,
@@ -229,7 +238,7 @@ class _FunctionsSpecCopyWithImpl<$R, $Out>
     (v) => call(functions: v),
   );
   @override
-  $R call({String? url, List<FunctionSpec>? functions}) => $apply(
+  $R call({String? url, List<BaseFunctionSpec>? functions}) => $apply(
     FieldCopyWithData({
       if (url != null) #url: url,
       if (functions != null) #functions: functions,
@@ -247,292 +256,62 @@ class _FunctionsSpecCopyWithImpl<$R, $Out>
   ) => _FunctionsSpecCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
-class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
-  FunctionSpecMapper._();
+class BaseFunctionSpecMapper extends ClassMapperBase<BaseFunctionSpec> {
+  BaseFunctionSpecMapper._();
 
-  static FunctionSpecMapper? _instance;
-  static FunctionSpecMapper ensureInitialized() {
+  static BaseFunctionSpecMapper? _instance;
+  static BaseFunctionSpecMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(_instance = FunctionSpecMapper._());
-      JsTypeMapper.ensureInitialized();
-      FunctionTypeMapper.ensureInitialized();
-      VisibilityMapper.ensureInitialized();
+      MapperContainer.globals.use(_instance = BaseFunctionSpecMapper._());
+      HttpFunctionSpecMapper.ensureInitialized();
+      FunctionSpecMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
-  final String id = 'FunctionSpec';
+  final String id = 'BaseFunctionSpec';
 
-  static JsType _$args(FunctionSpec v) => v.args;
-  static const Field<FunctionSpec, JsType> _f$args = Field(
-    'args',
-    _$args,
-    hook: EmptyObjectToAnyHook(),
-  );
-  static JsType _$returns(FunctionSpec v) => v.returns;
-  static const Field<FunctionSpec, JsType> _f$returns = Field(
-    'returns',
-    _$returns,
-    hook: EmptyObjectToAnyHook(),
-  );
-  static FunctionType _$functionType(FunctionSpec v) => v.functionType;
-  static const Field<FunctionSpec, FunctionType> _f$functionType = Field(
+  static String _$functionType(BaseFunctionSpec v) => v.functionType;
+  static const Field<BaseFunctionSpec, String> _f$functionType = Field(
     'functionType',
     _$functionType,
   );
-  static String _$identifier(FunctionSpec v) => v.identifier;
-  static const Field<FunctionSpec, String> _f$identifier = Field(
-    'identifier',
-    _$identifier,
-  );
-  static Visibility _$visibility(FunctionSpec v) => v.visibility;
-  static const Field<FunctionSpec, Visibility> _f$visibility = Field(
-    'visibility',
-    _$visibility,
-  );
-  static List<String> _$pathParts(FunctionSpec v) => v.pathParts;
-  static const Field<FunctionSpec, List<String>> _f$pathParts = Field(
-    'pathParts',
-    _$pathParts,
-    mode: FieldMode.member,
-  );
-  static String _$functionName(FunctionSpec v) => v.functionName;
-  static const Field<FunctionSpec, String> _f$functionName = Field(
-    'functionName',
-    _$functionName,
-    mode: FieldMode.member,
-  );
-  static String _$convexFunctionIdentifier(FunctionSpec v) =>
-      v.convexFunctionIdentifier;
-  static const Field<FunctionSpec, String> _f$convexFunctionIdentifier = Field(
-    'convexFunctionIdentifier',
-    _$convexFunctionIdentifier,
-    mode: FieldMode.member,
-  );
-  static String? _$argsTypeName(FunctionSpec v) => v.argsTypeName;
-  static const Field<FunctionSpec, String> _f$argsTypeName = Field(
-    'argsTypeName',
-    _$argsTypeName,
-    mode: FieldMode.member,
-  );
-  static String _$returnsTypeName(FunctionSpec v) => v.returnsTypeName;
-  static const Field<FunctionSpec, String> _f$returnsTypeName = Field(
-    'returnsTypeName',
-    _$returnsTypeName,
-    mode: FieldMode.member,
-  );
 
   @override
-  final MappableFields<FunctionSpec> fields = const {
-    #args: _f$args,
-    #returns: _f$returns,
+  final MappableFields<BaseFunctionSpec> fields = const {
     #functionType: _f$functionType,
-    #identifier: _f$identifier,
-    #visibility: _f$visibility,
-    #pathParts: _f$pathParts,
-    #functionName: _f$functionName,
-    #convexFunctionIdentifier: _f$convexFunctionIdentifier,
-    #argsTypeName: _f$argsTypeName,
-    #returnsTypeName: _f$returnsTypeName,
   };
 
-  static FunctionSpec _instantiate(DecodingData data) {
-    return FunctionSpec(
-      data.dec(_f$args),
-      data.dec(_f$returns),
-      data.dec(_f$functionType),
-      data.dec(_f$identifier),
-      data.dec(_f$visibility),
-    );
+  static BaseFunctionSpec _instantiate(DecodingData data) {
+    throw MapperException.missingConstructor('BaseFunctionSpec');
   }
 
   @override
   final Function instantiate = _instantiate;
 
-  static FunctionSpec fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<FunctionSpec>(map);
+  static BaseFunctionSpec fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<BaseFunctionSpec>(map);
   }
 
-  static FunctionSpec fromJson(String json) {
-    return ensureInitialized().decodeJson<FunctionSpec>(json);
-  }
-}
-
-mixin FunctionSpecMappable {
-  String toJson() {
-    return FunctionSpecMapper.ensureInitialized().encodeJson<FunctionSpec>(
-      this as FunctionSpec,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return FunctionSpecMapper.ensureInitialized().encodeMap<FunctionSpec>(
-      this as FunctionSpec,
-    );
-  }
-
-  FunctionSpecCopyWith<FunctionSpec, FunctionSpec, FunctionSpec> get copyWith =>
-      _FunctionSpecCopyWithImpl<FunctionSpec, FunctionSpec>(
-        this as FunctionSpec,
-        $identity,
-        $identity,
-      );
-  @override
-  String toString() {
-    return FunctionSpecMapper.ensureInitialized().stringifyValue(
-      this as FunctionSpec,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return FunctionSpecMapper.ensureInitialized().equalsValue(
-      this as FunctionSpec,
-      other,
-    );
-  }
-
-  @override
-  int get hashCode {
-    return FunctionSpecMapper.ensureInitialized().hashValue(
-      this as FunctionSpec,
-    );
+  static BaseFunctionSpec fromJson(String json) {
+    return ensureInitialized().decodeJson<BaseFunctionSpec>(json);
   }
 }
 
-extension FunctionSpecValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, FunctionSpec, $Out> {
-  FunctionSpecCopyWith<$R, FunctionSpec, $Out> get $asFunctionSpec =>
-      $base.as((v, t, t2) => _FunctionSpecCopyWithImpl<$R, $Out>(v, t, t2));
-}
-
-abstract class FunctionSpecCopyWith<$R, $In extends FunctionSpec, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  JsTypeCopyWith<$R, JsType, JsType> get args;
-  JsTypeCopyWith<$R, JsType, JsType> get returns;
-  VisibilityCopyWith<$R, Visibility, Visibility> get visibility;
-  $R call({
-    JsType? args,
-    JsType? returns,
-    FunctionType? functionType,
-    String? identifier,
-    Visibility? visibility,
-  });
-  FunctionSpecCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
-}
-
-class _FunctionSpecCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, FunctionSpec, $Out>
-    implements FunctionSpecCopyWith<$R, FunctionSpec, $Out> {
-  _FunctionSpecCopyWithImpl(super.value, super.then, super.then2);
-
-  @override
-  late final ClassMapperBase<FunctionSpec> $mapper =
-      FunctionSpecMapper.ensureInitialized();
-  @override
-  JsTypeCopyWith<$R, JsType, JsType> get args =>
-      $value.args.copyWith.$chain((v) => call(args: v));
-  @override
-  JsTypeCopyWith<$R, JsType, JsType> get returns =>
-      $value.returns.copyWith.$chain((v) => call(returns: v));
-  @override
-  VisibilityCopyWith<$R, Visibility, Visibility> get visibility =>
-      $value.visibility.copyWith.$chain((v) => call(visibility: v));
-  @override
-  $R call({
-    JsType? args,
-    JsType? returns,
-    FunctionType? functionType,
-    String? identifier,
-    Visibility? visibility,
-  }) => $apply(
-    FieldCopyWithData({
-      if (args != null) #args: args,
-      if (returns != null) #returns: returns,
-      if (functionType != null) #functionType: functionType,
-      if (identifier != null) #identifier: identifier,
-      if (visibility != null) #visibility: visibility,
-    }),
-  );
-  @override
-  FunctionSpec $make(CopyWithData data) => FunctionSpec(
-    data.get(#args, or: $value.args),
-    data.get(#returns, or: $value.returns),
-    data.get(#functionType, or: $value.functionType),
-    data.get(#identifier, or: $value.identifier),
-    data.get(#visibility, or: $value.visibility),
-  );
-
-  @override
-  FunctionSpecCopyWith<$R2, FunctionSpec, $Out2> $chain<$R2, $Out2>(
-    Then<$Out2, $R2> t,
-  ) => _FunctionSpecCopyWithImpl<$R2, $Out2>($value, $cast, t);
-}
-
-class JsTypeMapper extends ClassMapperBase<JsType> {
-  JsTypeMapper._();
-
-  static JsTypeMapper? _instance;
-  static JsTypeMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = JsTypeMapper._());
-      JsAnyMapper.ensureInitialized();
-      JsBooleanMapper.ensureInitialized();
-      JsStringMapper.ensureInitialized();
-      JsNumberMapper.ensureInitialized();
-      JsNullMapper.ensureInitialized();
-      JsBigIntMapper.ensureInitialized();
-      JsBytesMapper.ensureInitialized();
-      JsLiteralMapper.ensureInitialized();
-      JsUnionMapper.ensureInitialized();
-      JsRecordMapper.ensureInitialized();
-      JsObjectMapper.ensureInitialized();
-      JsArrayMapper.ensureInitialized();
-      ConvexIdMapper.ensureInitialized();
-    }
-    return _instance!;
-  }
-
-  @override
-  final String id = 'JsType';
-
-  static String _$type(JsType v) => v.type;
-  static const Field<JsType, String> _f$type = Field('type', _$type);
-
-  @override
-  final MappableFields<JsType> fields = const {#type: _f$type};
-
-  static JsType _instantiate(DecodingData data) {
-    throw MapperException.missingSubclass(
-      'JsType',
-      'type',
-      '${data.value['type']}',
-    );
-  }
-
-  @override
-  final Function instantiate = _instantiate;
-
-  static JsType fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<JsType>(map);
-  }
-
-  static JsType fromJson(String json) {
-    return ensureInitialized().decodeJson<JsType>(json);
-  }
-}
-
-mixin JsTypeMappable {
+mixin BaseFunctionSpecMappable {
   String toJson();
   Map<String, dynamic> toMap();
-  JsTypeCopyWith<JsType, JsType, JsType> get copyWith;
+  BaseFunctionSpecCopyWith<BaseFunctionSpec, BaseFunctionSpec, BaseFunctionSpec>
+  get copyWith;
 }
 
-abstract class JsTypeCopyWith<$R, $In extends JsType, $Out>
+abstract class BaseFunctionSpecCopyWith<$R, $In extends BaseFunctionSpec, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? type});
-  JsTypeCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  $R call({String? functionType});
+  BaseFunctionSpecCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  );
 }
 
 class VisibilityMapper extends ClassMapperBase<Visibility> {
@@ -646,6 +425,453 @@ class _VisibilityCopyWithImpl<$R, $Out>
   VisibilityCopyWith<$R2, Visibility, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   ) => _VisibilityCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class HttpFunctionSpecMapper extends SubClassMapperBase<HttpFunctionSpec> {
+  HttpFunctionSpecMapper._();
+
+  static HttpFunctionSpecMapper? _instance;
+  static HttpFunctionSpecMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = HttpFunctionSpecMapper._());
+      BaseFunctionSpecMapper.ensureInitialized().addSubMapper(_instance!);
+      HttpMethodMapper.ensureInitialized();
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'HttpFunctionSpec';
+
+  static String _$functionType(HttpFunctionSpec v) => v.functionType;
+  static const Field<HttpFunctionSpec, String> _f$functionType = Field(
+    'functionType',
+    _$functionType,
+  );
+  static HttpMethod _$method(HttpFunctionSpec v) => v.method;
+  static const Field<HttpFunctionSpec, HttpMethod> _f$method = Field(
+    'method',
+    _$method,
+  );
+  static String _$path(HttpFunctionSpec v) => v.path;
+  static const Field<HttpFunctionSpec, String> _f$path = Field('path', _$path);
+
+  @override
+  final MappableFields<HttpFunctionSpec> fields = const {
+    #functionType: _f$functionType,
+    #method: _f$method,
+    #path: _f$path,
+  };
+
+  @override
+  final String discriminatorKey = 'type';
+  @override
+  final dynamic discriminatorValue = HttpFunctionSpec.checkType;
+  @override
+  late final ClassMapperBase superMapper =
+      BaseFunctionSpecMapper.ensureInitialized();
+
+  static HttpFunctionSpec _instantiate(DecodingData data) {
+    return HttpFunctionSpec(
+      data.dec(_f$functionType),
+      data.dec(_f$method),
+      data.dec(_f$path),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static HttpFunctionSpec fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<HttpFunctionSpec>(map);
+  }
+
+  static HttpFunctionSpec fromJson(String json) {
+    return ensureInitialized().decodeJson<HttpFunctionSpec>(json);
+  }
+}
+
+mixin HttpFunctionSpecMappable {
+  String toJson() {
+    return HttpFunctionSpecMapper.ensureInitialized()
+        .encodeJson<HttpFunctionSpec>(this as HttpFunctionSpec);
+  }
+
+  Map<String, dynamic> toMap() {
+    return HttpFunctionSpecMapper.ensureInitialized()
+        .encodeMap<HttpFunctionSpec>(this as HttpFunctionSpec);
+  }
+
+  HttpFunctionSpecCopyWith<HttpFunctionSpec, HttpFunctionSpec, HttpFunctionSpec>
+  get copyWith =>
+      _HttpFunctionSpecCopyWithImpl<HttpFunctionSpec, HttpFunctionSpec>(
+        this as HttpFunctionSpec,
+        $identity,
+        $identity,
+      );
+  @override
+  String toString() {
+    return HttpFunctionSpecMapper.ensureInitialized().stringifyValue(
+      this as HttpFunctionSpec,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return HttpFunctionSpecMapper.ensureInitialized().equalsValue(
+      this as HttpFunctionSpec,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return HttpFunctionSpecMapper.ensureInitialized().hashValue(
+      this as HttpFunctionSpec,
+    );
+  }
+}
+
+extension HttpFunctionSpecValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, HttpFunctionSpec, $Out> {
+  HttpFunctionSpecCopyWith<$R, HttpFunctionSpec, $Out>
+  get $asHttpFunctionSpec =>
+      $base.as((v, t, t2) => _HttpFunctionSpecCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class HttpFunctionSpecCopyWith<$R, $In extends HttpFunctionSpec, $Out>
+    implements BaseFunctionSpecCopyWith<$R, $In, $Out> {
+  @override
+  $R call({String? functionType, HttpMethod? method, String? path});
+  HttpFunctionSpecCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  );
+}
+
+class _HttpFunctionSpecCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, HttpFunctionSpec, $Out>
+    implements HttpFunctionSpecCopyWith<$R, HttpFunctionSpec, $Out> {
+  _HttpFunctionSpecCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<HttpFunctionSpec> $mapper =
+      HttpFunctionSpecMapper.ensureInitialized();
+  @override
+  $R call({String? functionType, HttpMethod? method, String? path}) => $apply(
+    FieldCopyWithData({
+      if (functionType != null) #functionType: functionType,
+      if (method != null) #method: method,
+      if (path != null) #path: path,
+    }),
+  );
+  @override
+  HttpFunctionSpec $make(CopyWithData data) => HttpFunctionSpec(
+    data.get(#functionType, or: $value.functionType),
+    data.get(#method, or: $value.method),
+    data.get(#path, or: $value.path),
+  );
+
+  @override
+  HttpFunctionSpecCopyWith<$R2, HttpFunctionSpec, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _HttpFunctionSpecCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class FunctionSpecMapper extends SubClassMapperBase<FunctionSpec> {
+  FunctionSpecMapper._();
+
+  static FunctionSpecMapper? _instance;
+  static FunctionSpecMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = FunctionSpecMapper._());
+      BaseFunctionSpecMapper.ensureInitialized().addSubMapper(_instance!);
+      JsTypeMapper.ensureInitialized();
+      VisibilityMapper.ensureInitialized();
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'FunctionSpec';
+
+  static JsType _$args(FunctionSpec v) => v.args;
+  static const Field<FunctionSpec, JsType> _f$args = Field(
+    'args',
+    _$args,
+    hook: EmptyObjectToAnyHook(),
+  );
+  static JsType _$returns(FunctionSpec v) => v.returns;
+  static const Field<FunctionSpec, JsType> _f$returns = Field(
+    'returns',
+    _$returns,
+    hook: EmptyObjectToAnyHook(),
+  );
+  static String _$identifier(FunctionSpec v) => v.identifier;
+  static const Field<FunctionSpec, String> _f$identifier = Field(
+    'identifier',
+    _$identifier,
+  );
+  static Visibility _$visibility(FunctionSpec v) => v.visibility;
+  static const Field<FunctionSpec, Visibility> _f$visibility = Field(
+    'visibility',
+    _$visibility,
+  );
+  static String _$functionType(FunctionSpec v) => v.functionType;
+  static const Field<FunctionSpec, String> _f$functionType = Field(
+    'functionType',
+    _$functionType,
+  );
+  static List<String> _$pathParts(FunctionSpec v) => v.pathParts;
+  static const Field<FunctionSpec, List<String>> _f$pathParts = Field(
+    'pathParts',
+    _$pathParts,
+    mode: FieldMode.member,
+  );
+  static String _$functionName(FunctionSpec v) => v.functionName;
+  static const Field<FunctionSpec, String> _f$functionName = Field(
+    'functionName',
+    _$functionName,
+    mode: FieldMode.member,
+  );
+  static String _$convexFunctionIdentifier(FunctionSpec v) =>
+      v.convexFunctionIdentifier;
+  static const Field<FunctionSpec, String> _f$convexFunctionIdentifier = Field(
+    'convexFunctionIdentifier',
+    _$convexFunctionIdentifier,
+    mode: FieldMode.member,
+  );
+  static String? _$argsTypeName(FunctionSpec v) => v.argsTypeName;
+  static const Field<FunctionSpec, String> _f$argsTypeName = Field(
+    'argsTypeName',
+    _$argsTypeName,
+    mode: FieldMode.member,
+  );
+  static String _$returnsTypeName(FunctionSpec v) => v.returnsTypeName;
+  static const Field<FunctionSpec, String> _f$returnsTypeName = Field(
+    'returnsTypeName',
+    _$returnsTypeName,
+    mode: FieldMode.member,
+  );
+
+  @override
+  final MappableFields<FunctionSpec> fields = const {
+    #args: _f$args,
+    #returns: _f$returns,
+    #identifier: _f$identifier,
+    #visibility: _f$visibility,
+    #functionType: _f$functionType,
+    #pathParts: _f$pathParts,
+    #functionName: _f$functionName,
+    #convexFunctionIdentifier: _f$convexFunctionIdentifier,
+    #argsTypeName: _f$argsTypeName,
+    #returnsTypeName: _f$returnsTypeName,
+  };
+
+  @override
+  final String discriminatorKey = 'type';
+  @override
+  final dynamic discriminatorValue = FunctionSpec.checkType;
+  @override
+  late final ClassMapperBase superMapper =
+      BaseFunctionSpecMapper.ensureInitialized();
+
+  static FunctionSpec _instantiate(DecodingData data) {
+    return FunctionSpec(
+      data.dec(_f$args),
+      data.dec(_f$returns),
+      data.dec(_f$identifier),
+      data.dec(_f$visibility),
+      data.dec(_f$functionType),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static FunctionSpec fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<FunctionSpec>(map);
+  }
+
+  static FunctionSpec fromJson(String json) {
+    return ensureInitialized().decodeJson<FunctionSpec>(json);
+  }
+}
+
+mixin FunctionSpecMappable {
+  String toJson() {
+    return FunctionSpecMapper.ensureInitialized().encodeJson<FunctionSpec>(
+      this as FunctionSpec,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return FunctionSpecMapper.ensureInitialized().encodeMap<FunctionSpec>(
+      this as FunctionSpec,
+    );
+  }
+
+  FunctionSpecCopyWith<FunctionSpec, FunctionSpec, FunctionSpec> get copyWith =>
+      _FunctionSpecCopyWithImpl<FunctionSpec, FunctionSpec>(
+        this as FunctionSpec,
+        $identity,
+        $identity,
+      );
+  @override
+  String toString() {
+    return FunctionSpecMapper.ensureInitialized().stringifyValue(
+      this as FunctionSpec,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return FunctionSpecMapper.ensureInitialized().equalsValue(
+      this as FunctionSpec,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return FunctionSpecMapper.ensureInitialized().hashValue(
+      this as FunctionSpec,
+    );
+  }
+}
+
+extension FunctionSpecValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, FunctionSpec, $Out> {
+  FunctionSpecCopyWith<$R, FunctionSpec, $Out> get $asFunctionSpec =>
+      $base.as((v, t, t2) => _FunctionSpecCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class FunctionSpecCopyWith<$R, $In extends FunctionSpec, $Out>
+    implements BaseFunctionSpecCopyWith<$R, $In, $Out> {
+  JsTypeCopyWith<$R, JsType, JsType> get args;
+  JsTypeCopyWith<$R, JsType, JsType> get returns;
+  VisibilityCopyWith<$R, Visibility, Visibility> get visibility;
+  @override
+  $R call({
+    JsType? args,
+    JsType? returns,
+    String? identifier,
+    Visibility? visibility,
+    String? functionType,
+  });
+  FunctionSpecCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _FunctionSpecCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, FunctionSpec, $Out>
+    implements FunctionSpecCopyWith<$R, FunctionSpec, $Out> {
+  _FunctionSpecCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<FunctionSpec> $mapper =
+      FunctionSpecMapper.ensureInitialized();
+  @override
+  JsTypeCopyWith<$R, JsType, JsType> get args =>
+      $value.args.copyWith.$chain((v) => call(args: v));
+  @override
+  JsTypeCopyWith<$R, JsType, JsType> get returns =>
+      $value.returns.copyWith.$chain((v) => call(returns: v));
+  @override
+  VisibilityCopyWith<$R, Visibility, Visibility> get visibility =>
+      $value.visibility.copyWith.$chain((v) => call(visibility: v));
+  @override
+  $R call({
+    JsType? args,
+    JsType? returns,
+    String? identifier,
+    Visibility? visibility,
+    String? functionType,
+  }) => $apply(
+    FieldCopyWithData({
+      if (args != null) #args: args,
+      if (returns != null) #returns: returns,
+      if (identifier != null) #identifier: identifier,
+      if (visibility != null) #visibility: visibility,
+      if (functionType != null) #functionType: functionType,
+    }),
+  );
+  @override
+  FunctionSpec $make(CopyWithData data) => FunctionSpec(
+    data.get(#args, or: $value.args),
+    data.get(#returns, or: $value.returns),
+    data.get(#identifier, or: $value.identifier),
+    data.get(#visibility, or: $value.visibility),
+    data.get(#functionType, or: $value.functionType),
+  );
+
+  @override
+  FunctionSpecCopyWith<$R2, FunctionSpec, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _FunctionSpecCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class JsTypeMapper extends ClassMapperBase<JsType> {
+  JsTypeMapper._();
+
+  static JsTypeMapper? _instance;
+  static JsTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = JsTypeMapper._());
+      JsAnyMapper.ensureInitialized();
+      JsBooleanMapper.ensureInitialized();
+      JsStringMapper.ensureInitialized();
+      JsNumberMapper.ensureInitialized();
+      JsNullMapper.ensureInitialized();
+      JsBigIntMapper.ensureInitialized();
+      JsBytesMapper.ensureInitialized();
+      JsLiteralMapper.ensureInitialized();
+      JsUnionMapper.ensureInitialized();
+      JsRecordMapper.ensureInitialized();
+      JsObjectMapper.ensureInitialized();
+      JsArrayMapper.ensureInitialized();
+      ConvexIdMapper.ensureInitialized();
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'JsType';
+
+  static String _$type(JsType v) => v.type;
+  static const Field<JsType, String> _f$type = Field('type', _$type);
+
+  @override
+  final MappableFields<JsType> fields = const {#type: _f$type};
+
+  static JsType _instantiate(DecodingData data) {
+    throw MapperException.missingSubclass(
+      'JsType',
+      'type',
+      '${data.value['type']}',
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static JsType fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<JsType>(map);
+  }
+
+  static JsType fromJson(String json) {
+    return ensureInitialized().decodeJson<JsType>(json);
+  }
+}
+
+mixin JsTypeMappable {
+  String toJson();
+  Map<String, dynamic> toMap();
+  JsTypeCopyWith<JsType, JsType, JsType> get copyWith;
+}
+
+abstract class JsTypeCopyWith<$R, $In extends JsType, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({String? type});
+  JsTypeCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
 class JsFieldMapper extends ClassMapperBase<JsField> {

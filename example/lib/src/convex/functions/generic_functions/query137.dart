@@ -31,13 +31,13 @@ BTreeMapStringValue serialize(Query137Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on433400) => encodeValue({
-            'a': encodeValue(on433400.a),
-            'type': encodeValue(on433400.type),
+          (on746616) => encodeValue({
+            'a': encodeValue(on746616.a),
+            'type': encodeValue(on746616.type),
           }),
-          (on966054) => encodeValue({
-            'b': encodeValue(on966054.b),
-            'type': encodeValue(on966054.type),
+          (on360002) => encodeValue({
+            'b': encodeValue(on360002.b),
+            'type': encodeValue(on360002.type),
           }),
         ),
       ),
@@ -48,28 +48,28 @@ BTreeMapStringValue serialize(Query137Args args) {
 @pragma("vm:prefer-inline")
 Query137Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on522717) => (
+    (on255941) => (
       i: Union2<({String a, $A type}), ({double b, $B type})>(() {
         try {
-          return (on522717['i'] as IMap<String, dynamic>).then(
-            (on948355) => (
-              a: (on948355['a'] as String),
-              type: $A.validate(on948355['type']),
+          return (on255941['i'] as IMap<String, dynamic>).then(
+            (on337439) => (
+              a: (on337439['a'] as String),
+              type: $A.validate(on337439['type']),
             ),
           );
         } catch (e) {}
 
         try {
-          return (on522717['i'] as IMap<String, dynamic>).then(
-            (on469602) => (
-              b: (on469602['b'] as double),
-              type: $B.validate(on469602['type']),
+          return (on255941['i'] as IMap<String, dynamic>).then(
+            (on127078) => (
+              b: (on127078['b'] as double),
+              type: $B.validate(on127078['type']),
             ),
           );
         } catch (e) {}
 
         throw Exception(
-          (on522717['i'].toString() ?? "null") +
+          (on255941['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<({String a,$A type}), ({double b,$B type})>",
         );
       }()),

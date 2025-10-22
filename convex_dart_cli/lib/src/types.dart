@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:recase/recase.dart';
@@ -31,32 +33,10 @@ class FunctionBuildContext {
   FunctionBuildContext(this.clientContext);
 }
 
-class RemoveHttpActionsHook extends MappingHook {
-  const RemoveHttpActionsHook();
-  @override
-  Object? beforeDecode(Object? value) {
-    if (value is List) {
-      final filteredFunctions = [];
-      for (final function in value) {
-        if (function is Map) {
-          final type = function['functionType'];
-          if (type != 'HttpAction') {
-            filteredFunctions.add(function);
-          }
-        }
-      }
-      return filteredFunctions;
-    } else {
-      return value;
-    }
-  }
-}
-
 @MappableClass()
 class FunctionsSpec with FunctionsSpecMappable {
   final String url;
-  @MappableField(hook: RemoveHttpActionsHook())
-  final List<FunctionSpec> functions;
+  final List<BaseFunctionSpec> functions;
 
   FunctionsSpec(this.url, this.functions);
 
@@ -66,7 +46,7 @@ class FunctionsSpec with FunctionsSpecMappable {
   }) async {
     final successFunctions = <FunctionSpec>[];
     // Create the functions
-    for (final function in functions) {
+    for (final function in functions.whereType<FunctionSpec>()) {
       try {
         if (function.visibility.kind == VisibilityType.internal) {
           continue;
@@ -83,7 +63,7 @@ class FunctionsSpec with FunctionsSpecMappable {
       } catch (e, stackTrace) {
         print(
           "ERROR: Failed to build function ${function.convexFunctionIdentifier}\n"
-          "  Function Type: ${function.functionType.name}\n"
+          "  Function Type: ${function.functionType}\n"
           "  Visibility: ${function.visibility.kind.name}\n"
           "  Error: $e\n"
           "  Stack Trace: $stackTrace\n"
@@ -95,8 +75,11 @@ class FunctionsSpec with FunctionsSpecMappable {
         );
       }
     }
+
+    final httpFunctions = functions.whereType<HttpFunctionSpec>();
+
     // Create the client.dart file
-    buildClient(context);
+    buildClient(context, httpFunctions);
     // Create the schema.dart file
     _buildSchema(context);
     // Create the literals.dart file
@@ -163,7 +146,23 @@ class ${tableName.pascalCase}Id  implements TableId {
     context.outputs[path.join("schema.dart")] = schemaBuffer.toString();
   }
 
-  void buildClient(ClientBuildContext context) {
+  void buildClient(
+    ClientBuildContext context,
+    Iterable<HttpFunctionSpec> httpFunctions,
+  ) {
+    final httpFunctionsBuffer = StringBuffer();
+    for (final httpFunction in httpFunctions) {
+      try {
+        httpFunctionsBuffer.writeln(httpFunction.build());
+      } catch (e, stackTrace) {
+        print(
+          "WARNING: Failed to build HTTP function ${httpFunction.method.name} ${httpFunction.path}\n"
+          "  Error: $e\n"
+          "  Stack Trace: $stackTrace\n",
+        );
+      }
+    }
+
     // Create the client.dart file
     context.outputs[path.join("client.dart")] =
         """
@@ -172,6 +171,8 @@ class ${tableName.pascalCase}Id  implements TableId {
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart'
     as internal;
+import 'package:http/http.dart' as \$http;
+import 'dart:convert' as \$convert;
 class ConvexClient {
   static Future<void> init() async {
     await internal.InternalConvexClient.init(
@@ -181,6 +182,11 @@ class ConvexClient {
   Future<void> setAuth({required String? token}) async {
     await internal.InternalConvexClient.instance.setAuth(token: token);
   }
+
+  static final String httpUrl = "${url.replaceAll(RegExp(r'\.cloud$'), '.site')}";
+
+  $httpFunctionsBuffer
+
 }
     """;
   }
@@ -201,16 +207,6 @@ import "package:convex_dart/src/convex_dart_for_generated_code.dart";
     }
     context.outputs[path.join("literals.dart")] = literalsBuffer.toString();
   }
-}
-
-@MappableEnum(mode: ValuesMode.named)
-enum FunctionType {
-  @MappableValue('Query')
-  query,
-  @MappableValue('Mutation')
-  mutation,
-  @MappableValue('Action')
-  action,
 }
 
 @MappableEnum(mode: ValuesMode.named)
@@ -238,32 +234,113 @@ class EmptyObjectToAnyHook extends MappingHook {
   }
 }
 
+@MappableEnum(mode: ValuesMode.named)
+enum HttpMethod {
+  @MappableValue('GET')
+  GET,
+  @MappableValue('POST')
+  POST,
+  @MappableValue('PUT')
+  PUT,
+  @MappableValue('DELETE')
+  DELETE,
+  @MappableValue('OPTIONS')
+  OPTIONS,
+  @MappableValue('PATCH')
+  PATCH,
+}
+
 @MappableClass()
-class FunctionSpec with FunctionSpecMappable {
+sealed class BaseFunctionSpec with BaseFunctionSpecMappable {
+  final String functionType;
+  const BaseFunctionSpec(this.functionType);
+}
+
+@MappableClass(discriminatorValue: HttpFunctionSpec.checkType)
+class HttpFunctionSpec extends BaseFunctionSpec with HttpFunctionSpecMappable {
+  final HttpMethod method;
+  final String path;
+  const HttpFunctionSpec(super.functionType, this.method, this.path);
+  static bool checkType(dynamic value) {
+    return value is Map && value['functionType'] == 'HttpAction';
+  }
+
+  String build() {
+    if (method == HttpMethod.OPTIONS) {
+      throw StateError("OPTIONS requests are not supported");
+    }
+    final buffer = StringBuffer("static Future<\$http.Response> ");
+    final hasSuffix = path.endsWith("*");
+    final pathWithoutSuffix = path.replaceAll(RegExp(r"\*$"), "");
+
+    String methodName = method.name.camelCase + stringToDart(path).pascalCase;
+    buffer.write("$methodName({Map<String, String>? headers,");
+    if (hasSuffix) {
+      buffer.write("String suffix = '',");
+    }
+    switch (method) {
+      case HttpMethod.POST ||
+          HttpMethod.PUT ||
+          HttpMethod.DELETE ||
+          HttpMethod.PATCH:
+        buffer.write("Object? body, \$convert.Encoding? encoding,");
+      default:
+    }
+    buffer.writeln("}){");
+    buffer.writeln(
+      """final uri = Uri.parse(httpUrl + r'$pathWithoutSuffix' ${hasSuffix ? "+ suffix" : ""});""",
+    );
+    buffer.writeln("return \$http.");
+    switch (method) {
+      case HttpMethod.GET:
+        buffer.write("get(");
+      case HttpMethod.POST:
+        buffer.write("post(");
+      case HttpMethod.PUT:
+        buffer.write("put(");
+      case HttpMethod.DELETE:
+        buffer.write("delete(");
+      case HttpMethod.PATCH:
+        buffer.write("patch(");
+      case HttpMethod.OPTIONS:
+        throw StateError("Unreachable Area");
+    }
+    buffer.write("uri,headers:headers,");
+    switch (method) {
+      case HttpMethod.POST ||
+          HttpMethod.PUT ||
+          HttpMethod.DELETE ||
+          HttpMethod.PATCH:
+        buffer.write("body:body,encoding:encoding,");
+      default:
+    }
+    buffer.write(");");
+
+    buffer.write("}");
+    return buffer.toString();
+  }
+}
+
+@MappableClass(discriminatorValue: FunctionSpec.checkType)
+class FunctionSpec extends BaseFunctionSpec with FunctionSpecMappable {
   @MappableField(hook: EmptyObjectToAnyHook())
   final JsType args;
   @MappableField(hook: EmptyObjectToAnyHook())
   final JsType returns;
-  final FunctionType functionType;
   final String identifier;
   final Visibility visibility;
+
   const FunctionSpec(
     this.args,
     this.returns,
-    this.functionType,
     this.identifier,
     this.visibility,
+    super.functionType,
   );
-  // The name of the folder where the function will be created
-  // String get folderName {
-  //   final jsFileName = identifier.split(":").first;
-  //   final baseName = path.basenameWithoutExtension(jsFileName);
-  //   return baseName;
-  // }
 
-  // String get fileName {
-  //   return;
-  // }
+  static bool checkType(dynamic value) {
+    return value is Map && value['functionType'] != 'HttpAction';
+  }
 
   List<String> get pathParts {
     final parts = convexFunctionIdentifier.split(":").first.split("/");
@@ -343,9 +420,10 @@ import "$importPathPrefix/literals.dart";
     );
 
     final opperationType = switch (functionType) {
-      FunctionType.query => "query",
-      FunctionType.mutation => "mutation",
-      FunctionType.action => "action",
+      "Query" => "query",
+      "Mutation" => "mutation",
+      "Action" => "action",
+      _ => throw UnimplementedError("Unsupported function type: $functionType"),
     };
 
     context.functionBuffer.writeln('''
@@ -360,7 +438,7 @@ Future<$returnsTypeName> $functionName(${argsTypeName != null ? "$argsTypeName a
 }
 ''');
 
-    if (functionType == FunctionType.query) {
+    if (functionType == "Query") {
       context.functionBuffer.writeln("""
 Stream<$returnsTypeName> ${functionName}Stream(${argsTypeName != null ? "$argsTypeName args" : ""}) {
  ${switch (argsTypeName) {
@@ -1015,7 +1093,7 @@ class JsObject extends JsType with JsObjectMappable {
   Iterable<MapEntry<String, JsField>> get optionalFields =>
       value.entries.where((entry) => entry.value.optional);
 
-  String dartSafeName(String name) {
+  String safeDartKey(String name) {
     if (name.startsWith("_")) {
       name = "\$$name";
     }
@@ -1032,7 +1110,7 @@ class JsObject extends JsType with JsObjectMappable {
         "convex_dart does not support empty objects. If you are seeing this and are having trouble, please file an issue on GitHub.",
       );
     }
-    return "({${value.entries.map((entry) => "${entry.value.dartType(context)} ${dartSafeName(entry.key)}").join(",")}})";
+    return "({${value.entries.map((entry) => "${entry.value.dartType(context)} ${safeDartKey(entry.key)}").join(",")}})";
   }
 
   @override
@@ -1046,11 +1124,11 @@ class JsObject extends JsType with JsObjectMappable {
     for (final entry in value.entries) {
       if (entry.value.optional) {
         buffer.write(
-          "if ($name$dot${dartSafeName(entry.key)}${dot}isDefined) '${entry.key}': ${entry.value.fieldType.serialize(context, "$name$dot${dartSafeName(entry.key)}${dot}asDefined()${dot}value", nullable: nullable)},",
+          "if ($name$dot${safeDartKey(entry.key)}${dot}isDefined) '${entry.key}': ${entry.value.fieldType.serialize(context, "$name$dot${safeDartKey(entry.key)}${dot}asDefined()${dot}value", nullable: nullable)},",
         );
       } else {
         buffer.write(
-          "'${entry.key}': ${entry.value.fieldType.serialize(context, "$name$dot${dartSafeName(entry.key)}", nullable: nullable)},",
+          "'${entry.key}': ${entry.value.fieldType.serialize(context, "$name$dot${safeDartKey(entry.key)}", nullable: nullable)},",
         );
       }
     }
@@ -1073,11 +1151,11 @@ class JsObject extends JsType with JsObjectMappable {
     for (final entry in value.entries) {
       if (entry.value.optional) {
         buffer.write(
-          "${dartSafeName(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
+          "${safeDartKey(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
         );
       } else {
         buffer.write(
-          "${dartSafeName(entry.key)}: ${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)},",
+          "${safeDartKey(entry.key)}: ${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)},",
         );
       }
     }
@@ -1217,3 +1295,13 @@ List<String> _dartKeywords = [
   'with',
   'yield',
 ];
+String stringToDart(String value) {
+  // Replace "." and "-" with "_"
+  value = value.replaceAll(".", "_").replaceAll("-", "_").replaceAll(" ", "_");
+  // Replace any non dart chars with $
+  value = value.replaceAll(RegExp(r'[^a-zA-Z0-9_$]'), r'$');
+  if (_dartKeywords.contains(value)) {
+    value = "\$$value";
+  }
+  return value;
+}

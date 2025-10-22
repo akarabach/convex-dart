@@ -32,8 +32,8 @@ BTreeMapStringValue serialize(Query225Args args) {
       if (args.i.isDefined)
         'i': encodeValue(
           args.i.asDefined().value.split(
-            (on353096) => encodeValue(on353096),
-            (on75768) => encodeValue(on75768),
+            (on179527) => encodeValue(on179527),
+            (on734345) => encodeValue(on734345),
           ),
         ),
     },
@@ -43,20 +43,20 @@ BTreeMapStringValue serialize(Query225Args args) {
 @pragma("vm:prefer-inline")
 Query225Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on197426) => (
-      i: on197426.containsKey('i')
+    (on220488) => (
+      i: on220488.containsKey('i')
           ? Defined(
               Union2<String, double>(() {
                 try {
-                  return (on197426['i'] as String);
+                  return (on220488['i'] as String);
                 } catch (e) {}
 
                 try {
-                  return (on197426['i'] as double);
+                  return (on220488['i'] as double);
                 } catch (e) {}
 
                 throw Exception(
-                  (on197426['i'].toString() ?? "null") +
+                  (on220488['i'].toString() ?? "null") +
                       r" cannot be deserialized into a Union2<String, double>",
                 );
               }()),
