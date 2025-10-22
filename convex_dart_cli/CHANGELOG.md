@@ -1,3 +1,7 @@
+## 0.5.0
+
+- Use `convex_dart` 0.5.0
+
 ## 0.4.3
 
 - Improve import path generation
