@@ -1,3 +1,7 @@
+## 0.5.0
+
+- Fix many tls issues
+
 ## 0.4.0
 
 - Improve enum serialization

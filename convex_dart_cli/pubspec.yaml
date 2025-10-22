@@ -18,6 +18,7 @@ dependencies:
   cli_util: ^0.4.2
   locked_async: ^0.1.1
   equatable: ^2.0.0
+  
 
 dev_dependencies:
   build_runner: ^2.7.1
