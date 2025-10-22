@@ -6,20 +6,20 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-Future<RecordReturnResponse> recordReturn() async {
+Future<EmptyObjectArgsReturnResponse> emptyObjectArgsReturn() async {
   final serializedArgs = serialize(null);
   final response = await InternalConvexClient.instance.query(
-    name: 'primitive_returns:recordReturn',
+    name: 'primitive_returns:emptyObjectArgsReturn',
     args: serializedArgs,
   );
   final deserializedResponse = deserialize(response);
   return deserializedResponse;
 }
 
-Stream<RecordReturnResponse> recordReturnStream() {
+Stream<EmptyObjectArgsReturnResponse> emptyObjectArgsReturnStream() {
   final serializedArgs = serialize(null);
   return InternalConvexClient.instance.stream(
-    name: 'primitive_returns:recordReturn',
+    name: 'primitive_returns:emptyObjectArgsReturn',
     args: serializedArgs,
     decodeResult: deserialize,
   );
@@ -31,12 +31,8 @@ BTreeMapStringValue serialize(void args) {
 }
 
 @pragma("vm:prefer-inline")
-RecordReturnResponse deserialize(Value map) {
-  return (
-    body: (decodeValue(map) as IMap<String, dynamic>).map(
-      (on128114, on180124) => MapEntry(on128114, (on180124 as String)),
-    ),
-  );
+EmptyObjectArgsReturnResponse deserialize(Value map) {
+  return (body: decodeValue(map));
 }
 
-typedef RecordReturnResponse = ({IMap<String, String> body});
+typedef EmptyObjectArgsReturnResponse = ({dynamic body});

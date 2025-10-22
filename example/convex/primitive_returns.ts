@@ -111,3 +111,11 @@ export const privateObjectReturn = query({
     return { _i: "Hello" };
   },
 });
+
+export const emptyObjectArgsReturn = query({
+  args: {},
+  returns: {},
+  handler: (ctx, args) => {
+    return {};
+  },
+});

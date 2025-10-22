@@ -32,9 +32,9 @@ BTreeMapStringValue serialize(Query134Args args) {
       'i': encodeValue({
         'a': encodeValue(
           args.i.a.split(
-            (on192068) => encodeValue(on192068),
-            (on161229) => encodeValue(
-              on161229.map((on246210) => encodeValue(on246210)).toIList(),
+            (on367821) => encodeValue(on367821),
+            (on708452) => encodeValue(
+              on708452.map((on630456) => encodeValue(on630456)).toIList(),
             ),
           ),
         ),
@@ -46,22 +46,22 @@ BTreeMapStringValue serialize(Query134Args args) {
 @pragma("vm:prefer-inline")
 Query134Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on258611) => (
-      i: (on258611['i'] as IMap<String, dynamic>).then(
-        (on490916) => (
+    (on641603) => (
+      i: (on641603['i'] as IMap<String, dynamic>).then(
+        (on23737) => (
           a: Union2<String, IList<bool>>(() {
             try {
-              return (on490916['a'] as String);
+              return (on23737['a'] as String);
             } catch (e) {}
 
             try {
-              return (on490916['a'] as IList<dynamic>)
-                  .map((on751130) => (on751130 as bool))
+              return (on23737['a'] as IList<dynamic>)
+                  .map((on127403) => (on127403 as bool))
                   .toIList();
             } catch (e) {}
 
             throw Exception(
-              (on490916['a'].toString() ?? "null") +
+              (on23737['a'].toString() ?? "null") +
                   r" cannot be deserialized into a Union2<String, IList<bool>>",
             );
           }()),

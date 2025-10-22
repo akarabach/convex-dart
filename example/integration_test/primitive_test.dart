@@ -14,6 +14,7 @@ import 'package:api/src/convex/functions/primitive_returns/int64Return.dart';
 import 'package:api/src/convex/functions/primitive_returns/bytesReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/nullReturn.dart';
 import 'package:api/src/convex/functions/primitive_returns/unionReturn.dart';
+import 'package:api/src/convex/functions/primitive_returns/emptyObjectArgsReturn.dart';
 
 void main() {
   test('anyReturn', () async {
@@ -62,5 +63,9 @@ void main() {
   test('unionReturn', () async {
     final result = await unionReturn();
     expect(result.body, "Hi");
+  });
+  test('emptyObjectArgsReturn', () async {
+    final result = await emptyObjectArgsReturn();
+    expect(result.body, {});
   });
 }

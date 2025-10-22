@@ -33,15 +33,15 @@ BTreeMapStringValue serialize(Query130Args args) {
         'steps': encodeValue(
           args.i.steps
               .map(
-                (on449190) => encodeValue({
+                (on785861) => encodeValue({
                   'config': encodeValue({
-                    for (final on132131 in on449190.config.entries)
-                      on132131.key: encodeValue(encodeValue(on132131.value)),
+                    for (final on233403 in on785861.config.entries)
+                      on233403.key: encodeValue(encodeValue(on233403.value)),
                   }),
-                  'id': encodeValue(on449190.id),
-                  'name': encodeValue(on449190.name),
-                  if (on449190.next.isDefined)
-                    'next': encodeValue(on449190.next.asDefined().value),
+                  'id': encodeValue(on785861.id),
+                  'name': encodeValue(on785861.name),
+                  if (on785861.next.isDefined)
+                    'next': encodeValue(on785861.next.asDefined().value),
                 }),
               )
               .toIList(),
@@ -54,20 +54,20 @@ BTreeMapStringValue serialize(Query130Args args) {
 @pragma("vm:prefer-inline")
 Query130Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on503265) => (
-      i: (on503265['i'] as IMap<String, dynamic>).then(
-        (on151122) => (
-          steps: (on151122['steps'] as IList<dynamic>)
+    (on130024) => (
+      i: (on130024['i'] as IMap<String, dynamic>).then(
+        (on849229) => (
+          steps: (on849229['steps'] as IList<dynamic>)
               .map(
-                (on655701) => (on655701 as IMap<String, dynamic>).then(
-                  (on230612) => (
-                    config: (on230612['config'] as IMap<String, dynamic>).map(
-                      (on648984, on656827) => MapEntry(on648984, on656827),
+                (on433129) => (on433129 as IMap<String, dynamic>).then(
+                  (on696837) => (
+                    config: (on696837['config'] as IMap<String, dynamic>).map(
+                      (on110403, on457513) => MapEntry(on110403, on457513),
                     ),
-                    id: (on230612['id'] as String),
-                    name: (on230612['name'] as String),
-                    next: on230612.containsKey('next')
-                        ? Defined((on230612['next'] as String))
+                    id: (on696837['id'] as String),
+                    name: (on696837['name'] as String),
+                    next: on696837.containsKey('next')
+                        ? Defined((on696837['next'] as String))
                         : Undefined<String>(),
                   ),
                 ),

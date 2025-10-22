@@ -205,9 +205,22 @@ class Visibility with VisibilityMappable {
   const Visibility(this.kind);
 }
 
+class EmptyObjectToAnyHook extends MappingHook {
+  const EmptyObjectToAnyHook();
+  @override
+  dynamic afterDecode(dynamic value) {
+    if (value is JsObject && value.value.isEmpty) {
+      return JsAny("any");
+    }
+    return value;
+  }
+}
+
 @MappableClass()
 class FunctionSpec with FunctionSpecMappable {
+  @MappableField(hook: EmptyObjectToAnyHook())
   final JsType args;
+  @MappableField(hook: EmptyObjectToAnyHook())
   final JsType returns;
   final FunctionType functionType;
   final String identifier;

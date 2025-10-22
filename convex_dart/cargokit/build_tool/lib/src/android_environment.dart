@@ -204,7 +204,6 @@ class AndroidEnvironment {
     } else {
       rustFlags = '$rustFlags-L\x1f$workaroundDir';
     }
-    log.info('rustFlags: $rustFlags');
     return rustFlags;
   }
 }

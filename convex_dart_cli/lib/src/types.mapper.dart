@@ -264,11 +264,16 @@ class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
   final String id = 'FunctionSpec';
 
   static JsType _$args(FunctionSpec v) => v.args;
-  static const Field<FunctionSpec, JsType> _f$args = Field('args', _$args);
+  static const Field<FunctionSpec, JsType> _f$args = Field(
+    'args',
+    _$args,
+    hook: EmptyObjectToAnyHook(),
+  );
   static JsType _$returns(FunctionSpec v) => v.returns;
   static const Field<FunctionSpec, JsType> _f$returns = Field(
     'returns',
     _$returns,
+    hook: EmptyObjectToAnyHook(),
   );
   static FunctionType _$functionType(FunctionSpec v) => v.functionType;
   static const Field<FunctionSpec, FunctionType> _f$functionType = Field(

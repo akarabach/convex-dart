@@ -33,8 +33,8 @@ BTreeMapStringValue serialize(Query33Args args) {
 @pragma("vm:prefer-inline")
 Query33Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on558081) =>
-        (i: on558081['i'] == null ? null : $true.validate(on558081['i'])),
+    (on557119) =>
+        (i: on557119['i'] == null ? null : $true.validate(on557119['i'])),
   );
 }
 

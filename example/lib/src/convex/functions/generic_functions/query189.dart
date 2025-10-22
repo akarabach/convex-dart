@@ -32,13 +32,13 @@ BTreeMapStringValue serialize(Query189Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on134886) => encodeValue({
+              (on317503) => encodeValue({
                 'children': encodeValue(
-                  on134886.children
-                      .map((on572962) => encodeValue(on572962))
+                  on317503.children
+                      .map((on415044) => encodeValue(on415044))
                       .toIList(),
                 ),
-                'id': encodeValue(on134886.id),
+                'id': encodeValue(on317503.id),
               }),
             )
             .toIList(),
@@ -50,15 +50,15 @@ BTreeMapStringValue serialize(Query189Args args) {
 @pragma("vm:prefer-inline")
 Query189Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on894944) => (
-      i: (on894944['i'] as IList<dynamic>)
+    (on364637) => (
+      i: (on364637['i'] as IList<dynamic>)
           .map(
-            (on811572) => (on811572 as IMap<String, dynamic>).then(
-              (on770797) => (
-                children: (on770797['children'] as IList<dynamic>)
-                    .map((on129937) => NodesId(on129937 as String))
+            (on211875) => (on211875 as IMap<String, dynamic>).then(
+              (on557946) => (
+                children: (on557946['children'] as IList<dynamic>)
+                    .map((on39172) => NodesId(on39172 as String))
                     .toIList(),
-                id: NodesId(on770797['id'] as String),
+                id: NodesId(on557946['id'] as String),
               ),
             ),
           )
