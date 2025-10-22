@@ -263,7 +263,7 @@ class FunctionSpecMapper extends ClassMapperBase<FunctionSpec> {
   @override
   final String id = 'FunctionSpec';
 
-  static JsType _$args(FunctionSpec v) => v.args;
+  static JsType? _$args(FunctionSpec v) => v.args;
   static const Field<FunctionSpec, JsType> _f$args = Field('args', _$args);
   static JsType _$returns(FunctionSpec v) => v.returns;
   static const Field<FunctionSpec, JsType> _f$returns = Field(
@@ -403,7 +403,7 @@ extension FunctionSpecValueCopy<$R, $Out>
 
 abstract class FunctionSpecCopyWith<$R, $In extends FunctionSpec, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  JsTypeCopyWith<$R, JsType, JsType> get args;
+  JsTypeCopyWith<$R, JsType, JsType>? get args;
   JsTypeCopyWith<$R, JsType, JsType> get returns;
   VisibilityCopyWith<$R, Visibility, Visibility> get visibility;
   $R call({
@@ -425,8 +425,8 @@ class _FunctionSpecCopyWithImpl<$R, $Out>
   late final ClassMapperBase<FunctionSpec> $mapper =
       FunctionSpecMapper.ensureInitialized();
   @override
-  JsTypeCopyWith<$R, JsType, JsType> get args =>
-      $value.args.copyWith.$chain((v) => call(args: v));
+  JsTypeCopyWith<$R, JsType, JsType>? get args =>
+      $value.args?.copyWith.$chain((v) => call(args: v));
   @override
   JsTypeCopyWith<$R, JsType, JsType> get returns =>
       $value.returns.copyWith.$chain((v) => call(returns: v));
@@ -435,14 +435,14 @@ class _FunctionSpecCopyWithImpl<$R, $Out>
       $value.visibility.copyWith.$chain((v) => call(visibility: v));
   @override
   $R call({
-    JsType? args,
+    Object? args = $none,
     JsType? returns,
     FunctionType? functionType,
     String? identifier,
     Visibility? visibility,
   }) => $apply(
     FieldCopyWithData({
-      if (args != null) #args: args,
+      if (args != $none) #args: args,
       if (returns != null) #returns: returns,
       if (functionType != null) #functionType: functionType,
       if (identifier != null) #identifier: identifier,

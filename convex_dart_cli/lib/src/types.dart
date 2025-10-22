@@ -207,7 +207,7 @@ class Visibility with VisibilityMappable {
 
 @MappableClass()
 class FunctionSpec with FunctionSpecMappable {
-  final JsType args;
+  final JsType? args;
   final JsType returns;
   final FunctionType functionType;
   final String identifier;
@@ -250,6 +250,9 @@ class FunctionSpec with FunctionSpecMappable {
   // The name of the typedef for the arguments
   // e.g. "MyFunctionArgs or void"
   String? get argsTypeName {
+    if (args == null) {
+      return null;
+    }
     switch (args) {
       case JsAny():
         return null;
@@ -257,7 +260,7 @@ class FunctionSpec with FunctionSpecMappable {
         return "${functionName.pascalCase}Args";
       default:
         throw UnimplementedError(
-          "Unsupported argument type: ${args.type} for the function $functionName.",
+          "Unsupported argument type: ${args!.type} for the function $functionName.",
         );
     }
   }
@@ -285,18 +288,20 @@ import "$importPathPrefix/schema.dart";
 import "$importPathPrefix/literals.dart";
 """);
 
-    switch (args) {
-      case JsAny():
-        break;
-      case JsObject obj:
-        context.typedefBuffer.write(
-          "typedef $argsTypeName = ${obj.dartType(context)};",
-        );
-      default:
-        throw ArgumentError(
-          'Function arguments must be either JsAny (for dynamic/any type) or JsObject (for structured object types). '
-          'Found: ${args.type} for the function $functionName.',
-        );
+    if (args != null) {
+      switch (args) {
+        case JsAny():
+          break;
+        case JsObject obj:
+          context.typedefBuffer.write(
+            "typedef $argsTypeName = ${obj.dartType(context)};",
+          );
+        default:
+          throw ArgumentError(
+            'Function arguments must be either JsAny (for dynamic/any type) or JsObject (for structured object types). '
+                'Found: ${args!.type} for the function $functionName.',
+          );
+      }
     }
 
     final JsObject returnsObject = switch (returns) {
@@ -342,10 +347,10 @@ Stream<$returnsTypeName> ${functionName}Stream(${argsTypeName != null ? "$argsTy
     }
 
     String serializeCode;
-    if (args is JsAny) {
+    if (args is JsAny || args == null) {
       serializeCode = "{}";
     } else {
-      serializeCode = args.serialize(context, "args", nullable: false);
+      serializeCode = args!.serialize(context, "args", nullable: false);
       // Remove the "encodeValue(" and ")"
       serializeCode = serializeCode.substring(12, serializeCode.length - 1);
     }
