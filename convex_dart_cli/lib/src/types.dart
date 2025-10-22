@@ -189,6 +189,8 @@ enum FunctionType {
   mutation,
   @MappableValue('Action')
   action,
+  @MappableValue('HttpAction')
+  httpAction,
 }
 
 @MappableEnum(mode: ValuesMode.named)
@@ -322,6 +324,7 @@ import "$importPathPrefix/literals.dart";
       FunctionType.query => "query",
       FunctionType.mutation => "mutation",
       FunctionType.action => "action",
+      FunctionType.httpAction => "httpAction",
     };
 
     context.functionBuffer.writeln('''

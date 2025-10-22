@@ -32,6 +32,8 @@ class FunctionTypeMapper extends EnumMapper<FunctionType> {
         return FunctionType.mutation;
       case 'Action':
         return FunctionType.action;
+      case 'HttpAction':
+        return FunctionType.httpAction;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -46,6 +48,8 @@ class FunctionTypeMapper extends EnumMapper<FunctionType> {
         return 'Mutation';
       case FunctionType.action:
         return 'Action';
+      case FunctionType.httpAction:
+        return 'HttpAction';
     }
   }
 }
