@@ -124,6 +124,7 @@ class FunctionsSpecMapper extends ClassMapperBase<FunctionsSpec> {
   static const Field<FunctionsSpec, List<FunctionSpec>> _f$functions = Field(
     'functions',
     _$functions,
+    hook: RemoveHttpActionsHook(),
   );
 
   @override

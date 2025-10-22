@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Remove http actions from generated code
+
 ## 0.5.0
 
 - Use `convex_dart` 0.5.0

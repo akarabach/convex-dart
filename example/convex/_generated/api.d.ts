@@ -14,6 +14,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as generic_functions from "../generic_functions.js";
+import type * as http from "../http.js";
 import type * as primitive_returns from "../primitive_returns.js";
 import type * as tasks from "../tasks.js";
 
@@ -27,6 +28,7 @@ import type * as tasks from "../tasks.js";
  */
 declare const fullApi: ApiFromModules<{
   generic_functions: typeof generic_functions;
+  http: typeof http;
   primitive_returns: typeof primitive_returns;
   tasks: typeof tasks;
 }>;

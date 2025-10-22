@@ -34,7 +34,7 @@ BTreeMapStringValue serialize(Query215Args args) {
           args.i
               .asDefined()
               .value
-              .map((on791225) => encodeValue(on791225))
+              .map((on99158) => encodeValue(on99158))
               .toIList(),
         ),
     },
@@ -44,11 +44,11 @@ BTreeMapStringValue serialize(Query215Args args) {
 @pragma("vm:prefer-inline")
 Query215Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on451800) => (
-      i: on451800.containsKey('i')
+    (on58095) => (
+      i: on58095.containsKey('i')
           ? Defined(
-              (on451800['i'] as IList<dynamic>)
-                  .map((on809498) => (on809498 as bool))
+              (on58095['i'] as IList<dynamic>)
+                  .map((on264520) => (on264520 as bool))
                   .toIList(),
             )
           : Undefined<IList<bool>>(),

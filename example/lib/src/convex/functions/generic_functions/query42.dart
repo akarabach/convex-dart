@@ -28,15 +28,15 @@ Stream<Query42Response> query42Stream(Query42Args args) {
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(Query42Args args) {
   return hashmapToBtreemap(
-    hashmap: {'i': encodeValue(args.i.map((on541770) => null).toIList())},
+    hashmap: {'i': encodeValue(args.i.map((on913616) => null).toIList())},
   );
 }
 
 @pragma("vm:prefer-inline")
 Query42Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on588636) => (
-      i: (on588636['i'] as IList<dynamic>).map((on460644) => null).toIList(),
+    (on658044) => (
+      i: (on658044['i'] as IList<dynamic>).map((on430822) => null).toIList(),
     ),
   );
 }

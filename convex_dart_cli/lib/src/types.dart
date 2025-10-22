@@ -31,10 +31,32 @@ class FunctionBuildContext {
   FunctionBuildContext(this.clientContext);
 }
 
+class RemoveHttpActionsHook extends MappingHook {
+  const RemoveHttpActionsHook();
+  @override
+  Object? beforeDecode(Object? value) {
+    if (value is List) {
+      final filteredFunctions = [];
+      for (final function in value) {
+        if (function is Map) {
+          final type = function['functionType'];
+          if (type != 'HttpAction') {
+            filteredFunctions.add(function);
+          }
+        }
+      }
+      return filteredFunctions;
+    } else {
+      return value;
+    }
+  }
+}
+
 @MappableClass()
 class FunctionsSpec with FunctionsSpecMappable {
   final String url;
-  List<FunctionSpec> functions;
+  @MappableField(hook: RemoveHttpActionsHook())
+  final List<FunctionSpec> functions;
 
   FunctionsSpec(this.url, this.functions);
 
