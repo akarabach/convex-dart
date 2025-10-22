@@ -208,7 +208,7 @@ class Visibility with VisibilityMappable {
 @MappableClass()
 class FunctionSpec with FunctionSpecMappable {
   final JsType? args;
-  final JsType returns;
+  final JsType? returns;
   final FunctionType functionType;
   final String identifier;
   final Visibility visibility;
@@ -304,10 +304,16 @@ import "$importPathPrefix/literals.dart";
       }
     }
 
-    final JsObject returnsObject = switch (returns) {
-      JsObject obj => obj,
-      _ => JsObject({"body": JsField(returns, false)}, "object"),
-    };
+    JsObject returnsObject;
+    if (returns == null) {
+      returnsObject = JsObject({"body": JsField(JsNull("null"), false)}, "object");
+    } else {
+      returnsObject = switch (returns) {
+        JsObject obj => obj,
+        _ => JsObject({"body": JsField(returns!, false)}, "object"),
+      };
+    }
+
     context.typedefBuffer.write(
       "typedef $returnsTypeName = ${returnsObject.dartType(context)};",
     );
@@ -355,11 +361,11 @@ Stream<$returnsTypeName> ${functionName}Stream(${argsTypeName != null ? "$argsTy
       serializeCode = serializeCode.substring(12, serializeCode.length - 1);
     }
 
-    String deserializeCode = returns.deserialize(
+    String deserializeCode = returns?.deserialize(
       context,
       "decodeValue(map)",
       nullable: false,
-    );
+    ) ?? '';
     if (returns is! JsObject) {
       deserializeCode = "(body: $deserializeCode)";
     }
