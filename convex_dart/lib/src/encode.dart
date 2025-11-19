@@ -1,5 +1,6 @@
 import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/value.dart';
+import 'package:convex_dart/src/rust/dart_value/conversion.dart';
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
 
 BTreeMapStringValue encodeMap(Map<String, dynamic> value) {
