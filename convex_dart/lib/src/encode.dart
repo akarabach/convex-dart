@@ -1,7 +1,6 @@
-import 'package:convex_dart/src/rust/dart.dart';
 import 'package:convex_dart/src/rust/value.dart';
-import 'package:convex_dart/src/rust/dart_value/conversion.dart';
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart';
+import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 BTreeMapStringValue encodeMap(Map<String, dynamic> value) {
   return hashmapToBtreemap(
@@ -15,7 +14,7 @@ Value encodeValue(dynamic value) {
   }
   return switch (value) {
     null => Value.null_(),
-    int i => DartValue.int64(BigInt.from(i)),
+    int i => Value.int64(BigInt.from(i) as PlatformInt64),
     double d => Value.float64(d),
     bool b => Value.boolean(b),
     String s => Value.string(s),
@@ -35,7 +34,7 @@ Value encodeValue(dynamic value) {
     TableId id => Value.string(id.name),
     Literal literal => switch (literal.value) {
       String s => Value.string(s),
-      int i => DartValue.int64(BigInt.from(i)),
+      int i => Value.int64(BigInt.from(i) as PlatformInt64),
       double d => Value.float64(d),
       bool b => Value.boolean(b),
       _ => throw UnimplementedError("Unsupported literal type: $literal"),
