@@ -14,7 +14,7 @@ Value encodeValue(dynamic value) {
   }
   return switch (value) {
     null => Value.null_(),
-    int i => Value.int64(i),
+    int i => DartValue.int64(BigInt.from(i)),
     double d => Value.float64(d),
     bool b => Value.boolean(b),
     String s => Value.string(s),
@@ -34,7 +34,7 @@ Value encodeValue(dynamic value) {
     TableId id => Value.string(id.name),
     Literal literal => switch (literal.value) {
       String s => Value.string(s),
-      int i => Value.int64(i),
+      int i => DartValue.int64(BigInt.from(i)),
       double d => Value.float64(d),
       bool b => Value.boolean(b),
       _ => throw UnimplementedError("Unsupported literal type: $literal"),
