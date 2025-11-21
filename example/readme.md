@@ -68,5 +68,5 @@ example/
     Build the shared library in `convex_dart/rust`.
 
    ```bash
-   puro flutter test integration_test/test_all.dart 
+   flutter test integration_test/test_all.dart 
    ```

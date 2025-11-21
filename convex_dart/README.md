@@ -501,6 +501,22 @@ await ConvexClient.init();
 - Check that your Convex function is properly exported
 - Verify network connectivity
 
+## Disable Precompiled Binaries
+
+Convex Dart uses the official Convex Rust client under the hood. To improve the developer experience, precompiled binaries are automatically downloaded during build time. However, if you need to build from source instead, you can set the `use_precompiled_binaries` option to `false` in a `cargokit_options.yaml` file at the root of your application package.
+
+```yaml
+use_precompiled_binaries: false
+```
+
+This forces the package to build from source, which may be useful if you encounter issues with the precompiled binaries or need to customize the build.
+
+## Flutter Web
+
+This package does not officially support Flutter Web.
+
+You may be able to get it working by disabling precompiled binaries, installing rust and following this [guide](https://cjycode.com/flutter_rust_bridge/manual/integrate/template/setup/web) here.  
+
 ## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md) for details.
