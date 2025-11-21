@@ -1,3 +1,7 @@
+## 0.6.0-dev.1
+
+- Fix compilation issue on web
+
 ## 0.5.0
 
 - Fix many tls issues

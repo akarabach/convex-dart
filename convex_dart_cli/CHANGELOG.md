@@ -1,3 +1,8 @@
+## 0.6.0-dev.1
+
+- Fix nullable literal union serialization
+- Add top level `api` generation
+
 ## 0.5.2
 
 - Add http client generation
