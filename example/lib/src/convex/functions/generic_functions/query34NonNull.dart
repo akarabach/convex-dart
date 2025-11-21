@@ -6,55 +6,36 @@ import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
 
-Future<Query215Response> query215(Query215Args args) async {
+Future<Query34NonNullResponse> query34NonNull(Query34NonNullArgs args) async {
   final serializedArgs = serialize(args);
   final response = await InternalConvexClient.instance.query(
-    name: 'generic_functions:query215',
+    name: 'generic_functions:query34NonNull',
     args: serializedArgs,
   );
   final deserializedResponse = deserialize(response);
   return deserializedResponse;
 }
 
-Stream<Query215Response> query215Stream(Query215Args args) {
+Stream<Query34NonNullResponse> query34NonNullStream(Query34NonNullArgs args) {
   final serializedArgs = serialize(args);
   return InternalConvexClient.instance.stream(
-    name: 'generic_functions:query215',
+    name: 'generic_functions:query34NonNull',
     args: serializedArgs,
     decodeResult: deserialize,
   );
 }
 
 @pragma("vm:prefer-inline")
-BTreeMapStringValue serialize(Query215Args args) {
-  return hashmapToBtreemap(
-    hashmap: {
-      if (args.i.isDefined)
-        'i': encodeValue(
-          args.i
-              .asDefined()
-              .value
-              .map((on362027) => encodeValue(on362027))
-              .toIList(),
-        ),
-    },
-  );
+BTreeMapStringValue serialize(Query34NonNullArgs args) {
+  return hashmapToBtreemap(hashmap: {'i': encodeValue(args.i.value)});
 }
 
 @pragma("vm:prefer-inline")
-Query215Response deserialize(Value map) {
+Query34NonNullResponse deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on102528) => (
-      i: on102528.containsKey('i')
-          ? Defined<IList<bool>>(
-              (on102528['i'] as IList<dynamic>)
-                  .map((on640659) => (on640659 as bool))
-                  .toIList(),
-            )
-          : Undefined<IList<bool>>(),
-    ),
+    (on292183) => (i: $blue$red.fromValue(on292183['i'])),
   );
 }
 
-typedef Query215Args = ({Optional<IList<bool>> i});
-typedef Query215Response = ({Optional<IList<bool>> i});
+typedef Query34NonNullArgs = ({$blue$red i});
+typedef Query34NonNullResponse = ({$blue$red i});

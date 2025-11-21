@@ -31,36 +31,36 @@ BTreeMapStringValue serialize(Query123Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on151974) => encodeValue({
-            'content': encodeValue(on151974.content),
-            if (on151974.formatting.isDefined)
+          (on505324) => encodeValue({
+            'content': encodeValue(on505324.content),
+            if (on505324.formatting.isDefined)
               'formatting': encodeValue({
-                'bold': encodeValue(on151974.formatting.asDefined().value.bold),
+                'bold': encodeValue(on505324.formatting.asDefined().value.bold),
                 'color': encodeValue(
-                  on151974.formatting.asDefined().value.color.value,
+                  on505324.formatting.asDefined().value.color.value,
                 ),
                 'italic': encodeValue(
-                  on151974.formatting.asDefined().value.italic,
+                  on505324.formatting.asDefined().value.italic,
                 ),
               }),
-            'type': encodeValue(on151974.type),
+            'type': encodeValue(on505324.type),
           }),
-          (on534108) => encodeValue({
-            if (on534108.alt.isDefined)
-              'alt': encodeValue(on534108.alt.asDefined().value),
+          (on82564) => encodeValue({
+            if (on82564.alt.isDefined)
+              'alt': encodeValue(on82564.alt.asDefined().value),
             'dimensions': encodeValue({
-              'height': encodeValue(on534108.dimensions.height),
-              'width': encodeValue(on534108.dimensions.width),
+              'height': encodeValue(on82564.dimensions.height),
+              'width': encodeValue(on82564.dimensions.width),
             }),
-            'type': encodeValue(on534108.type),
-            'url': encodeValue(on534108.url),
+            'type': encodeValue(on82564.type),
+            'url': encodeValue(on82564.url),
           }),
-          (on327576) => encodeValue({
+          (on651508) => encodeValue({
             'items': encodeValue(
-              on327576.items.map((on507074) => encodeValue(on507074)).toIList(),
+              on651508.items.map((on636881) => encodeValue(on636881)).toIList(),
             ),
-            'ordered': encodeValue(on327576.ordered),
-            'type': encodeValue(on327576.type),
+            'ordered': encodeValue(on651508.ordered),
+            'type': encodeValue(on651508.type),
           }),
         ),
       ),
@@ -71,7 +71,7 @@ BTreeMapStringValue serialize(Query123Args args) {
 @pragma("vm:prefer-inline")
 Query123Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on815674) => (
+    (on428608) => (
       i:
           Union3<
             ({
@@ -89,63 +89,65 @@ Query123Response deserialize(Value map) {
             ({IList<String> items, bool ordered, $list type})
           >(() {
             try {
-              return (on815674['i'] as IMap<String, dynamic>).then(
-                (on126542) => (
-                  content: (on126542['content'] as String),
-                  formatting: on126542.containsKey('formatting')
-                      ? Defined(
-                          (on126542['formatting'] as IMap<String, dynamic>)
+              return (on428608['i'] as IMap<String, dynamic>).then(
+                (on444977) => (
+                  content: (on444977['content'] as String),
+                  formatting: on444977.containsKey('formatting')
+                      ? Defined<
+                          ({bool bold, $red$blue$green color, bool italic})
+                        >(
+                          (on444977['formatting'] as IMap<String, dynamic>)
                               .then(
-                                (on356996) => (
-                                  bold: (on356996['bold'] as bool),
+                                (on186109) => (
+                                  bold: (on186109['bold'] as bool),
                                   color: $red$blue$green.fromValue(
-                                    on356996['color'],
+                                    on186109['color'],
                                   ),
-                                  italic: (on356996['italic'] as bool),
+                                  italic: (on186109['italic'] as bool),
                                 ),
                               ),
                         )
                       : Undefined<
                           ({bool bold, $red$blue$green color, bool italic})
                         >(),
-                  type: $text.validate(on126542['type']),
+                  type: $text.validate(on444977['type']),
                 ),
               );
             } catch (e) {}
 
             try {
-              return (on815674['i'] as IMap<String, dynamic>).then(
-                (on788321) => (
-                  alt: on788321.containsKey('alt')
-                      ? Defined((on788321['alt'] as String))
+              return (on428608['i'] as IMap<String, dynamic>).then(
+                (on858310) => (
+                  alt: on858310.containsKey('alt')
+                      ? Defined<String>((on858310['alt'] as String))
                       : Undefined<String>(),
-                  dimensions: (on788321['dimensions'] as IMap<String, dynamic>)
+                  dimensions: (on858310['dimensions'] as IMap<String, dynamic>)
                       .then(
-                        (on296145) => (
-                          height: (on296145['height'] as double),
-                          width: (on296145['width'] as double),
+                        (on731206) => (
+                          height: (on731206['height'] as double),
+                          width: (on731206['width'] as double),
                         ),
                       ),
-                  type: $image.validate(on788321['type']),
-                  url: (on788321['url'] as String),
+                  type: $image.validate(on858310['type']),
+                  url: (on858310['url'] as String),
                 ),
               );
             } catch (e) {}
 
             try {
-              return (on815674['i'] as IMap<String, dynamic>).then(
-                (on648817) => (
-                  items: (on648817['items'] as IList<dynamic>)
-                      .map((on145722) => (on145722 as String))
+              return (on428608['i'] as IMap<String, dynamic>).then(
+                (on138834) => (
+                  items: (on138834['items'] as IList<dynamic>)
+                      .map((on555778) => (on555778 as String))
                       .toIList(),
-                  ordered: (on648817['ordered'] as bool),
-                  type: $list.validate(on648817['type']),
+                  ordered: (on138834['ordered'] as bool),
+                  type: $list.validate(on138834['type']),
                 ),
               );
             } catch (e) {}
 
             throw Exception(
-              (on815674['i'].toString() ?? "null") +
+              (on428608['i'].toString() ?? "null") +
                   r" cannot be deserialized into a Union3<({String content,Optional<({bool bold,$red$blue$green color,bool italic})> formatting,$text type}), ({Optional<String> alt,({double height,double width}) dimensions,$image type,String url}), ({IList<String> items,bool ordered,$list type})>",
             );
           }()),

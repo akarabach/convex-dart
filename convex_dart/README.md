@@ -2,17 +2,31 @@
 
 A Flutter package for seamless integration with [Convex](https://convex.dev) backends. This package provides type-safe, real-time connectivity to your Convex functions with automatic code generation and serialization.
 
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Advanced Usage](#advanced-usage)
-- [CLI Integration](#cli-integration)
-- [Type System](#type-system)
-- [Performance & Best Practices](#performance--best-practices)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
+- [convex\_dart](#convex_dart)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Quick Start](#quick-start)
+    - [1. Set up your Convex Backend](#1-set-up-your-convex-backend)
+    - [2. Generate Dart Client](#2-generate-dart-client)
+    - [3. Initialize in Your Flutter App](#3-initialize-in-your-flutter-app)
+    - [4. Use in Your Widgets](#4-use-in-your-widgets)
+  - [Advanced Usage](#advanced-usage)
+    - [Complex Types and Unions](#complex-types-and-unions)
+    - [Error Handling](#error-handling)
+      - [ConvexError](#convexerror)
+      - [ConvexClientError](#convexclienterror)
+    - [Optional Values](#optional-values)
+  - [CLI Integration](#cli-integration)
+    - [CLI Features](#cli-features)
+  - [Type System](#type-system)
+    - [Tips](#tips)
+      - [Undefined Values](#undefined-values)
+      - [Duplicate Stream Events](#duplicate-stream-events)
+  - [Troubleshooting](#troubleshooting)
+    - [Common Issues](#common-issues)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Updating Rust Client](#updating-rust-client)
 
 ## Features
 
@@ -128,8 +142,7 @@ void main() async {
 // lib/pages/tasks_page.dart
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:your_app/src/convex/functions/tasks/getTasks.dart';
-import 'package:your_app/src/convex/functions/tasks/createTask.dart';
+import 'package:your_app/src/convex/client.dart';
 
 class TasksPage extends StatefulWidget {
   @override
@@ -143,7 +156,7 @@ class _TasksPageState extends State<TasksPage> {
   Future<void> _createTask() async {
     if (_controller.text.isNotEmpty) {
       try {
-        await createTask((title: _controller.text));
+        await api.tasks.createTask((title: _controller.text));
         _controller.clear();
         // No need to reload - StreamBuilder will update automatically
       } catch (e) {
@@ -157,7 +170,7 @@ class _TasksPageState extends State<TasksPage> {
   // Mark a task as completed or not completed
   Future<void> _toggleTask(TasksId taskId) async {
     try {
-      await toggleTaskCompletion((id: taskId));
+      await api.tasks.toggleTaskCompletion((id: taskId));
       print('Toggle task: $taskId');
       // No need to reload - StreamBuilder will update automatically
     } catch (e) {
@@ -309,7 +322,7 @@ The generated Dart code handles all type checking and serialization:
 
 ```dart
 // Usage in Dart
-final profile = await getUserProfile(
+final profile = await api.users.getUserProfile(
   (userId: UsersId("user123"))
 );
 

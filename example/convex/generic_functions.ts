@@ -388,6 +388,28 @@ export const query33 = query({
     return args;
   },
 });
+export const query34WithNull = query({
+  args: {
+    i: v.union(v.literal("blue"), v.literal("red"), v.null()),
+  },
+  returns: {
+    i: v.union(v.literal("blue"), v.literal("red"), v.null()),
+  },
+  handler: (ctx, args) => {
+    return args;
+  },
+});
+export const query34NonNull = query({
+  args: {
+    i: v.union(v.literal("blue"), v.literal("red")),
+  },
+  returns: {
+    i: v.union(v.literal("blue"), v.literal("red")),
+  },
+  handler: (ctx, args) => {
+    return args;
+  },
+});
 
 // export const query34 = query({
 //   args: {

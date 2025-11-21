@@ -29,9 +29,7 @@ Stream<Query174Response> query174Stream(Query174Args args) {
 BTreeMapStringValue serialize(Query174Args args) {
   return hashmapToBtreemap(
     hashmap: {
-      'i': encodeValue(
-        args.i.map((on563877) => encodeValue(on563877)).toIList(),
-      ),
+      'i': encodeValue(args.i.map((on83395) => encodeValue(on83395)).toIList()),
     },
   );
 }
@@ -39,9 +37,9 @@ BTreeMapStringValue serialize(Query174Args args) {
 @pragma("vm:prefer-inline")
 Query174Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on227310) => (
-      i: (on227310['i'] as IList<dynamic>)
-          .map((on145677) => on145677)
+    (on599560) => (
+      i: (on599560['i'] as IList<dynamic>)
+          .map((on554949) => (on554949 as dynamic))
           .toIList(),
     ),
   );

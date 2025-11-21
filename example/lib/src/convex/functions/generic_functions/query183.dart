@@ -31,8 +31,8 @@ BTreeMapStringValue serialize(Query183Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on423230) => encodeValue({'a': encodeValue(on423230.a)}),
-          (on590047) => encodeValue({'a': encodeValue(on590047.a)}),
+          (on974297) => encodeValue({'a': encodeValue(on974297.a)}),
+          (on38569) => encodeValue({'a': encodeValue(on38569.a)}),
         ),
       ),
     },
@@ -42,22 +42,22 @@ BTreeMapStringValue serialize(Query183Args args) {
 @pragma("vm:prefer-inline")
 Query183Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on923944) => (
+    (on26676) => (
       i: Union2<({String a}), ({double a})>(() {
         try {
-          return (on923944['i'] as IMap<String, dynamic>).then(
-            (on949845) => (a: (on949845['a'] as String)),
+          return (on26676['i'] as IMap<String, dynamic>).then(
+            (on83370) => (a: (on83370['a'] as String)),
           );
         } catch (e) {}
 
         try {
-          return (on923944['i'] as IMap<String, dynamic>).then(
-            (on780926) => (a: (on780926['a'] as double)),
+          return (on26676['i'] as IMap<String, dynamic>).then(
+            (on841270) => (a: (on841270['a'] as double)),
           );
         } catch (e) {}
 
         throw Exception(
-          (on923944['i'].toString() ?? "null") +
+          (on26676['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<({String a}), ({double a})>",
         );
       }()),

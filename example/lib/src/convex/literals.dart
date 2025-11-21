@@ -3,6 +3,21 @@
 // ignore_for_file: strict_raw_type, inference_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
 
+enum $blue$red {
+  $blueMember($blue()),
+  $redMember($red());
+
+  const $blue$red(this.value);
+  final Literal value;
+  static final _map = {'blue': $blueMember, 'red': $redMember};
+  static $blue$red fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as $blue$red;
+    }
+    throw Exception(value.toString() + r" cannot be converted to a $blue$red");
+  }
+}
+
 enum $yes$no {
   $yesMember($yes()),
   $noMember($no());
@@ -10,7 +25,7 @@ enum $yes$no {
   const $yes$no(this.value);
   final Literal value;
   static final _map = {'yes': $yesMember, 'no': $noMember};
-  static $yes$no fromValue(dynamic value) {
+  static $yes$no fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $yes$no;
     }
@@ -26,7 +41,7 @@ enum $10$20$30 {
   const $10$20$30(this.value);
   final Literal value;
   static final _map = {1.0: $1_0Member, 2.0: $2_0Member, 3.0: $3_0Member};
-  static $10$20$30 fromValue(dynamic value) {
+  static $10$20$30 fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $10$20$30;
     }
@@ -46,7 +61,7 @@ enum $admin$user$guest {
     'user': $userMember,
     'guest': $guestMember,
   };
-  static $admin$user$guest fromValue(dynamic value) {
+  static $admin$user$guest fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $admin$user$guest;
     }
@@ -63,7 +78,7 @@ enum $true$false {
   const $true$false(this.value);
   final Literal value;
   static final _map = {true: $trueMember, false: $falseMember};
-  static $true$false fromValue(dynamic value) {
+  static $true$false fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $true$false;
     }
@@ -85,7 +100,7 @@ enum $work$personal$urgent {
     'personal': $personalMember,
     'urgent': $urgentMember,
   };
-  static $work$personal$urgent fromValue(dynamic value) {
+  static $work$personal$urgent fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $work$personal$urgent;
     }
@@ -107,7 +122,7 @@ enum $text$number$boolean {
     'number': $numberMember,
     'boolean': $booleanMember,
   };
-  static $text$number$boolean fromValue(dynamic value) {
+  static $text$number$boolean fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $text$number$boolean;
     }
@@ -129,7 +144,7 @@ enum $pending$approved$rejected {
     'approved': $approvedMember,
     'rejected': $rejectedMember,
   };
-  static $pending$approved$rejected fromValue(dynamic value) {
+  static $pending$approved$rejected fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $pending$approved$rejected;
     }
@@ -152,7 +167,7 @@ enum $string$number$boolean {
     'number': $numberMember,
     'boolean': $booleanMember,
   };
-  static $string$number$boolean fromValue(dynamic value) {
+  static $string$number$boolean fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $string$number$boolean;
     }
@@ -174,7 +189,7 @@ enum $primitive$object$array {
     'object': $objectMember,
     'array': $arrayMember,
   };
-  static $primitive$object$array fromValue(dynamic value) {
+  static $primitive$object$array fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $primitive$object$array;
     }
@@ -196,7 +211,7 @@ enum $red$blue$green {
     'blue': $blueMember,
     'green': $greenMember,
   };
-  static $red$blue$green fromValue(dynamic value) {
+  static $red$blue$green fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $red$blue$green;
     }
@@ -220,7 +235,7 @@ enum $get$post$put$delete {
     'PUT': $PUTMember,
     'DELETE': $DELETEMember,
   };
-  static $get$post$put$delete fromValue(dynamic value) {
+  static $get$post$put$delete fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $get$post$put$delete;
     }
@@ -242,7 +257,7 @@ enum $minute$hour$day {
     'hour': $hourMember,
     'day': $dayMember,
   };
-  static $minute$hour$day fromValue(dynamic value) {
+  static $minute$hour$day fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $minute$hour$day;
     }
@@ -266,7 +281,7 @@ enum $string$number$boolean$date {
     'boolean': $booleanMember,
     'date': $dateMember,
   };
-  static $string$number$boolean$date fromValue(dynamic value) {
+  static $string$number$boolean$date fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $string$number$boolean$date;
     }
@@ -289,7 +304,7 @@ enum $action$condition$loop {
     'condition': $conditionMember,
     'loop': $loopMember,
   };
-  static $action$condition$loop fromValue(dynamic value) {
+  static $action$condition$loop fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $action$condition$loop;
     }
@@ -306,7 +321,7 @@ enum $10$20 {
   const $10$20(this.value);
   final Literal value;
   static final _map = {1.0: $1_0Member, 2.0: $2_0Member};
-  static $10$20 fromValue(dynamic value) {
+  static $10$20 fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $10$20;
     }
@@ -326,7 +341,7 @@ enum $read$write$admin {
     'write': $writeMember,
     'admin': $adminMember,
   };
-  static $read$write$admin fromValue(dynamic value) {
+  static $read$write$admin fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $read$write$admin;
     }
@@ -344,7 +359,7 @@ enum $a$b$c {
   const $a$b$c(this.value);
   final Literal value;
   static final _map = {'A': $AMember, 'B': $BMember, 'C': $CMember};
-  static $a$b$c fromValue(dynamic value) {
+  static $a$b$c fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $a$b$c;
     }
@@ -359,7 +374,7 @@ enum $on$off {
   const $on$off(this.value);
   final Literal value;
   static final _map = {'on': $onMember, 'off': $offMember};
-  static $on$off fromValue(dynamic value) {
+  static $on$off fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $on$off;
     }
@@ -374,7 +389,7 @@ enum $cat$dog {
   const $cat$dog(this.value);
   final Literal value;
   static final _map = {'cat': $catMember, 'dog': $dogMember};
-  static $cat$dog fromValue(dynamic value) {
+  static $cat$dog fromValue(Object value) {
     if (_map.containsKey(value)) {
       return _map[value] as $cat$dog;
     }
@@ -982,6 +997,56 @@ class $ implements Literal {
   }
 }
 
+class $blue implements Literal {
+  const $blue();
+  const $blue.validate(dynamic value)
+    : assert(value == 'blue', r"Value mismatch for $blue");
+
+  @override
+  final value = 'blue';
+
+  @override
+  bool operator ==(Object other) {
+    if (other is $blue) {
+      return value == other.value;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  String toString() {
+    return r"$blue(blue)";
+  }
+}
+
+class $red implements Literal {
+  const $red();
+  const $red.validate(dynamic value)
+    : assert(value == 'red', r"Value mismatch for $red");
+
+  @override
+  final value = 'red';
+
+  @override
+  bool operator ==(Object other) {
+    if (other is $red) {
+      return value == other.value;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  String toString() {
+    return r"$red(red)";
+  }
+}
+
 class $yes implements Literal {
   const $yes();
   const $yes.validate(dynamic value)
@@ -1404,56 +1469,6 @@ class $array implements Literal {
   @override
   String toString() {
     return r"$array(array)";
-  }
-}
-
-class $red implements Literal {
-  const $red();
-  const $red.validate(dynamic value)
-    : assert(value == 'red', r"Value mismatch for $red");
-
-  @override
-  final value = 'red';
-
-  @override
-  bool operator ==(Object other) {
-    if (other is $red) {
-      return value == other.value;
-    }
-    return false;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  String toString() {
-    return r"$red(red)";
-  }
-}
-
-class $blue implements Literal {
-  const $blue();
-  const $blue.validate(dynamic value)
-    : assert(value == 'blue', r"Value mismatch for $blue");
-
-  @override
-  final value = 'blue';
-
-  @override
-  bool operator ==(Object other) {
-    if (other is $blue) {
-      return value == other.value;
-    }
-    return false;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  String toString() {
-    return r"$blue(blue)";
   }
 }
 

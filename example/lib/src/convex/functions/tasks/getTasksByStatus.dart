@@ -41,12 +41,12 @@ GetTasksByStatusResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on900248) => (on900248 as IMap<String, dynamic>).then(
-            (on781098) => (
-              $_creationTime: (on781098['_creationTime'] as double),
-              $_id: TasksId(on781098['_id'] as String),
-              isCompleted: (on781098['isCompleted'] as bool),
-              text: (on781098['text'] as String),
+          (on272061) => (on272061 as IMap<String, dynamic>).then(
+            (on480782) => (
+              creationTime: (on480782['_creationTime'] as double),
+              id: TasksId(on480782['_id'] as String),
+              isCompleted: (on480782['isCompleted'] as bool),
+              text: (on480782['text'] as String),
             ),
           ),
         )
@@ -56,6 +56,6 @@ GetTasksByStatusResponse deserialize(Value map) {
 
 typedef GetTasksByStatusArgs = ({bool isCompleted});
 typedef GetTasksByStatusResponse = ({
-  IList<({double $_creationTime, TasksId $_id, bool isCompleted, String text})>
+  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
   body,
 });

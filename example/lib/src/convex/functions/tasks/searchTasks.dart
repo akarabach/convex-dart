@@ -37,12 +37,12 @@ SearchTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on218730) => (on218730 as IMap<String, dynamic>).then(
-            (on942805) => (
-              $_creationTime: (on942805['_creationTime'] as double),
-              $_id: TasksId(on942805['_id'] as String),
-              isCompleted: (on942805['isCompleted'] as bool),
-              text: (on942805['text'] as String),
+          (on713734) => (on713734 as IMap<String, dynamic>).then(
+            (on255247) => (
+              creationTime: (on255247['_creationTime'] as double),
+              id: TasksId(on255247['_id'] as String),
+              isCompleted: (on255247['isCompleted'] as bool),
+              text: (on255247['text'] as String),
             ),
           ),
         )
@@ -52,6 +52,6 @@ SearchTasksResponse deserialize(Value map) {
 
 typedef SearchTasksArgs = ({String searchText});
 typedef SearchTasksResponse = ({
-  IList<({double $_creationTime, TasksId $_id, bool isCompleted, String text})>
+  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
   body,
 });
