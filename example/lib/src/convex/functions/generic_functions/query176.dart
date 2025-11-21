@@ -31,10 +31,10 @@ BTreeMapStringValue serialize(Query176Args args) {
     hashmap: {
       'i': encodeValue({
         'metadata': encodeValue({
-          for (final on25670 in args.i.metadata.entries)
-            on25670.key: encodeValue(
+          for (final on898497 in args.i.metadata.entries)
+            on898497.key: encodeValue(
               encodeValue({
-                'lastUpdated': encodeValue(on25670.value.lastUpdated),
+                'lastUpdated': encodeValue(on898497.value.lastUpdated),
               }),
             ),
         }),
@@ -46,15 +46,15 @@ BTreeMapStringValue serialize(Query176Args args) {
 @pragma("vm:prefer-inline")
 Query176Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on622065) => (
-      i: (on622065['i'] as IMap<String, dynamic>).then(
-        (on704389) => (
-          metadata: (on704389['metadata'] as IMap<String, dynamic>).map(
-            (on911478, on210229) => MapEntry(
-              on911478,
-              (on210229 as IMap<String, dynamic>).then(
-                (on663170) =>
-                    (lastUpdated: (on663170['lastUpdated'] as double)),
+    (on304301) => (
+      i: (on304301['i'] as IMap<String, dynamic>).then(
+        (on697686) => (
+          metadata: (on697686['metadata'] as IMap<String, dynamic>).map(
+            (on742700, on537420) => MapEntry(
+              on742700,
+              (on537420 as IMap<String, dynamic>).then(
+                (on764297) =>
+                    (lastUpdated: (on764297['lastUpdated'] as double)),
               ),
             ),
           ),

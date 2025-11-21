@@ -37,12 +37,12 @@ SearchTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on986996) => (on986996 as IMap<String, dynamic>).then(
-            (on773068) => (
-              creationTime: (on773068['_creationTime'] as double),
-              id: TasksId(on773068['_id'] as String),
-              isCompleted: (on773068['isCompleted'] as bool),
-              text: (on773068['text'] as String),
+          (on713734) => (on713734 as IMap<String, dynamic>).then(
+            (on255247) => (
+              creationTime: (on255247['_creationTime'] as double),
+              id: TasksId(on255247['_id'] as String),
+              isCompleted: (on255247['isCompleted'] as bool),
+              text: (on255247['text'] as String),
             ),
           ),
         )

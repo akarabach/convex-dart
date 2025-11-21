@@ -31,8 +31,8 @@ BTreeMapStringValue serialize(Query205Args args) {
     hashmap: {
       if (args.i.isDefined)
         'i': encodeValue({
-          for (final on508469 in args.i.asDefined().value.entries)
-            on508469.key: encodeValue(encodeValue(on508469.value)),
+          for (final on638028 in args.i.asDefined().value.entries)
+            on638028.key: encodeValue(encodeValue(on638028.value)),
         }),
     },
   );
@@ -41,12 +41,12 @@ BTreeMapStringValue serialize(Query205Args args) {
 @pragma("vm:prefer-inline")
 Query205Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on724641) => (
-      i: on724641.containsKey('i')
+    (on616999) => (
+      i: on616999.containsKey('i')
           ? Defined<IMap<String, String>>(
-              (on724641['i'] as IMap<String, dynamic>).map(
-                (on409424, on814702) =>
-                    MapEntry(on409424, (on814702 as String)),
+              (on616999['i'] as IMap<String, dynamic>).map(
+                (on550948, on746921) =>
+                    MapEntry(on550948, (on746921 as String)),
               ),
             )
           : Undefined<IMap<String, String>>(),

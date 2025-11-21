@@ -69,6 +69,10 @@ import 'package:api/src/convex/functions/generic_functions/query33.dart'
     as tasksQuery33;
 import 'package:api/src/convex/functions/generic_functions/query35.dart'
     as tasksQuery35;
+import 'package:api/src/convex/functions/generic_functions/query34WithNull.dart'
+    as tasksQuery34WithNull;
+import 'package:api/src/convex/functions/generic_functions/query34NonNull.dart'
+    as tasksQuery34NonNull;
 import 'package:api/src/convex/functions/generic_functions/query36.dart'
     as tasksQuery36;
 import 'package:api/src/convex/functions/generic_functions/query37.dart'
@@ -1150,6 +1154,32 @@ void main() {
       final serialized = tasksQuery33.serialize(data);
       final value1 = Value.object(serialized);
       final deserialized = tasksQuery33.deserialize(value1);
+      expect(deserialized, data);
+    }
+  });
+
+  test('query34WithNull', () async {
+    final datas = <tasksQuery34WithNull.Query34WithNullArgs>[
+      (i: $blue$red.$redMember),
+      (i: $blue$red.$blueMember),
+      (i: null),
+    ];
+    for (final data in datas) {
+      final serialized = tasksQuery34WithNull.serialize(data);
+      final value1 = Value.object(serialized);
+      final deserialized = tasksQuery34WithNull.deserialize(value1);
+      expect(deserialized, data);
+    }
+  });
+  test('query34NonNull', () async {
+    final datas = <tasksQuery34NonNull.Query34NonNullArgs>[
+      (i: $blue$red.$redMember),
+      (i: $blue$red.$blueMember),
+    ];
+    for (final data in datas) {
+      final serialized = tasksQuery34NonNull.serialize(data);
+      final value1 = Value.object(serialized);
+      final deserialized = tasksQuery34NonNull.deserialize(value1);
       expect(deserialized, data);
     }
   });

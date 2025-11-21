@@ -919,12 +919,15 @@ class _LiteralsUnion extends _BaseUnion with EquatableMixin {
   _LiteralsUnion({required super.nullable, required this.literals});
 
   @override
-  List<Object?> get props => [literals, nullable];
+  // Nullable Literal Unions have the same underlying type
+  // as non-nullable Literal Unions, we implement the null possibility
+  // at the serialization level
+  List<Object?> get props => [literals];
 
   @override
   String dartType(FunctionBuildContext context) {
     context.clientContext.enums.add(this);
-    return enumName;
+    return "$enumName${nullable ? "?" : ""}";
   }
 
   String get enumName {
@@ -952,15 +955,12 @@ static final _map = {""");
         "${literal.literalValueCode} : ${literal.literalTypeName}Member,",
       );
     }
-    if (nullable) {
-      enumBuffer.write("null:null,");
-    }
+
     enumBuffer.writeln("};");
-    final nullableSuffix = nullable ? "?" : "";
     enumBuffer.writeln("""
-static $enumName$nullableSuffix fromValue(dynamic value) {
+static $enumName fromValue(Object value) {
   if (_map.containsKey(value)) {
-    return _map[value] as $enumName$nullableSuffix;
+    return _map[value] as $enumName;
   }
   throw Exception(value.toString() + r" cannot be converted to a $enumName");
 }
@@ -987,7 +987,11 @@ static $enumName$nullableSuffix fromValue(dynamic value) {
     String name, {
     required bool nullable,
   }) {
-    return "${dartType(context)}.fromValue($name)";
+    if (this.nullable || nullable) {
+      return "$name == null ? null : $enumName.fromValue($name)";
+    } else {
+      return "$enumName.fromValue($name)";
+    }
   }
 }
 

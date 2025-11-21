@@ -33,17 +33,17 @@ BTreeMapStringValue serialize(Query120Args args) {
         'items': encodeValue(
           args.i.items
               .map(
-                (on238399) => encodeValue({
-                  'id': encodeValue(on238399.id),
+                (on625319) => encodeValue({
+                  'id': encodeValue(on625319.id),
                   'metadata': encodeValue({
-                    for (final on194836 in on238399.metadata.entries)
-                      on194836.key: encodeValue(encodeValue(on194836.value)),
+                    for (final on465361 in on625319.metadata.entries)
+                      on465361.key: encodeValue(encodeValue(on465361.value)),
                   }),
-                  'name': encodeValue(on238399.name),
-                  'price': encodeValue(on238399.price),
-                  if (on238399.quantity.isDefined)
+                  'name': encodeValue(on625319.name),
+                  'price': encodeValue(on625319.price),
+                  if (on625319.quantity.isDefined)
                     'quantity': encodeValue(
-                      on238399.quantity.asDefined().value,
+                      on625319.quantity.asDefined().value,
                     ),
                 }),
               )
@@ -58,29 +58,29 @@ BTreeMapStringValue serialize(Query120Args args) {
 @pragma("vm:prefer-inline")
 Query120Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on858398) => (
-      i: (on858398['i'] as IMap<String, dynamic>).then(
-        (on931457) => (
-          items: (on931457['items'] as IList<dynamic>)
+    (on168226) => (
+      i: (on168226['i'] as IMap<String, dynamic>).then(
+        (on636177) => (
+          items: (on636177['items'] as IList<dynamic>)
               .map(
-                (on257331) => (on257331 as IMap<String, dynamic>).then(
-                  (on518195) => (
-                    id: (on518195['id'] as String),
-                    metadata: (on518195['metadata'] as IMap<String, dynamic>)
+                (on622305) => (on622305 as IMap<String, dynamic>).then(
+                  (on139865) => (
+                    id: (on139865['id'] as String),
+                    metadata: (on139865['metadata'] as IMap<String, dynamic>)
                         .map(
-                          (on869655, on237281) =>
-                              MapEntry(on869655, (on237281 as dynamic)),
+                          (on325552, on266833) =>
+                              MapEntry(on325552, (on266833 as dynamic)),
                         ),
-                    name: (on518195['name'] as String),
-                    price: (on518195['price'] as double?),
-                    quantity: on518195.containsKey('quantity')
-                        ? Defined<double>((on518195['quantity'] as double))
+                    name: (on139865['name'] as String),
+                    price: (on139865['price'] as double?),
+                    quantity: on139865.containsKey('quantity')
+                        ? Defined<double>((on139865['quantity'] as double))
                         : Undefined<double>(),
                   ),
                 ),
               )
               .toIList(),
-          total: (on931457['total'] as double),
+          total: (on636177['total'] as double),
         ),
       ),
     ),

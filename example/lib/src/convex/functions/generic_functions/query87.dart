@@ -30,8 +30,8 @@ BTreeMapStringValue serialize(Query87Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on674524 in args.i.entries)
-          on674524.key: encodeValue(encodeValue(on674524.value)),
+        for (final on802278 in args.i.entries)
+          on802278.key: encodeValue(encodeValue(on802278.value)),
       }),
     },
   );
@@ -40,9 +40,9 @@ BTreeMapStringValue serialize(Query87Args args) {
 @pragma("vm:prefer-inline")
 Query87Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on965277) => (
-      i: (on965277['i'] as IMap<String, dynamic>).map(
-        (on278655, on647711) => MapEntry(on278655, (on647711 as dynamic)),
+    (on363862) => (
+      i: (on363862['i'] as IMap<String, dynamic>).map(
+        (on954688, on572091) => MapEntry(on954688, (on572091 as dynamic)),
       ),
     ),
   );

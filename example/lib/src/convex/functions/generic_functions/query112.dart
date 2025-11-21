@@ -41,12 +41,12 @@ BTreeMapStringValue serialize(Query112Args args) {
 @pragma("vm:prefer-inline")
 Query112Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on112983) => (
-      i: (on112983['i'] as IMap<String, dynamic>).then(
-        (on400673) => (
-          completed: (on400673['completed'] as bool),
-          id: TasksId(on400673['id'] as String),
-          title: (on400673['title'] as String),
+    (on186092) => (
+      i: (on186092['i'] as IMap<String, dynamic>).then(
+        (on75008) => (
+          completed: (on75008['completed'] as bool),
+          id: TasksId(on75008['id'] as String),
+          title: (on75008['title'] as String),
         ),
       ),
     ),

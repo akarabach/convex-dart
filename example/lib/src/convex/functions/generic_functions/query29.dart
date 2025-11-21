@@ -33,8 +33,8 @@ BTreeMapStringValue serialize(Query29Args args) {
 @pragma("vm:prefer-inline")
 Query29Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on299888) =>
-        (i: on299888['i'] == null ? null : TasksId(on299888['i'] as String)),
+    (on956484) =>
+        (i: on956484['i'] == null ? null : TasksId(on956484['i'] as String)),
   );
 }
 
