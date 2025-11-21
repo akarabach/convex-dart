@@ -30,27 +30,27 @@ BTreeMapStringValue serialize(Query122Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on450404 in args.i.entries)
-          on450404.key: encodeValue(
+        for (final on858072 in args.i.entries)
+          on858072.key: encodeValue(
             encodeValue({
-              'required': encodeValue(on450404.value.required),
+              'required': encodeValue(on858072.value.required),
               'schema': encodeValue(
-                on450404.value.schema.split(
-                  (on540285) => encodeValue({
-                    'primitive': encodeValue(on540285.primitive.value),
+                on858072.value.schema.split(
+                  (on109723) => encodeValue({
+                    'primitive': encodeValue(on109723.primitive.value),
                   }),
-                  (on732378) => encodeValue({
+                  (on604151) => encodeValue({
                     'fields': encodeValue({
-                      for (final on468558 in on732378.fields.entries)
-                        on468558.key: encodeValue(encodeValue(on468558.value)),
+                      for (final on772056 in on604151.fields.entries)
+                        on772056.key: encodeValue(encodeValue(on772056.value)),
                     }),
                   }),
-                  (on540707) => encodeValue({
-                    'elementType': encodeValue(on540707.elementType),
+                  (on664027) => encodeValue({
+                    'elementType': encodeValue(on664027.elementType),
                   }),
                 ),
               ),
-              'type': encodeValue(on450404.value.type.value),
+              'type': encodeValue(on858072.value.type.value),
             }),
           ),
       }),
@@ -61,13 +61,13 @@ BTreeMapStringValue serialize(Query122Args args) {
 @pragma("vm:prefer-inline")
 Query122Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on648791) => (
-      i: (on648791['i'] as IMap<String, dynamic>).map(
-        (on542105, on894854) => MapEntry(
-          on542105,
-          (on894854 as IMap<String, dynamic>).then(
-            (on141499) => (
-              required: (on141499['required'] as bool),
+    (on700745) => (
+      i: (on700745['i'] as IMap<String, dynamic>).map(
+        (on707253, on57819) => MapEntry(
+          on707253,
+          (on57819 as IMap<String, dynamic>).then(
+            (on274762) => (
+              required: (on274762['required'] as bool),
               schema:
                   Union3<
                     ({$string$number$boolean primitive}),
@@ -75,40 +75,40 @@ Query122Response deserialize(Value map) {
                     ({String elementType})
                   >(() {
                     try {
-                      return (on141499['schema'] as IMap<String, dynamic>).then(
-                        (on963326) => (
+                      return (on274762['schema'] as IMap<String, dynamic>).then(
+                        (on48292) => (
                           primitive: $string$number$boolean.fromValue(
-                            on963326['primitive'],
+                            on48292['primitive'],
                           ),
                         ),
                       );
                     } catch (e) {}
 
                     try {
-                      return (on141499['schema'] as IMap<String, dynamic>).then(
-                        (on731099) => (
-                          fields: (on731099['fields'] as IMap<String, dynamic>)
+                      return (on274762['schema'] as IMap<String, dynamic>).then(
+                        (on179130) => (
+                          fields: (on179130['fields'] as IMap<String, dynamic>)
                               .map(
-                                (on252054, on259367) =>
-                                    MapEntry(on252054, (on259367 as String)),
+                                (on174353, on881851) =>
+                                    MapEntry(on174353, (on881851 as String)),
                               ),
                         ),
                       );
                     } catch (e) {}
 
                     try {
-                      return (on141499['schema'] as IMap<String, dynamic>).then(
-                        (on509193) =>
-                            (elementType: (on509193['elementType'] as String)),
+                      return (on274762['schema'] as IMap<String, dynamic>).then(
+                        (on400632) =>
+                            (elementType: (on400632['elementType'] as String)),
                       );
                     } catch (e) {}
 
                     throw Exception(
-                      (on141499['schema'].toString() ?? "null") +
+                      (on274762['schema'].toString() ?? "null") +
                           r" cannot be deserialized into a Union3<({$string$number$boolean primitive}), ({IMap<String, String> fields}), ({String elementType})>",
                     );
                   }()),
-              type: $primitive$object$array.fromValue(on141499['type']),
+              type: $primitive$object$array.fromValue(on274762['type']),
             ),
           ),
         ),

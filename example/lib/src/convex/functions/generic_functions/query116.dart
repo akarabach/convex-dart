@@ -35,8 +35,8 @@ BTreeMapStringValue serialize(Query116Args args) {
           'value': encodeValue(args.i.data.value),
         }),
         'metadata': encodeValue({
-          for (final on146843 in args.i.metadata.entries)
-            on146843.key: encodeValue(encodeValue(on146843.value)),
+          for (final on716243 in args.i.metadata.entries)
+            on716243.key: encodeValue(encodeValue(on716243.value)),
         }),
       }),
     },
@@ -46,17 +46,17 @@ BTreeMapStringValue serialize(Query116Args args) {
 @pragma("vm:prefer-inline")
 Query116Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on901911) => (
-      i: (on901911['i'] as IMap<String, dynamic>).then(
-        (on692668) => (
-          data: (on692668['data'] as IMap<String, dynamic>).then(
-            (on753988) => (
-              type: $text$number$boolean.fromValue(on753988['type']),
-              value: on753988['value'],
+    (on925088) => (
+      i: (on925088['i'] as IMap<String, dynamic>).then(
+        (on162554) => (
+          data: (on162554['data'] as IMap<String, dynamic>).then(
+            (on602911) => (
+              type: $text$number$boolean.fromValue(on602911['type']),
+              value: (on602911['value'] as dynamic),
             ),
           ),
-          metadata: (on692668['metadata'] as IMap<String, dynamic>).map(
-            (on49683, on390859) => MapEntry(on49683, on390859),
+          metadata: (on162554['metadata'] as IMap<String, dynamic>).map(
+            (on758630, on298918) => MapEntry(on758630, (on298918 as dynamic)),
           ),
         ),
       ),

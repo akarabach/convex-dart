@@ -33,7 +33,7 @@ BTreeMapStringValue serialize(Query1Args args) {
 @pragma("vm:prefer-inline")
 Query1Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on676470) => (i: (on676470['i'] as String)),
+    (on949507) => (i: (on949507['i'] as String)),
   );
 }
 

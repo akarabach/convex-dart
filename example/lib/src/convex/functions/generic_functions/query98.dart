@@ -31,8 +31,8 @@ BTreeMapStringValue serialize(Query98Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on33054) => encodeValue(on33054),
-          (on157191) => encodeValue(on157191),
+          (on945920) => encodeValue(on945920),
+          (on330854) => encodeValue(on330854),
         ),
       ),
     },
@@ -42,18 +42,18 @@ BTreeMapStringValue serialize(Query98Args args) {
 @pragma("vm:prefer-inline")
 Query98Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on697855) => (
+    (on180441) => (
       i: Union2<Uint8ListWithEquality, String>(() {
         try {
-          return (on697855['i'] as Uint8ListWithEquality);
+          return (on180441['i'] as Uint8ListWithEquality);
         } catch (e) {}
 
         try {
-          return (on697855['i'] as String);
+          return (on180441['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on697855['i'].toString() ?? "null") +
+          (on180441['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<Uint8ListWithEquality, String>",
         );
       }()),

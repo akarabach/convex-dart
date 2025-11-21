@@ -33,6 +33,29 @@ class FunctionBuildContext {
   FunctionBuildContext(this.clientContext);
 }
 
+/// A simple wrapper around a function spec that provides some helper utilities
+/// for importing the function in other generated files.
+class BuiltFunctionSpec {
+  final int index;
+  final FunctionSpec function;
+  BuiltFunctionSpec({required this.index, required this.function});
+
+  /// The parts of the path to the function
+  List<String> get parts => function.pathParts;
+
+  /// Relative path to the function from the root of the generated files
+  String get importPath => "./functions/${function.pathParts.join("/")}";
+  String get prefix => (function.functionName + index.toString()).camelCase;
+  // The names of the function that are in this file
+  List<String> get functionNames => [
+    function.functionName,
+    if (function.functionType == "Query") "${function.functionName}Stream",
+  ];
+  String? get streamFunctionName => function.functionType == "Query"
+      ? "${function.functionName}Stream"
+      : null;
+}
+
 @MappableClass()
 class FunctionsSpec with FunctionsSpecMappable {
   final String url;
@@ -44,22 +67,31 @@ class FunctionsSpec with FunctionsSpecMappable {
     ClientBuildContext context, {
     required bool publicSerialize,
   }) async {
-    final successFunctions = <FunctionSpec>[];
+    final validFunctionSpecs = <BuiltFunctionSpec>[];
+
     // Create the functions
-    for (final function in functions.whereType<FunctionSpec>()) {
+    for (final (index, function)
+        in functions.whereType<FunctionSpec>().indexed) {
       try {
+        // Skip internal functions
         if (function.visibility.kind == VisibilityType.internal) {
           continue;
         }
+        // Build the function
         final functionContext = FunctionBuildContext(context);
         function.build(functionContext, publicSerialize: publicSerialize);
+        // Combine the code
         final code =
             "${functionContext.headerBuffer}"
             "\n${functionContext.functionBuffer}"
             "\n${functionContext.typedefBuffer}";
+        // Add the code to the context
         final filePath = path.joinAll(["functions", ...function.pathParts]);
         context.outputs[filePath] = code;
-        successFunctions.add(function);
+
+        validFunctionSpecs.add(
+          BuiltFunctionSpec(index: index, function: function),
+        );
       } catch (e, stackTrace) {
         print(
           "ERROR: Failed to build function ${function.convexFunctionIdentifier}\n"
@@ -79,7 +111,7 @@ class FunctionsSpec with FunctionsSpecMappable {
     final httpFunctions = functions.whereType<HttpFunctionSpec>();
 
     // Create the client.dart file
-    buildClient(context, httpFunctions);
+    buildClient(context, httpFunctions, validFunctionSpecs);
     // Create the schema.dart file
     _buildSchema(context);
     // Create the literals.dart file
@@ -149,6 +181,7 @@ class ${tableName.pascalCase}Id  implements TableId {
   void buildClient(
     ClientBuildContext context,
     Iterable<HttpFunctionSpec> httpFunctions,
+    Iterable<BuiltFunctionSpec> builtFunctionSpecs,
   ) {
     final httpFunctionsBuffer = StringBuffer();
     for (final httpFunction in httpFunctions) {
@@ -156,11 +189,26 @@ class ${tableName.pascalCase}Id  implements TableId {
         httpFunctionsBuffer.writeln(httpFunction.build());
       } catch (e, stackTrace) {
         print(
-          "WARNING: Failed to build HTTP function ${httpFunction.method.name} ${httpFunction.path}\n"
+          "WARNING: Skipping function ${httpFunction.method.name} ${httpFunction.path} due to error: $e\n"
           "  Error: $e\n"
           "  Stack Trace: $stackTrace\n",
         );
       }
+    }
+
+    final tree = TreeNode();
+    for (final spec in builtFunctionSpecs) {
+      var root = tree;
+      for (final part in spec.parts.getRange(0, spec.parts.length - 1)) {
+        final node = root.children.putIfAbsent(part, () => TreeNode());
+        if (node is! TreeNode) {
+          throw StateError(
+            "Unable to build API: A function cannot have the same name as a folder. Found both a folder and a function named '$part'. Example conflict: 'api/foo/anotherQuery1.dart' (folder) and 'api/foo.dart' (file).",
+          );
+        }
+        root = node;
+      }
+      root.children.putIfAbsent(spec.parts.last, () => LeafNode(spec));
     }
 
     // Create the client.dart file
@@ -173,6 +221,7 @@ import 'package:convex_dart/src/convex_dart_for_generated_code.dart'
     as internal;
 import 'package:http/http.dart' as \$http;
 import 'dart:convert' as \$convert;
+${builtFunctionSpecs.map((spec) => "import '${spec.importPath}' as ${spec.prefix} show ${spec.functionNames.join(",")};").join("\n")}
 class ConvexClient {
   static Future<void> init() async {
     await internal.InternalConvexClient.init(
@@ -188,6 +237,9 @@ class ConvexClient {
   $httpFunctionsBuffer
 
 }
+
+
+${tree.children.isNotEmpty ? "final api = ${tree.build()};" : ""}
     """;
   }
 
@@ -207,6 +259,40 @@ import "package:convex_dart/src/convex_dart_for_generated_code.dart";
     }
     context.outputs[path.join("literals.dart")] = literalsBuffer.toString();
   }
+}
+
+sealed class BaseNode {}
+
+class TreeNode extends BaseNode {
+  final children = <String, BaseNode>{};
+  TreeNode();
+
+  String build() {
+    final buffer = StringBuffer("(\n");
+    for (final child in children.entries) {
+      switch (child.value) {
+        case TreeNode treeNode:
+          buffer.write("${child.key.camelCase}: ${treeNode.build()},\n");
+
+        case LeafNode(:final function):
+          buffer.write(
+            "${function.function.functionName}: ${function.prefix}.${function.function.functionName},\n",
+          );
+          if (function.streamFunctionName != null) {
+            buffer.write(
+              "${function.streamFunctionName}:  ${function.prefix}.${function.streamFunctionName},\n",
+            );
+          }
+      }
+    }
+    buffer.write(")");
+    return buffer.toString();
+  }
+}
+
+class LeafNode extends BaseNode {
+  final BuiltFunctionSpec function;
+  LeafNode(this.function);
 }
 
 @MappableEnum(mode: ValuesMode.named)
@@ -538,7 +624,7 @@ class JsAny extends JsType with JsAnyMappable {
     String name, {
     required bool nullable,
   }) {
-    return name;
+    return "($name as dynamic)";
   }
 }
 
@@ -1100,6 +1186,9 @@ class JsObject extends JsType with JsObjectMappable {
     if (_dartKeywords.contains(name)) {
       name = "\$$name";
     }
+    if (name.startsWith("\$_")) {
+      name = name.substring(2);
+    }
     return name;
   }
 
@@ -1151,7 +1240,7 @@ class JsObject extends JsType with JsObjectMappable {
     for (final entry in value.entries) {
       if (entry.value.optional) {
         buffer.write(
-          "${safeDartKey(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
+          "${safeDartKey(entry.key)}: $argName${dot}containsKey('${entry.key}') ? Defined<${entry.value.fieldType.dartType(context)}>(${entry.value.fieldType.deserialize(context, "$argName['${entry.key}']", nullable: false)}) : Undefined<${entry.value.fieldType.dartType(context)}>(),",
         );
       } else {
         buffer.write(

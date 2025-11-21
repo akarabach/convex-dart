@@ -32,7 +32,7 @@ BTreeMapStringValue serialize(void args) {
 
 @pragma("vm:prefer-inline")
 VoidReturnResponse deserialize(Value map) {
-  return (body: decodeValue(map));
+  return (body: (decodeValue(map) as dynamic));
 }
 
 typedef VoidReturnResponse = ({dynamic body});
