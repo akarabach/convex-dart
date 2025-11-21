@@ -8,6 +8,7 @@ dependencies:
   flutter:
     sdk: flutter
   convex_dart:
+  fast_immutable_collections: ^11.1.0
 
 dev_dependencies:
   flutter_test:

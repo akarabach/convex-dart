@@ -1,6 +1,6 @@
 ## 0.6.0-dev.1
 
-- Fix compilation issue on web
+- Fix compilation issues with Flutter Web
 
 ## 0.5.0
 
