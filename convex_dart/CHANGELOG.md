@@ -1,3 +1,7 @@
+## Unreleased
+
+- Fix compilation issues with Flutter Web
+
 ## 0.5.0
 
 - Fix many tls issues
