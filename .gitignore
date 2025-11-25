@@ -198,4 +198,6 @@ target
 *.dll
 *.so
 /.idea/
-/.vscode/settings.json
+
+settings.json
+.fvmrc

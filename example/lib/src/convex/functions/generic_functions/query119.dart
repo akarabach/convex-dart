@@ -32,17 +32,17 @@ BTreeMapStringValue serialize(Query119Args args) {
       'i': encodeValue({
         'data': encodeValue(
           args.i.data.split(
-            (on200962) => encodeValue({
-              'content': encodeValue(on200962.content),
-              'type': encodeValue(on200962.type),
+            (on453820) => encodeValue({
+              'content': encodeValue(on453820.content),
+              'type': encodeValue(on453820.type),
             }),
-            (on270141) => encodeValue({
-              'content': encodeValue(on270141.content),
-              'type': encodeValue(on270141.type),
+            (on761487) => encodeValue({
+              'content': encodeValue(on761487.content),
+              'type': encodeValue(on761487.type),
             }),
-            (on155088) => encodeValue({
-              'content': encodeValue(on155088.content),
-              'type': encodeValue(on155088.type),
+            (on48019) => encodeValue({
+              'content': encodeValue(on48019.content),
+              'type': encodeValue(on48019.type),
             }),
           ),
         ),
@@ -54,9 +54,9 @@ BTreeMapStringValue serialize(Query119Args args) {
 @pragma("vm:prefer-inline")
 Query119Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on568903) => (
-      i: (on568903['i'] as IMap<String, dynamic>).then(
-        (on916503) => (
+    (on493998) => (
+      i: (on493998['i'] as IMap<String, dynamic>).then(
+        (on752929) => (
           data:
               Union3<
                 ({String content, $text type}),
@@ -64,34 +64,34 @@ Query119Response deserialize(Value map) {
                 ({bool content, $boolean type})
               >(() {
                 try {
-                  return (on916503['data'] as IMap<String, dynamic>).then(
-                    (on436536) => (
-                      content: (on436536['content'] as String),
-                      type: $text.validate(on436536['type']),
+                  return (on752929['data'] as IMap<String, dynamic>).then(
+                    (on28935) => (
+                      content: (on28935['content'] as String),
+                      type: $text.validate(on28935['type']),
                     ),
                   );
                 } catch (e) {}
 
                 try {
-                  return (on916503['data'] as IMap<String, dynamic>).then(
-                    (on519604) => (
-                      content: (on519604['content'] as double),
-                      type: $number.validate(on519604['type']),
+                  return (on752929['data'] as IMap<String, dynamic>).then(
+                    (on61958) => (
+                      content: (on61958['content'] as double),
+                      type: $number.validate(on61958['type']),
                     ),
                   );
                 } catch (e) {}
 
                 try {
-                  return (on916503['data'] as IMap<String, dynamic>).then(
-                    (on523228) => (
-                      content: (on523228['content'] as bool),
-                      type: $boolean.validate(on523228['type']),
+                  return (on752929['data'] as IMap<String, dynamic>).then(
+                    (on984952) => (
+                      content: (on984952['content'] as bool),
+                      type: $boolean.validate(on984952['type']),
                     ),
                   );
                 } catch (e) {}
 
                 throw Exception(
-                  (on916503['data'].toString() ?? "null") +
+                  (on752929['data'].toString() ?? "null") +
                       r" cannot be deserialized into a Union3<({String content,$text type}), ({double content,$number type}), ({bool content,$boolean type})>",
                 );
               }()),

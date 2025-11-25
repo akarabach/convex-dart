@@ -29,7 +29,7 @@ Stream<Query126Response> query126Stream(Query126Args args) {
 BTreeMapStringValue serialize(Query126Args args) {
   return hashmapToBtreemap(
     hashmap: {
-      'i': encodeValue({'stepType': encodeValue(args.i.stepType.value)}),
+      'i': encodeValue({'stepType': encodeValue(args.i.step_type.value)}),
     },
   );
 }
@@ -37,14 +37,14 @@ BTreeMapStringValue serialize(Query126Args args) {
 @pragma("vm:prefer-inline")
 Query126Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on824413) => (
-      i: (on824413['i'] as IMap<String, dynamic>).then(
-        (on849681) =>
-            (stepType: $action$condition$loop.fromValue(on849681['stepType'])),
+    (on769118) => (
+      i: (on769118['i'] as IMap<String, dynamic>).then(
+        (on454955) =>
+            (step_type: $action$condition$loop.fromValue(on454955['stepType'])),
       ),
     ),
   );
 }
 
-typedef Query126Args = ({({$action$condition$loop stepType}) i});
-typedef Query126Response = ({({$action$condition$loop stepType}) i});
+typedef Query126Args = ({({$action$condition$loop step_type}) i});
+typedef Query126Response = ({({$action$condition$loop step_type}) i});

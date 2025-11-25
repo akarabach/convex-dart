@@ -35,7 +35,7 @@ BTreeMapStringValue serialize(Query141Args args) {
             'c': encodeValue(
               args.i.a.b.c
                   .map(
-                    (on349178) => encodeValue({'d': encodeValue(on349178.d)}),
+                    (on396023) => encodeValue({'d': encodeValue(on396023.d)}),
                   )
                   .toIList(),
             ),
@@ -49,17 +49,17 @@ BTreeMapStringValue serialize(Query141Args args) {
 @pragma("vm:prefer-inline")
 Query141Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on713761) => (
-      i: (on713761['i'] as IMap<String, dynamic>).then(
-        (on862373) => (
-          a: (on862373['a'] as IMap<String, dynamic>).then(
-            (on79084) => (
-              b: (on79084['b'] as IMap<String, dynamic>).then(
-                (on435848) => (
-                  c: (on435848['c'] as IList<dynamic>)
+    (on526652) => (
+      i: (on526652['i'] as IMap<String, dynamic>).then(
+        (on376121) => (
+          a: (on376121['a'] as IMap<String, dynamic>).then(
+            (on989132) => (
+              b: (on989132['b'] as IMap<String, dynamic>).then(
+                (on28584) => (
+                  c: (on28584['c'] as IList<dynamic>)
                       .map(
-                        (on426549) => (on426549 as IMap<String, dynamic>).then(
-                          (on882260) => (d: (on882260['d'] as String)),
+                        (on835448) => (on835448 as IMap<String, dynamic>).then(
+                          (on824107) => (d: (on824107['d'] as String)),
                         ),
                       )
                       .toIList(),

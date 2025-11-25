@@ -32,7 +32,7 @@ Stream<GetTasksByStatusResponse> getTasksByStatusStream(
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(GetTasksByStatusArgs args) {
   return hashmapToBtreemap(
-    hashmap: {'isCompleted': encodeValue(args.isCompleted)},
+    hashmap: {'isCompleted': encodeValue(args.is_completed)},
   );
 }
 
@@ -41,12 +41,12 @@ GetTasksByStatusResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on272061) => (on272061 as IMap<String, dynamic>).then(
-            (on480782) => (
-              creationTime: (on480782['_creationTime'] as double),
-              id: TasksId(on480782['_id'] as String),
-              isCompleted: (on480782['isCompleted'] as bool),
-              text: (on480782['text'] as String),
+          (on517290) => (on517290 as IMap<String, dynamic>).then(
+            (on649175) => (
+              creation_time: (on649175['_creationTime'] as double),
+              id: TasksId(on649175['_id'] as String),
+              is_completed: (on649175['isCompleted'] as bool),
+              text: (on649175['text'] as String),
             ),
           ),
         )
@@ -54,8 +54,8 @@ GetTasksByStatusResponse deserialize(Value map) {
   );
 }
 
-typedef GetTasksByStatusArgs = ({bool isCompleted});
+typedef GetTasksByStatusArgs = ({bool is_completed});
 typedef GetTasksByStatusResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
+  IList<({double creation_time, TasksId id, bool is_completed, String text})>
   body,
 });

@@ -23,7 +23,7 @@ BTreeMapStringValue serialize(SetTaskCompletionArgs args) {
   return hashmapToBtreemap(
     hashmap: {
       'id': encodeValue(args.id),
-      'isCompleted': encodeValue(args.isCompleted),
+      'isCompleted': encodeValue(args.is_completed),
     },
   );
 }
@@ -33,5 +33,5 @@ SetTaskCompletionResponse deserialize(Value map) {
   return (body: null);
 }
 
-typedef SetTaskCompletionArgs = ({TasksId id, bool isCompleted});
+typedef SetTaskCompletionArgs = ({TasksId id, bool is_completed});
 typedef SetTaskCompletionResponse = ({void body});

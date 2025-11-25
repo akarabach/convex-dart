@@ -34,30 +34,30 @@ BTreeMapStringValue serialize(Query125Args args) {
           'steps': encodeValue(
             args.i.workflow.steps
                 .map(
-                  (on766690) => encodeValue({
+                  (on378425) => encodeValue({
                     'config': encodeValue({
-                      for (final on968618 in on766690.config.entries)
-                        on968618.key: encodeValue(encodeValue(on968618.value)),
+                      for (final on942486 in on378425.config.entries)
+                        on942486.key: encodeValue(encodeValue(on942486.value)),
                     }),
-                    if (on766690.error.isDefined)
+                    if (on378425.error.isDefined)
                       'error': encodeValue({
                         'handler': encodeValue(
-                          on766690.error.asDefined().value.handler,
+                          on378425.error.asDefined().value.handler,
                         ),
                         'retry': encodeValue({
                           'count': encodeValue(
-                            on766690.error.asDefined().value.retry.count,
+                            on378425.error.asDefined().value.retry.count,
                           ),
                           'delay': encodeValue(
-                            on766690.error.asDefined().value.retry.delay,
+                            on378425.error.asDefined().value.retry.delay,
                           ),
                         }),
                       }),
-                    'id': encodeValue(on766690.id),
-                    'name': encodeValue(on766690.name),
-                    if (on766690.next.isDefined)
-                      'next': encodeValue(on766690.next.asDefined().value),
-                    'type': encodeValue(on766690.type.value),
+                    'id': encodeValue(on378425.id),
+                    'name': encodeValue(on378425.name),
+                    if (on378425.next.isDefined)
+                      'next': encodeValue(on378425.next.asDefined().value),
+                    'type': encodeValue(on378425.type.value),
                   }),
                 )
                 .toIList(),
@@ -65,19 +65,19 @@ BTreeMapStringValue serialize(Query125Args args) {
           'triggers': encodeValue(
             args.i.workflow.triggers
                 .map(
-                  (on245687) => encodeValue(
-                    on245687.split(
-                      (on429730) => encodeValue({
-                        'cron': encodeValue(on429730.cron),
-                        'type': encodeValue(on429730.type),
+                  (on228774) => encodeValue(
+                    on228774.split(
+                      (on165769) => encodeValue({
+                        'cron': encodeValue(on165769.cron),
+                        'type': encodeValue(on165769.type),
                       }),
-                      (on91848) => encodeValue({
-                        'type': encodeValue(on91848.type),
-                        'url': encodeValue(on91848.url),
+                      (on189703) => encodeValue({
+                        'type': encodeValue(on189703.type),
+                        'url': encodeValue(on189703.url),
                       }),
-                      (on520030) => encodeValue({
-                        'eventType': encodeValue(on520030.eventType),
-                        'type': encodeValue(on520030.type),
+                      (on403605) => encodeValue({
+                        'eventType': encodeValue(on403605.event_type),
+                        'type': encodeValue(on403605.type),
                       }),
                     ),
                   ),
@@ -85,15 +85,15 @@ BTreeMapStringValue serialize(Query125Args args) {
                 .toIList(),
           ),
           'variables': encodeValue({
-            for (final on63003 in args.i.workflow.variables.entries)
-              on63003.key: encodeValue(
+            for (final on403663 in args.i.workflow.variables.entries)
+              on403663.key: encodeValue(
                 encodeValue(
-                  on63003.value.split(
-                    (on715195) => encodeValue(on715195),
-                    (on905960) => encodeValue(on905960),
-                    (on397095) => encodeValue(on397095),
-                    (on371687) => encodeValue(
-                      on371687.map((on78893) => encodeValue(on78893)).toIList(),
+                  on403663.value.split(
+                    (on93517) => encodeValue(on93517),
+                    (on568031) => encodeValue(on568031),
+                    (on300022) => encodeValue(on300022),
+                    (on551171) => encodeValue(
+                      on551171.map((on2097) => encodeValue(on2097)).toIList(),
                     ),
                   ),
                 ),
@@ -108,42 +108,42 @@ BTreeMapStringValue serialize(Query125Args args) {
 @pragma("vm:prefer-inline")
 Query125Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on765269) => (
-      i: (on765269['i'] as IMap<String, dynamic>).then(
-        (on648631) => (
-          workflow: (on648631['workflow'] as IMap<String, dynamic>).then(
-            (on501730) => (
-              steps: (on501730['steps'] as IList<dynamic>)
+    (on192782) => (
+      i: (on192782['i'] as IMap<String, dynamic>).then(
+        (on46902) => (
+          workflow: (on46902['workflow'] as IMap<String, dynamic>).then(
+            (on642698) => (
+              steps: (on642698['steps'] as IList<dynamic>)
                   .map(
-                    (on314800) => (on314800 as IMap<String, dynamic>).then(
-                      (on435560) => (
-                        config: (on435560['config'] as IMap<String, dynamic>)
+                    (on164931) => (on164931 as IMap<String, dynamic>).then(
+                      (on905369) => (
+                        config: (on905369['config'] as IMap<String, dynamic>)
                             .map(
-                              (on947772, on400054) =>
-                                  MapEntry(on947772, (on400054 as dynamic)),
+                              (on357343, on552516) =>
+                                  MapEntry(on357343, (on552516 as dynamic)),
                             ),
-                        error: on435560.containsKey('error')
+                        error: on905369.containsKey('error')
                             ? Defined<
                                 ({
                                   String handler,
                                   ({double count, double delay}) retry,
                                 })
                               >(
-                                (on435560['error'] as IMap<String, dynamic>)
+                                (on905369['error'] as IMap<String, dynamic>)
                                     .then(
-                                      (on597026) => (
+                                      (on489164) => (
                                         handler:
-                                            (on597026['handler'] as String),
+                                            (on489164['handler'] as String),
                                         retry:
-                                            (on597026['retry']
+                                            (on489164['retry']
                                                     as IMap<String, dynamic>)
                                                 .then(
-                                                  (on424156) => (
+                                                  (on782559) => (
                                                     count:
-                                                        (on424156['count']
+                                                        (on782559['count']
                                                             as double),
                                                     delay:
-                                                        (on424156['delay']
+                                                        (on782559['delay']
                                                             as double),
                                                   ),
                                                 ),
@@ -156,84 +156,84 @@ Query125Response deserialize(Value map) {
                                   ({double count, double delay}) retry,
                                 })
                               >(),
-                        id: (on435560['id'] as String),
-                        name: (on435560['name'] as String),
-                        next: on435560.containsKey('next')
-                            ? Defined<String>((on435560['next'] as String))
+                        id: (on905369['id'] as String),
+                        name: (on905369['name'] as String),
+                        next: on905369.containsKey('next')
+                            ? Defined<String>((on905369['next'] as String))
                             : Undefined<String>(),
                         type: $action$condition$loop.fromValue(
-                          on435560['type'],
+                          on905369['type'],
                         ),
                       ),
                     ),
                   )
                   .toIList(),
-              triggers: (on501730['triggers'] as IList<dynamic>)
+              triggers: (on642698['triggers'] as IList<dynamic>)
                   .map(
-                    (on386099) =>
+                    (on289437) =>
                         Union3<
                           ({String cron, $schedule type}),
                           ({$webhook type, String url}),
-                          ({String eventType, $event type})
+                          ({String event_type, $event type})
                         >(() {
                           try {
-                            return (on386099 as IMap<String, dynamic>).then(
-                              (on208513) => (
-                                cron: (on208513['cron'] as String),
-                                type: $schedule.validate(on208513['type']),
+                            return (on289437 as IMap<String, dynamic>).then(
+                              (on236536) => (
+                                cron: (on236536['cron'] as String),
+                                type: $schedule.validate(on236536['type']),
                               ),
                             );
                           } catch (e) {}
 
                           try {
-                            return (on386099 as IMap<String, dynamic>).then(
-                              (on350967) => (
-                                type: $webhook.validate(on350967['type']),
-                                url: (on350967['url'] as String),
+                            return (on289437 as IMap<String, dynamic>).then(
+                              (on448229) => (
+                                type: $webhook.validate(on448229['type']),
+                                url: (on448229['url'] as String),
                               ),
                             );
                           } catch (e) {}
 
                           try {
-                            return (on386099 as IMap<String, dynamic>).then(
-                              (on496770) => (
-                                eventType: (on496770['eventType'] as String),
-                                type: $event.validate(on496770['type']),
+                            return (on289437 as IMap<String, dynamic>).then(
+                              (on922618) => (
+                                event_type: (on922618['eventType'] as String),
+                                type: $event.validate(on922618['type']),
                               ),
                             );
                           } catch (e) {}
 
                           throw Exception(
-                            (on386099.toString() ?? "null") +
-                                r" cannot be deserialized into a Union3<({String cron,$schedule type}), ({$webhook type,String url}), ({String eventType,$event type})>",
+                            (on289437.toString() ?? "null") +
+                                r" cannot be deserialized into a Union3<({String cron,$schedule type}), ({$webhook type,String url}), ({String event_type,$event type})>",
                           );
                         }()),
                   )
                   .toIList(),
-              variables: (on501730['variables'] as IMap<String, dynamic>).map(
-                (on681093, on227971) => MapEntry(
-                  on681093,
+              variables: (on642698['variables'] as IMap<String, dynamic>).map(
+                (on841206, on25231) => MapEntry(
+                  on841206,
                   Union4<String, double, bool, IList<dynamic>>(() {
                     try {
-                      return (on227971 as String);
+                      return (on25231 as String);
                     } catch (e) {}
 
                     try {
-                      return (on227971 as double);
+                      return (on25231 as double);
                     } catch (e) {}
 
                     try {
-                      return (on227971 as bool);
+                      return (on25231 as bool);
                     } catch (e) {}
 
                     try {
-                      return (on227971 as IList<dynamic>)
-                          .map((on192313) => (on192313 as dynamic))
+                      return (on25231 as IList<dynamic>)
+                          .map((on472216) => (on472216 as dynamic))
                           .toIList();
                     } catch (e) {}
 
                     throw Exception(
-                      (on227971.toString() ?? "null") +
+                      (on25231.toString() ?? "null") +
                           r" cannot be deserialized into a Union4<String, double, bool, IList<dynamic>>",
                     );
                   }()),
@@ -266,7 +266,7 @@ typedef Query125Args = ({
         Union3<
           ({String cron, $schedule type}),
           ({$webhook type, String url}),
-          ({String eventType, $event type})
+          ({String event_type, $event type})
         >
       >
       triggers,
@@ -295,7 +295,7 @@ typedef Query125Response = ({
         Union3<
           ({String cron, $schedule type}),
           ({$webhook type, String url}),
-          ({String eventType, $event type})
+          ({String event_type, $event type})
         >
       >
       triggers,

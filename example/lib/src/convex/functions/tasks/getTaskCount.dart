@@ -33,10 +33,10 @@ BTreeMapStringValue serialize(void args) {
 @pragma("vm:prefer-inline")
 GetTaskCountResponse deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on983916) => (
-      completed: (on983916['completed'] as double),
-      pending: (on983916['pending'] as double),
-      total: (on983916['total'] as double),
+    (on452820) => (
+      completed: (on452820['completed'] as double),
+      pending: (on452820['pending'] as double),
+      total: (on452820['total'] as double),
     ),
   );
 }

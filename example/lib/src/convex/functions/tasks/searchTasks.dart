@@ -28,7 +28,7 @@ Stream<SearchTasksResponse> searchTasksStream(SearchTasksArgs args) {
 @pragma("vm:prefer-inline")
 BTreeMapStringValue serialize(SearchTasksArgs args) {
   return hashmapToBtreemap(
-    hashmap: {'searchText': encodeValue(args.searchText)},
+    hashmap: {'searchText': encodeValue(args.search_text)},
   );
 }
 
@@ -37,12 +37,12 @@ SearchTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on713734) => (on713734 as IMap<String, dynamic>).then(
-            (on255247) => (
-              creationTime: (on255247['_creationTime'] as double),
-              id: TasksId(on255247['_id'] as String),
-              isCompleted: (on255247['isCompleted'] as bool),
-              text: (on255247['text'] as String),
+          (on88579) => (on88579 as IMap<String, dynamic>).then(
+            (on362391) => (
+              creation_time: (on362391['_creationTime'] as double),
+              id: TasksId(on362391['_id'] as String),
+              is_completed: (on362391['isCompleted'] as bool),
+              text: (on362391['text'] as String),
             ),
           ),
         )
@@ -50,8 +50,8 @@ SearchTasksResponse deserialize(Value map) {
   );
 }
 
-typedef SearchTasksArgs = ({String searchText});
+typedef SearchTasksArgs = ({String search_text});
 typedef SearchTasksResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
+  IList<({double creation_time, TasksId id, bool is_completed, String text})>
   body,
 });

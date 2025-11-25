@@ -35,12 +35,12 @@ GetAllTasksResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on908725) => (on908725 as IMap<String, dynamic>).then(
-            (on970123) => (
-              creationTime: (on970123['_creationTime'] as double),
-              id: TasksId(on970123['_id'] as String),
-              isCompleted: (on970123['isCompleted'] as bool),
-              text: (on970123['text'] as String),
+          (on731901) => (on731901 as IMap<String, dynamic>).then(
+            (on700512) => (
+              creation_time: (on700512['_creationTime'] as double),
+              id: TasksId(on700512['_id'] as String),
+              is_completed: (on700512['isCompleted'] as bool),
+              text: (on700512['text'] as String),
             ),
           ),
         )
@@ -49,6 +49,6 @@ GetAllTasksResponse deserialize(Value map) {
 }
 
 typedef GetAllTasksResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
+  IList<({double creation_time, TasksId id, bool is_completed, String text})>
   body,
 });
