@@ -1,3 +1,7 @@
+## 0.6.0-dev.3
+
+- Camel case the generated Dart keys
+
 ## 0.6.0-dev.2
 
 - Snake case the generated Dart keys

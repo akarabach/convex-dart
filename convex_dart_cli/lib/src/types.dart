@@ -1193,7 +1193,7 @@ class JsObject extends JsType with JsObjectMappable {
     if (name.startsWith("\$_")) {
       name = name.substring(2);
     }
-    return name.snakeCase;
+    return name.camelCase;
   }
 
   @override
