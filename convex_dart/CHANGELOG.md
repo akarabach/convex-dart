@@ -1,3 +1,7 @@
+## 0.6.0-dev.2
+
+- Update Rust client to 0.10.2
+
 ## 0.6.0-dev.1
 
 - Fix compilation issues with Flutter Web
