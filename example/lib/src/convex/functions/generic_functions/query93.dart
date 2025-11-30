@@ -31,8 +31,8 @@ BTreeMapStringValue serialize(Query93Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on932478) => encodeValue(on932478),
-          (on815758) => encodeValue(on815758),
+          (on505630) => encodeValue(on505630),
+          (on504608) => encodeValue(on504608),
         ),
       ),
     },
@@ -42,18 +42,18 @@ BTreeMapStringValue serialize(Query93Args args) {
 @pragma("vm:prefer-inline")
 Query93Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on391191) => (
+    (on77314) => (
       i: Union2<bool, double>(() {
         try {
-          return (on391191['i'] as bool);
+          return (on77314['i'] as bool);
         } catch (e) {}
 
         try {
-          return (on391191['i'] as double);
+          return (on77314['i'] as double);
         } catch (e) {}
 
         throw Exception(
-          (on391191['i'].toString() ?? "null") +
+          (on77314['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<bool, double>",
         );
       }()),

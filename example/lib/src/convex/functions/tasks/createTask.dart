@@ -20,8 +20,8 @@ Future<CreateTaskResponse> createTask(CreateTaskArgs args) async {
 BTreeMapStringValue serialize(CreateTaskArgs args) {
   return hashmapToBtreemap(
     hashmap: {
-      if (args.is_completed.isDefined)
-        'isCompleted': encodeValue(args.is_completed.asDefined().value),
+      if (args.isCompleted.isDefined)
+        'isCompleted': encodeValue(args.isCompleted.asDefined().value),
       'text': encodeValue(args.text),
     },
   );
@@ -32,5 +32,5 @@ CreateTaskResponse deserialize(Value map) {
   return (body: TasksId(decodeValue(map) as String));
 }
 
-typedef CreateTaskArgs = ({Optional<bool> is_completed, String text});
+typedef CreateTaskArgs = ({Optional<bool> isCompleted, String text});
 typedef CreateTaskResponse = ({TasksId body});

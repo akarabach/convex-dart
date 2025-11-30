@@ -34,7 +34,7 @@ BTreeMapStringValue serialize(void args) {
 ArrayReturnResponse deserialize(Value map) {
   return (
     body: (decodeValue(map) as IList<dynamic>)
-        .map((on595663) => (on595663 as String))
+        .map((on288112) => (on288112 as String))
         .toIList(),
   );
 }

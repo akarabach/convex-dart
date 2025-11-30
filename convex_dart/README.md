@@ -24,7 +24,9 @@ A Flutter package for seamless integration with [Convex](https://convex.dev) bac
       - [Duplicate Stream Events](#duplicate-stream-events)
   - [Troubleshooting](#troubleshooting)
     - [Common Issues](#common-issues)
-  - [Contributing](#contributing)
+  - [Disable Precompiled Binaries](#disable-precompiled-binaries)
+  - [Flutter Web](#flutter-web)
+  - [Maintaining the Rust Client](#maintaining-the-rust-client)
   - [License](#license)
   - [Updating Rust Client](#updating-rust-client)
 
@@ -530,9 +532,20 @@ This package does not officially support Flutter Web.
 
 You may be able to get it working by disabling precompiled binaries, installing rust and following this [guide](https://cjycode.com/flutter_rust_bridge/manual/integrate/template/setup/web) here.  
 
-## Contributing
+## Maintaining the Rust Client
 
-We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md) for details.
+The `rust` directory is a submodule of the [convex-rs](https://github.com/dickermoshe/convex-rs) repository.
+To update the Rust client, run the following command:
+
+```bash
+git subtree pull  --prefix convex_dart/rust https://github.com/dickermoshe/convex-rs branch_name --squash
+```
+
+and then rerun bindings generation:
+
+```bash
+flutter_rust_bridge_codegen generate  
+```
 
 ## License
 

@@ -21,8 +21,8 @@ BTreeMapStringValue serialize(UpdateTaskArgs args) {
   return hashmapToBtreemap(
     hashmap: {
       'id': encodeValue(args.id),
-      if (args.is_completed.isDefined)
-        'isCompleted': encodeValue(args.is_completed.asDefined().value),
+      if (args.isCompleted.isDefined)
+        'isCompleted': encodeValue(args.isCompleted.asDefined().value),
       if (args.text.isDefined) 'text': encodeValue(args.text.asDefined().value),
     },
   );
@@ -35,7 +35,7 @@ UpdateTaskResponse deserialize(Value map) {
 
 typedef UpdateTaskArgs = ({
   TasksId id,
-  Optional<bool> is_completed,
+  Optional<bool> isCompleted,
   Optional<String> text,
 });
 typedef UpdateTaskResponse = ({void body});

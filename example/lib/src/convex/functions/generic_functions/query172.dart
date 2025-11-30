@@ -30,12 +30,12 @@ BTreeMapStringValue serialize(Query172Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on460579 in args.i.entries)
-          on460579.key: encodeValue(
+        for (final on180770 in args.i.entries)
+          on180770.key: encodeValue(
             encodeValue(
-              on460579.value.split(
-                (on366928) => encodeValue(on366928),
-                (on698328) => encodeValue(on698328),
+              on180770.value.split(
+                (on793487) => encodeValue(on793487),
+                (on948485) => encodeValue(on948485),
               ),
             ),
           ),
@@ -47,21 +47,21 @@ BTreeMapStringValue serialize(Query172Args args) {
 @pragma("vm:prefer-inline")
 Query172Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on973467) => (
-      i: (on973467['i'] as IMap<String, dynamic>).map(
-        (on280312, on271490) => MapEntry(
-          on280312,
+    (on646365) => (
+      i: (on646365['i'] as IMap<String, dynamic>).map(
+        (on992595, on740536) => MapEntry(
+          on992595,
           Union2<String, double>(() {
             try {
-              return (on271490 as String);
+              return (on740536 as String);
             } catch (e) {}
 
             try {
-              return (on271490 as double);
+              return (on740536 as double);
             } catch (e) {}
 
             throw Exception(
-              (on271490.toString() ?? "null") +
+              (on740536.toString() ?? "null") +
                   r" cannot be deserialized into a Union2<String, double>",
             );
           }()),

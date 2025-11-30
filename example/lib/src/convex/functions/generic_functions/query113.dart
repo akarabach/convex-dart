@@ -46,19 +46,19 @@ BTreeMapStringValue serialize(Query113Args args) {
 @pragma("vm:prefer-inline")
 Query113Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on127360) => (
-      i: (on127360['i'] as IMap<String, dynamic>).then(
-        (on119101) => (
-          settings: (on119101['settings'] as IMap<String, dynamic>).then(
-            (on758072) => (
-              notifications: (on758072['notifications'] as bool),
-              theme: (on758072['theme'] as String),
+    (on787892) => (
+      i: (on787892['i'] as IMap<String, dynamic>).then(
+        (on917154) => (
+          settings: (on917154['settings'] as IMap<String, dynamic>).then(
+            (on564541) => (
+              notifications: (on564541['notifications'] as bool),
+              theme: (on564541['theme'] as String),
             ),
           ),
-          user: (on119101['user'] as IMap<String, dynamic>).then(
-            (on911903) => (
-              email: (on911903['email'] as String),
-              name: (on911903['name'] as String),
+          user: (on917154['user'] as IMap<String, dynamic>).then(
+            (on801061) => (
+              email: (on801061['email'] as String),
+              name: (on801061['name'] as String),
             ),
           ),
         ),

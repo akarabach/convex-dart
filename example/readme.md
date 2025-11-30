@@ -40,7 +40,7 @@ example/
 2. **Generate Dart client:**
 
    ```bash
-   convex_dart_cli generate --public-serialize
+   dart run convex_dart_cli generate --public-serialize
    ```
 
 3. **Run the example:**

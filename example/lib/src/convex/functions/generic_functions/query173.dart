@@ -31,8 +31,8 @@ BTreeMapStringValue serialize(Query173Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on569933) => encodeValue({'type': encodeValue(on569933.type)}),
-          (on742390) => encodeValue({'type': encodeValue(on742390.type)}),
+          (on288325) => encodeValue({'type': encodeValue(on288325.type)}),
+          (on381288) => encodeValue({'type': encodeValue(on381288.type)}),
         ),
       ),
     },
@@ -42,22 +42,22 @@ BTreeMapStringValue serialize(Query173Args args) {
 @pragma("vm:prefer-inline")
 Query173Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on119042) => (
+    (on55621) => (
       i: Union2<({$A type}), ({$B type})>(() {
         try {
-          return (on119042['i'] as IMap<String, dynamic>).then(
-            (on144470) => (type: $A.validate(on144470['type'])),
+          return (on55621['i'] as IMap<String, dynamic>).then(
+            (on949156) => (type: $A.validate(on949156['type'])),
           );
         } catch (e) {}
 
         try {
-          return (on119042['i'] as IMap<String, dynamic>).then(
-            (on85486) => (type: $B.validate(on85486['type'])),
+          return (on55621['i'] as IMap<String, dynamic>).then(
+            (on982538) => (type: $B.validate(on982538['type'])),
           );
         } catch (e) {}
 
         throw Exception(
-          (on119042['i'].toString() ?? "null") +
+          (on55621['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<({$A type}), ({$B type})>",
         );
       }()),
