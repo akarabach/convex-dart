@@ -2,9 +2,18 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'privateObjectReturn.freezed.dart';
+
+@freezed
+sealed class PrivateObjectReturnResponse with _$PrivateObjectReturnResponse {
+  const factory PrivateObjectReturnResponse({required String i}) =
+      _PrivateObjectReturnResponse;
+}
 
 Future<PrivateObjectReturnResponse> privateObjectReturn() async {
   final serializedArgs = serialize(null);
@@ -33,8 +42,6 @@ BTreeMapStringValue serialize(void args) {
 @pragma("vm:prefer-inline")
 PrivateObjectReturnResponse deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on520428) => (i: (on520428['_i'] as String)),
+    (on615048) => PrivateObjectReturnResponse(i: (on615048['_i'] as String)),
   );
 }
-
-typedef PrivateObjectReturnResponse = ({String i});

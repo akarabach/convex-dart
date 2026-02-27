@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query13.freezed.dart';
+
+@freezed
+sealed class Query13Args with _$Query13Args {
+  const factory Query13Args({required Optional<String> i}) = _Query13Args;
+}
+
+@freezed
+sealed class Query13Response with _$Query13Response {
+  const factory Query13Response({required Optional<String> i}) =
+      _Query13Response;
+}
 
 Future<Query13Response> query13(Query13Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +49,10 @@ BTreeMapStringValue serialize(Query13Args args) {
 @pragma("vm:prefer-inline")
 Query13Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on947471) => (
-      i: on947471.containsKey('i')
-          ? Defined<String>((on947471['i'] as String))
+    (on190755) => Query13Response(
+      i: on190755.containsKey('i')
+          ? Defined<String>((on190755['i'] as String))
           : Undefined<String>(),
     ),
   );
 }
-
-typedef Query13Args = ({Optional<String> i});
-typedef Query13Response = ({Optional<String> i});

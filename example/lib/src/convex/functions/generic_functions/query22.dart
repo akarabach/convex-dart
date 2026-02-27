@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query22.freezed.dart';
+
+@freezed
+sealed class Query22Args with _$Query22Args {
+  const factory Query22Args({required Optional<TrueLiteral> i}) = _Query22Args;
+}
+
+@freezed
+sealed class Query22Response with _$Query22Response {
+  const factory Query22Response({required Optional<TrueLiteral> i}) =
+      _Query22Response;
+}
 
 Future<Query22Response> query22(Query22Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +49,10 @@ BTreeMapStringValue serialize(Query22Args args) {
 @pragma("vm:prefer-inline")
 Query22Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on592315) => (
-      i: on592315.containsKey('i')
-          ? Defined<$true>($true.validate(on592315['i']))
-          : Undefined<$true>(),
+    (on646530) => Query22Response(
+      i: on646530.containsKey('i')
+          ? Defined<TrueLiteral>(TrueLiteral.validate(on646530['i']))
+          : Undefined<TrueLiteral>(),
     ),
   );
 }
-
-typedef Query22Args = ({Optional<$true> i});
-typedef Query22Response = ({Optional<$true> i});

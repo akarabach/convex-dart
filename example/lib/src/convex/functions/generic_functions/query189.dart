@@ -2,9 +2,40 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query189.freezed.dart';
+
+@freezed
+sealed class Query189ArgsIItem with _$Query189ArgsIItem {
+  const factory Query189ArgsIItem({
+    required IList<NodesId> children,
+    required NodesId id,
+  }) = _Query189ArgsIItem;
+}
+
+@freezed
+sealed class Query189Args with _$Query189Args {
+  const factory Query189Args({required IList<Query189ArgsIItem> i}) =
+      _Query189Args;
+}
+
+@freezed
+sealed class Query189ResponseIItem with _$Query189ResponseIItem {
+  const factory Query189ResponseIItem({
+    required IList<NodesId> children,
+    required NodesId id,
+  }) = _Query189ResponseIItem;
+}
+
+@freezed
+sealed class Query189Response with _$Query189Response {
+  const factory Query189Response({required IList<Query189ResponseIItem> i}) =
+      _Query189Response;
+}
 
 Future<Query189Response> query189(Query189Args args) async {
   final serializedArgs = serialize(args);
@@ -32,13 +63,13 @@ BTreeMapStringValue serialize(Query189Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on552595) => encodeValue({
+              (on510514) => encodeValue({
                 'children': encodeValue(
-                  on552595.children
-                      .map((on365651) => encodeValue(on365651))
+                  on510514.children
+                      .map((on772332) => encodeValue(on772332))
                       .toIList(),
                 ),
-                'id': encodeValue(on552595.id),
+                'id': encodeValue(on510514.id),
               }),
             )
             .toIList(),
@@ -50,15 +81,15 @@ BTreeMapStringValue serialize(Query189Args args) {
 @pragma("vm:prefer-inline")
 Query189Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on124120) => (
-      i: (on124120['i'] as IList<dynamic>)
+    (on389265) => Query189Response(
+      i: (on389265['i'] as IList<dynamic>)
           .map(
-            (on260380) => (on260380 as IMap<String, dynamic>).then(
-              (on277005) => (
-                children: (on277005['children'] as IList<dynamic>)
-                    .map((on624511) => NodesId(on624511 as String))
+            (on817209) => (on817209 as IMap<String, dynamic>).then(
+              (on215694) => Query189ResponseIItem(
+                children: (on215694['children'] as IList<dynamic>)
+                    .map((on481112) => NodesId(on481112 as String))
                     .toIList(),
-                id: NodesId(on277005['id'] as String),
+                id: NodesId(on215694['id'] as String),
               ),
             ),
           )
@@ -66,6 +97,3 @@ Query189Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query189Args = ({IList<({IList<NodesId> children, NodesId id})> i});
-typedef Query189Response = ({IList<({IList<NodesId> children, NodesId id})> i});

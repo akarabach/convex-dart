@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query6.freezed.dart';
+
+@freezed
+sealed class Query6Args with _$Query6Args {
+  const factory Query6Args({required TasksId i}) = _Query6Args;
+}
+
+@freezed
+sealed class Query6Response with _$Query6Response {
+  const factory Query6Response({required TasksId i}) = _Query6Response;
+}
 
 Future<Query6Response> query6(Query6Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query6Args args) {
 @pragma("vm:prefer-inline")
 Query6Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on780435) => (i: TasksId(on780435['i'] as String)),
+    (on610172) => Query6Response(i: TasksId(on610172['i'] as String)),
   );
 }
-
-typedef Query6Args = ({TasksId i});
-typedef Query6Response = ({TasksId i});

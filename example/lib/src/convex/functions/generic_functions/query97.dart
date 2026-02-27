@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query97.freezed.dart';
+
+@freezed
+sealed class Query97Args with _$Query97Args {
+  const factory Query97Args({required Union2<double, bool>? i}) = _Query97Args;
+}
+
+@freezed
+sealed class Query97Response with _$Query97Response {
+  const factory Query97Response({required Union2<double, bool>? i}) =
+      _Query97Response;
+}
 
 Future<Query97Response> query97(Query97Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +45,8 @@ BTreeMapStringValue serialize(Query97Args args) {
     hashmap: {
       'i': encodeValue(
         args.i?.split(
-          (on643401) => encodeValue(on643401),
-          (on689758) => encodeValue(on689758),
+          (on875675) => encodeValue(on875675),
+          (on954805) => encodeValue(on954805),
         ),
       ),
     },
@@ -42,28 +56,25 @@ BTreeMapStringValue serialize(Query97Args args) {
 @pragma("vm:prefer-inline")
 Query97Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on171842) => (
+    (on837856) => Query97Response(
       i: Union2<double, bool>(() {
         try {
-          return (on171842['i'] as double?);
+          return (on837856['i'] as double?);
         } catch (e) {}
 
         try {
-          return (on171842['i'] as bool?);
+          return (on837856['i'] as bool?);
         } catch (e) {}
 
-        if (on171842['i'] == null) {
+        if (on837856['i'] == null) {
           return null;
         }
 
         throw Exception(
-          (on171842['i']?.toString() ?? "null") +
+          (on837856['i']?.toString() ?? "null") +
               r" cannot be deserialized into a Union2<double, bool>",
         );
       }()),
     ),
   );
 }
-
-typedef Query97Args = ({Union2<double, bool>? i});
-typedef Query97Response = ({Union2<double, bool>? i});

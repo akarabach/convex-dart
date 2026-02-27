@@ -17,7 +17,11 @@ final random = Random();
 
 class ClientBuildContext {
   final Map<String, String> outputs = {};
-  final Set<JsLiteral> literals = {};
+  final Map<String, JsLiteral> _literalsMap = {};
+  Iterable<JsLiteral> get literals => _literalsMap.values;
+  void addLiteral(JsLiteral literal) {
+    _literalsMap.putIfAbsent(literal.literalTypeName, () => literal);
+  }
   // ignore: library_private_types_in_public_api
   final Set<_LiteralsUnion> enums = {};
   final Set<String> tables = {};
@@ -27,7 +31,7 @@ class ClientBuildContext {
 class FunctionBuildContext {
   final StringBuffer headerBuffer = StringBuffer();
   final StringBuffer functionBuffer = StringBuffer();
-  final StringBuffer typedefBuffer = StringBuffer();
+  final StringBuffer classBuffer = StringBuffer();
 
   final ClientBuildContext clientContext;
   FunctionBuildContext(this.clientContext);
@@ -83,8 +87,8 @@ class FunctionsSpec with FunctionsSpecMappable {
         // Combine the code
         final code =
             "${functionContext.headerBuffer}"
-            "\n${functionContext.functionBuffer}"
-            "\n${functionContext.typedefBuffer}";
+            "\n${functionContext.classBuffer}"
+            "\n${functionContext.functionBuffer}";
         // Add the code to the context
         final filePath = path.joinAll(["functions", ...function.pathParts]);
         context.outputs[filePath] = code;
@@ -473,23 +477,28 @@ class FunctionSpec extends BaseFunctionSpec with FunctionSpecMappable {
       (index) => "..",
     ).join("/");
 
+    // The file name without .dart extension, for the part directive
+    final fileName = pathParts.last.replaceAll(".dart", "");
+
     context.headerBuffer.write("""
 // ignore_for_file: type=lint, unused_import, unnecessary_question_mark, dead_code, dead_null_aware_expression
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "$importPathPrefix/schema.dart";
 import "$importPathPrefix/literals.dart";
+
+part '$fileName.freezed.dart';
 """);
 
+    // Generate args class
     switch (args) {
       case JsAny():
         break;
       case JsObject obj:
-        context.typedefBuffer.write(
-          "typedef $argsTypeName = ${obj.dartType(context)};",
-        );
+        obj.dartType(context, nameHint: argsTypeName);
       default:
         throw ArgumentError(
           'Function arguments must be either JsAny (for dynamic/any type) or JsObject (for structured object types). '
@@ -497,13 +506,12 @@ import "$importPathPrefix/literals.dart";
         );
     }
 
+    // Generate returns class
     final JsObject returnsObject = switch (returns) {
       JsObject obj => obj,
       _ => JsObject({"body": JsField(returns, false)}, "object"),
     };
-    context.typedefBuffer.write(
-      "typedef $returnsTypeName = ${returnsObject.dartType(context)};",
-    );
+    returnsObject.dartType(context, nameHint: returnsTypeName);
 
     final opperationType = switch (functionType) {
       "Query" => "query",
@@ -555,7 +563,7 @@ Stream<$returnsTypeName> ${functionName}Stream(${argsTypeName != null ? "$argsTy
       nullable: false,
     );
     if (returns is! JsObject) {
-      deserializeCode = "(body: $deserializeCode)";
+      deserializeCode = "$returnsTypeName(body: $deserializeCode)";
     }
 
     context.functionBuffer.writeln("""
@@ -579,8 +587,8 @@ class JsField with JsFieldMappable {
   final JsType fieldType;
   final bool optional;
   const JsField(this.fieldType, this.optional);
-  String dartType(FunctionBuildContext context) {
-    String type = fieldType.dartType(context);
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    String type = fieldType.dartType(context, nameHint: nameHint);
     if (optional) {
       type = "Optional<$type>";
     }
@@ -593,7 +601,7 @@ sealed class JsType with JsTypeMappable {
   final String type;
 
   const JsType(this.type);
-  String dartType(FunctionBuildContext context);
+  String dartType(FunctionBuildContext context, {String? nameHint});
   String serialize(
     FunctionBuildContext context,
     String name, {
@@ -610,7 +618,7 @@ sealed class JsType with JsTypeMappable {
 class JsAny extends JsType with JsAnyMappable {
   const JsAny(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'dynamic';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'dynamic';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -632,7 +640,7 @@ class JsAny extends JsType with JsAnyMappable {
 class JsBoolean extends JsType with JsBooleanMappable {
   const JsBoolean(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'bool';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'bool';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -654,7 +662,7 @@ class JsBoolean extends JsType with JsBooleanMappable {
 class JsString extends JsType with JsStringMappable {
   const JsString(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'String';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'String';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -676,7 +684,7 @@ class JsString extends JsType with JsStringMappable {
 class JsNumber extends JsType with JsNumberMappable {
   const JsNumber(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'double';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'double';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -698,7 +706,7 @@ class JsNumber extends JsType with JsNumberMappable {
 class JsNull extends JsType with JsNullMappable {
   const JsNull(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'void';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'Null';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -719,7 +727,7 @@ class JsNull extends JsType with JsNullMappable {
 class JsBigInt extends JsType with JsBigIntMappable {
   const JsBigInt(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'int';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'int';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -741,7 +749,7 @@ class JsBigInt extends JsType with JsBigIntMappable {
 class JsBytes extends JsType with JsBytesMappable {
   const JsBytes(super.type);
   @override
-  String dartType(FunctionBuildContext context) => 'Uint8ListWithEquality';
+  String dartType(FunctionBuildContext context, {String? nameHint}) => 'Uint8ListWithEquality';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -765,6 +773,7 @@ class JsLiteral extends JsType with JsLiteralMappable {
   const JsLiteral(this.value, super.type);
 
   /// The name of the class which we will generate for this literal
+  /// e.g. "blue" → "BlueLiteral", true → "TrueLiteral", 1.0 → "N1_0Literal"
   String get literalTypeName {
     String buildValue = switch (value) {
       int value => value.toDouble().toString(),
@@ -774,9 +783,37 @@ class JsLiteral extends JsType with JsLiteralMappable {
     buildValue = buildValue.replaceAll(".", "_").replaceAll("-", "_");
     // Remove any other non-alphanumeric characters
     buildValue = buildValue.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '');
-    // Append a dollar sign to the value
-    buildValue = "\$$buildValue";
-    return buildValue;
+    final pascalValue = buildValue.pascalCase;
+    var name = pascalValue.isEmpty ? "EmptyLiteral" : "${pascalValue}Literal";
+    // Identifiers can't start with a digit, prefix with 'N'
+    if (RegExp(r'^[0-9]').hasMatch(name)) {
+      name = "N$name";
+    }
+    return name;
+  }
+
+  /// The camelCase name of this literal for use as an enum member
+  /// e.g. "blue" → "blue", true → "true_", 1.0 → "n1_0"
+  String get literalMemberName {
+    String buildValue = switch (value) {
+      int value => value.toDouble().toString(),
+      _ => value.toString(),
+    };
+    buildValue = buildValue.replaceAll(".", "_").replaceAll("-", "_");
+    buildValue = buildValue.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '');
+    var name = buildValue.camelCase;
+    if (name.isEmpty) {
+      name = "empty";
+    }
+    // Identifiers can't start with a digit, prefix with 'n'
+    if (RegExp(r'^[0-9]').hasMatch(name)) {
+      name = "n$name";
+    }
+    // If the name is a Dart keyword, append underscore
+    if (_dartKeywords.contains(name)) {
+      return '${name}_';
+    }
+    return name;
   }
 
   dynamic get literalValueCode {
@@ -838,8 +875,8 @@ class $literalTypeName implements Literal {
   }
 
   @override
-  String dartType(FunctionBuildContext context) {
-    context.clientContext.literals.add(this);
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    context.clientContext.addLiteral(this);
     return literalTypeName;
   }
 
@@ -869,7 +906,7 @@ sealed class _BaseUnion {
   final bool nullable;
   _BaseUnion({required this.nullable});
 
-  String dartType(FunctionBuildContext context);
+  String dartType(FunctionBuildContext context, {String? nameHint});
   String serialize(
     FunctionBuildContext context,
     String name, {
@@ -888,8 +925,8 @@ class _WrapperUnion extends _BaseUnion {
   _WrapperUnion({required super.nullable, required this.wrappedType});
 
   @override
-  String dartType(FunctionBuildContext context) {
-    return "${wrappedType.dartType(context)}${nullable ? "?" : ""}";
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    return "${wrappedType.dartType(context, nameHint: nameHint)}${nullable ? "?" : ""}";
   }
 
   @override
@@ -925,23 +962,28 @@ class _LiteralsUnion extends _BaseUnion with EquatableMixin {
   List<Object?> get props => [literals];
 
   @override
-  String dartType(FunctionBuildContext context) {
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
     context.clientContext.enums.add(this);
     return "$enumName${nullable ? "?" : ""}";
   }
 
   String get enumName {
-    return literals.map((e) => e.literalTypeName.pascalCase).join("");
+    var name = literals.map((e) => e.literalMemberName.pascalCase).join("");
+    // Identifiers can't start with a digit, prefix with 'N'
+    if (name.isNotEmpty && RegExp(r'^[0-9]').hasMatch(name)) {
+      name = "N$name";
+    }
+    return name;
   }
 
   String enumCode(ClientBuildContext context) {
     for (final literal in literals) {
-      context.literals.add(literal);
+      context.addLiteral(literal);
     }
     final enumBuffer = StringBuffer("enum $enumName {");
     for (final literal in literals) {
       enumBuffer.writeln(
-        "${literal.literalTypeName}Member(${literal.literalTypeName}()),",
+        "${literal.literalMemberName}(${literal.literalTypeName}()),",
       );
     }
     enumBuffer.writeln(";");
@@ -952,7 +994,7 @@ static final _map = {""");
 
     for (final literal in literals) {
       enumBuffer.write(
-        "${literal.literalValueCode} : ${literal.literalTypeName}Member,",
+        "${literal.literalValueCode} : ${literal.literalMemberName},",
       );
     }
 
@@ -1001,9 +1043,13 @@ class _ObjectsUnion extends _BaseUnion {
   _ObjectsUnion({required super.nullable, required this.types});
 
   @override
-  String dartType(FunctionBuildContext context) {
-    final type =
-        "Union${types.length}<${types.map((e) => e.dartType(context)).join(', ')}>";
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    final typeNames = types.indexed.map((indexed) {
+      final (i, e) = indexed;
+      final variantHint = nameHint != null ? "${nameHint}Variant${i + 1}" : null;
+      return e.dartType(context, nameHint: variantHint);
+    }).join(', ');
+    final type = "Union${types.length}<$typeNames>";
     return "$type${nullable ? "?" : ""}";
   }
 
@@ -1112,8 +1158,8 @@ class JsUnion extends JsType with JsUnionMappable {
   bool get isRealUnion => value.where((e) => e is! JsNull).length > 1;
 
   @override
-  String dartType(FunctionBuildContext context) {
-    return _buildUnion().dartType(context);
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    return _buildUnion().dartType(context, nameHint: nameHint);
   }
 
   @override
@@ -1141,13 +1187,14 @@ class JsRecord extends JsType with JsRecordMappable {
   final JsField values;
   const JsRecord(this.keys, this.values, super.type);
   @override
-  String dartType(FunctionBuildContext context) {
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
     if (keys is! JsString) {
       throw UnimplementedError(
         "Record keys must be a string. If you are seeing this and are having trouble, please file an issue on GitHub.",
       );
     }
-    return "IMap<String, ${values.dartType(context)}>";
+    final valueHint = nameHint != null ? "${nameHint}Value" : null;
+    return "IMap<String, ${values.dartType(context, nameHint: valueHint)}>";
   }
 
   @override
@@ -1178,7 +1225,7 @@ class JsRecord extends JsType with JsRecordMappable {
 @MappableClass(discriminatorValue: 'object')
 class JsObject extends JsType with JsObjectMappable {
   final Map<String, JsField> value;
-  const JsObject(this.value, super.type);
+  JsObject(this.value, super.type);
 
   Iterable<MapEntry<String, JsField>> get optionalFields =>
       value.entries.where((entry) => entry.value.optional);
@@ -1197,13 +1244,39 @@ class JsObject extends JsType with JsObjectMappable {
   }
 
   @override
-  String dartType(FunctionBuildContext context) {
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
     if (value.isEmpty) {
       throw UnimplementedError(
         "convex_dart does not support empty objects. If you are seeing this and are having trouble, please file an issue on GitHub.",
       );
     }
-    return "({${value.entries.map((entry) => "${entry.value.dartType(context)} ${safeDartKey(entry.key)}").join(",")}})";
+    // If already assigned (e.g. dartType was called before), return the
+    // cached name to avoid emitting duplicate classes.
+    if (_assignedClassName != null) {
+      return _assignedClassName!;
+    }
+
+    final className = nameHint ?? "AnonymousObject${random.nextInt(1000000)}";
+    _assignedClassName = className;
+
+    // Build freezed class fields — thread nameHint to nested objects
+    final fields = value.entries.map((entry) {
+      final fieldName = safeDartKey(entry.key);
+      final fieldNameHint = "$className${fieldName.pascalCase}";
+      final fieldType = entry.value.dartType(context, nameHint: fieldNameHint);
+      return "required $fieldType $fieldName,";
+    }).join("\n    ");
+
+    context.classBuffer.writeln("""
+@freezed
+sealed class $className with _\$$className {
+  const factory $className({
+    $fields
+  }) = _$className;
+}
+""");
+
+    return className;
   }
 
   @override
@@ -1229,17 +1302,28 @@ class JsObject extends JsType with JsObjectMappable {
     return "encodeValue($buffer)";
   }
 
+  /// The class name assigned to this object during [dartType] generation.
+  /// Must call [dartType] before [deserialize].
+  String? _assignedClassName;
+
   @override
   String deserialize(
     FunctionBuildContext context,
     String name, {
     required bool nullable,
   }) {
+    final className = _assignedClassName;
+    if (className == null) {
+      throw StateError(
+        "JsObject.deserialize() called before dartType(). "
+        "The class name is not yet assigned.",
+      );
+    }
     final suffix = nullable ? "?" : "";
     final dot = nullable ? "?." : ".";
     final argName = "on${random.nextInt(1000000)}";
     final buffer = StringBuffer(
-      "($name as IMap<String, dynamic>$suffix)${dot}then(($argName) => (",
+      "($name as IMap<String, dynamic>$suffix)${dot}then(($argName) => $className(",
     );
     for (final entry in value.entries) {
       if (entry.value.optional) {
@@ -1262,8 +1346,9 @@ class JsArray extends JsType with JsArrayMappable {
   final JsType value;
   const JsArray(this.value, super.type);
   @override
-  String dartType(FunctionBuildContext context) {
-    return "IList<${value.dartType(context)}>";
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
+    final itemHint = nameHint != null ? "${nameHint}Item" : null;
+    return "IList<${value.dartType(context, nameHint: itemHint)}>";
   }
 
   @override
@@ -1298,7 +1383,7 @@ class ConvexId extends JsType with ConvexIdMappable {
   String get typeName => "${tableName.pascalCase}Id";
 
   @override
-  String dartType(FunctionBuildContext context) {
+  String dartType(FunctionBuildContext context, {String? nameHint}) {
     context.clientContext.tables.add(tableName);
     return typeName;
   }

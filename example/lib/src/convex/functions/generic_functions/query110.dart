@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query110.freezed.dart';
+
+@freezed
+sealed class Query110Args with _$Query110Args {
+  const factory Query110Args({required MixedLiteral? i}) = _Query110Args;
+}
+
+@freezed
+sealed class Query110Response with _$Query110Response {
+  const factory Query110Response({required MixedLiteral? i}) =
+      _Query110Response;
+}
 
 Future<Query110Response> query110(Query110Args args) async {
   final serializedArgs = serialize(args);
@@ -33,10 +47,8 @@ BTreeMapStringValue serialize(Query110Args args) {
 @pragma("vm:prefer-inline")
 Query110Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on160199) =>
-        (i: on160199['i'] == null ? null : $mixed.validate(on160199['i'])),
+    (on541907) => Query110Response(
+      i: on541907['i'] == null ? null : MixedLiteral.validate(on541907['i']),
+    ),
   );
 }
-
-typedef Query110Args = ({$mixed? i});
-typedef Query110Response = ({$mixed? i});

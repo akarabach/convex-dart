@@ -2,9 +2,39 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query146.freezed.dart';
+
+@freezed
+sealed class Query146ArgsI with _$Query146ArgsI {
+  const factory Query146ArgsI({
+    required Uint8ListWithEquality data,
+    required Optional<dynamic> metadata,
+  }) = _Query146ArgsI;
+}
+
+@freezed
+sealed class Query146Args with _$Query146Args {
+  const factory Query146Args({required Query146ArgsI i}) = _Query146Args;
+}
+
+@freezed
+sealed class Query146ResponseI with _$Query146ResponseI {
+  const factory Query146ResponseI({
+    required Uint8ListWithEquality data,
+    required Optional<dynamic> metadata,
+  }) = _Query146ResponseI;
+}
+
+@freezed
+sealed class Query146Response with _$Query146Response {
+  const factory Query146Response({required Query146ResponseI i}) =
+      _Query146Response;
+}
 
 Future<Query146Response> query146(Query146Args args) async {
   final serializedArgs = serialize(args);
@@ -41,22 +71,15 @@ BTreeMapStringValue serialize(Query146Args args) {
 @pragma("vm:prefer-inline")
 Query146Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on500088) => (
-      i: (on500088['i'] as IMap<String, dynamic>).then(
-        (on795362) => (
-          data: (on795362['data'] as Uint8ListWithEquality),
-          metadata: on795362.containsKey('metadata')
-              ? Defined<dynamic>((on795362['metadata'] as dynamic))
+    (on548878) => Query146Response(
+      i: (on548878['i'] as IMap<String, dynamic>).then(
+        (on733258) => Query146ResponseI(
+          data: (on733258['data'] as Uint8ListWithEquality),
+          metadata: on733258.containsKey('metadata')
+              ? Defined<dynamic>((on733258['metadata'] as dynamic))
               : Undefined<dynamic>(),
         ),
       ),
     ),
   );
 }
-
-typedef Query146Args = ({
-  ({Uint8ListWithEquality data, Optional<dynamic> metadata}) i,
-});
-typedef Query146Response = ({
-  ({Uint8ListWithEquality data, Optional<dynamic> metadata}) i,
-});

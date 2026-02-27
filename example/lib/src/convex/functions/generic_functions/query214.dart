@@ -2,9 +2,38 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query214.freezed.dart';
+
+@freezed
+sealed class Query214ArgsIItem with _$Query214ArgsIItem {
+  const factory Query214ArgsIItem({required String id, required double score}) =
+      _Query214ArgsIItem;
+}
+
+@freezed
+sealed class Query214Args with _$Query214Args {
+  const factory Query214Args({required IList<Query214ArgsIItem> i}) =
+      _Query214Args;
+}
+
+@freezed
+sealed class Query214ResponseIItem with _$Query214ResponseIItem {
+  const factory Query214ResponseIItem({
+    required String id,
+    required double score,
+  }) = _Query214ResponseIItem;
+}
+
+@freezed
+sealed class Query214Response with _$Query214Response {
+  const factory Query214Response({required IList<Query214ResponseIItem> i}) =
+      _Query214Response;
+}
 
 Future<Query214Response> query214(Query214Args args) async {
   final serializedArgs = serialize(args);
@@ -32,9 +61,9 @@ BTreeMapStringValue serialize(Query214Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on266171) => encodeValue({
-                'id': encodeValue(on266171.id),
-                'score': encodeValue(on266171.score),
+              (on448002) => encodeValue({
+                'id': encodeValue(on448002.id),
+                'score': encodeValue(on448002.score),
               }),
             )
             .toIList(),
@@ -46,13 +75,13 @@ BTreeMapStringValue serialize(Query214Args args) {
 @pragma("vm:prefer-inline")
 Query214Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on119715) => (
-      i: (on119715['i'] as IList<dynamic>)
+    (on752048) => Query214Response(
+      i: (on752048['i'] as IList<dynamic>)
           .map(
-            (on766737) => (on766737 as IMap<String, dynamic>).then(
-              (on327877) => (
-                id: (on327877['id'] as String),
-                score: (on327877['score'] as double),
+            (on482819) => (on482819 as IMap<String, dynamic>).then(
+              (on697219) => Query214ResponseIItem(
+                id: (on697219['id'] as String),
+                score: (on697219['score'] as double),
               ),
             ),
           )
@@ -60,6 +89,3 @@ Query214Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query214Args = ({IList<({String id, double score})> i});
-typedef Query214Response = ({IList<({String id, double score})> i});

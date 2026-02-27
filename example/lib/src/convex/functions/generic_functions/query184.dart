@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query184.freezed.dart';
+
+@freezed
+sealed class Query184Args with _$Query184Args {
+  const factory Query184Args({required IList<IMap<String, bool>> i}) =
+      _Query184Args;
+}
+
+@freezed
+sealed class Query184Response with _$Query184Response {
+  const factory Query184Response({required IList<IMap<String, bool>> i}) =
+      _Query184Response;
+}
 
 Future<Query184Response> query184(Query184Args args) async {
   final serializedArgs = serialize(args);
@@ -32,9 +47,9 @@ BTreeMapStringValue serialize(Query184Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on490760) => encodeValue({
-                for (final on476427 in on490760.entries)
-                  on476427.key: encodeValue(encodeValue(on476427.value)),
+              (on49071) => encodeValue({
+                for (final on903404 in on49071.entries)
+                  on903404.key: encodeValue(encodeValue(on903404.value)),
               }),
             )
             .toIList(),
@@ -46,17 +61,14 @@ BTreeMapStringValue serialize(Query184Args args) {
 @pragma("vm:prefer-inline")
 Query184Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on344890) => (
-      i: (on344890['i'] as IList<dynamic>)
+    (on404325) => Query184Response(
+      i: (on404325['i'] as IList<dynamic>)
           .map(
-            (on732577) => (on732577 as IMap<String, dynamic>).map(
-              (on126316, on632083) => MapEntry(on126316, (on632083 as bool)),
+            (on386242) => (on386242 as IMap<String, dynamic>).map(
+              (on692537, on904040) => MapEntry(on692537, (on904040 as bool)),
             ),
           )
           .toIList(),
     ),
   );
 }
-
-typedef Query184Args = ({IList<IMap<String, bool>> i});
-typedef Query184Response = ({IList<IMap<String, bool>> i});

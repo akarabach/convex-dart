@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query5.freezed.dart';
+
+@freezed
+sealed class Query5Args with _$Query5Args {
+  const factory Query5Args({required Uint8ListWithEquality i}) = _Query5Args;
+}
+
+@freezed
+sealed class Query5Response with _$Query5Response {
+  const factory Query5Response({required Uint8ListWithEquality i}) =
+      _Query5Response;
+}
 
 Future<Query5Response> query5(Query5Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +47,6 @@ BTreeMapStringValue serialize(Query5Args args) {
 @pragma("vm:prefer-inline")
 Query5Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on97218) => (i: (on97218['i'] as Uint8ListWithEquality)),
+    (on313033) => Query5Response(i: (on313033['i'] as Uint8ListWithEquality)),
   );
 }
-
-typedef Query5Args = ({Uint8ListWithEquality i});
-typedef Query5Response = ({Uint8ListWithEquality i});

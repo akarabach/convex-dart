@@ -3,411 +3,370 @@
 // ignore_for_file: strict_raw_type, inference_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
 
-enum $blue$red {
-  $blueMember($blue()),
-  $redMember($red());
+enum BlueRed {
+  blue(BlueLiteral()),
+  red(RedLiteral());
 
-  const $blue$red(this.value);
+  const BlueRed(this.value);
   final Literal value;
-  static final _map = {'blue': $blueMember, 'red': $redMember};
-  static $blue$red fromValue(Object value) {
+  static final _map = {'blue': blue, 'red': red};
+  static BlueRed fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $blue$red;
+      return _map[value] as BlueRed;
     }
-    throw Exception(value.toString() + r" cannot be converted to a $blue$red");
+    throw Exception(value.toString() + r" cannot be converted to a BlueRed");
   }
 }
 
-enum $yes$no {
-  $yesMember($yes()),
-  $noMember($no());
+enum YesNo {
+  yes(YesLiteral()),
+  no(NoLiteral());
 
-  const $yes$no(this.value);
+  const YesNo(this.value);
   final Literal value;
-  static final _map = {'yes': $yesMember, 'no': $noMember};
-  static $yes$no fromValue(Object value) {
+  static final _map = {'yes': yes, 'no': no};
+  static YesNo fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $yes$no;
+      return _map[value] as YesNo;
     }
-    throw Exception(value.toString() + r" cannot be converted to a $yes$no");
+    throw Exception(value.toString() + r" cannot be converted to a YesNo");
   }
 }
 
-enum $10$20$30 {
-  $1_0Member($1_0()),
-  $2_0Member($2_0()),
-  $3_0Member($3_0());
+enum N10N20N30 {
+  n10(N10Literal()),
+  n20(N20Literal()),
+  n30(N30Literal());
 
-  const $10$20$30(this.value);
+  const N10N20N30(this.value);
   final Literal value;
-  static final _map = {1.0: $1_0Member, 2.0: $2_0Member, 3.0: $3_0Member};
-  static $10$20$30 fromValue(Object value) {
+  static final _map = {1.0: n10, 2.0: n20, 3.0: n30};
+  static N10N20N30 fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $10$20$30;
+      return _map[value] as N10N20N30;
     }
-    throw Exception(value.toString() + r" cannot be converted to a $10$20$30");
+    throw Exception(value.toString() + r" cannot be converted to a N10N20N30");
   }
 }
 
-enum $admin$user$guest {
-  $adminMember($admin()),
-  $userMember($user()),
-  $guestMember($guest());
+enum AdminUserGuest {
+  admin(AdminLiteral()),
+  user(UserLiteral()),
+  guest(GuestLiteral());
 
-  const $admin$user$guest(this.value);
+  const AdminUserGuest(this.value);
+  final Literal value;
+  static final _map = {'admin': admin, 'user': user, 'guest': guest};
+  static AdminUserGuest fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as AdminUserGuest;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a AdminUserGuest",
+    );
+  }
+}
+
+enum TrueFalse {
+  true_(TrueLiteral()),
+  false_(FalseLiteral());
+
+  const TrueFalse(this.value);
+  final Literal value;
+  static final _map = {true: true_, false: false_};
+  static TrueFalse fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as TrueFalse;
+    }
+    throw Exception(value.toString() + r" cannot be converted to a TrueFalse");
+  }
+}
+
+enum WorkPersonalUrgent {
+  work(WorkLiteral()),
+  personal(PersonalLiteral()),
+  urgent(UrgentLiteral());
+
+  const WorkPersonalUrgent(this.value);
+  final Literal value;
+  static final _map = {'work': work, 'personal': personal, 'urgent': urgent};
+  static WorkPersonalUrgent fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as WorkPersonalUrgent;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a WorkPersonalUrgent",
+    );
+  }
+}
+
+enum TextNumberBoolean {
+  text(TextLiteral()),
+  number(NumberLiteral()),
+  boolean(BooleanLiteral());
+
+  const TextNumberBoolean(this.value);
+  final Literal value;
+  static final _map = {'text': text, 'number': number, 'boolean': boolean};
+  static TextNumberBoolean fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as TextNumberBoolean;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a TextNumberBoolean",
+    );
+  }
+}
+
+enum PendingApprovedRejected {
+  pending(PendingLiteral()),
+  approved(ApprovedLiteral()),
+  rejected(RejectedLiteral());
+
+  const PendingApprovedRejected(this.value);
   final Literal value;
   static final _map = {
-    'admin': $adminMember,
-    'user': $userMember,
-    'guest': $guestMember,
+    'pending': pending,
+    'approved': approved,
+    'rejected': rejected,
   };
-  static $admin$user$guest fromValue(Object value) {
+  static PendingApprovedRejected fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $admin$user$guest;
+      return _map[value] as PendingApprovedRejected;
     }
     throw Exception(
-      value.toString() + r" cannot be converted to a $admin$user$guest",
+      value.toString() + r" cannot be converted to a PendingApprovedRejected",
     );
   }
 }
 
-enum $true$false {
-  $trueMember($true()),
-  $falseMember($false());
+enum StringNumberBoolean {
+  string(StringLiteral()),
+  number(NumberLiteral()),
+  boolean(BooleanLiteral());
 
-  const $true$false(this.value);
+  const StringNumberBoolean(this.value);
   final Literal value;
-  static final _map = {true: $trueMember, false: $falseMember};
-  static $true$false fromValue(Object value) {
+  static final _map = {'string': string, 'number': number, 'boolean': boolean};
+  static StringNumberBoolean fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $true$false;
+      return _map[value] as StringNumberBoolean;
     }
     throw Exception(
-      value.toString() + r" cannot be converted to a $true$false",
+      value.toString() + r" cannot be converted to a StringNumberBoolean",
     );
   }
 }
 
-enum $work$personal$urgent {
-  $workMember($work()),
-  $personalMember($personal()),
-  $urgentMember($urgent());
+enum PrimitiveObjectArray {
+  primitive(PrimitiveLiteral()),
+  object(ObjectLiteral()),
+  array(ArrayLiteral());
 
-  const $work$personal$urgent(this.value);
+  const PrimitiveObjectArray(this.value);
   final Literal value;
   static final _map = {
-    'work': $workMember,
-    'personal': $personalMember,
-    'urgent': $urgentMember,
+    'primitive': primitive,
+    'object': object,
+    'array': array,
   };
-  static $work$personal$urgent fromValue(Object value) {
+  static PrimitiveObjectArray fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $work$personal$urgent;
+      return _map[value] as PrimitiveObjectArray;
     }
     throw Exception(
-      value.toString() + r" cannot be converted to a $work$personal$urgent",
+      value.toString() + r" cannot be converted to a PrimitiveObjectArray",
     );
   }
 }
 
-enum $text$number$boolean {
-  $textMember($text()),
-  $numberMember($number()),
-  $booleanMember($boolean());
+enum RedBlueGreen {
+  red(RedLiteral()),
+  blue(BlueLiteral()),
+  green(GreenLiteral());
 
-  const $text$number$boolean(this.value);
+  const RedBlueGreen(this.value);
+  final Literal value;
+  static final _map = {'red': red, 'blue': blue, 'green': green};
+  static RedBlueGreen fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as RedBlueGreen;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a RedBlueGreen",
+    );
+  }
+}
+
+enum GetPostPutDelete {
+  get_(GetLiteral()),
+  post(PostLiteral()),
+  put(PutLiteral()),
+  delete(DeleteLiteral());
+
+  const GetPostPutDelete(this.value);
+  final Literal value;
+  static final _map = {'GET': get_, 'POST': post, 'PUT': put, 'DELETE': delete};
+  static GetPostPutDelete fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as GetPostPutDelete;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a GetPostPutDelete",
+    );
+  }
+}
+
+enum MinuteHourDay {
+  minute(MinuteLiteral()),
+  hour(HourLiteral()),
+  day(DayLiteral());
+
+  const MinuteHourDay(this.value);
+  final Literal value;
+  static final _map = {'minute': minute, 'hour': hour, 'day': day};
+  static MinuteHourDay fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as MinuteHourDay;
+    }
+    throw Exception(
+      value.toString() + r" cannot be converted to a MinuteHourDay",
+    );
+  }
+}
+
+enum StringNumberBooleanDate {
+  string(StringLiteral()),
+  number(NumberLiteral()),
+  boolean(BooleanLiteral()),
+  date(DateLiteral());
+
+  const StringNumberBooleanDate(this.value);
   final Literal value;
   static final _map = {
-    'text': $textMember,
-    'number': $numberMember,
-    'boolean': $booleanMember,
+    'string': string,
+    'number': number,
+    'boolean': boolean,
+    'date': date,
   };
-  static $text$number$boolean fromValue(Object value) {
+  static StringNumberBooleanDate fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $text$number$boolean;
+      return _map[value] as StringNumberBooleanDate;
     }
     throw Exception(
-      value.toString() + r" cannot be converted to a $text$number$boolean",
+      value.toString() + r" cannot be converted to a StringNumberBooleanDate",
     );
   }
 }
 
-enum $pending$approved$rejected {
-  $pendingMember($pending()),
-  $approvedMember($approved()),
-  $rejectedMember($rejected());
+enum ActionConditionLoop {
+  action(ActionLiteral()),
+  condition(ConditionLiteral()),
+  loop(LoopLiteral());
 
-  const $pending$approved$rejected(this.value);
+  const ActionConditionLoop(this.value);
   final Literal value;
-  static final _map = {
-    'pending': $pendingMember,
-    'approved': $approvedMember,
-    'rejected': $rejectedMember,
-  };
-  static $pending$approved$rejected fromValue(Object value) {
+  static final _map = {'action': action, 'condition': condition, 'loop': loop};
+  static ActionConditionLoop fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $pending$approved$rejected;
+      return _map[value] as ActionConditionLoop;
     }
     throw Exception(
-      value.toString() +
-          r" cannot be converted to a $pending$approved$rejected",
+      value.toString() + r" cannot be converted to a ActionConditionLoop",
     );
   }
 }
 
-enum $string$number$boolean {
-  $stringMember($string()),
-  $numberMember($number()),
-  $booleanMember($boolean());
+enum N10N20 {
+  n10(N10Literal()),
+  n20(N20Literal());
 
-  const $string$number$boolean(this.value);
+  const N10N20(this.value);
   final Literal value;
-  static final _map = {
-    'string': $stringMember,
-    'number': $numberMember,
-    'boolean': $booleanMember,
-  };
-  static $string$number$boolean fromValue(Object value) {
+  static final _map = {1.0: n10, 2.0: n20};
+  static N10N20 fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $string$number$boolean;
+      return _map[value] as N10N20;
+    }
+    throw Exception(value.toString() + r" cannot be converted to a N10N20");
+  }
+}
+
+enum ReadWriteAdmin {
+  read(ReadLiteral()),
+  write(WriteLiteral()),
+  admin(AdminLiteral());
+
+  const ReadWriteAdmin(this.value);
+  final Literal value;
+  static final _map = {'read': read, 'write': write, 'admin': admin};
+  static ReadWriteAdmin fromValue(Object value) {
+    if (_map.containsKey(value)) {
+      return _map[value] as ReadWriteAdmin;
     }
     throw Exception(
-      value.toString() + r" cannot be converted to a $string$number$boolean",
+      value.toString() + r" cannot be converted to a ReadWriteAdmin",
     );
   }
 }
 
-enum $primitive$object$array {
-  $primitiveMember($primitive()),
-  $objectMember($object()),
-  $arrayMember($array());
+enum ABC {
+  a(ALiteral()),
+  b(BLiteral()),
+  c(CLiteral());
 
-  const $primitive$object$array(this.value);
+  const ABC(this.value);
   final Literal value;
-  static final _map = {
-    'primitive': $primitiveMember,
-    'object': $objectMember,
-    'array': $arrayMember,
-  };
-  static $primitive$object$array fromValue(Object value) {
+  static final _map = {'A': a, 'B': b, 'C': c};
+  static ABC fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $primitive$object$array;
+      return _map[value] as ABC;
     }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $primitive$object$array",
-    );
+    throw Exception(value.toString() + r" cannot be converted to a ABC");
   }
 }
 
-enum $red$blue$green {
-  $redMember($red()),
-  $blueMember($blue()),
-  $greenMember($green());
+enum OnOff {
+  on_(OnLiteral()),
+  off(OffLiteral());
 
-  const $red$blue$green(this.value);
+  const OnOff(this.value);
   final Literal value;
-  static final _map = {
-    'red': $redMember,
-    'blue': $blueMember,
-    'green': $greenMember,
-  };
-  static $red$blue$green fromValue(Object value) {
+  static final _map = {'on': on_, 'off': off};
+  static OnOff fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $red$blue$green;
+      return _map[value] as OnOff;
     }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $red$blue$green",
-    );
+    throw Exception(value.toString() + r" cannot be converted to a OnOff");
   }
 }
 
-enum $get$post$put$delete {
-  $GETMember($GET()),
-  $POSTMember($POST()),
-  $PUTMember($PUT()),
-  $DELETEMember($DELETE());
+enum CatDog {
+  cat(CatLiteral()),
+  dog(DogLiteral());
 
-  const $get$post$put$delete(this.value);
+  const CatDog(this.value);
   final Literal value;
-  static final _map = {
-    'GET': $GETMember,
-    'POST': $POSTMember,
-    'PUT': $PUTMember,
-    'DELETE': $DELETEMember,
-  };
-  static $get$post$put$delete fromValue(Object value) {
+  static final _map = {'cat': cat, 'dog': dog};
+  static CatDog fromValue(Object value) {
     if (_map.containsKey(value)) {
-      return _map[value] as $get$post$put$delete;
+      return _map[value] as CatDog;
     }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $get$post$put$delete",
-    );
+    throw Exception(value.toString() + r" cannot be converted to a CatDog");
   }
 }
 
-enum $minute$hour$day {
-  $minuteMember($minute()),
-  $hourMember($hour()),
-  $dayMember($day());
-
-  const $minute$hour$day(this.value);
-  final Literal value;
-  static final _map = {
-    'minute': $minuteMember,
-    'hour': $hourMember,
-    'day': $dayMember,
-  };
-  static $minute$hour$day fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $minute$hour$day;
-    }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $minute$hour$day",
-    );
-  }
-}
-
-enum $string$number$boolean$date {
-  $stringMember($string()),
-  $numberMember($number()),
-  $booleanMember($boolean()),
-  $dateMember($date());
-
-  const $string$number$boolean$date(this.value);
-  final Literal value;
-  static final _map = {
-    'string': $stringMember,
-    'number': $numberMember,
-    'boolean': $booleanMember,
-    'date': $dateMember,
-  };
-  static $string$number$boolean$date fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $string$number$boolean$date;
-    }
-    throw Exception(
-      value.toString() +
-          r" cannot be converted to a $string$number$boolean$date",
-    );
-  }
-}
-
-enum $action$condition$loop {
-  $actionMember($action()),
-  $conditionMember($condition()),
-  $loopMember($loop());
-
-  const $action$condition$loop(this.value);
-  final Literal value;
-  static final _map = {
-    'action': $actionMember,
-    'condition': $conditionMember,
-    'loop': $loopMember,
-  };
-  static $action$condition$loop fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $action$condition$loop;
-    }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $action$condition$loop",
-    );
-  }
-}
-
-enum $10$20 {
-  $1_0Member($1_0()),
-  $2_0Member($2_0());
-
-  const $10$20(this.value);
-  final Literal value;
-  static final _map = {1.0: $1_0Member, 2.0: $2_0Member};
-  static $10$20 fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $10$20;
-    }
-    throw Exception(value.toString() + r" cannot be converted to a $10$20");
-  }
-}
-
-enum $read$write$admin {
-  $readMember($read()),
-  $writeMember($write()),
-  $adminMember($admin());
-
-  const $read$write$admin(this.value);
-  final Literal value;
-  static final _map = {
-    'read': $readMember,
-    'write': $writeMember,
-    'admin': $adminMember,
-  };
-  static $read$write$admin fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $read$write$admin;
-    }
-    throw Exception(
-      value.toString() + r" cannot be converted to a $read$write$admin",
-    );
-  }
-}
-
-enum $a$b$c {
-  $AMember($A()),
-  $BMember($B()),
-  $CMember($C());
-
-  const $a$b$c(this.value);
-  final Literal value;
-  static final _map = {'A': $AMember, 'B': $BMember, 'C': $CMember};
-  static $a$b$c fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $a$b$c;
-    }
-    throw Exception(value.toString() + r" cannot be converted to a $a$b$c");
-  }
-}
-
-enum $on$off {
-  $onMember($on()),
-  $offMember($off());
-
-  const $on$off(this.value);
-  final Literal value;
-  static final _map = {'on': $onMember, 'off': $offMember};
-  static $on$off fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $on$off;
-    }
-    throw Exception(value.toString() + r" cannot be converted to a $on$off");
-  }
-}
-
-enum $cat$dog {
-  $catMember($cat()),
-  $dogMember($dog());
-
-  const $cat$dog(this.value);
-  final Literal value;
-  static final _map = {'cat': $catMember, 'dog': $dogMember};
-  static $cat$dog fromValue(Object value) {
-    if (_map.containsKey(value)) {
-      return _map[value] as $cat$dog;
-    }
-    throw Exception(value.toString() + r" cannot be converted to a $cat$dog");
-  }
-}
-
-class $hi implements Literal {
-  const $hi();
-  const $hi.validate(dynamic value)
-    : assert(value == 'hi', r"Value mismatch for $hi");
+class HiLiteral implements Literal {
+  const HiLiteral();
+  const HiLiteral.validate(dynamic value)
+    : assert(value == 'hi', r"Value mismatch for HiLiteral");
 
   @override
   final value = 'hi';
 
   @override
   bool operator ==(Object other) {
-    if (other is $hi) {
+    if (other is HiLiteral) {
       return value == other.value;
     }
     return false;
@@ -418,21 +377,21 @@ class $hi implements Literal {
 
   @override
   String toString() {
-    return r"$hi(hi)";
+    return r"HiLiteral(hi)";
   }
 }
 
-class $1_0 implements Literal {
-  const $1_0();
-  const $1_0.validate(dynamic value)
-    : assert(value == 1.0, r"Value mismatch for $1_0");
+class N10Literal implements Literal {
+  const N10Literal();
+  const N10Literal.validate(dynamic value)
+    : assert(value == 1.0, r"Value mismatch for N10Literal");
 
   @override
   final value = 1.0;
 
   @override
   bool operator ==(Object other) {
-    if (other is $1_0) {
+    if (other is N10Literal) {
       return value == other.value;
     }
     return false;
@@ -443,21 +402,21 @@ class $1_0 implements Literal {
 
   @override
   String toString() {
-    return r"$1_0(1)";
+    return r"N10Literal(1)";
   }
 }
 
-class $true implements Literal {
-  const $true();
-  const $true.validate(dynamic value)
-    : assert(value == true, r"Value mismatch for $true");
+class TrueLiteral implements Literal {
+  const TrueLiteral();
+  const TrueLiteral.validate(dynamic value)
+    : assert(value == true, r"Value mismatch for TrueLiteral");
 
   @override
   final value = true;
 
   @override
   bool operator ==(Object other) {
-    if (other is $true) {
+    if (other is TrueLiteral) {
       return value == other.value;
     }
     return false;
@@ -468,21 +427,21 @@ class $true implements Literal {
 
   @override
   String toString() {
-    return r"$true(true)";
+    return r"TrueLiteral(true)";
   }
 }
 
-class $mixed implements Literal {
-  const $mixed();
-  const $mixed.validate(dynamic value)
-    : assert(value == 'mixed', r"Value mismatch for $mixed");
+class MixedLiteral implements Literal {
+  const MixedLiteral();
+  const MixedLiteral.validate(dynamic value)
+    : assert(value == 'mixed', r"Value mismatch for MixedLiteral");
 
   @override
   final value = 'mixed';
 
   @override
   bool operator ==(Object other) {
-    if (other is $mixed) {
+    if (other is MixedLiteral) {
       return value == other.value;
     }
     return false;
@@ -493,21 +452,21 @@ class $mixed implements Literal {
 
   @override
   String toString() {
-    return r"$mixed(mixed)";
+    return r"MixedLiteral(mixed)";
   }
 }
 
-class $text implements Literal {
-  const $text();
-  const $text.validate(dynamic value)
-    : assert(value == 'text', r"Value mismatch for $text");
+class TextLiteral implements Literal {
+  const TextLiteral();
+  const TextLiteral.validate(dynamic value)
+    : assert(value == 'text', r"Value mismatch for TextLiteral");
 
   @override
   final value = 'text';
 
   @override
   bool operator ==(Object other) {
-    if (other is $text) {
+    if (other is TextLiteral) {
       return value == other.value;
     }
     return false;
@@ -518,21 +477,21 @@ class $text implements Literal {
 
   @override
   String toString() {
-    return r"$text(text)";
+    return r"TextLiteral(text)";
   }
 }
 
-class $number implements Literal {
-  const $number();
-  const $number.validate(dynamic value)
-    : assert(value == 'number', r"Value mismatch for $number");
+class NumberLiteral implements Literal {
+  const NumberLiteral();
+  const NumberLiteral.validate(dynamic value)
+    : assert(value == 'number', r"Value mismatch for NumberLiteral");
 
   @override
   final value = 'number';
 
   @override
   bool operator ==(Object other) {
-    if (other is $number) {
+    if (other is NumberLiteral) {
       return value == other.value;
     }
     return false;
@@ -543,21 +502,21 @@ class $number implements Literal {
 
   @override
   String toString() {
-    return r"$number(number)";
+    return r"NumberLiteral(number)";
   }
 }
 
-class $boolean implements Literal {
-  const $boolean();
-  const $boolean.validate(dynamic value)
-    : assert(value == 'boolean', r"Value mismatch for $boolean");
+class BooleanLiteral implements Literal {
+  const BooleanLiteral();
+  const BooleanLiteral.validate(dynamic value)
+    : assert(value == 'boolean', r"Value mismatch for BooleanLiteral");
 
   @override
   final value = 'boolean';
 
   @override
   bool operator ==(Object other) {
-    if (other is $boolean) {
+    if (other is BooleanLiteral) {
       return value == other.value;
     }
     return false;
@@ -568,21 +527,21 @@ class $boolean implements Literal {
 
   @override
   String toString() {
-    return r"$boolean(boolean)";
+    return r"BooleanLiteral(boolean)";
   }
 }
 
-class $image implements Literal {
-  const $image();
-  const $image.validate(dynamic value)
-    : assert(value == 'image', r"Value mismatch for $image");
+class ImageLiteral implements Literal {
+  const ImageLiteral();
+  const ImageLiteral.validate(dynamic value)
+    : assert(value == 'image', r"Value mismatch for ImageLiteral");
 
   @override
   final value = 'image';
 
   @override
   bool operator ==(Object other) {
-    if (other is $image) {
+    if (other is ImageLiteral) {
       return value == other.value;
     }
     return false;
@@ -593,21 +552,21 @@ class $image implements Literal {
 
   @override
   String toString() {
-    return r"$image(image)";
+    return r"ImageLiteral(image)";
   }
 }
 
-class $list implements Literal {
-  const $list();
-  const $list.validate(dynamic value)
-    : assert(value == 'list', r"Value mismatch for $list");
+class ListLiteral implements Literal {
+  const ListLiteral();
+  const ListLiteral.validate(dynamic value)
+    : assert(value == 'list', r"Value mismatch for ListLiteral");
 
   @override
   final value = 'list';
 
   @override
   bool operator ==(Object other) {
-    if (other is $list) {
+    if (other is ListLiteral) {
       return value == other.value;
     }
     return false;
@@ -618,21 +577,21 @@ class $list implements Literal {
 
   @override
   String toString() {
-    return r"$list(list)";
+    return r"ListLiteral(list)";
   }
 }
 
-class $schedule implements Literal {
-  const $schedule();
-  const $schedule.validate(dynamic value)
-    : assert(value == 'schedule', r"Value mismatch for $schedule");
+class ScheduleLiteral implements Literal {
+  const ScheduleLiteral();
+  const ScheduleLiteral.validate(dynamic value)
+    : assert(value == 'schedule', r"Value mismatch for ScheduleLiteral");
 
   @override
   final value = 'schedule';
 
   @override
   bool operator ==(Object other) {
-    if (other is $schedule) {
+    if (other is ScheduleLiteral) {
       return value == other.value;
     }
     return false;
@@ -643,21 +602,21 @@ class $schedule implements Literal {
 
   @override
   String toString() {
-    return r"$schedule(schedule)";
+    return r"ScheduleLiteral(schedule)";
   }
 }
 
-class $webhook implements Literal {
-  const $webhook();
-  const $webhook.validate(dynamic value)
-    : assert(value == 'webhook', r"Value mismatch for $webhook");
+class WebhookLiteral implements Literal {
+  const WebhookLiteral();
+  const WebhookLiteral.validate(dynamic value)
+    : assert(value == 'webhook', r"Value mismatch for WebhookLiteral");
 
   @override
   final value = 'webhook';
 
   @override
   bool operator ==(Object other) {
-    if (other is $webhook) {
+    if (other is WebhookLiteral) {
       return value == other.value;
     }
     return false;
@@ -668,21 +627,21 @@ class $webhook implements Literal {
 
   @override
   String toString() {
-    return r"$webhook(webhook)";
+    return r"WebhookLiteral(webhook)";
   }
 }
 
-class $event implements Literal {
-  const $event();
-  const $event.validate(dynamic value)
-    : assert(value == 'event', r"Value mismatch for $event");
+class EventLiteral implements Literal {
+  const EventLiteral();
+  const EventLiteral.validate(dynamic value)
+    : assert(value == 'event', r"Value mismatch for EventLiteral");
 
   @override
   final value = 'event';
 
   @override
   bool operator ==(Object other) {
-    if (other is $event) {
+    if (other is EventLiteral) {
       return value == other.value;
     }
     return false;
@@ -693,21 +652,21 @@ class $event implements Literal {
 
   @override
   String toString() {
-    return r"$event(event)";
+    return r"EventLiteral(event)";
   }
 }
 
-class $A implements Literal {
-  const $A();
-  const $A.validate(dynamic value)
-    : assert(value == 'A', r"Value mismatch for $A");
+class ALiteral implements Literal {
+  const ALiteral();
+  const ALiteral.validate(dynamic value)
+    : assert(value == 'A', r"Value mismatch for ALiteral");
 
   @override
   final value = 'A';
 
   @override
   bool operator ==(Object other) {
-    if (other is $A) {
+    if (other is ALiteral) {
       return value == other.value;
     }
     return false;
@@ -718,21 +677,21 @@ class $A implements Literal {
 
   @override
   String toString() {
-    return r"$A(A)";
+    return r"ALiteral(A)";
   }
 }
 
-class $B implements Literal {
-  const $B();
-  const $B.validate(dynamic value)
-    : assert(value == 'B', r"Value mismatch for $B");
+class BLiteral implements Literal {
+  const BLiteral();
+  const BLiteral.validate(dynamic value)
+    : assert(value == 'B', r"Value mismatch for BLiteral");
 
   @override
   final value = 'B';
 
   @override
   bool operator ==(Object other) {
-    if (other is $B) {
+    if (other is BLiteral) {
       return value == other.value;
     }
     return false;
@@ -743,21 +702,21 @@ class $B implements Literal {
 
   @override
   String toString() {
-    return r"$B(B)";
+    return r"BLiteral(B)";
   }
 }
 
-class $foo implements Literal {
-  const $foo();
-  const $foo.validate(dynamic value)
-    : assert(value == 'foo', r"Value mismatch for $foo");
+class FooLiteral implements Literal {
+  const FooLiteral();
+  const FooLiteral.validate(dynamic value)
+    : assert(value == 'foo', r"Value mismatch for FooLiteral");
 
   @override
   final value = 'foo';
 
   @override
   bool operator ==(Object other) {
-    if (other is $foo) {
+    if (other is FooLiteral) {
       return value == other.value;
     }
     return false;
@@ -768,21 +727,21 @@ class $foo implements Literal {
 
   @override
   String toString() {
-    return r"$foo(foo)";
+    return r"FooLiteral(foo)";
   }
 }
 
-class $123_0 implements Literal {
-  const $123_0();
-  const $123_0.validate(dynamic value)
-    : assert(value == 123.0, r"Value mismatch for $123_0");
+class N1230Literal implements Literal {
+  const N1230Literal();
+  const N1230Literal.validate(dynamic value)
+    : assert(value == 123.0, r"Value mismatch for N1230Literal");
 
   @override
   final value = 123.0;
 
   @override
   bool operator ==(Object other) {
-    if (other is $123_0) {
+    if (other is N1230Literal) {
       return value == other.value;
     }
     return false;
@@ -793,21 +752,21 @@ class $123_0 implements Literal {
 
   @override
   String toString() {
-    return r"$123_0(123)";
+    return r"N1230Literal(123)";
   }
 }
 
-class $false implements Literal {
-  const $false();
-  const $false.validate(dynamic value)
-    : assert(value == false, r"Value mismatch for $false");
+class FalseLiteral implements Literal {
+  const FalseLiteral();
+  const FalseLiteral.validate(dynamic value)
+    : assert(value == false, r"Value mismatch for FalseLiteral");
 
   @override
   final value = false;
 
   @override
   bool operator ==(Object other) {
-    if (other is $false) {
+    if (other is FalseLiteral) {
       return value == other.value;
     }
     return false;
@@ -818,46 +777,21 @@ class $false implements Literal {
 
   @override
   String toString() {
-    return r"$false(false)";
+    return r"FalseLiteral(false)";
   }
 }
 
-class $a implements Literal {
-  const $a();
-  const $a.validate(dynamic value)
-    : assert(value == 'a', r"Value mismatch for $a");
-
-  @override
-  final value = 'a';
-
-  @override
-  bool operator ==(Object other) {
-    if (other is $a) {
-      return value == other.value;
-    }
-    return false;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  String toString() {
-    return r"$a(a)";
-  }
-}
-
-class $helloworld implements Literal {
-  const $helloworld();
-  const $helloworld.validate(dynamic value)
-    : assert(value == 'hello world', r"Value mismatch for $helloworld");
+class HelloworldLiteral implements Literal {
+  const HelloworldLiteral();
+  const HelloworldLiteral.validate(dynamic value)
+    : assert(value == 'hello world', r"Value mismatch for HelloworldLiteral");
 
   @override
   final value = 'hello world';
 
   @override
   bool operator ==(Object other) {
-    if (other is $helloworld) {
+    if (other is HelloworldLiteral) {
       return value == other.value;
     }
     return false;
@@ -868,21 +802,21 @@ class $helloworld implements Literal {
 
   @override
   String toString() {
-    return r"$helloworld(hello world)";
+    return r"HelloworldLiteral(hello world)";
   }
 }
 
-class $3_14 implements Literal {
-  const $3_14();
-  const $3_14.validate(dynamic value)
-    : assert(value == 3.14, r"Value mismatch for $3_14");
+class N314Literal implements Literal {
+  const N314Literal();
+  const N314Literal.validate(dynamic value)
+    : assert(value == 3.14, r"Value mismatch for N314Literal");
 
   @override
   final value = 3.14;
 
   @override
   bool operator ==(Object other) {
-    if (other is $3_14) {
+    if (other is N314Literal) {
       return value == other.value;
     }
     return false;
@@ -893,21 +827,21 @@ class $3_14 implements Literal {
 
   @override
   String toString() {
-    return r"$3_14(3.14)";
+    return r"N314Literal(3.14)";
   }
 }
 
-class $on implements Literal {
-  const $on();
-  const $on.validate(dynamic value)
-    : assert(value == 'on', r"Value mismatch for $on");
+class OnLiteral implements Literal {
+  const OnLiteral();
+  const OnLiteral.validate(dynamic value)
+    : assert(value == 'on', r"Value mismatch for OnLiteral");
 
   @override
   final value = 'on';
 
   @override
   bool operator ==(Object other) {
-    if (other is $on) {
+    if (other is OnLiteral) {
       return value == other.value;
     }
     return false;
@@ -918,46 +852,21 @@ class $on implements Literal {
 
   @override
   String toString() {
-    return r"$on(on)";
+    return r"OnLiteral(on)";
   }
 }
 
-class $_1_0 implements Literal {
-  const $_1_0();
-  const $_1_0.validate(dynamic value)
-    : assert(value == -1.0, r"Value mismatch for $_1_0");
-
-  @override
-  final value = -1.0;
-
-  @override
-  bool operator ==(Object other) {
-    if (other is $_1_0) {
-      return value == other.value;
-    }
-    return false;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  String toString() {
-    return r"$_1_0(-1)";
-  }
-}
-
-class $value implements Literal {
-  const $value();
-  const $value.validate(dynamic value)
-    : assert(value == 'value', r"Value mismatch for $value");
+class ValueLiteral implements Literal {
+  const ValueLiteral();
+  const ValueLiteral.validate(dynamic value)
+    : assert(value == 'value', r"Value mismatch for ValueLiteral");
 
   @override
   final value = 'value';
 
   @override
   bool operator ==(Object other) {
-    if (other is $value) {
+    if (other is ValueLiteral) {
       return value == other.value;
     }
     return false;
@@ -968,21 +877,21 @@ class $value implements Literal {
 
   @override
   String toString() {
-    return r"$value(value)";
+    return r"ValueLiteral(value)";
   }
 }
 
-class $ implements Literal {
-  const $();
-  const $.validate(dynamic value)
-    : assert(value == '', r"Value mismatch for $");
+class EmptyLiteral implements Literal {
+  const EmptyLiteral();
+  const EmptyLiteral.validate(dynamic value)
+    : assert(value == '', r"Value mismatch for EmptyLiteral");
 
   @override
   final value = '';
 
   @override
   bool operator ==(Object other) {
-    if (other is $) {
+    if (other is EmptyLiteral) {
       return value == other.value;
     }
     return false;
@@ -993,21 +902,21 @@ class $ implements Literal {
 
   @override
   String toString() {
-    return r"$()";
+    return r"EmptyLiteral()";
   }
 }
 
-class $blue implements Literal {
-  const $blue();
-  const $blue.validate(dynamic value)
-    : assert(value == 'blue', r"Value mismatch for $blue");
+class BlueLiteral implements Literal {
+  const BlueLiteral();
+  const BlueLiteral.validate(dynamic value)
+    : assert(value == 'blue', r"Value mismatch for BlueLiteral");
 
   @override
   final value = 'blue';
 
   @override
   bool operator ==(Object other) {
-    if (other is $blue) {
+    if (other is BlueLiteral) {
       return value == other.value;
     }
     return false;
@@ -1018,21 +927,21 @@ class $blue implements Literal {
 
   @override
   String toString() {
-    return r"$blue(blue)";
+    return r"BlueLiteral(blue)";
   }
 }
 
-class $red implements Literal {
-  const $red();
-  const $red.validate(dynamic value)
-    : assert(value == 'red', r"Value mismatch for $red");
+class RedLiteral implements Literal {
+  const RedLiteral();
+  const RedLiteral.validate(dynamic value)
+    : assert(value == 'red', r"Value mismatch for RedLiteral");
 
   @override
   final value = 'red';
 
   @override
   bool operator ==(Object other) {
-    if (other is $red) {
+    if (other is RedLiteral) {
       return value == other.value;
     }
     return false;
@@ -1043,21 +952,21 @@ class $red implements Literal {
 
   @override
   String toString() {
-    return r"$red(red)";
+    return r"RedLiteral(red)";
   }
 }
 
-class $yes implements Literal {
-  const $yes();
-  const $yes.validate(dynamic value)
-    : assert(value == 'yes', r"Value mismatch for $yes");
+class YesLiteral implements Literal {
+  const YesLiteral();
+  const YesLiteral.validate(dynamic value)
+    : assert(value == 'yes', r"Value mismatch for YesLiteral");
 
   @override
   final value = 'yes';
 
   @override
   bool operator ==(Object other) {
-    if (other is $yes) {
+    if (other is YesLiteral) {
       return value == other.value;
     }
     return false;
@@ -1068,21 +977,21 @@ class $yes implements Literal {
 
   @override
   String toString() {
-    return r"$yes(yes)";
+    return r"YesLiteral(yes)";
   }
 }
 
-class $no implements Literal {
-  const $no();
-  const $no.validate(dynamic value)
-    : assert(value == 'no', r"Value mismatch for $no");
+class NoLiteral implements Literal {
+  const NoLiteral();
+  const NoLiteral.validate(dynamic value)
+    : assert(value == 'no', r"Value mismatch for NoLiteral");
 
   @override
   final value = 'no';
 
   @override
   bool operator ==(Object other) {
-    if (other is $no) {
+    if (other is NoLiteral) {
       return value == other.value;
     }
     return false;
@@ -1093,21 +1002,21 @@ class $no implements Literal {
 
   @override
   String toString() {
-    return r"$no(no)";
+    return r"NoLiteral(no)";
   }
 }
 
-class $2_0 implements Literal {
-  const $2_0();
-  const $2_0.validate(dynamic value)
-    : assert(value == 2.0, r"Value mismatch for $2_0");
+class N20Literal implements Literal {
+  const N20Literal();
+  const N20Literal.validate(dynamic value)
+    : assert(value == 2.0, r"Value mismatch for N20Literal");
 
   @override
   final value = 2.0;
 
   @override
   bool operator ==(Object other) {
-    if (other is $2_0) {
+    if (other is N20Literal) {
       return value == other.value;
     }
     return false;
@@ -1118,21 +1027,21 @@ class $2_0 implements Literal {
 
   @override
   String toString() {
-    return r"$2_0(2)";
+    return r"N20Literal(2)";
   }
 }
 
-class $3_0 implements Literal {
-  const $3_0();
-  const $3_0.validate(dynamic value)
-    : assert(value == 3.0, r"Value mismatch for $3_0");
+class N30Literal implements Literal {
+  const N30Literal();
+  const N30Literal.validate(dynamic value)
+    : assert(value == 3.0, r"Value mismatch for N30Literal");
 
   @override
   final value = 3.0;
 
   @override
   bool operator ==(Object other) {
-    if (other is $3_0) {
+    if (other is N30Literal) {
       return value == other.value;
     }
     return false;
@@ -1143,21 +1052,21 @@ class $3_0 implements Literal {
 
   @override
   String toString() {
-    return r"$3_0(3)";
+    return r"N30Literal(3)";
   }
 }
 
-class $admin implements Literal {
-  const $admin();
-  const $admin.validate(dynamic value)
-    : assert(value == 'admin', r"Value mismatch for $admin");
+class AdminLiteral implements Literal {
+  const AdminLiteral();
+  const AdminLiteral.validate(dynamic value)
+    : assert(value == 'admin', r"Value mismatch for AdminLiteral");
 
   @override
   final value = 'admin';
 
   @override
   bool operator ==(Object other) {
-    if (other is $admin) {
+    if (other is AdminLiteral) {
       return value == other.value;
     }
     return false;
@@ -1168,21 +1077,21 @@ class $admin implements Literal {
 
   @override
   String toString() {
-    return r"$admin(admin)";
+    return r"AdminLiteral(admin)";
   }
 }
 
-class $user implements Literal {
-  const $user();
-  const $user.validate(dynamic value)
-    : assert(value == 'user', r"Value mismatch for $user");
+class UserLiteral implements Literal {
+  const UserLiteral();
+  const UserLiteral.validate(dynamic value)
+    : assert(value == 'user', r"Value mismatch for UserLiteral");
 
   @override
   final value = 'user';
 
   @override
   bool operator ==(Object other) {
-    if (other is $user) {
+    if (other is UserLiteral) {
       return value == other.value;
     }
     return false;
@@ -1193,21 +1102,21 @@ class $user implements Literal {
 
   @override
   String toString() {
-    return r"$user(user)";
+    return r"UserLiteral(user)";
   }
 }
 
-class $guest implements Literal {
-  const $guest();
-  const $guest.validate(dynamic value)
-    : assert(value == 'guest', r"Value mismatch for $guest");
+class GuestLiteral implements Literal {
+  const GuestLiteral();
+  const GuestLiteral.validate(dynamic value)
+    : assert(value == 'guest', r"Value mismatch for GuestLiteral");
 
   @override
   final value = 'guest';
 
   @override
   bool operator ==(Object other) {
-    if (other is $guest) {
+    if (other is GuestLiteral) {
       return value == other.value;
     }
     return false;
@@ -1218,21 +1127,21 @@ class $guest implements Literal {
 
   @override
   String toString() {
-    return r"$guest(guest)";
+    return r"GuestLiteral(guest)";
   }
 }
 
-class $work implements Literal {
-  const $work();
-  const $work.validate(dynamic value)
-    : assert(value == 'work', r"Value mismatch for $work");
+class WorkLiteral implements Literal {
+  const WorkLiteral();
+  const WorkLiteral.validate(dynamic value)
+    : assert(value == 'work', r"Value mismatch for WorkLiteral");
 
   @override
   final value = 'work';
 
   @override
   bool operator ==(Object other) {
-    if (other is $work) {
+    if (other is WorkLiteral) {
       return value == other.value;
     }
     return false;
@@ -1243,21 +1152,21 @@ class $work implements Literal {
 
   @override
   String toString() {
-    return r"$work(work)";
+    return r"WorkLiteral(work)";
   }
 }
 
-class $personal implements Literal {
-  const $personal();
-  const $personal.validate(dynamic value)
-    : assert(value == 'personal', r"Value mismatch for $personal");
+class PersonalLiteral implements Literal {
+  const PersonalLiteral();
+  const PersonalLiteral.validate(dynamic value)
+    : assert(value == 'personal', r"Value mismatch for PersonalLiteral");
 
   @override
   final value = 'personal';
 
   @override
   bool operator ==(Object other) {
-    if (other is $personal) {
+    if (other is PersonalLiteral) {
       return value == other.value;
     }
     return false;
@@ -1268,21 +1177,21 @@ class $personal implements Literal {
 
   @override
   String toString() {
-    return r"$personal(personal)";
+    return r"PersonalLiteral(personal)";
   }
 }
 
-class $urgent implements Literal {
-  const $urgent();
-  const $urgent.validate(dynamic value)
-    : assert(value == 'urgent', r"Value mismatch for $urgent");
+class UrgentLiteral implements Literal {
+  const UrgentLiteral();
+  const UrgentLiteral.validate(dynamic value)
+    : assert(value == 'urgent', r"Value mismatch for UrgentLiteral");
 
   @override
   final value = 'urgent';
 
   @override
   bool operator ==(Object other) {
-    if (other is $urgent) {
+    if (other is UrgentLiteral) {
       return value == other.value;
     }
     return false;
@@ -1293,21 +1202,21 @@ class $urgent implements Literal {
 
   @override
   String toString() {
-    return r"$urgent(urgent)";
+    return r"UrgentLiteral(urgent)";
   }
 }
 
-class $pending implements Literal {
-  const $pending();
-  const $pending.validate(dynamic value)
-    : assert(value == 'pending', r"Value mismatch for $pending");
+class PendingLiteral implements Literal {
+  const PendingLiteral();
+  const PendingLiteral.validate(dynamic value)
+    : assert(value == 'pending', r"Value mismatch for PendingLiteral");
 
   @override
   final value = 'pending';
 
   @override
   bool operator ==(Object other) {
-    if (other is $pending) {
+    if (other is PendingLiteral) {
       return value == other.value;
     }
     return false;
@@ -1318,21 +1227,21 @@ class $pending implements Literal {
 
   @override
   String toString() {
-    return r"$pending(pending)";
+    return r"PendingLiteral(pending)";
   }
 }
 
-class $approved implements Literal {
-  const $approved();
-  const $approved.validate(dynamic value)
-    : assert(value == 'approved', r"Value mismatch for $approved");
+class ApprovedLiteral implements Literal {
+  const ApprovedLiteral();
+  const ApprovedLiteral.validate(dynamic value)
+    : assert(value == 'approved', r"Value mismatch for ApprovedLiteral");
 
   @override
   final value = 'approved';
 
   @override
   bool operator ==(Object other) {
-    if (other is $approved) {
+    if (other is ApprovedLiteral) {
       return value == other.value;
     }
     return false;
@@ -1343,21 +1252,21 @@ class $approved implements Literal {
 
   @override
   String toString() {
-    return r"$approved(approved)";
+    return r"ApprovedLiteral(approved)";
   }
 }
 
-class $rejected implements Literal {
-  const $rejected();
-  const $rejected.validate(dynamic value)
-    : assert(value == 'rejected', r"Value mismatch for $rejected");
+class RejectedLiteral implements Literal {
+  const RejectedLiteral();
+  const RejectedLiteral.validate(dynamic value)
+    : assert(value == 'rejected', r"Value mismatch for RejectedLiteral");
 
   @override
   final value = 'rejected';
 
   @override
   bool operator ==(Object other) {
-    if (other is $rejected) {
+    if (other is RejectedLiteral) {
       return value == other.value;
     }
     return false;
@@ -1368,21 +1277,21 @@ class $rejected implements Literal {
 
   @override
   String toString() {
-    return r"$rejected(rejected)";
+    return r"RejectedLiteral(rejected)";
   }
 }
 
-class $string implements Literal {
-  const $string();
-  const $string.validate(dynamic value)
-    : assert(value == 'string', r"Value mismatch for $string");
+class StringLiteral implements Literal {
+  const StringLiteral();
+  const StringLiteral.validate(dynamic value)
+    : assert(value == 'string', r"Value mismatch for StringLiteral");
 
   @override
   final value = 'string';
 
   @override
   bool operator ==(Object other) {
-    if (other is $string) {
+    if (other is StringLiteral) {
       return value == other.value;
     }
     return false;
@@ -1393,21 +1302,21 @@ class $string implements Literal {
 
   @override
   String toString() {
-    return r"$string(string)";
+    return r"StringLiteral(string)";
   }
 }
 
-class $primitive implements Literal {
-  const $primitive();
-  const $primitive.validate(dynamic value)
-    : assert(value == 'primitive', r"Value mismatch for $primitive");
+class PrimitiveLiteral implements Literal {
+  const PrimitiveLiteral();
+  const PrimitiveLiteral.validate(dynamic value)
+    : assert(value == 'primitive', r"Value mismatch for PrimitiveLiteral");
 
   @override
   final value = 'primitive';
 
   @override
   bool operator ==(Object other) {
-    if (other is $primitive) {
+    if (other is PrimitiveLiteral) {
       return value == other.value;
     }
     return false;
@@ -1418,21 +1327,21 @@ class $primitive implements Literal {
 
   @override
   String toString() {
-    return r"$primitive(primitive)";
+    return r"PrimitiveLiteral(primitive)";
   }
 }
 
-class $object implements Literal {
-  const $object();
-  const $object.validate(dynamic value)
-    : assert(value == 'object', r"Value mismatch for $object");
+class ObjectLiteral implements Literal {
+  const ObjectLiteral();
+  const ObjectLiteral.validate(dynamic value)
+    : assert(value == 'object', r"Value mismatch for ObjectLiteral");
 
   @override
   final value = 'object';
 
   @override
   bool operator ==(Object other) {
-    if (other is $object) {
+    if (other is ObjectLiteral) {
       return value == other.value;
     }
     return false;
@@ -1443,21 +1352,21 @@ class $object implements Literal {
 
   @override
   String toString() {
-    return r"$object(object)";
+    return r"ObjectLiteral(object)";
   }
 }
 
-class $array implements Literal {
-  const $array();
-  const $array.validate(dynamic value)
-    : assert(value == 'array', r"Value mismatch for $array");
+class ArrayLiteral implements Literal {
+  const ArrayLiteral();
+  const ArrayLiteral.validate(dynamic value)
+    : assert(value == 'array', r"Value mismatch for ArrayLiteral");
 
   @override
   final value = 'array';
 
   @override
   bool operator ==(Object other) {
-    if (other is $array) {
+    if (other is ArrayLiteral) {
       return value == other.value;
     }
     return false;
@@ -1468,21 +1377,21 @@ class $array implements Literal {
 
   @override
   String toString() {
-    return r"$array(array)";
+    return r"ArrayLiteral(array)";
   }
 }
 
-class $green implements Literal {
-  const $green();
-  const $green.validate(dynamic value)
-    : assert(value == 'green', r"Value mismatch for $green");
+class GreenLiteral implements Literal {
+  const GreenLiteral();
+  const GreenLiteral.validate(dynamic value)
+    : assert(value == 'green', r"Value mismatch for GreenLiteral");
 
   @override
   final value = 'green';
 
   @override
   bool operator ==(Object other) {
-    if (other is $green) {
+    if (other is GreenLiteral) {
       return value == other.value;
     }
     return false;
@@ -1493,21 +1402,21 @@ class $green implements Literal {
 
   @override
   String toString() {
-    return r"$green(green)";
+    return r"GreenLiteral(green)";
   }
 }
 
-class $GET implements Literal {
-  const $GET();
-  const $GET.validate(dynamic value)
-    : assert(value == 'GET', r"Value mismatch for $GET");
+class GetLiteral implements Literal {
+  const GetLiteral();
+  const GetLiteral.validate(dynamic value)
+    : assert(value == 'GET', r"Value mismatch for GetLiteral");
 
   @override
   final value = 'GET';
 
   @override
   bool operator ==(Object other) {
-    if (other is $GET) {
+    if (other is GetLiteral) {
       return value == other.value;
     }
     return false;
@@ -1518,21 +1427,21 @@ class $GET implements Literal {
 
   @override
   String toString() {
-    return r"$GET(GET)";
+    return r"GetLiteral(GET)";
   }
 }
 
-class $POST implements Literal {
-  const $POST();
-  const $POST.validate(dynamic value)
-    : assert(value == 'POST', r"Value mismatch for $POST");
+class PostLiteral implements Literal {
+  const PostLiteral();
+  const PostLiteral.validate(dynamic value)
+    : assert(value == 'POST', r"Value mismatch for PostLiteral");
 
   @override
   final value = 'POST';
 
   @override
   bool operator ==(Object other) {
-    if (other is $POST) {
+    if (other is PostLiteral) {
       return value == other.value;
     }
     return false;
@@ -1543,21 +1452,21 @@ class $POST implements Literal {
 
   @override
   String toString() {
-    return r"$POST(POST)";
+    return r"PostLiteral(POST)";
   }
 }
 
-class $PUT implements Literal {
-  const $PUT();
-  const $PUT.validate(dynamic value)
-    : assert(value == 'PUT', r"Value mismatch for $PUT");
+class PutLiteral implements Literal {
+  const PutLiteral();
+  const PutLiteral.validate(dynamic value)
+    : assert(value == 'PUT', r"Value mismatch for PutLiteral");
 
   @override
   final value = 'PUT';
 
   @override
   bool operator ==(Object other) {
-    if (other is $PUT) {
+    if (other is PutLiteral) {
       return value == other.value;
     }
     return false;
@@ -1568,21 +1477,21 @@ class $PUT implements Literal {
 
   @override
   String toString() {
-    return r"$PUT(PUT)";
+    return r"PutLiteral(PUT)";
   }
 }
 
-class $DELETE implements Literal {
-  const $DELETE();
-  const $DELETE.validate(dynamic value)
-    : assert(value == 'DELETE', r"Value mismatch for $DELETE");
+class DeleteLiteral implements Literal {
+  const DeleteLiteral();
+  const DeleteLiteral.validate(dynamic value)
+    : assert(value == 'DELETE', r"Value mismatch for DeleteLiteral");
 
   @override
   final value = 'DELETE';
 
   @override
   bool operator ==(Object other) {
-    if (other is $DELETE) {
+    if (other is DeleteLiteral) {
       return value == other.value;
     }
     return false;
@@ -1593,21 +1502,21 @@ class $DELETE implements Literal {
 
   @override
   String toString() {
-    return r"$DELETE(DELETE)";
+    return r"DeleteLiteral(DELETE)";
   }
 }
 
-class $minute implements Literal {
-  const $minute();
-  const $minute.validate(dynamic value)
-    : assert(value == 'minute', r"Value mismatch for $minute");
+class MinuteLiteral implements Literal {
+  const MinuteLiteral();
+  const MinuteLiteral.validate(dynamic value)
+    : assert(value == 'minute', r"Value mismatch for MinuteLiteral");
 
   @override
   final value = 'minute';
 
   @override
   bool operator ==(Object other) {
-    if (other is $minute) {
+    if (other is MinuteLiteral) {
       return value == other.value;
     }
     return false;
@@ -1618,21 +1527,21 @@ class $minute implements Literal {
 
   @override
   String toString() {
-    return r"$minute(minute)";
+    return r"MinuteLiteral(minute)";
   }
 }
 
-class $hour implements Literal {
-  const $hour();
-  const $hour.validate(dynamic value)
-    : assert(value == 'hour', r"Value mismatch for $hour");
+class HourLiteral implements Literal {
+  const HourLiteral();
+  const HourLiteral.validate(dynamic value)
+    : assert(value == 'hour', r"Value mismatch for HourLiteral");
 
   @override
   final value = 'hour';
 
   @override
   bool operator ==(Object other) {
-    if (other is $hour) {
+    if (other is HourLiteral) {
       return value == other.value;
     }
     return false;
@@ -1643,21 +1552,21 @@ class $hour implements Literal {
 
   @override
   String toString() {
-    return r"$hour(hour)";
+    return r"HourLiteral(hour)";
   }
 }
 
-class $day implements Literal {
-  const $day();
-  const $day.validate(dynamic value)
-    : assert(value == 'day', r"Value mismatch for $day");
+class DayLiteral implements Literal {
+  const DayLiteral();
+  const DayLiteral.validate(dynamic value)
+    : assert(value == 'day', r"Value mismatch for DayLiteral");
 
   @override
   final value = 'day';
 
   @override
   bool operator ==(Object other) {
-    if (other is $day) {
+    if (other is DayLiteral) {
       return value == other.value;
     }
     return false;
@@ -1668,21 +1577,21 @@ class $day implements Literal {
 
   @override
   String toString() {
-    return r"$day(day)";
+    return r"DayLiteral(day)";
   }
 }
 
-class $date implements Literal {
-  const $date();
-  const $date.validate(dynamic value)
-    : assert(value == 'date', r"Value mismatch for $date");
+class DateLiteral implements Literal {
+  const DateLiteral();
+  const DateLiteral.validate(dynamic value)
+    : assert(value == 'date', r"Value mismatch for DateLiteral");
 
   @override
   final value = 'date';
 
   @override
   bool operator ==(Object other) {
-    if (other is $date) {
+    if (other is DateLiteral) {
       return value == other.value;
     }
     return false;
@@ -1693,21 +1602,21 @@ class $date implements Literal {
 
   @override
   String toString() {
-    return r"$date(date)";
+    return r"DateLiteral(date)";
   }
 }
 
-class $action implements Literal {
-  const $action();
-  const $action.validate(dynamic value)
-    : assert(value == 'action', r"Value mismatch for $action");
+class ActionLiteral implements Literal {
+  const ActionLiteral();
+  const ActionLiteral.validate(dynamic value)
+    : assert(value == 'action', r"Value mismatch for ActionLiteral");
 
   @override
   final value = 'action';
 
   @override
   bool operator ==(Object other) {
-    if (other is $action) {
+    if (other is ActionLiteral) {
       return value == other.value;
     }
     return false;
@@ -1718,21 +1627,21 @@ class $action implements Literal {
 
   @override
   String toString() {
-    return r"$action(action)";
+    return r"ActionLiteral(action)";
   }
 }
 
-class $condition implements Literal {
-  const $condition();
-  const $condition.validate(dynamic value)
-    : assert(value == 'condition', r"Value mismatch for $condition");
+class ConditionLiteral implements Literal {
+  const ConditionLiteral();
+  const ConditionLiteral.validate(dynamic value)
+    : assert(value == 'condition', r"Value mismatch for ConditionLiteral");
 
   @override
   final value = 'condition';
 
   @override
   bool operator ==(Object other) {
-    if (other is $condition) {
+    if (other is ConditionLiteral) {
       return value == other.value;
     }
     return false;
@@ -1743,21 +1652,21 @@ class $condition implements Literal {
 
   @override
   String toString() {
-    return r"$condition(condition)";
+    return r"ConditionLiteral(condition)";
   }
 }
 
-class $loop implements Literal {
-  const $loop();
-  const $loop.validate(dynamic value)
-    : assert(value == 'loop', r"Value mismatch for $loop");
+class LoopLiteral implements Literal {
+  const LoopLiteral();
+  const LoopLiteral.validate(dynamic value)
+    : assert(value == 'loop', r"Value mismatch for LoopLiteral");
 
   @override
   final value = 'loop';
 
   @override
   bool operator ==(Object other) {
-    if (other is $loop) {
+    if (other is LoopLiteral) {
       return value == other.value;
     }
     return false;
@@ -1768,21 +1677,21 @@ class $loop implements Literal {
 
   @override
   String toString() {
-    return r"$loop(loop)";
+    return r"LoopLiteral(loop)";
   }
 }
 
-class $read implements Literal {
-  const $read();
-  const $read.validate(dynamic value)
-    : assert(value == 'read', r"Value mismatch for $read");
+class ReadLiteral implements Literal {
+  const ReadLiteral();
+  const ReadLiteral.validate(dynamic value)
+    : assert(value == 'read', r"Value mismatch for ReadLiteral");
 
   @override
   final value = 'read';
 
   @override
   bool operator ==(Object other) {
-    if (other is $read) {
+    if (other is ReadLiteral) {
       return value == other.value;
     }
     return false;
@@ -1793,21 +1702,21 @@ class $read implements Literal {
 
   @override
   String toString() {
-    return r"$read(read)";
+    return r"ReadLiteral(read)";
   }
 }
 
-class $write implements Literal {
-  const $write();
-  const $write.validate(dynamic value)
-    : assert(value == 'write', r"Value mismatch for $write");
+class WriteLiteral implements Literal {
+  const WriteLiteral();
+  const WriteLiteral.validate(dynamic value)
+    : assert(value == 'write', r"Value mismatch for WriteLiteral");
 
   @override
   final value = 'write';
 
   @override
   bool operator ==(Object other) {
-    if (other is $write) {
+    if (other is WriteLiteral) {
       return value == other.value;
     }
     return false;
@@ -1818,21 +1727,21 @@ class $write implements Literal {
 
   @override
   String toString() {
-    return r"$write(write)";
+    return r"WriteLiteral(write)";
   }
 }
 
-class $C implements Literal {
-  const $C();
-  const $C.validate(dynamic value)
-    : assert(value == 'C', r"Value mismatch for $C");
+class CLiteral implements Literal {
+  const CLiteral();
+  const CLiteral.validate(dynamic value)
+    : assert(value == 'C', r"Value mismatch for CLiteral");
 
   @override
   final value = 'C';
 
   @override
   bool operator ==(Object other) {
-    if (other is $C) {
+    if (other is CLiteral) {
       return value == other.value;
     }
     return false;
@@ -1843,21 +1752,21 @@ class $C implements Literal {
 
   @override
   String toString() {
-    return r"$C(C)";
+    return r"CLiteral(C)";
   }
 }
 
-class $off implements Literal {
-  const $off();
-  const $off.validate(dynamic value)
-    : assert(value == 'off', r"Value mismatch for $off");
+class OffLiteral implements Literal {
+  const OffLiteral();
+  const OffLiteral.validate(dynamic value)
+    : assert(value == 'off', r"Value mismatch for OffLiteral");
 
   @override
   final value = 'off';
 
   @override
   bool operator ==(Object other) {
-    if (other is $off) {
+    if (other is OffLiteral) {
       return value == other.value;
     }
     return false;
@@ -1868,21 +1777,21 @@ class $off implements Literal {
 
   @override
   String toString() {
-    return r"$off(off)";
+    return r"OffLiteral(off)";
   }
 }
 
-class $cat implements Literal {
-  const $cat();
-  const $cat.validate(dynamic value)
-    : assert(value == 'cat', r"Value mismatch for $cat");
+class CatLiteral implements Literal {
+  const CatLiteral();
+  const CatLiteral.validate(dynamic value)
+    : assert(value == 'cat', r"Value mismatch for CatLiteral");
 
   @override
   final value = 'cat';
 
   @override
   bool operator ==(Object other) {
-    if (other is $cat) {
+    if (other is CatLiteral) {
       return value == other.value;
     }
     return false;
@@ -1893,21 +1802,21 @@ class $cat implements Literal {
 
   @override
   String toString() {
-    return r"$cat(cat)";
+    return r"CatLiteral(cat)";
   }
 }
 
-class $dog implements Literal {
-  const $dog();
-  const $dog.validate(dynamic value)
-    : assert(value == 'dog', r"Value mismatch for $dog");
+class DogLiteral implements Literal {
+  const DogLiteral();
+  const DogLiteral.validate(dynamic value)
+    : assert(value == 'dog', r"Value mismatch for DogLiteral");
 
   @override
   final value = 'dog';
 
   @override
   bool operator ==(Object other) {
-    if (other is $dog) {
+    if (other is DogLiteral) {
       return value == other.value;
     }
     return false;
@@ -1918,6 +1827,6 @@ class $dog implements Literal {
 
   @override
   String toString() {
-    return r"$dog(dog)";
+    return r"DogLiteral(dog)";
   }
 }

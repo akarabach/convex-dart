@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query20.freezed.dart';
+
+@freezed
+sealed class Query20Args with _$Query20Args {
+  const factory Query20Args({required Optional<HiLiteral> i}) = _Query20Args;
+}
+
+@freezed
+sealed class Query20Response with _$Query20Response {
+  const factory Query20Response({required Optional<HiLiteral> i}) =
+      _Query20Response;
+}
 
 Future<Query20Response> query20(Query20Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +49,10 @@ BTreeMapStringValue serialize(Query20Args args) {
 @pragma("vm:prefer-inline")
 Query20Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on733928) => (
-      i: on733928.containsKey('i')
-          ? Defined<$hi>($hi.validate(on733928['i']))
-          : Undefined<$hi>(),
+    (on785398) => Query20Response(
+      i: on785398.containsKey('i')
+          ? Defined<HiLiteral>(HiLiteral.validate(on785398['i']))
+          : Undefined<HiLiteral>(),
     ),
   );
 }
-
-typedef Query20Args = ({Optional<$hi> i});
-typedef Query20Response = ({Optional<$hi> i});

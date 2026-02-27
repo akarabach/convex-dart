@@ -2,9 +2,71 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query113.freezed.dart';
+
+@freezed
+sealed class Query113ArgsISettings with _$Query113ArgsISettings {
+  const factory Query113ArgsISettings({
+    required bool notifications,
+    required String theme,
+  }) = _Query113ArgsISettings;
+}
+
+@freezed
+sealed class Query113ArgsIUser with _$Query113ArgsIUser {
+  const factory Query113ArgsIUser({
+    required String email,
+    required String name,
+  }) = _Query113ArgsIUser;
+}
+
+@freezed
+sealed class Query113ArgsI with _$Query113ArgsI {
+  const factory Query113ArgsI({
+    required Query113ArgsISettings settings,
+    required Query113ArgsIUser user,
+  }) = _Query113ArgsI;
+}
+
+@freezed
+sealed class Query113Args with _$Query113Args {
+  const factory Query113Args({required Query113ArgsI i}) = _Query113Args;
+}
+
+@freezed
+sealed class Query113ResponseISettings with _$Query113ResponseISettings {
+  const factory Query113ResponseISettings({
+    required bool notifications,
+    required String theme,
+  }) = _Query113ResponseISettings;
+}
+
+@freezed
+sealed class Query113ResponseIUser with _$Query113ResponseIUser {
+  const factory Query113ResponseIUser({
+    required String email,
+    required String name,
+  }) = _Query113ResponseIUser;
+}
+
+@freezed
+sealed class Query113ResponseI with _$Query113ResponseI {
+  const factory Query113ResponseI({
+    required Query113ResponseISettings settings,
+    required Query113ResponseIUser user,
+  }) = _Query113ResponseI;
+}
+
+@freezed
+sealed class Query113Response with _$Query113Response {
+  const factory Query113Response({required Query113ResponseI i}) =
+      _Query113Response;
+}
 
 Future<Query113Response> query113(Query113Args args) async {
   final serializedArgs = serialize(args);
@@ -46,19 +108,19 @@ BTreeMapStringValue serialize(Query113Args args) {
 @pragma("vm:prefer-inline")
 Query113Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on787892) => (
-      i: (on787892['i'] as IMap<String, dynamic>).then(
-        (on917154) => (
-          settings: (on917154['settings'] as IMap<String, dynamic>).then(
-            (on564541) => (
-              notifications: (on564541['notifications'] as bool),
-              theme: (on564541['theme'] as String),
+    (on676485) => Query113Response(
+      i: (on676485['i'] as IMap<String, dynamic>).then(
+        (on356426) => Query113ResponseI(
+          settings: (on356426['settings'] as IMap<String, dynamic>).then(
+            (on835193) => Query113ResponseISettings(
+              notifications: (on835193['notifications'] as bool),
+              theme: (on835193['theme'] as String),
             ),
           ),
-          user: (on917154['user'] as IMap<String, dynamic>).then(
-            (on801061) => (
-              email: (on801061['email'] as String),
-              name: (on801061['name'] as String),
+          user: (on356426['user'] as IMap<String, dynamic>).then(
+            (on526750) => Query113ResponseIUser(
+              email: (on526750['email'] as String),
+              name: (on526750['name'] as String),
             ),
           ),
         ),
@@ -66,18 +128,3 @@ Query113Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query113Args = ({
-  ({
-    ({bool notifications, String theme}) settings,
-    ({String email, String name}) user,
-  })
-  i,
-});
-typedef Query113Response = ({
-  ({
-    ({bool notifications, String theme}) settings,
-    ({String email, String name}) user,
-  })
-  i,
-});

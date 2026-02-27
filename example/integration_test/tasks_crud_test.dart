@@ -6,6 +6,15 @@ import 'package:api/src/convex/client.dart';
 import 'package:convex_dart/convex_dart.dart';
 import 'dart:async';
 import 'package:integration_test/integration_test.dart';
+import 'package:api/src/convex/functions/tasks/createTask.dart' show CreateTaskArgs;
+import 'package:api/src/convex/functions/tasks/getTask.dart' show GetTaskArgs;
+import 'package:api/src/convex/functions/tasks/getTasksByStatus.dart' show GetTasksByStatusArgs;
+import 'package:api/src/convex/functions/tasks/searchTasks.dart' show SearchTasksArgs;
+import 'package:api/src/convex/functions/tasks/updateTaskText.dart' show UpdateTaskTextArgs;
+import 'package:api/src/convex/functions/tasks/toggleTaskCompletion.dart' show ToggleTaskCompletionArgs;
+import 'package:api/src/convex/functions/tasks/setTaskCompletion.dart' show SetTaskCompletionArgs;
+import 'package:api/src/convex/functions/tasks/updateTask.dart' show UpdateTaskArgs;
+import 'package:api/src/convex/functions/tasks/deleteTask.dart' show DeleteTaskArgs;
 
 final deepEq = DeepCollectionEquality.unordered();
 
@@ -25,7 +34,7 @@ void main() {
     });
 
     test('Create Task - Basic', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Test task',
         isCompleted: Optional.undefined(),
       ));
@@ -33,34 +42,34 @@ void main() {
       expect(taskId.body, isNotNull);
 
       // Verify the task was created
-      final task = await api.tasks.getTask((id: taskId.body));
+      final task = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task.body, isNotNull);
       expect(task.body!.text, 'Test task');
       expect(task.body!.isCompleted, false);
     });
 
     test('Create Task - With completion status', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task',
         isCompleted: Optional.defined(true),
       ));
 
-      final task = await api.tasks.getTask((id: taskId.body));
+      final task = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task.body!.text, 'Completed task');
       expect(task.body!.isCompleted, true);
     });
 
     test('Get All Tasks', () async {
       // Create multiple tasks
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 2',
         isCompleted: Optional.defined(true),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 3',
         isCompleted: Optional.undefined(),
       ));
@@ -75,28 +84,28 @@ void main() {
     });
 
     test('Get Tasks By Status', () async {
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task',
         isCompleted: Optional.defined(true),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task 2',
         isCompleted: Optional.undefined(),
       ));
 
       // Get pending tasks
-      final pendingTasks = await api.tasks.getTasksByStatus((
+      final pendingTasks = await api.tasks.getTasksByStatus(GetTasksByStatusArgs(
         isCompleted: false,
       ));
       expect(pendingTasks.body.length, 2);
       expect(pendingTasks.body.every((t) => !t.isCompleted), true);
 
       // Get completed tasks
-      final completedTasks = await api.tasks.getTasksByStatus((
+      final completedTasks = await api.tasks.getTasksByStatus(GetTasksByStatusArgs(
         isCompleted: true,
       ));
       expect(completedTasks.body.length, 1);
@@ -104,20 +113,20 @@ void main() {
     });
 
     test('Search Tasks', () async {
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Buy groceries',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Buy coffee',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Walk the dog',
         isCompleted: Optional.undefined(),
       ));
 
-      final searchResults = await api.tasks.searchTasks((searchText: 'buy'));
+      final searchResults = await api.tasks.searchTasks(SearchTasksArgs(searchText: 'buy'));
 
       expect(searchResults.body.length, 2);
       expect(
@@ -127,116 +136,116 @@ void main() {
     });
 
     test('Update Task Text', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Original text',
         isCompleted: Optional.undefined(),
       ));
 
-      await api.tasks.updateTaskText((id: taskId.body, text: 'Updated text'));
+      await api.tasks.updateTaskText(UpdateTaskTextArgs(id: taskId.body, text: 'Updated text'));
 
-      final updatedTask = await api.tasks.getTask((id: taskId.body));
+      final updatedTask = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(updatedTask.body!.text, 'Updated text');
     });
 
     test('Toggle Task Completion', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Toggle test',
         isCompleted: Optional.undefined(),
       ));
 
       // Toggle to completed
-      final newStatus1 = await api.tasks.toggleTaskCompletion((
+      final newStatus1 = await api.tasks.toggleTaskCompletion(ToggleTaskCompletionArgs(
         id: taskId.body,
       ));
       expect(newStatus1.body, true);
 
       // Verify the change
-      final task1 = await api.tasks.getTask((id: taskId.body));
+      final task1 = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task1.body!.isCompleted, true);
 
       // Toggle back to pending
-      final newStatus2 = await api.tasks.toggleTaskCompletion((
+      final newStatus2 = await api.tasks.toggleTaskCompletion(ToggleTaskCompletionArgs(
         id: taskId.body,
       ));
       expect(newStatus2.body, false);
 
-      final task2 = await api.tasks.getTask((id: taskId.body));
+      final task2 = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task2.body!.isCompleted, false);
     });
 
     test('Set Task Completion', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Set completion test',
         isCompleted: Optional.undefined(),
       ));
 
-      await api.tasks.setTaskCompletion((id: taskId.body, isCompleted: true));
+      await api.tasks.setTaskCompletion(SetTaskCompletionArgs(id: taskId.body, isCompleted: true));
 
-      final task = await api.tasks.getTask((id: taskId.body));
+      final task = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task.body!.isCompleted, true);
     });
 
     test('Update Task - Partial update', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Original task',
         isCompleted: Optional.defined(false),
       ));
 
       // Update only text
-      await api.tasks.updateTask((
+      await api.tasks.updateTask(UpdateTaskArgs(
         id: taskId.body,
         text: Optional.defined('Updated task'),
         isCompleted: Optional.undefined(),
       ));
 
-      final task1 = await api.tasks.getTask((id: taskId.body));
+      final task1 = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task1.body!.text, 'Updated task');
       expect(task1.body!.isCompleted, false); // Should remain unchanged
 
       // Update only completion status
-      await api.tasks.updateTask((
+      await api.tasks.updateTask(UpdateTaskArgs(
         id: taskId.body,
         text: Optional.undefined(),
         isCompleted: Optional.defined(true),
       ));
 
-      final task2 = await api.tasks.getTask((id: taskId.body));
+      final task2 = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(task2.body!.text, 'Updated task'); // Should remain unchanged
       expect(task2.body!.isCompleted, true);
     });
 
     test('Delete Task', () async {
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Task to delete',
         isCompleted: Optional.undefined(),
       ));
 
       // Verify task exists
-      final taskBefore = await api.tasks.getTask((id: taskId.body));
+      final taskBefore = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(taskBefore.body, isNotNull);
 
       // Delete the task
-      await api.tasks.deleteTask((id: taskId.body));
+      await api.tasks.deleteTask(DeleteTaskArgs(id: taskId.body));
 
       // Verify task is deleted
-      final taskAfter = await api.tasks.getTask((id: taskId.body));
+      final taskAfter = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(taskAfter.body, isNull);
     });
 
     test('Delete Completed Tasks', () async {
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task 1',
         isCompleted: Optional.defined(true),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task 2',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task 2',
         isCompleted: Optional.defined(true),
       ));
@@ -250,19 +259,19 @@ void main() {
     });
 
     test('Get Task Count', () async {
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 2',
         isCompleted: Optional.defined(true),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 3',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 4',
         isCompleted: Optional.defined(true),
       ));
@@ -274,15 +283,15 @@ void main() {
     });
 
     test('Delete All Tasks', () async {
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 2',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 3',
         isCompleted: Optional.undefined(),
       ));
@@ -297,13 +306,13 @@ void main() {
     test('Get Non-existent Task', () async {
       // This should return null for a non-existent task ID
       // Note: We'll need to create a valid-looking but non-existent ID
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Temp task',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.deleteTask((id: taskId.body));
+      await api.tasks.deleteTask(DeleteTaskArgs(id: taskId.body));
 
-      final result = await api.tasks.getTask((id: taskId.body));
+      final result = await api.tasks.getTask(GetTaskArgs(id: taskId.body));
       expect(result.body, isNull);
     });
   });
@@ -338,13 +347,13 @@ void main() {
       expect(results.first.length, 0);
 
       // Add first task
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 1',
         isCompleted: Optional.undefined(),
       ));
 
       // Add second task
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 2',
         isCompleted: Optional.undefined(),
       ));
@@ -369,7 +378,7 @@ void main() {
 
       // Subscribe to completed tasks only
       final subscription = api.tasks
-          .getTasksByStatusStream((isCompleted: true))
+          .getTasksByStatusStream(GetTasksByStatusArgs(isCompleted: true))
           .deepDistinct()
           .listen((tasks) {
             completedTasks.add(tasks.body.toList());
@@ -383,19 +392,19 @@ void main() {
       await Future.delayed(Duration(milliseconds: 100));
 
       // Create a pending task (should not appear in completed stream)
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task',
         isCompleted: Optional.undefined(),
       ));
 
       // Create a completed task (should appear)
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task',
         isCompleted: Optional.defined(true),
       ));
 
       // Create another completed task (should appear)
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Another completed task',
         isCompleted: Optional.defined(true),
       ));
@@ -419,7 +428,7 @@ void main() {
 
       // Subscribe to search for "buy"
       final subscription = api.tasks
-          .searchTasksStream((searchText: 'buy'))
+          .searchTasksStream(SearchTasksArgs(searchText: 'buy'))
           .deepDistinct()
           .listen((tasks) {
             searchResults.add(tasks.body.toList());
@@ -433,19 +442,19 @@ void main() {
       await Future.delayed(Duration(milliseconds: 100));
 
       // Create a non-matching task
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Walk the dog',
         isCompleted: Optional.undefined(),
       ));
 
       // Create a matching task
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Buy groceries',
         isCompleted: Optional.undefined(),
       ));
 
       // Create another matching task
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Buy coffee',
         isCompleted: Optional.undefined(),
       ));
@@ -481,15 +490,15 @@ void main() {
       await Future.delayed(Duration(milliseconds: 100));
 
       // Add tasks with different completion states
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 1',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 2',
         isCompleted: Optional.defined(true),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Task 3',
         isCompleted: Optional.undefined(),
       ));
@@ -532,19 +541,19 @@ void main() {
       await Future.delayed(Duration(milliseconds: 100));
 
       // Create a task
-      final taskId = await api.tasks.createTask((
+      final taskId = await api.tasks.createTask(CreateTaskArgs(
         text: 'Original task',
         isCompleted: Optional.undefined(),
       ));
 
       // Update the task text
-      await api.tasks.updateTaskText((id: taskId.body, text: 'Updated task'));
+      await api.tasks.updateTaskText(UpdateTaskTextArgs(id: taskId.body, text: 'Updated task'));
 
       // Toggle completion
-      await api.tasks.toggleTaskCompletion((id: taskId.body));
+      await api.tasks.toggleTaskCompletion(ToggleTaskCompletionArgs(id: taskId.body));
 
       // Delete the task
-      await api.tasks.deleteTask((id: taskId.body));
+      await api.tasks.deleteTask(DeleteTaskArgs(id: taskId.body));
 
       // Wait for all updates
       await completer.future.timeout(Duration(seconds: 5));
@@ -581,7 +590,7 @@ void main() {
 
       // Subscribe to completed tasks
       final completedTasksSubscription = api.tasks
-          .getTasksByStatusStream((isCompleted: true))
+          .getTasksByStatusStream(GetTasksByStatusArgs(isCompleted: true))
           .deepDistinct()
           .listen((tasks) {
             completedTasksUpdates.add(tasks.body.toList());
@@ -594,11 +603,11 @@ void main() {
       await Future.delayed(Duration(milliseconds: 100));
 
       // Create tasks
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Pending task',
         isCompleted: Optional.undefined(),
       ));
-      await api.tasks.createTask((
+      await api.tasks.createTask(CreateTaskArgs(
         text: 'Completed task',
         isCompleted: Optional.defined(true),
       ));

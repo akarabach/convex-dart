@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query220.freezed.dart';
+
+@freezed
+sealed class Query220Args with _$Query220Args {
+  const factory Query220Args({required EmptyLiteral i}) = _Query220Args;
+}
+
+@freezed
+sealed class Query220Response with _$Query220Response {
+  const factory Query220Response({required EmptyLiteral i}) = _Query220Response;
+}
 
 Future<Query220Response> query220(Query220Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query220Args args) {
 @pragma("vm:prefer-inline")
 Query220Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on217516) => (i: $.validate(on217516['i'])),
+    (on629400) => Query220Response(i: EmptyLiteral.validate(on629400['i'])),
   );
 }
-
-typedef Query220Args = ({$ i});
-typedef Query220Response = ({$ i});

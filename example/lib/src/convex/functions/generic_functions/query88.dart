@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query88.freezed.dart';
+
+@freezed
+sealed class Query88Args with _$Query88Args {
+  const factory Query88Args({required IMap<String, HiLiteral?> i}) =
+      _Query88Args;
+}
+
+@freezed
+sealed class Query88Response with _$Query88Response {
+  const factory Query88Response({required IMap<String, HiLiteral?> i}) =
+      _Query88Response;
+}
 
 Future<Query88Response> query88(Query88Args args) async {
   final serializedArgs = serialize(args);
@@ -30,8 +45,8 @@ BTreeMapStringValue serialize(Query88Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on930906 in args.i.entries)
-          on930906.key: encodeValue(encodeValue(on930906.value)),
+        for (final on681939 in args.i.entries)
+          on681939.key: encodeValue(encodeValue(on681939.value)),
       }),
     },
   );
@@ -40,16 +55,13 @@ BTreeMapStringValue serialize(Query88Args args) {
 @pragma("vm:prefer-inline")
 Query88Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on829506) => (
-      i: (on829506['i'] as IMap<String, dynamic>).map(
-        (on842345, on365629) => MapEntry(
-          on842345,
-          on365629 == null ? null : $hi.validate(on365629),
+    (on930464) => Query88Response(
+      i: (on930464['i'] as IMap<String, dynamic>).map(
+        (on704343, on119174) => MapEntry(
+          on704343,
+          on119174 == null ? null : HiLiteral.validate(on119174),
         ),
       ),
     ),
   );
 }
-
-typedef Query88Args = ({IMap<String, $hi?> i});
-typedef Query88Response = ({IMap<String, $hi?> i});

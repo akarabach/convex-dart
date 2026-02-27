@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query26.freezed.dart';
+
+@freezed
+sealed class Query26Args with _$Query26Args {
+  const factory Query26Args({required bool? i}) = _Query26Args;
+}
+
+@freezed
+sealed class Query26Response with _$Query26Response {
+  const factory Query26Response({required bool? i}) = _Query26Response;
+}
 
 Future<Query26Response> query26(Query26Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query26Args args) {
 @pragma("vm:prefer-inline")
 Query26Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on353590) => (i: (on353590['i'] as bool?)),
+    (on78090) => Query26Response(i: (on78090['i'] as bool?)),
   );
 }
-
-typedef Query26Args = ({bool? i});
-typedef Query26Response = ({bool? i});

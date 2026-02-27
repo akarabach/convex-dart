@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query153.freezed.dart';
+
+@freezed
+sealed class Query153Args with _$Query153Args {
+  const factory Query153Args({
+    required Union2<Uint8ListWithEquality, String> i,
+  }) = _Query153Args;
+}
+
+@freezed
+sealed class Query153Response with _$Query153Response {
+  const factory Query153Response({
+    required Union2<Uint8ListWithEquality, String> i,
+  }) = _Query153Response;
+}
 
 Future<Query153Response> query153(Query153Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +48,8 @@ BTreeMapStringValue serialize(Query153Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on489410) => encodeValue(on489410),
-          (on897809) => encodeValue(on897809),
+          (on319892) => encodeValue(on319892),
+          (on244872) => encodeValue(on244872),
         ),
       ),
     },
@@ -42,24 +59,21 @@ BTreeMapStringValue serialize(Query153Args args) {
 @pragma("vm:prefer-inline")
 Query153Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on45422) => (
+    (on406038) => Query153Response(
       i: Union2<Uint8ListWithEquality, String>(() {
         try {
-          return (on45422['i'] as Uint8ListWithEquality);
+          return (on406038['i'] as Uint8ListWithEquality);
         } catch (e) {}
 
         try {
-          return (on45422['i'] as String);
+          return (on406038['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on45422['i'].toString() ?? "null") +
+          (on406038['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<Uint8ListWithEquality, String>",
         );
       }()),
     ),
   );
 }
-
-typedef Query153Args = ({Union2<Uint8ListWithEquality, String> i});
-typedef Query153Response = ({Union2<Uint8ListWithEquality, String> i});

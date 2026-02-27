@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query94.freezed.dart';
+
+@freezed
+sealed class Query94Args with _$Query94Args {
+  const factory Query94Args({required Union2<String, bool> i}) = _Query94Args;
+}
+
+@freezed
+sealed class Query94Response with _$Query94Response {
+  const factory Query94Response({required Union2<String, bool> i}) =
+      _Query94Response;
+}
 
 Future<Query94Response> query94(Query94Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +45,8 @@ BTreeMapStringValue serialize(Query94Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on632641) => encodeValue(on632641),
-          (on588589) => encodeValue(on588589),
+          (on257194) => encodeValue(on257194),
+          (on715125) => encodeValue(on715125),
         ),
       ),
     },
@@ -42,24 +56,21 @@ BTreeMapStringValue serialize(Query94Args args) {
 @pragma("vm:prefer-inline")
 Query94Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on530660) => (
+    (on820701) => Query94Response(
       i: Union2<String, bool>(() {
         try {
-          return (on530660['i'] as String);
+          return (on820701['i'] as String);
         } catch (e) {}
 
         try {
-          return (on530660['i'] as bool);
+          return (on820701['i'] as bool);
         } catch (e) {}
 
         throw Exception(
-          (on530660['i'].toString() ?? "null") +
+          (on820701['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<String, bool>",
         );
       }()),
     ),
   );
 }
-
-typedef Query94Args = ({Union2<String, bool> i});
-typedef Query94Response = ({Union2<String, bool> i});

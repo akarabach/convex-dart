@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query60.freezed.dart';
+
+@freezed
+sealed class Query60Args with _$Query60Args {
+  const factory Query60Args({required IList<bool?> i}) = _Query60Args;
+}
+
+@freezed
+sealed class Query60Response with _$Query60Response {
+  const factory Query60Response({required IList<bool?> i}) = _Query60Response;
+}
 
 Future<Query60Response> query60(Query60Args args) async {
   final serializedArgs = serialize(args);
@@ -30,7 +43,7 @@ BTreeMapStringValue serialize(Query60Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on363298) => encodeValue(on363298)).toIList(),
+        args.i.map((on655390) => encodeValue(on655390)).toIList(),
       ),
     },
   );
@@ -39,13 +52,10 @@ BTreeMapStringValue serialize(Query60Args args) {
 @pragma("vm:prefer-inline")
 Query60Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on769172) => (
-      i: (on769172['i'] as IList<dynamic>)
-          .map((on199211) => (on199211 as bool?))
+    (on837452) => Query60Response(
+      i: (on837452['i'] as IList<dynamic>)
+          .map((on375851) => (on375851 as bool?))
           .toIList(),
     ),
   );
 }
-
-typedef Query60Args = ({IList<bool?> i});
-typedef Query60Response = ({IList<bool?> i});

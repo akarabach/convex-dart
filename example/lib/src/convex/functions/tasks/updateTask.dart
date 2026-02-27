@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'updateTask.freezed.dart';
+
+@freezed
+sealed class UpdateTaskArgs with _$UpdateTaskArgs {
+  const factory UpdateTaskArgs({
+    required TasksId id,
+    required Optional<bool> isCompleted,
+    required Optional<String> text,
+  }) = _UpdateTaskArgs;
+}
+
+@freezed
+sealed class UpdateTaskResponse with _$UpdateTaskResponse {
+  const factory UpdateTaskResponse({required Null body}) = _UpdateTaskResponse;
+}
 
 Future<UpdateTaskResponse> updateTask(UpdateTaskArgs args) async {
   final serializedArgs = serialize(args);
@@ -30,12 +47,5 @@ BTreeMapStringValue serialize(UpdateTaskArgs args) {
 
 @pragma("vm:prefer-inline")
 UpdateTaskResponse deserialize(Value map) {
-  return (body: null);
+  return UpdateTaskResponse(body: null);
 }
-
-typedef UpdateTaskArgs = ({
-  TasksId id,
-  Optional<bool> isCompleted,
-  Optional<String> text,
-});
-typedef UpdateTaskResponse = ({void body});

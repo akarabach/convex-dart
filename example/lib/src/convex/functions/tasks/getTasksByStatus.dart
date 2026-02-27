@@ -2,9 +2,36 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'getTasksByStatus.freezed.dart';
+
+@freezed
+sealed class GetTasksByStatusArgs with _$GetTasksByStatusArgs {
+  const factory GetTasksByStatusArgs({required bool isCompleted}) =
+      _GetTasksByStatusArgs;
+}
+
+@freezed
+sealed class GetTasksByStatusResponseBodyItem
+    with _$GetTasksByStatusResponseBodyItem {
+  const factory GetTasksByStatusResponseBodyItem({
+    required double creationTime,
+    required TasksId id,
+    required bool isCompleted,
+    required String text,
+  }) = _GetTasksByStatusResponseBodyItem;
+}
+
+@freezed
+sealed class GetTasksByStatusResponse with _$GetTasksByStatusResponse {
+  const factory GetTasksByStatusResponse({
+    required IList<GetTasksByStatusResponseBodyItem> body,
+  }) = _GetTasksByStatusResponse;
+}
 
 Future<GetTasksByStatusResponse> getTasksByStatus(
   GetTasksByStatusArgs args,
@@ -38,24 +65,18 @@ BTreeMapStringValue serialize(GetTasksByStatusArgs args) {
 
 @pragma("vm:prefer-inline")
 GetTasksByStatusResponse deserialize(Value map) {
-  return (
+  return GetTasksByStatusResponse(
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on470584) => (on470584 as IMap<String, dynamic>).then(
-            (on926473) => (
-              creationTime: (on926473['_creationTime'] as double),
-              id: TasksId(on926473['_id'] as String),
-              isCompleted: (on926473['isCompleted'] as bool),
-              text: (on926473['text'] as String),
+          (on973299) => (on973299 as IMap<String, dynamic>).then(
+            (on804668) => GetTasksByStatusResponseBodyItem(
+              creationTime: (on804668['_creationTime'] as double),
+              id: TasksId(on804668['_id'] as String),
+              isCompleted: (on804668['isCompleted'] as bool),
+              text: (on804668['text'] as String),
             ),
           ),
         )
         .toIList(),
   );
 }
-
-typedef GetTasksByStatusArgs = ({bool isCompleted});
-typedef GetTasksByStatusResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
-  body,
-});

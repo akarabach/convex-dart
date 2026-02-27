@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query31.freezed.dart';
+
+@freezed
+sealed class Query31Args with _$Query31Args {
+  const factory Query31Args({required HiLiteral? i}) = _Query31Args;
+}
+
+@freezed
+sealed class Query31Response with _$Query31Response {
+  const factory Query31Response({required HiLiteral? i}) = _Query31Response;
+}
 
 Future<Query31Response> query31(Query31Args args) async {
   final serializedArgs = serialize(args);
@@ -33,10 +46,8 @@ BTreeMapStringValue serialize(Query31Args args) {
 @pragma("vm:prefer-inline")
 Query31Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on805554) =>
-        (i: on805554['i'] == null ? null : $hi.validate(on805554['i'])),
+    (on875734) => Query31Response(
+      i: on875734['i'] == null ? null : HiLiteral.validate(on875734['i']),
+    ),
   );
 }
-
-typedef Query31Args = ({$hi? i});
-typedef Query31Response = ({$hi? i});

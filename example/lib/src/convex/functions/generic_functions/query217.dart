@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query217.freezed.dart';
+
+@freezed
+sealed class Query217Args with _$Query217Args {
+  const factory Query217Args({required IMap<String, ValueLiteral> i}) =
+      _Query217Args;
+}
+
+@freezed
+sealed class Query217Response with _$Query217Response {
+  const factory Query217Response({required IMap<String, ValueLiteral> i}) =
+      _Query217Response;
+}
 
 Future<Query217Response> query217(Query217Args args) async {
   final serializedArgs = serialize(args);
@@ -30,8 +45,8 @@ BTreeMapStringValue serialize(Query217Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on79795 in args.i.entries)
-          on79795.key: encodeValue(encodeValue(on79795.value)),
+        for (final on917866 in args.i.entries)
+          on917866.key: encodeValue(encodeValue(on917866.value)),
       }),
     },
   );
@@ -40,13 +55,11 @@ BTreeMapStringValue serialize(Query217Args args) {
 @pragma("vm:prefer-inline")
 Query217Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on318144) => (
-      i: (on318144['i'] as IMap<String, dynamic>).map(
-        (on324001, on693229) => MapEntry(on324001, $value.validate(on693229)),
+    (on590967) => Query217Response(
+      i: (on590967['i'] as IMap<String, dynamic>).map(
+        (on760450, on516250) =>
+            MapEntry(on760450, ValueLiteral.validate(on516250)),
       ),
     ),
   );
 }
-
-typedef Query217Args = ({IMap<String, $value> i});
-typedef Query217Response = ({IMap<String, $value> i});

@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query213.freezed.dart';
+
+@freezed
+sealed class Query213Args with _$Query213Args {
+  const factory Query213Args({required Union2<UsersId, AdminsId> i}) =
+      _Query213Args;
+}
+
+@freezed
+sealed class Query213Response with _$Query213Response {
+  const factory Query213Response({required Union2<UsersId, AdminsId> i}) =
+      _Query213Response;
+}
 
 Future<Query213Response> query213(Query213Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +46,8 @@ BTreeMapStringValue serialize(Query213Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on92554) => encodeValue(on92554),
-          (on374558) => encodeValue(on374558),
+          (on93521) => encodeValue(on93521),
+          (on736929) => encodeValue(on736929),
         ),
       ),
     },
@@ -42,24 +57,21 @@ BTreeMapStringValue serialize(Query213Args args) {
 @pragma("vm:prefer-inline")
 Query213Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on653995) => (
+    (on347051) => Query213Response(
       i: Union2<UsersId, AdminsId>(() {
         try {
-          return UsersId(on653995['i'] as String);
+          return UsersId(on347051['i'] as String);
         } catch (e) {}
 
         try {
-          return AdminsId(on653995['i'] as String);
+          return AdminsId(on347051['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on653995['i'].toString() ?? "null") +
+          (on347051['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<UsersId, AdminsId>",
         );
       }()),
     ),
   );
 }
-
-typedef Query213Args = ({Union2<UsersId, AdminsId> i});
-typedef Query213Response = ({Union2<UsersId, AdminsId> i});

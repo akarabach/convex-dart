@@ -2,9 +2,50 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query176.freezed.dart';
+
+@freezed
+sealed class Query176ArgsIMetadataValue with _$Query176ArgsIMetadataValue {
+  const factory Query176ArgsIMetadataValue({required double lastUpdated}) =
+      _Query176ArgsIMetadataValue;
+}
+
+@freezed
+sealed class Query176ArgsI with _$Query176ArgsI {
+  const factory Query176ArgsI({
+    required IMap<String, Query176ArgsIMetadataValue> metadata,
+  }) = _Query176ArgsI;
+}
+
+@freezed
+sealed class Query176Args with _$Query176Args {
+  const factory Query176Args({required Query176ArgsI i}) = _Query176Args;
+}
+
+@freezed
+sealed class Query176ResponseIMetadataValue
+    with _$Query176ResponseIMetadataValue {
+  const factory Query176ResponseIMetadataValue({required double lastUpdated}) =
+      _Query176ResponseIMetadataValue;
+}
+
+@freezed
+sealed class Query176ResponseI with _$Query176ResponseI {
+  const factory Query176ResponseI({
+    required IMap<String, Query176ResponseIMetadataValue> metadata,
+  }) = _Query176ResponseI;
+}
+
+@freezed
+sealed class Query176Response with _$Query176Response {
+  const factory Query176Response({required Query176ResponseI i}) =
+      _Query176Response;
+}
 
 Future<Query176Response> query176(Query176Args args) async {
   final serializedArgs = serialize(args);
@@ -31,10 +72,10 @@ BTreeMapStringValue serialize(Query176Args args) {
     hashmap: {
       'i': encodeValue({
         'metadata': encodeValue({
-          for (final on533252 in args.i.metadata.entries)
-            on533252.key: encodeValue(
+          for (final on935501 in args.i.metadata.entries)
+            on935501.key: encodeValue(
               encodeValue({
-                'lastUpdated': encodeValue(on533252.value.lastUpdated),
+                'lastUpdated': encodeValue(on935501.value.lastUpdated),
               }),
             ),
         }),
@@ -46,15 +87,16 @@ BTreeMapStringValue serialize(Query176Args args) {
 @pragma("vm:prefer-inline")
 Query176Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on31333) => (
-      i: (on31333['i'] as IMap<String, dynamic>).then(
-        (on152981) => (
-          metadata: (on152981['metadata'] as IMap<String, dynamic>).map(
-            (on152171, on781371) => MapEntry(
-              on152171,
-              (on781371 as IMap<String, dynamic>).then(
-                (on668103) =>
-                    (lastUpdated: (on668103['lastUpdated'] as double)),
+    (on706731) => Query176Response(
+      i: (on706731['i'] as IMap<String, dynamic>).then(
+        (on786208) => Query176ResponseI(
+          metadata: (on786208['metadata'] as IMap<String, dynamic>).map(
+            (on595414, on585135) => MapEntry(
+              on595414,
+              (on585135 as IMap<String, dynamic>).then(
+                (on958019) => Query176ResponseIMetadataValue(
+                  lastUpdated: (on958019['lastUpdated'] as double),
+                ),
               ),
             ),
           ),
@@ -63,8 +105,3 @@ Query176Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query176Args = ({({IMap<String, ({double lastUpdated})> metadata}) i});
-typedef Query176Response = ({
-  ({IMap<String, ({double lastUpdated})> metadata}) i,
-});

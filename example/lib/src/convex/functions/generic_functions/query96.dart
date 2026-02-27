@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query96.freezed.dart';
+
+@freezed
+sealed class Query96Args with _$Query96Args {
+  const factory Query96Args({required String? i}) = _Query96Args;
+}
+
+@freezed
+sealed class Query96Response with _$Query96Response {
+  const factory Query96Response({required String? i}) = _Query96Response;
+}
 
 Future<Query96Response> query96(Query96Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query96Args args) {
 @pragma("vm:prefer-inline")
 Query96Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on805240) => (i: (on805240['i'] as String?)),
+    (on461969) => Query96Response(i: (on461969['i'] as String?)),
   );
 }
-
-typedef Query96Args = ({String? i});
-typedef Query96Response = ({String? i});

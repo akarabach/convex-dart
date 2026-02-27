@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query203.freezed.dart';
+
+@freezed
+sealed class Query203Args with _$Query203Args {
+  const factory Query203Args({required Union2<String, double> i}) =
+      _Query203Args;
+}
+
+@freezed
+sealed class Query203Response with _$Query203Response {
+  const factory Query203Response({required Union2<String, double> i}) =
+      _Query203Response;
+}
 
 Future<Query203Response> query203(Query203Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +46,8 @@ BTreeMapStringValue serialize(Query203Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on928221) => encodeValue(on928221),
-          (on213553) => encodeValue(on213553),
+          (on699022) => encodeValue(on699022),
+          (on613003) => encodeValue(on613003),
         ),
       ),
     },
@@ -42,24 +57,21 @@ BTreeMapStringValue serialize(Query203Args args) {
 @pragma("vm:prefer-inline")
 Query203Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on353110) => (
+    (on996182) => Query203Response(
       i: Union2<String, double>(() {
         try {
-          return (on353110['i'] as String);
+          return (on996182['i'] as String);
         } catch (e) {}
 
         try {
-          return (on353110['i'] as double);
+          return (on996182['i'] as double);
         } catch (e) {}
 
         throw Exception(
-          (on353110['i'].toString() ?? "null") +
+          (on996182['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<String, double>",
         );
       }()),
     ),
   );
 }
-
-typedef Query203Args = ({Union2<String, double> i});
-typedef Query203Response = ({Union2<String, double> i});

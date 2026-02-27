@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query188.freezed.dart';
+
+@freezed
+sealed class Query188Args with _$Query188Args {
+  const factory Query188Args({required Union2<dynamic, FallbackId> i}) =
+      _Query188Args;
+}
+
+@freezed
+sealed class Query188Response with _$Query188Response {
+  const factory Query188Response({required Union2<dynamic, FallbackId> i}) =
+      _Query188Response;
+}
 
 Future<Query188Response> query188(Query188Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +46,8 @@ BTreeMapStringValue serialize(Query188Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on309629) => encodeValue(on309629),
-          (on379621) => encodeValue(on379621),
+          (on902184) => encodeValue(on902184),
+          (on907588) => encodeValue(on907588),
         ),
       ),
     },
@@ -42,24 +57,21 @@ BTreeMapStringValue serialize(Query188Args args) {
 @pragma("vm:prefer-inline")
 Query188Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on289826) => (
+    (on756090) => Query188Response(
       i: Union2<dynamic, FallbackId>(() {
         try {
-          return (on289826['i'] as dynamic);
+          return (on756090['i'] as dynamic);
         } catch (e) {}
 
         try {
-          return FallbackId(on289826['i'] as String);
+          return FallbackId(on756090['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on289826['i'].toString() ?? "null") +
+          (on756090['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<dynamic, FallbackId>",
         );
       }()),
     ),
   );
 }
-
-typedef Query188Args = ({Union2<dynamic, FallbackId> i});
-typedef Query188Response = ({Union2<dynamic, FallbackId> i});

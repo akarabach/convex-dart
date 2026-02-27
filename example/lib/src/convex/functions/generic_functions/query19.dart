@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query19.freezed.dart';
+
+@freezed
+sealed class Query19Args with _$Query19Args {
+  const factory Query19Args({required Optional<dynamic> i}) = _Query19Args;
+}
+
+@freezed
+sealed class Query19Response with _$Query19Response {
+  const factory Query19Response({required Optional<dynamic> i}) =
+      _Query19Response;
+}
 
 Future<Query19Response> query19(Query19Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +49,10 @@ BTreeMapStringValue serialize(Query19Args args) {
 @pragma("vm:prefer-inline")
 Query19Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on349027) => (
-      i: on349027.containsKey('i')
-          ? Defined<dynamic>((on349027['i'] as dynamic))
+    (on894255) => Query19Response(
+      i: on894255.containsKey('i')
+          ? Defined<dynamic>((on894255['i'] as dynamic))
           : Undefined<dynamic>(),
     ),
   );
 }
-
-typedef Query19Args = ({Optional<dynamic> i});
-typedef Query19Response = ({Optional<dynamic> i});
