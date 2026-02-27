@@ -27,6 +27,10 @@ extension DistinctByEquality<T> on Stream<T> {
 }
 
 void main() {
+  setUpAll(() async {
+    await ConvexClient.init();
+  });
+
   group('Task CRUD Operations', () {
     setUp(() async {
       // Clean up before each test
@@ -325,6 +329,7 @@ void main() {
 
     test('Subscribe to getAllTasks - Real-time updates', () async {
       final completer = Completer<void>();
+      final initialEmission = Completer<void>();
       final results = <List<dynamic>>[];
 
       // Subscribe to getAllTasks
@@ -333,14 +338,18 @@ void main() {
       ) {
         results.add(tasks.body.toList());
 
+        if (!initialEmission.isCompleted) {
+          initialEmission.complete();
+        }
+
         // Complete after we get the expected number of updates
         if (results.length == 3) {
           completer.complete();
         }
       });
 
-      // Wait a bit for initial subscription
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for the initial emission
+      await initialEmission.future.timeout(Duration(seconds: 5));
 
       // Initial state should be empty
       expect(results.length, greaterThanOrEqualTo(1));
@@ -361,8 +370,6 @@ void main() {
       // Wait for all updates
       await completer.future.timeout(Duration(seconds: 5));
 
-      await stdout.flush();
-
       // Should have received updates for: empty, 1 task, 2 tasks
       expect(results.length, 3);
       expect(results[0].length, 0); // Initial empty state
@@ -374,6 +381,7 @@ void main() {
 
     test('Subscribe to getTasksByStatus - Filter updates', () async {
       final completer = Completer<void>();
+      final initialEmission = Completer<void>();
       final completedTasks = <List<dynamic>>[];
 
       // Subscribe to completed tasks only
@@ -383,13 +391,17 @@ void main() {
           .listen((tasks) {
             completedTasks.add(tasks.body.toList());
 
+            if (!initialEmission.isCompleted) {
+              initialEmission.complete();
+            }
+
             if (completedTasks.length == 3) {
               completer.complete();
             }
           });
 
-      // Wait for initial subscription
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for the initial emission
+      await initialEmission.future.timeout(Duration(seconds: 5));
 
       // Create a pending task (should not appear in completed stream)
       await api.tasks.createTask(CreateTaskArgs(
@@ -424,6 +436,7 @@ void main() {
 
     test('Subscribe to searchTasks - Dynamic filtering', () async {
       final completer = Completer<void>();
+      final initialEmission = Completer<void>();
       final searchResults = <List<dynamic>>[];
 
       // Subscribe to search for "buy"
@@ -433,13 +446,17 @@ void main() {
           .listen((tasks) {
             searchResults.add(tasks.body.toList());
 
+            if (!initialEmission.isCompleted) {
+              initialEmission.complete();
+            }
+
             if (searchResults.length == 3) {
               completer.complete();
             }
           });
 
-      // Wait for initial subscription
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for the initial emission
+      await initialEmission.future.timeout(Duration(seconds: 5));
 
       // Create a non-matching task
       await api.tasks.createTask(CreateTaskArgs(
@@ -473,6 +490,7 @@ void main() {
 
     test('Subscribe to getTaskCount - Count updates', () async {
       final completer = Completer<void>();
+      final initialEmission = Completer<void>();
       final counts = <dynamic>[];
 
       // Subscribe to task count
@@ -480,14 +498,18 @@ void main() {
         (count) {
           counts.add(count);
 
+          if (!initialEmission.isCompleted) {
+            initialEmission.complete();
+          }
+
           if (counts.length == 4) {
             completer.complete();
           }
         },
       );
 
-      // Wait for initial subscription
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for the initial emission
+      await initialEmission.future.timeout(Duration(seconds: 5));
 
       // Add tasks with different completion states
       await api.tasks.createTask(CreateTaskArgs(
@@ -524,6 +546,7 @@ void main() {
 
     test('Stream updates on task modifications', () async {
       final completer = Completer<void>();
+      final initialEmission = Completer<void>();
       final allTasksUpdates = <List<dynamic>>[];
 
       // Subscribe to all tasks
@@ -532,13 +555,17 @@ void main() {
       ) {
         allTasksUpdates.add(tasks.body.toList());
 
+        if (!initialEmission.isCompleted) {
+          initialEmission.complete();
+        }
+
         if (allTasksUpdates.length == 5) {
           completer.complete();
         }
       });
 
-      // Wait for initial subscription
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for the initial emission
+      await initialEmission.future.timeout(Duration(seconds: 5));
 
       // Create a task
       final taskId = await api.tasks.createTask(CreateTaskArgs(
@@ -574,6 +601,9 @@ void main() {
       final allTasksCompleter = Completer<void>();
       final completedTasksCompleter = Completer<void>();
 
+      final allTasksInitial = Completer<void>();
+      final completedTasksInitial = Completer<void>();
+
       final allTasksUpdates = <List<dynamic>>[];
       final completedTasksUpdates = <List<dynamic>>[];
 
@@ -583,6 +613,9 @@ void main() {
           .deepDistinct()
           .listen((tasks) {
             allTasksUpdates.add(tasks.body.toList());
+            if (!allTasksInitial.isCompleted) {
+              allTasksInitial.complete();
+            }
             if (allTasksUpdates.length == 3) {
               allTasksCompleter.complete();
             }
@@ -594,13 +627,19 @@ void main() {
           .deepDistinct()
           .listen((tasks) {
             completedTasksUpdates.add(tasks.body.toList());
+            if (!completedTasksInitial.isCompleted) {
+              completedTasksInitial.complete();
+            }
             if (completedTasksUpdates.length == 2) {
               completedTasksCompleter.complete();
             }
           });
 
-      // Wait for initial subscriptions
-      await Future.delayed(Duration(milliseconds: 100));
+      // Wait for both initial emissions
+      await Future.wait([
+        allTasksInitial.future.timeout(Duration(seconds: 5)),
+        completedTasksInitial.future.timeout(Duration(seconds: 5)),
+      ]);
 
       // Create tasks
       await api.tasks.createTask(CreateTaskArgs(
