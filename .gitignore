@@ -201,3 +201,6 @@ target
 
 settings.json
 .fvmrc
+
+# Freezed generated files
+*.freezed.dart
