@@ -2,9 +2,39 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query115.freezed.dart';
+
+@freezed
+sealed class Query115ArgsI with _$Query115ArgsI {
+  const factory Query115ArgsI({
+    required IList<WorkPersonalUrgent> categories,
+    required IList<String> tags,
+  }) = _Query115ArgsI;
+}
+
+@freezed
+sealed class Query115Args with _$Query115Args {
+  const factory Query115Args({required Query115ArgsI i}) = _Query115Args;
+}
+
+@freezed
+sealed class Query115ResponseI with _$Query115ResponseI {
+  const factory Query115ResponseI({
+    required IList<WorkPersonalUrgent> categories,
+    required IList<String> tags,
+  }) = _Query115ResponseI;
+}
+
+@freezed
+sealed class Query115Response with _$Query115Response {
+  const factory Query115Response({required Query115ResponseI i}) =
+      _Query115Response;
+}
 
 Future<Query115Response> query115(Query115Args args) async {
   final serializedArgs = serialize(args);
@@ -32,11 +62,11 @@ BTreeMapStringValue serialize(Query115Args args) {
       'i': encodeValue({
         'categories': encodeValue(
           args.i.categories
-              .map((on188037) => encodeValue(on188037.value))
+              .map((on513836) => encodeValue(on513836.value))
               .toIList(),
         ),
         'tags': encodeValue(
-          args.i.tags.map((on562225) => encodeValue(on562225)).toIList(),
+          args.i.tags.map((on18205) => encodeValue(on18205)).toIList(),
         ),
       }),
     },
@@ -46,24 +76,17 @@ BTreeMapStringValue serialize(Query115Args args) {
 @pragma("vm:prefer-inline")
 Query115Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on546446) => (
-      i: (on546446['i'] as IMap<String, dynamic>).then(
-        (on755188) => (
-          categories: (on755188['categories'] as IList<dynamic>)
-              .map((on849306) => $work$personal$urgent.fromValue(on849306))
+    (on664090) => Query115Response(
+      i: (on664090['i'] as IMap<String, dynamic>).then(
+        (on571937) => Query115ResponseI(
+          categories: (on571937['categories'] as IList<dynamic>)
+              .map((on229247) => WorkPersonalUrgent.fromValue(on229247))
               .toIList(),
-          tags: (on755188['tags'] as IList<dynamic>)
-              .map((on656850) => (on656850 as String))
+          tags: (on571937['tags'] as IList<dynamic>)
+              .map((on638409) => (on638409 as String))
               .toIList(),
         ),
       ),
     ),
   );
 }
-
-typedef Query115Args = ({
-  ({IList<$work$personal$urgent> categories, IList<String> tags}) i,
-});
-typedef Query115Response = ({
-  ({IList<$work$personal$urgent> categories, IList<String> tags}) i,
-});

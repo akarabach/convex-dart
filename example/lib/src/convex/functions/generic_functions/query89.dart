@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query89.freezed.dart';
+
+@freezed
+sealed class Query89Args with _$Query89Args {
+  const factory Query89Args({required IMap<String, N10Literal?> i}) =
+      _Query89Args;
+}
+
+@freezed
+sealed class Query89Response with _$Query89Response {
+  const factory Query89Response({required IMap<String, N10Literal?> i}) =
+      _Query89Response;
+}
 
 Future<Query89Response> query89(Query89Args args) async {
   final serializedArgs = serialize(args);
@@ -30,8 +45,8 @@ BTreeMapStringValue serialize(Query89Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on881981 in args.i.entries)
-          on881981.key: encodeValue(encodeValue(on881981.value)),
+        for (final on555542 in args.i.entries)
+          on555542.key: encodeValue(encodeValue(on555542.value)),
       }),
     },
   );
@@ -40,16 +55,13 @@ BTreeMapStringValue serialize(Query89Args args) {
 @pragma("vm:prefer-inline")
 Query89Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on480075) => (
-      i: (on480075['i'] as IMap<String, dynamic>).map(
-        (on592327, on840527) => MapEntry(
-          on592327,
-          on840527 == null ? null : $1_0.validate(on840527),
+    (on528361) => Query89Response(
+      i: (on528361['i'] as IMap<String, dynamic>).map(
+        (on627835, on633589) => MapEntry(
+          on627835,
+          on633589 == null ? null : N10Literal.validate(on633589),
         ),
       ),
     ),
   );
 }
-
-typedef Query89Args = ({IMap<String, $1_0?> i});
-typedef Query89Response = ({IMap<String, $1_0?> i});

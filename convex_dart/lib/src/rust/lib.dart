@@ -6,9 +6,26 @@
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BTreeMap < String , Value >>>
-abstract class BTreeMapStringValue implements RustOpaqueInterface {}
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Fn (FunctionResult) -> DartFnFuture < Result < () > > + Send + Sync >>>
-abstract class BoxFnFunctionResultDartFnFutureResult
-    implements RustOpaqueInterface {}
+            
+
+            
+
+            
+                // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BTreeMap < String , Value >>>
+                abstract class BTreeMapStringValue implements RustOpaqueInterface {
+                    
+
+                    
+                }
+                
+
+
+                // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Fn (FunctionResult) -> DartFnFuture < Result < () > > + Send + Sync >>>
+                abstract class BoxFnFunctionResultDartFnFutureResult implements RustOpaqueInterface {
+                    
+
+                    
+                }
+                
+            

@@ -2,9 +2,35 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'searchTasks.freezed.dart';
+
+@freezed
+sealed class SearchTasksArgs with _$SearchTasksArgs {
+  const factory SearchTasksArgs({required String searchText}) =
+      _SearchTasksArgs;
+}
+
+@freezed
+sealed class SearchTasksResponseBodyItem with _$SearchTasksResponseBodyItem {
+  const factory SearchTasksResponseBodyItem({
+    required double creationTime,
+    required TasksId id,
+    required bool isCompleted,
+    required String text,
+  }) = _SearchTasksResponseBodyItem;
+}
+
+@freezed
+sealed class SearchTasksResponse with _$SearchTasksResponse {
+  const factory SearchTasksResponse({
+    required IList<SearchTasksResponseBodyItem> body,
+  }) = _SearchTasksResponse;
+}
 
 Future<SearchTasksResponse> searchTasks(SearchTasksArgs args) async {
   final serializedArgs = serialize(args);
@@ -34,24 +60,18 @@ BTreeMapStringValue serialize(SearchTasksArgs args) {
 
 @pragma("vm:prefer-inline")
 SearchTasksResponse deserialize(Value map) {
-  return (
+  return SearchTasksResponse(
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on549201) => (on549201 as IMap<String, dynamic>).then(
-            (on816040) => (
-              creationTime: (on816040['_creationTime'] as double),
-              id: TasksId(on816040['_id'] as String),
-              isCompleted: (on816040['isCompleted'] as bool),
-              text: (on816040['text'] as String),
+          (on179942) => (on179942 as IMap<String, dynamic>).then(
+            (on36244) => SearchTasksResponseBodyItem(
+              creationTime: (on36244['_creationTime'] as double),
+              id: TasksId(on36244['_id'] as String),
+              isCompleted: (on36244['isCompleted'] as bool),
+              text: (on36244['text'] as String),
             ),
           ),
         )
         .toIList(),
   );
 }
-
-typedef SearchTasksArgs = ({String searchText});
-typedef SearchTasksResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
-  body,
-});

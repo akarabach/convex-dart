@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query156.freezed.dart';
+
+@freezed
+sealed class Query156Args with _$Query156Args {
+  const factory Query156Args({required dynamic i}) = _Query156Args;
+}
+
+@freezed
+sealed class Query156Response with _$Query156Response {
+  const factory Query156Response({required dynamic i}) = _Query156Response;
+}
 
 Future<Query156Response> query156(Query156Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query156Args args) {
 @pragma("vm:prefer-inline")
 Query156Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on513352) => (i: (on513352['i'] as dynamic)),
+    (on618506) => Query156Response(i: (on618506['i'] as dynamic)),
   );
 }
-
-typedef Query156Args = ({dynamic i});
-typedef Query156Response = ({dynamic i});

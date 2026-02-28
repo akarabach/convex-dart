@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query215.freezed.dart';
+
+@freezed
+sealed class Query215Args with _$Query215Args {
+  const factory Query215Args({
+    @Default(Optional.undefined()) Optional<IList<bool>> i,
+  }) = _Query215Args;
+}
+
+@freezed
+sealed class Query215Response with _$Query215Response {
+  const factory Query215Response({
+    @Default(Optional.undefined()) Optional<IList<bool>> i,
+  }) = _Query215Response;
+}
 
 Future<Query215Response> query215(Query215Args args) async {
   final serializedArgs = serialize(args);
@@ -34,7 +51,7 @@ BTreeMapStringValue serialize(Query215Args args) {
           args.i
               .asDefined()
               .value
-              .map((on189379) => encodeValue(on189379))
+              .map((on548553) => encodeValue(on548553))
               .toIList(),
         ),
     },
@@ -44,17 +61,14 @@ BTreeMapStringValue serialize(Query215Args args) {
 @pragma("vm:prefer-inline")
 Query215Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on258999) => (
-      i: on258999.containsKey('i')
+    (on543944) => Query215Response(
+      i: on543944.containsKey('i')
           ? Defined<IList<bool>>(
-              (on258999['i'] as IList<dynamic>)
-                  .map((on58727) => (on58727 as bool))
+              (on543944['i'] as IList<dynamic>)
+                  .map((on650398) => (on650398 as bool))
                   .toIList(),
             )
           : Undefined<IList<bool>>(),
     ),
   );
 }
-
-typedef Query215Args = ({Optional<IList<bool>> i});
-typedef Query215Response = ({Optional<IList<bool>> i});

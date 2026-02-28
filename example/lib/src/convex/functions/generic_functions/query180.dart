@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query180.freezed.dart';
+
+@freezed
+sealed class Query180Args with _$Query180Args {
+  const factory Query180Args({required N314Literal i}) = _Query180Args;
+}
+
+@freezed
+sealed class Query180Response with _$Query180Response {
+  const factory Query180Response({required N314Literal i}) = _Query180Response;
+}
 
 Future<Query180Response> query180(Query180Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query180Args args) {
 @pragma("vm:prefer-inline")
 Query180Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on847893) => (i: $3_14.validate(on847893['i'])),
+    (on699242) => Query180Response(i: N314Literal.validate(on699242['i'])),
   );
 }
-
-typedef Query180Args = ({$3_14 i});
-typedef Query180Response = ({$3_14 i});

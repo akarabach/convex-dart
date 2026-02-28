@@ -2,9 +2,25 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query187.freezed.dart';
+
+@freezed
+sealed class Query187Args with _$Query187Args {
+  const factory Query187Args({required IMap<String, IMap<String, String>> i}) =
+      _Query187Args;
+}
+
+@freezed
+sealed class Query187Response with _$Query187Response {
+  const factory Query187Response({
+    required IMap<String, IMap<String, String>> i,
+  }) = _Query187Response;
+}
 
 Future<Query187Response> query187(Query187Args args) async {
   final serializedArgs = serialize(args);
@@ -30,11 +46,11 @@ BTreeMapStringValue serialize(Query187Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on331590 in args.i.entries)
-          on331590.key: encodeValue(
+        for (final on88562 in args.i.entries)
+          on88562.key: encodeValue(
             encodeValue({
-              for (final on793698 in on331590.value.entries)
-                on793698.key: encodeValue(encodeValue(on793698.value)),
+              for (final on446304 in on88562.value.entries)
+                on446304.key: encodeValue(encodeValue(on446304.value)),
             }),
           ),
       }),
@@ -45,18 +61,15 @@ BTreeMapStringValue serialize(Query187Args args) {
 @pragma("vm:prefer-inline")
 Query187Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on529584) => (
-      i: (on529584['i'] as IMap<String, dynamic>).map(
-        (on65774, on356907) => MapEntry(
-          on65774,
-          (on356907 as IMap<String, dynamic>).map(
-            (on977325, on69226) => MapEntry(on977325, (on69226 as String)),
+    (on884263) => Query187Response(
+      i: (on884263['i'] as IMap<String, dynamic>).map(
+        (on283967, on789756) => MapEntry(
+          on283967,
+          (on789756 as IMap<String, dynamic>).map(
+            (on343925, on40017) => MapEntry(on343925, (on40017 as String)),
           ),
         ),
       ),
     ),
   );
 }
-
-typedef Query187Args = ({IMap<String, IMap<String, String>> i});
-typedef Query187Response = ({IMap<String, IMap<String, String>> i});

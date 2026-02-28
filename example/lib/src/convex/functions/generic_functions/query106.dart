@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query106.freezed.dart';
+
+@freezed
+sealed class Query106Args with _$Query106Args {
+  const factory Query106Args({required TrueFalse i}) = _Query106Args;
+}
+
+@freezed
+sealed class Query106Response with _$Query106Response {
+  const factory Query106Response({required TrueFalse i}) = _Query106Response;
+}
 
 Future<Query106Response> query106(Query106Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query106Args args) {
 @pragma("vm:prefer-inline")
 Query106Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on782529) => (i: $true$false.fromValue(on782529['i'])),
+    (on735767) => Query106Response(i: TrueFalse.fromValue(on735767['i'])),
   );
 }
-
-typedef Query106Args = ({$true$false i});
-typedef Query106Response = ({$true$false i});

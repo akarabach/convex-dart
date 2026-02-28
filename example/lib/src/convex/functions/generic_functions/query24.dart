@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query24.freezed.dart';
+
+@freezed
+sealed class Query24Args with _$Query24Args {
+  const factory Query24Args({required String? i}) = _Query24Args;
+}
+
+@freezed
+sealed class Query24Response with _$Query24Response {
+  const factory Query24Response({required String? i}) = _Query24Response;
+}
 
 Future<Query24Response> query24(Query24Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query24Args args) {
 @pragma("vm:prefer-inline")
 Query24Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on326798) => (i: (on326798['i'] as String?)),
+    (on750558) => Query24Response(i: (on750558['i'] as String?)),
   );
 }
-
-typedef Query24Args = ({String? i});
-typedef Query24Response = ({String? i});

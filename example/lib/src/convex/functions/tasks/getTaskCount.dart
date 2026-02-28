@@ -2,9 +2,21 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'getTaskCount.freezed.dart';
+
+@freezed
+sealed class GetTaskCountResponse with _$GetTaskCountResponse {
+  const factory GetTaskCountResponse({
+    required double completed,
+    required double pending,
+    required double total,
+  }) = _GetTaskCountResponse;
+}
 
 Future<GetTaskCountResponse> getTaskCount() async {
   final serializedArgs = serialize(null);
@@ -33,16 +45,10 @@ BTreeMapStringValue serialize(void args) {
 @pragma("vm:prefer-inline")
 GetTaskCountResponse deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on282707) => (
-      completed: (on282707['completed'] as double),
-      pending: (on282707['pending'] as double),
-      total: (on282707['total'] as double),
+    (on274072) => GetTaskCountResponse(
+      completed: (on274072['completed'] as double),
+      pending: (on274072['pending'] as double),
+      total: (on274072['total'] as double),
     ),
   );
 }
-
-typedef GetTaskCountResponse = ({
-  double completed,
-  double pending,
-  double total,
-});

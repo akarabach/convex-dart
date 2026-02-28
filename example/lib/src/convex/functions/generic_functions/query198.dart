@@ -2,9 +2,37 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query198.freezed.dart';
+
+@freezed
+sealed class Query198ArgsI with _$Query198ArgsI {
+  const factory Query198ArgsI({required String name, required dynamic value}) =
+      _Query198ArgsI;
+}
+
+@freezed
+sealed class Query198Args with _$Query198Args {
+  const factory Query198Args({required Query198ArgsI i}) = _Query198Args;
+}
+
+@freezed
+sealed class Query198ResponseI with _$Query198ResponseI {
+  const factory Query198ResponseI({
+    required String name,
+    required dynamic value,
+  }) = _Query198ResponseI;
+}
+
+@freezed
+sealed class Query198Response with _$Query198Response {
+  const factory Query198Response({required Query198ResponseI i}) =
+      _Query198Response;
+}
 
 Future<Query198Response> query198(Query198Args args) async {
   final serializedArgs = serialize(args);
@@ -40,16 +68,13 @@ BTreeMapStringValue serialize(Query198Args args) {
 @pragma("vm:prefer-inline")
 Query198Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on507791) => (
-      i: (on507791['i'] as IMap<String, dynamic>).then(
-        (on627500) => (
-          name: (on627500['name'] as String),
-          value: (on627500['value'] as dynamic),
+    (on751255) => Query198Response(
+      i: (on751255['i'] as IMap<String, dynamic>).then(
+        (on977023) => Query198ResponseI(
+          name: (on977023['name'] as String),
+          value: (on977023['value'] as dynamic),
         ),
       ),
     ),
   );
 }
-
-typedef Query198Args = ({({String name, dynamic value}) i});
-typedef Query198Response = ({({String name, dynamic value}) i});

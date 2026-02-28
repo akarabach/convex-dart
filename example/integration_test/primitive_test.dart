@@ -4,6 +4,10 @@ import 'package:api/src/convex/client.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 void main() {
+  setUpAll(() async {
+    await ConvexClient.init();
+  });
+
   test('anyReturn', () async {
     final result = await api.primitiveReturns.anyReturn();
     expect(result.body, "Hello");

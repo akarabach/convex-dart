@@ -97,13 +97,15 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
       logger.debug(
         'Running command: $command ${args.join(" ")} in directory: ${workingDirectory.path}',
       );
+      final String tempFile =
+          ".convex_dart_spec_${DateTime.now().millisecondsSinceEpoch}.json";
+      final tempFilePath = path.join(workingDirectory.path, tempFile);
+
       final result = await state.wait(
-        () => Process.run(
-          command,
-          args,
-          workingDirectory: workingDirectory.path,
-          runInShell: true,
-        ),
+        () => Process.run(Platform.isWindows ? 'cmd' : 'sh', [
+          Platform.isWindows ? '/c' : '-c',
+          '$command ${args.join(" ")} > $tempFile',
+        ], workingDirectory: workingDirectory.path),
       );
 
       if (result.exitCode != 0) {
@@ -127,7 +129,19 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
         );
         return;
       }
-      final stdout = result.stdout;
+
+      final String stdout;
+      try {
+        final file = File(tempFilePath);
+        stdout = await file.readAsString();
+        await file.delete();
+      } catch (e) {
+        logger.error(
+          "Failed to read generated function-spec JSON file from $tempFilePath",
+        );
+        return;
+      }
+
       final FunctionsSpec spec;
       try {
         spec = FunctionsSpecMapper.fromJson(stdout);
@@ -195,6 +209,36 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
         'Successfully wrote ${tasks.length} files',
         type: TextLogType.success,
       );
+
+      // Run build_runner to generate .freezed.dart files
+      logger.info("Running build_runner to generate freezed classes...");
+      final buildRunnerResult = await state.wait(
+        () => Process.run('dart', [
+          'run',
+          'build_runner',
+          'build',
+          '--delete-conflicting-outputs',
+        ], runInShell: true),
+      );
+      if (buildRunnerResult.exitCode != 0) {
+        logger.error(
+          "build_runner failed with exit code ${buildRunnerResult.exitCode}",
+        );
+        logger.error("stdout: ${buildRunnerResult.stdout}");
+        logger.error("stderr: ${buildRunnerResult.stderr}");
+        logger.info(
+          "Troubleshooting:\n"
+          "  1. Ensure freezed and build_runner are in your dev_dependencies\n"
+          "  2. Run 'dart pub get' to install dependencies\n"
+          "  3. Try running 'dart run build_runner build --delete-conflicting-outputs' manually",
+        );
+      } else {
+        logger.info(
+          "build_runner completed successfully",
+          type: TextLogType.success,
+        );
+      }
+
       logger.info(
         "Dart client generated successfully! "
         "Monitoring for changes and will regenerate automatically when needed. "
@@ -257,7 +301,13 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
 
   @override
   Future<void> runWithConfig(Configuration<CliOptions> config) async {
-    // Listen for 'r' key to manually trigger generation
+    if (config.value(CliOptions.prod)) {
+      logger.info("Generating Dart client in production mode...");
+      buildDartClient(config);
+      return;
+    }
+
+    // Listen for 'r' key to manually trigger generation (dev mode only)
     stdin.echoMode = false;
     stdin.lineMode = false;
     stdin.listen((List<int> data) {
@@ -266,11 +316,6 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
         buildDartClient(config);
       }
     });
-    if (config.value(CliOptions.prod)) {
-      logger.info("Generating Dart client in production mode...");
-      buildDartClient(config);
-      return;
-    }
 
     // Run convex dev command in the background
     final workingDirectory = config.value(CliOptions.jsRoot);

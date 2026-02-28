@@ -5,27 +5,15 @@
 //! See docs for [`BaseConvexClient`].
 use std::{
     cmp,
-    collections::{
-        BTreeMap,
-        BTreeSet,
-        VecDeque,
-    },
+    collections::{BTreeMap, BTreeSet, VecDeque},
+    future::Future,
+    pin::Pin,
 };
 
 use convex_sync_types::{
-    types::SerializedArgs,
-    AuthenticationToken,
-    CanonicalizedUdfPath,
-    ClientMessage,
-    IdentityVersion,
-    QueryId,
-    QuerySetModification,
-    QuerySetVersion,
-    SessionRequestSeqNumber,
-    StateModification,
-    StateVersion,
-    Timestamp,
-    UdfPath,
+    types::SerializedArgs, AuthenticationToken, CanonicalizedUdfPath, ClientMessage,
+    IdentityVersion, QueryId, QuerySetModification, QuerySetVersion, SessionRequestSeqNumber,
+    StateModification, StateVersion, Timestamp, UdfPath,
 };
 use serde_json::json;
 use tokio::sync::oneshot;
@@ -34,26 +22,25 @@ use tokio::sync::oneshot;
 use crate::ConvexClient;
 use crate::{
     convex_logs,
-    sync::{
-        ReconnectProtocolReason,
-        ServerMessage,
-    },
+    sync::{ReconnectProtocolReason, ServerMessage},
     value::Value,
     ConvexError,
 };
 
 mod request_manager;
-use request_manager::{
-    RequestId,
-    RequestManager,
-};
+use request_manager::{RequestId, RequestManager};
 pub mod query_result;
-pub use query_result::{
-    FunctionResult,
-    QueryResults,
-};
+pub use query_result::{FunctionResult, QueryResults};
 
 use self::request_manager::RequestType;
+
+/// A callback that fetches an auth token. The `bool` parameter indicates
+/// whether a forced refresh is requested (e.g. on websocket reconnect).
+pub type AuthTokenFetcher = Box<
+    dyn Fn(bool) -> Pin<Box<dyn Future<Output = anyhow::Result<AuthenticationToken>> + Send>>
+        + Send
+        + Sync,
+>;
 
 #[derive(Clone, Eq, PartialEq, PartialOrd, Ord, Debug)]
 struct QueryToken(String);
@@ -100,15 +87,15 @@ fn serialize_path_and_args(udf_path: UdfPath, args: BTreeMap<String, Value>) -> 
     QueryToken(json.to_string())
 }
 
-#[derive(Clone, Default)]
+#[derive(Default)]
 struct LocalSyncState {
     next_query_id: QueryId,
     query_set_version: QuerySetVersion,
     query_set: BTreeMap<QueryToken, LocalQuery>,
     query_id_to_token: BTreeMap<QueryId, QueryToken>,
     latest_results: QueryResults,
-    auth_token: AuthenticationToken,
     identity_version: IdentityVersion,
+    auth_fetcher: Option<AuthTokenFetcher>,
 }
 
 impl LocalSyncState {
@@ -225,8 +212,7 @@ impl LocalSyncState {
         )
     }
 
-    fn set_auth(&mut self, token: AuthenticationToken) -> ClientMessage {
-        self.auth_token = token.clone();
+    fn authenticate(&mut self, token: AuthenticationToken) -> ClientMessage {
         let base_version = self.identity_version;
         self.identity_version += 1;
         ClientMessage::Authenticate {
@@ -235,7 +221,30 @@ impl LocalSyncState {
         }
     }
 
-    fn restart(&mut self) -> Vec<ClientMessage> {
+    async fn restart(&mut self) -> Vec<ClientMessage> {
+        self.identity_version = 0;
+        let mut messages = Vec::new();
+
+        // If we have a fetcher, get a fresh token for the new connection.
+        if let Some(ref fetcher) = self.auth_fetcher {
+            match fetcher(true).await {
+                Ok(token) if token != AuthenticationToken::None => {
+                    messages.push(ClientMessage::Authenticate {
+                        base_version: 0,
+                        token,
+                    });
+                    self.identity_version += 1;
+                },
+                Ok(_) => {},
+                Err(e) => {
+                    tracing::error!(
+                        "Auth fetcher failed during reconnect: {e:?}. Skipping auth for this \
+                         reconnect attempt."
+                    );
+                },
+            }
+        }
+
         let mut modifications = Vec::new();
         for local_query in self.query_set.values() {
             let add = QuerySetModification::Add(convex_sync_types::Query {
@@ -252,22 +261,13 @@ impl LocalSyncState {
         }
         self.query_set_version = 1;
 
-        let query_set = ClientMessage::ModifyQuerySet {
+        messages.push(ClientMessage::ModifyQuerySet {
             base_version: 0,
             new_version: 1,
             modifications,
-        };
+        });
 
-        self.identity_version = 0;
-        if self.auth_token == AuthenticationToken::None {
-            return vec![query_set];
-        };
-        let authenticate = ClientMessage::Authenticate {
-            base_version: 0,
-            token: self.auth_token.clone(),
-        };
-        self.identity_version += 1;
-        vec![authenticate, query_set]
+        messages
     }
 }
 
@@ -571,10 +571,34 @@ impl BaseConvexClient {
         result_receiver
     }
 
-    /// Set auth on the sync protocol.
-    pub fn set_auth(&mut self, token: AuthenticationToken) {
-        let message = self.state.set_auth(token);
-        self.outgoing_message_queue.push_back(message);
+    /// Store (or clear) an auth token fetcher callback and update auth state.
+    ///
+    /// When a fetcher is provided it is invoked immediately (with
+    /// `force_refresh=false`) and stored for future reconnects — on each
+    /// websocket reconnect the fetcher is called again with
+    /// `force_refresh=true`.
+    ///
+    /// When `None` is passed the stored fetcher is cleared and auth is unset.
+    pub async fn set_auth_fetcher(&mut self, fetcher: Option<AuthTokenFetcher>) {
+        match fetcher {
+            Some(fetcher) => {
+                match fetcher(false).await {
+                    Ok(token) => {
+                        let message = self.state.authenticate(token);
+                        self.outgoing_message_queue.push_back(message);
+                    },
+                    Err(e) => {
+                        tracing::error!("Auth token fetcher failed: {e:?}");
+                    },
+                }
+                self.state.auth_fetcher = Some(fetcher);
+            },
+            None => {
+                self.state.auth_fetcher = None;
+                let message = self.state.authenticate(AuthenticationToken::None);
+                self.outgoing_message_queue.push_back(message);
+            },
+        }
     }
 
     /// Pop the next message from the outgoing message queue.
@@ -690,8 +714,16 @@ impl BaseConvexClient {
 
     /// Resend all subscribed queries and ongoing mutations. Should be used once
     /// the websocket closes and reconnects.
-    pub fn resend_ongoing_queries_mutations(&mut self) {
-        let state_restart_messages = self.state.restart();
+    pub async fn resend_ongoing_queries_mutations(&mut self) {
+        // Clear any stale messages from the queue. During reconnection
+        // retries, messages can accumulate from previous failed attempts
+        // or from subscription changes made while disconnected. Since
+        // we're about to restart with a fresh connection, these stale
+        // messages would cause version conflicts with the fresh restart
+        // that conflict with the fresh restart messages.
+        self.outgoing_message_queue.clear();
+
+        let state_restart_messages = self.state.restart().await;
         let mut ongoing_mutation_messages = self.request_manager.restart();
 
         self.remote_query_set = RemoteQuerySet::new();

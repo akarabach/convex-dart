@@ -25,6 +25,8 @@ use log::debug; // Logging for debugging purposes
 use parking_lot::Mutex;
 
 use crate::{
+    AuthTokenFetcher,
+    AuthenticationToken,
     ConvexClient,
     ConvexClientBuilder,
     ConvexError,
@@ -312,6 +314,54 @@ impl MobileConvexClient {
         let mut client = self.connected_client().await?;
         self.rt
             .spawn(async move { client.set_auth(token).await })
+            .await
+            .map_err(|e| e.into())
+    }
+
+    /// Set an auth token fetcher callback.
+    ///
+    /// The callback is invoked immediately and again on every websocket
+    /// reconnect, allowing dynamic token refresh.
+    ///
+    /// Passing a function that returns [None] clears auth (logs out).
+    #[frb]
+    pub async fn set_auth_callback(
+        &self,
+        fetch_token: impl Fn(bool) -> DartFnFuture<Option<String>> + Send + Sync + 'static,
+    ) -> Result<(), ClientError> {
+        Ok(self.internal_set_auth_callback(fetch_token).await?)
+    }
+
+    async fn internal_set_auth_callback(
+        &self,
+        fetch_token: impl Fn(bool) -> DartFnFuture<Option<String>> + Send + Sync + 'static,
+    ) -> anyhow::Result<()> {
+        let mut client = self.connected_client().await?;
+        let fetcher: AuthTokenFetcher = Box::new(move |force_refresh: bool| {
+            let fut = fetch_token(force_refresh);
+            Box::pin(async move {
+                match fut.await {
+                    Some(token) => Ok(AuthenticationToken::User(token)),
+                    None => Ok(AuthenticationToken::None),
+                }
+            })
+        });
+        self.rt
+            .spawn(async move { client.set_auth_callback(Some(fetcher)).await })
+            .await
+            .map_err(|e| e.into())
+    }
+
+    /// Clear the auth token callback, effectively logging out.
+    #[frb]
+    pub async fn clear_auth(&self) -> Result<(), ClientError> {
+        Ok(self.internal_clear_auth().await?)
+    }
+
+    async fn internal_clear_auth(&self) -> anyhow::Result<()> {
+        let mut client = self.connected_client().await?;
+        self.rt
+            .spawn(async move { client.set_auth_callback(None).await })
             .await
             .map_err(|e| e.into())
     }

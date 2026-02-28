@@ -2,9 +2,37 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query133.freezed.dart';
+
+@freezed
+sealed class Query133ArgsI with _$Query133ArgsI {
+  const factory Query133ArgsI({
+    @Default(Optional.undefined()) Optional<IMap<String, double>> a,
+  }) = _Query133ArgsI;
+}
+
+@freezed
+sealed class Query133Args with _$Query133Args {
+  const factory Query133Args({required Query133ArgsI i}) = _Query133Args;
+}
+
+@freezed
+sealed class Query133ResponseI with _$Query133ResponseI {
+  const factory Query133ResponseI({
+    @Default(Optional.undefined()) Optional<IMap<String, double>> a,
+  }) = _Query133ResponseI;
+}
+
+@freezed
+sealed class Query133Response with _$Query133Response {
+  const factory Query133Response({required Query133ResponseI i}) =
+      _Query133Response;
+}
 
 Future<Query133Response> query133(Query133Args args) async {
   final serializedArgs = serialize(args);
@@ -32,8 +60,8 @@ BTreeMapStringValue serialize(Query133Args args) {
       'i': encodeValue({
         if (args.i.a.isDefined)
           'a': encodeValue({
-            for (final on594294 in args.i.a.asDefined().value.entries)
-              on594294.key: encodeValue(encodeValue(on594294.value)),
+            for (final on508705 in args.i.a.asDefined().value.entries)
+              on508705.key: encodeValue(encodeValue(on508705.value)),
           }),
       }),
     },
@@ -43,14 +71,14 @@ BTreeMapStringValue serialize(Query133Args args) {
 @pragma("vm:prefer-inline")
 Query133Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on50263) => (
-      i: (on50263['i'] as IMap<String, dynamic>).then(
-        (on884697) => (
-          a: on884697.containsKey('a')
+    (on152671) => Query133Response(
+      i: (on152671['i'] as IMap<String, dynamic>).then(
+        (on635482) => Query133ResponseI(
+          a: on635482.containsKey('a')
               ? Defined<IMap<String, double>>(
-                  (on884697['a'] as IMap<String, dynamic>).map(
-                    (on105211, on873570) =>
-                        MapEntry(on105211, (on873570 as double)),
+                  (on635482['a'] as IMap<String, dynamic>).map(
+                    (on932364, on226288) =>
+                        MapEntry(on932364, (on226288 as double)),
                   ),
                 )
               : Undefined<IMap<String, double>>(),
@@ -59,6 +87,3 @@ Query133Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query133Args = ({({Optional<IMap<String, double>> a}) i});
-typedef Query133Response = ({({Optional<IMap<String, double>> a}) i});

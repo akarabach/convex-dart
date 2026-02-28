@@ -2,9 +2,40 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query135.freezed.dart';
+
+@freezed
+sealed class Query135ArgsIItem with _$Query135ArgsIItem {
+  const factory Query135ArgsIItem({
+    required String a,
+    @Default(Optional.undefined()) Optional<double> b,
+  }) = _Query135ArgsIItem;
+}
+
+@freezed
+sealed class Query135Args with _$Query135Args {
+  const factory Query135Args({required IList<Query135ArgsIItem> i}) =
+      _Query135Args;
+}
+
+@freezed
+sealed class Query135ResponseIItem with _$Query135ResponseIItem {
+  const factory Query135ResponseIItem({
+    required String a,
+    @Default(Optional.undefined()) Optional<double> b,
+  }) = _Query135ResponseIItem;
+}
+
+@freezed
+sealed class Query135Response with _$Query135Response {
+  const factory Query135Response({required IList<Query135ResponseIItem> i}) =
+      _Query135Response;
+}
 
 Future<Query135Response> query135(Query135Args args) async {
   final serializedArgs = serialize(args);
@@ -32,10 +63,10 @@ BTreeMapStringValue serialize(Query135Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on665595) => encodeValue({
-                'a': encodeValue(on665595.a),
-                if (on665595.b.isDefined)
-                  'b': encodeValue(on665595.b.asDefined().value),
+              (on677880) => encodeValue({
+                'a': encodeValue(on677880.a),
+                if (on677880.b.isDefined)
+                  'b': encodeValue(on677880.b.asDefined().value),
               }),
             )
             .toIList(),
@@ -47,14 +78,14 @@ BTreeMapStringValue serialize(Query135Args args) {
 @pragma("vm:prefer-inline")
 Query135Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on904338) => (
-      i: (on904338['i'] as IList<dynamic>)
+    (on944538) => Query135Response(
+      i: (on944538['i'] as IList<dynamic>)
           .map(
-            (on520708) => (on520708 as IMap<String, dynamic>).then(
-              (on183063) => (
-                a: (on183063['a'] as String),
-                b: on183063.containsKey('b')
-                    ? Defined<double>((on183063['b'] as double))
+            (on661574) => (on661574 as IMap<String, dynamic>).then(
+              (on333794) => Query135ResponseIItem(
+                a: (on333794['a'] as String),
+                b: on333794.containsKey('b')
+                    ? Defined<double>((on333794['b'] as double))
                     : Undefined<double>(),
               ),
             ),
@@ -63,6 +94,3 @@ Query135Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query135Args = ({IList<({String a, Optional<double> b})> i});
-typedef Query135Response = ({IList<({String a, Optional<double> b})> i});

@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query66.freezed.dart';
+
+@freezed
+sealed class Query66Args with _$Query66Args {
+  const factory Query66Args({required IList<N10Literal?> i}) = _Query66Args;
+}
+
+@freezed
+sealed class Query66Response with _$Query66Response {
+  const factory Query66Response({required IList<N10Literal?> i}) =
+      _Query66Response;
+}
 
 Future<Query66Response> query66(Query66Args args) async {
   final serializedArgs = serialize(args);
@@ -30,7 +44,7 @@ BTreeMapStringValue serialize(Query66Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on605234) => encodeValue(on605234)).toIList(),
+        args.i.map((on737242) => encodeValue(on737242)).toIList(),
       ),
     },
   );
@@ -39,13 +53,13 @@ BTreeMapStringValue serialize(Query66Args args) {
 @pragma("vm:prefer-inline")
 Query66Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on750926) => (
-      i: (on750926['i'] as IList<dynamic>)
-          .map((on721588) => on721588 == null ? null : $1_0.validate(on721588))
+    (on748952) => Query66Response(
+      i: (on748952['i'] as IList<dynamic>)
+          .map(
+            (on958263) =>
+                on958263 == null ? null : N10Literal.validate(on958263),
+          )
           .toIList(),
     ),
   );
 }
-
-typedef Query66Args = ({IList<$1_0?> i});
-typedef Query66Response = ({IList<$1_0?> i});

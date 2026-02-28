@@ -2,9 +2,18 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'recordReturn.freezed.dart';
+
+@freezed
+sealed class RecordReturnResponse with _$RecordReturnResponse {
+  const factory RecordReturnResponse({required IMap<String, String> body}) =
+      _RecordReturnResponse;
+}
 
 Future<RecordReturnResponse> recordReturn() async {
   final serializedArgs = serialize(null);
@@ -32,11 +41,9 @@ BTreeMapStringValue serialize(void args) {
 
 @pragma("vm:prefer-inline")
 RecordReturnResponse deserialize(Value map) {
-  return (
+  return RecordReturnResponse(
     body: (decodeValue(map) as IMap<String, dynamic>).map(
-      (on269806, on60144) => MapEntry(on269806, (on60144 as String)),
+      (on206128, on995114) => MapEntry(on206128, (on995114 as String)),
     ),
   );
 }
-
-typedef RecordReturnResponse = ({IMap<String, String> body});

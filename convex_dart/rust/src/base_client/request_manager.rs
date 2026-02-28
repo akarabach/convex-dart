@@ -1,19 +1,9 @@
-use std::collections::{
-    BTreeMap,
-    BTreeSet,
-    VecDeque,
-};
+use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
-use convex_sync_types::{
-    ClientMessage,
-    Timestamp,
-};
+use convex_sync_types::{ClientMessage, Timestamp};
 use tokio::sync::oneshot;
 
-use crate::{
-    sync::ReconnectProtocolReason,
-    FunctionResult,
-};
+use crate::{sync::ReconnectProtocolReason, FunctionResult};
 
 #[derive(Copy, Clone, PartialOrd, Ord, PartialEq, Eq, Debug)]
 pub struct RequestId(u32);

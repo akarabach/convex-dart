@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query185.freezed.dart';
+
+@freezed
+sealed class Query185Args with _$Query185Args {
+  const factory Query185Args({
+    @Default(Optional.undefined()) Optional<OnLiteral> i,
+  }) = _Query185Args;
+}
+
+@freezed
+sealed class Query185Response with _$Query185Response {
+  const factory Query185Response({
+    @Default(Optional.undefined()) Optional<OnLiteral> i,
+  }) = _Query185Response;
+}
 
 Future<Query185Response> query185(Query185Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +52,10 @@ BTreeMapStringValue serialize(Query185Args args) {
 @pragma("vm:prefer-inline")
 Query185Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on421367) => (
-      i: on421367.containsKey('i')
-          ? Defined<$on>($on.validate(on421367['i']))
-          : Undefined<$on>(),
+    (on910379) => Query185Response(
+      i: on910379.containsKey('i')
+          ? Defined<OnLiteral>(OnLiteral.validate(on910379['i']))
+          : Undefined<OnLiteral>(),
     ),
   );
 }
-
-typedef Query185Args = ({Optional<$on> i});
-typedef Query185Response = ({Optional<$on> i});

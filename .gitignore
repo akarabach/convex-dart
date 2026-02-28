@@ -201,3 +201,6 @@ target
 
 settings.json
 .fvmrc
+
+# Freezed generated files (example app only — convex_dart/lib/src/rust/ ones are committed)
+example/**/*.freezed.dart

@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query195.freezed.dart';
+
+@freezed
+sealed class Query195Args with _$Query195Args {
+  const factory Query195Args({required double? i}) = _Query195Args;
+}
+
+@freezed
+sealed class Query195Response with _$Query195Response {
+  const factory Query195Response({required double? i}) = _Query195Response;
+}
 
 Future<Query195Response> query195(Query195Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query195Args args) {
 @pragma("vm:prefer-inline")
 Query195Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on329743) => (i: (on329743['i'] as double?)),
+    (on323647) => Query195Response(i: (on323647['i'] as double?)),
   );
 }
-
-typedef Query195Args = ({double? i});
-typedef Query195Response = ({double? i});

@@ -2,9 +2,37 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query161.freezed.dart';
+
+@freezed
+sealed class Query161ArgsI with _$Query161ArgsI {
+  const factory Query161ArgsI({
+    @Default(Optional.undefined()) Optional<String> a,
+  }) = _Query161ArgsI;
+}
+
+@freezed
+sealed class Query161Args with _$Query161Args {
+  const factory Query161Args({required Query161ArgsI i}) = _Query161Args;
+}
+
+@freezed
+sealed class Query161ResponseI with _$Query161ResponseI {
+  const factory Query161ResponseI({
+    @Default(Optional.undefined()) Optional<String> a,
+  }) = _Query161ResponseI;
+}
+
+@freezed
+sealed class Query161Response with _$Query161Response {
+  const factory Query161Response({required Query161ResponseI i}) =
+      _Query161Response;
+}
 
 Future<Query161Response> query161(Query161Args args) async {
   final serializedArgs = serialize(args);
@@ -39,17 +67,14 @@ BTreeMapStringValue serialize(Query161Args args) {
 @pragma("vm:prefer-inline")
 Query161Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on570793) => (
-      i: (on570793['i'] as IMap<String, dynamic>).then(
-        (on499237) => (
-          a: on499237.containsKey('a')
-              ? Defined<String>((on499237['a'] as String))
+    (on820319) => Query161Response(
+      i: (on820319['i'] as IMap<String, dynamic>).then(
+        (on755090) => Query161ResponseI(
+          a: on755090.containsKey('a')
+              ? Defined<String>((on755090['a'] as String))
               : Undefined<String>(),
         ),
       ),
     ),
   );
 }
-
-typedef Query161Args = ({({Optional<String> a}) i});
-typedef Query161Response = ({({Optional<String> a}) i});

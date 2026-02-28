@@ -2,6 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:api/src/convex/client.dart';
 
 void main() {
+  setUpAll(() async {
+    await ConvexClient.init();
+  });
+
   test('GET request with pathPrefix returns "1"', () async {
     // Without setting a suffix, we will resolve to the other route
     final response = await ConvexClient.get$api$v1$$(suffix: "sdfsdf");

@@ -2,9 +2,163 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query131.freezed.dart';
+
+@freezed
+sealed class Query131ArgsIStepsItemErrorRetry
+    with _$Query131ArgsIStepsItemErrorRetry {
+  const factory Query131ArgsIStepsItemErrorRetry({
+    required double count,
+    required double delay,
+  }) = _Query131ArgsIStepsItemErrorRetry;
+}
+
+@freezed
+sealed class Query131ArgsIStepsItemError with _$Query131ArgsIStepsItemError {
+  const factory Query131ArgsIStepsItemError({
+    required String handler,
+    required Query131ArgsIStepsItemErrorRetry retry,
+  }) = _Query131ArgsIStepsItemError;
+}
+
+@freezed
+sealed class Query131ArgsIStepsItem with _$Query131ArgsIStepsItem {
+  const factory Query131ArgsIStepsItem({
+    @Default(Optional.undefined()) Optional<Query131ArgsIStepsItemError> error,
+    required ActionConditionLoop type,
+  }) = _Query131ArgsIStepsItem;
+}
+
+@freezed
+sealed class Query131ArgsITriggersItemVariant1
+    with _$Query131ArgsITriggersItemVariant1 {
+  const factory Query131ArgsITriggersItemVariant1({
+    required String cron,
+    required ScheduleLiteral type,
+  }) = _Query131ArgsITriggersItemVariant1;
+}
+
+@freezed
+sealed class Query131ArgsITriggersItemVariant2
+    with _$Query131ArgsITriggersItemVariant2 {
+  const factory Query131ArgsITriggersItemVariant2({
+    required WebhookLiteral type,
+    required String url,
+  }) = _Query131ArgsITriggersItemVariant2;
+}
+
+@freezed
+sealed class Query131ArgsITriggersItemVariant3
+    with _$Query131ArgsITriggersItemVariant3 {
+  const factory Query131ArgsITriggersItemVariant3({
+    required String eventType,
+    required EventLiteral type,
+  }) = _Query131ArgsITriggersItemVariant3;
+}
+
+@freezed
+sealed class Query131ArgsI with _$Query131ArgsI {
+  const factory Query131ArgsI({
+    required IList<Query131ArgsIStepsItem> steps,
+    required IList<
+      Union3<
+        Query131ArgsITriggersItemVariant1,
+        Query131ArgsITriggersItemVariant2,
+        Query131ArgsITriggersItemVariant3
+      >
+    >
+    triggers,
+    required IMap<String, Union4<String, double, bool, IList<dynamic>>>
+    variables,
+  }) = _Query131ArgsI;
+}
+
+@freezed
+sealed class Query131Args with _$Query131Args {
+  const factory Query131Args({required Query131ArgsI i}) = _Query131Args;
+}
+
+@freezed
+sealed class Query131ResponseIStepsItemErrorRetry
+    with _$Query131ResponseIStepsItemErrorRetry {
+  const factory Query131ResponseIStepsItemErrorRetry({
+    required double count,
+    required double delay,
+  }) = _Query131ResponseIStepsItemErrorRetry;
+}
+
+@freezed
+sealed class Query131ResponseIStepsItemError
+    with _$Query131ResponseIStepsItemError {
+  const factory Query131ResponseIStepsItemError({
+    required String handler,
+    required Query131ResponseIStepsItemErrorRetry retry,
+  }) = _Query131ResponseIStepsItemError;
+}
+
+@freezed
+sealed class Query131ResponseIStepsItem with _$Query131ResponseIStepsItem {
+  const factory Query131ResponseIStepsItem({
+    @Default(Optional.undefined())
+    Optional<Query131ResponseIStepsItemError> error,
+    required ActionConditionLoop type,
+  }) = _Query131ResponseIStepsItem;
+}
+
+@freezed
+sealed class Query131ResponseITriggersItemVariant1
+    with _$Query131ResponseITriggersItemVariant1 {
+  const factory Query131ResponseITriggersItemVariant1({
+    required String cron,
+    required ScheduleLiteral type,
+  }) = _Query131ResponseITriggersItemVariant1;
+}
+
+@freezed
+sealed class Query131ResponseITriggersItemVariant2
+    with _$Query131ResponseITriggersItemVariant2 {
+  const factory Query131ResponseITriggersItemVariant2({
+    required WebhookLiteral type,
+    required String url,
+  }) = _Query131ResponseITriggersItemVariant2;
+}
+
+@freezed
+sealed class Query131ResponseITriggersItemVariant3
+    with _$Query131ResponseITriggersItemVariant3 {
+  const factory Query131ResponseITriggersItemVariant3({
+    required String eventType,
+    required EventLiteral type,
+  }) = _Query131ResponseITriggersItemVariant3;
+}
+
+@freezed
+sealed class Query131ResponseI with _$Query131ResponseI {
+  const factory Query131ResponseI({
+    required IList<Query131ResponseIStepsItem> steps,
+    required IList<
+      Union3<
+        Query131ResponseITriggersItemVariant1,
+        Query131ResponseITriggersItemVariant2,
+        Query131ResponseITriggersItemVariant3
+      >
+    >
+    triggers,
+    required IMap<String, Union4<String, double, bool, IList<dynamic>>>
+    variables,
+  }) = _Query131ResponseI;
+}
+
+@freezed
+sealed class Query131Response with _$Query131Response {
+  const factory Query131Response({required Query131ResponseI i}) =
+      _Query131Response;
+}
 
 Future<Query131Response> query131(Query131Args args) async {
   final serializedArgs = serialize(args);
@@ -33,22 +187,22 @@ BTreeMapStringValue serialize(Query131Args args) {
         'steps': encodeValue(
           args.i.steps
               .map(
-                (on181814) => encodeValue({
-                  if (on181814.error.isDefined)
+                (on388302) => encodeValue({
+                  if (on388302.error.isDefined)
                     'error': encodeValue({
                       'handler': encodeValue(
-                        on181814.error.asDefined().value.handler,
+                        on388302.error.asDefined().value.handler,
                       ),
                       'retry': encodeValue({
                         'count': encodeValue(
-                          on181814.error.asDefined().value.retry.count,
+                          on388302.error.asDefined().value.retry.count,
                         ),
                         'delay': encodeValue(
-                          on181814.error.asDefined().value.retry.delay,
+                          on388302.error.asDefined().value.retry.delay,
                         ),
                       }),
                     }),
-                  'type': encodeValue(on181814.type.value),
+                  'type': encodeValue(on388302.type.value),
                 }),
               )
               .toIList(),
@@ -56,19 +210,19 @@ BTreeMapStringValue serialize(Query131Args args) {
         'triggers': encodeValue(
           args.i.triggers
               .map(
-                (on517519) => encodeValue(
-                  on517519.split(
-                    (on836363) => encodeValue({
-                      'cron': encodeValue(on836363.cron),
-                      'type': encodeValue(on836363.type),
+                (on632990) => encodeValue(
+                  on632990.split(
+                    (on963264) => encodeValue({
+                      'cron': encodeValue(on963264.cron),
+                      'type': encodeValue(on963264.type),
                     }),
-                    (on619483) => encodeValue({
-                      'type': encodeValue(on619483.type),
-                      'url': encodeValue(on619483.url),
+                    (on815464) => encodeValue({
+                      'type': encodeValue(on815464.type),
+                      'url': encodeValue(on815464.url),
                     }),
-                    (on129619) => encodeValue({
-                      'eventType': encodeValue(on129619.eventType),
-                      'type': encodeValue(on129619.type),
+                    (on4433) => encodeValue({
+                      'eventType': encodeValue(on4433.eventType),
+                      'type': encodeValue(on4433.type),
                     }),
                   ),
                 ),
@@ -76,15 +230,15 @@ BTreeMapStringValue serialize(Query131Args args) {
               .toIList(),
         ),
         'variables': encodeValue({
-          for (final on501319 in args.i.variables.entries)
-            on501319.key: encodeValue(
+          for (final on733686 in args.i.variables.entries)
+            on733686.key: encodeValue(
               encodeValue(
-                on501319.value.split(
-                  (on594354) => encodeValue(on594354),
-                  (on630164) => encodeValue(on630164),
-                  (on183476) => encodeValue(on183476),
-                  (on341267) => encodeValue(
-                    on341267.map((on879230) => encodeValue(on879230)).toIList(),
+                on733686.value.split(
+                  (on612338) => encodeValue(on612338),
+                  (on408052) => encodeValue(on408052),
+                  (on810299) => encodeValue(on810299),
+                  (on126756) => encodeValue(
+                    on126756.map((on555194) => encodeValue(on555194)).toIList(),
                   ),
                 ),
               ),
@@ -98,113 +252,102 @@ BTreeMapStringValue serialize(Query131Args args) {
 @pragma("vm:prefer-inline")
 Query131Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on429713) => (
-      i: (on429713['i'] as IMap<String, dynamic>).then(
-        (on693650) => (
-          steps: (on693650['steps'] as IList<dynamic>)
+    (on928991) => Query131Response(
+      i: (on928991['i'] as IMap<String, dynamic>).then(
+        (on666034) => Query131ResponseI(
+          steps: (on666034['steps'] as IList<dynamic>)
               .map(
-                (on14998) => (on14998 as IMap<String, dynamic>).then(
-                  (on289268) => (
-                    error: on289268.containsKey('error')
-                        ? Defined<
-                            ({
-                              String handler,
-                              ({double count, double delay}) retry,
-                            })
-                          >(
-                            (on289268['error'] as IMap<String, dynamic>).then(
-                              (on364392) => (
-                                handler: (on364392['handler'] as String),
-                                retry:
-                                    (on364392['retry'] as IMap<String, dynamic>)
-                                        .then(
-                                          (on856739) => (
-                                            count:
-                                                (on856739['count'] as double),
-                                            delay:
-                                                (on856739['delay'] as double),
-                                          ),
-                                        ),
+                (on522067) => (on522067 as IMap<String, dynamic>).then(
+                  (on134871) => Query131ResponseIStepsItem(
+                    error: on134871.containsKey('error')
+                        ? Defined<Query131ResponseIStepsItemError>(
+                            (on134871['error'] as IMap<String, dynamic>).then(
+                              (on985757) => Query131ResponseIStepsItemError(
+                                handler: (on985757['handler'] as String),
+                                retry: (on985757['retry'] as IMap<String, dynamic>)
+                                    .then(
+                                      (
+                                        on705600,
+                                      ) => Query131ResponseIStepsItemErrorRetry(
+                                        count: (on705600['count'] as double),
+                                        delay: (on705600['delay'] as double),
+                                      ),
+                                    ),
                               ),
                             ),
                           )
-                        : Undefined<
-                            ({
-                              String handler,
-                              ({double count, double delay}) retry,
-                            })
-                          >(),
-                    type: $action$condition$loop.fromValue(on289268['type']),
+                        : Undefined<Query131ResponseIStepsItemError>(),
+                    type: ActionConditionLoop.fromValue(on134871['type']),
                   ),
                 ),
               )
               .toIList(),
-          triggers: (on693650['triggers'] as IList<dynamic>)
+          triggers: (on666034['triggers'] as IList<dynamic>)
               .map(
-                (on428903) =>
+                (on2927) =>
                     Union3<
-                      ({String cron, $schedule type}),
-                      ({$webhook type, String url}),
-                      ({String eventType, $event type})
+                      Query131ResponseITriggersItemVariant1,
+                      Query131ResponseITriggersItemVariant2,
+                      Query131ResponseITriggersItemVariant3
                     >(() {
                       try {
-                        return (on428903 as IMap<String, dynamic>).then(
-                          (on629113) => (
-                            cron: (on629113['cron'] as String),
-                            type: $schedule.validate(on629113['type']),
+                        return (on2927 as IMap<String, dynamic>).then(
+                          (on689704) => Query131ResponseITriggersItemVariant1(
+                            cron: (on689704['cron'] as String),
+                            type: ScheduleLiteral.validate(on689704['type']),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on428903 as IMap<String, dynamic>).then(
-                          (on233586) => (
-                            type: $webhook.validate(on233586['type']),
-                            url: (on233586['url'] as String),
+                        return (on2927 as IMap<String, dynamic>).then(
+                          (on73502) => Query131ResponseITriggersItemVariant2(
+                            type: WebhookLiteral.validate(on73502['type']),
+                            url: (on73502['url'] as String),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on428903 as IMap<String, dynamic>).then(
-                          (on145307) => (
-                            eventType: (on145307['eventType'] as String),
-                            type: $event.validate(on145307['type']),
+                        return (on2927 as IMap<String, dynamic>).then(
+                          (on146749) => Query131ResponseITriggersItemVariant3(
+                            eventType: (on146749['eventType'] as String),
+                            type: EventLiteral.validate(on146749['type']),
                           ),
                         );
                       } catch (e) {}
 
                       throw Exception(
-                        (on428903.toString() ?? "null") +
-                            r" cannot be deserialized into a Union3<({String cron,$schedule type}), ({$webhook type,String url}), ({String eventType,$event type})>",
+                        (on2927.toString() ?? "null") +
+                            r" cannot be deserialized into a Union3<Query131ResponseITriggersItemVariant1, Query131ResponseITriggersItemVariant2, Query131ResponseITriggersItemVariant3>",
                       );
                     }()),
               )
               .toIList(),
-          variables: (on693650['variables'] as IMap<String, dynamic>).map(
-            (on777070, on179485) => MapEntry(
-              on777070,
+          variables: (on666034['variables'] as IMap<String, dynamic>).map(
+            (on216934, on884414) => MapEntry(
+              on216934,
               Union4<String, double, bool, IList<dynamic>>(() {
                 try {
-                  return (on179485 as String);
+                  return (on884414 as String);
                 } catch (e) {}
 
                 try {
-                  return (on179485 as double);
+                  return (on884414 as double);
                 } catch (e) {}
 
                 try {
-                  return (on179485 as bool);
+                  return (on884414 as bool);
                 } catch (e) {}
 
                 try {
-                  return (on179485 as IList<dynamic>)
-                      .map((on13269) => (on13269 as dynamic))
+                  return (on884414 as IList<dynamic>)
+                      .map((on909243) => (on909243 as dynamic))
                       .toIList();
                 } catch (e) {}
 
                 throw Exception(
-                  (on179485.toString() ?? "null") +
+                  (on884414.toString() ?? "null") +
                       r" cannot be deserialized into a Union4<String, double, bool, IList<dynamic>>",
                 );
               }()),
@@ -215,48 +358,3 @@ Query131Response deserialize(Value map) {
     ),
   );
 }
-
-typedef Query131Args = ({
-  ({
-    IList<
-      ({
-        Optional<({String handler, ({double count, double delay}) retry})>
-        error,
-        $action$condition$loop type,
-      })
-    >
-    steps,
-    IList<
-      Union3<
-        ({String cron, $schedule type}),
-        ({$webhook type, String url}),
-        ({String eventType, $event type})
-      >
-    >
-    triggers,
-    IMap<String, Union4<String, double, bool, IList<dynamic>>> variables,
-  })
-  i,
-});
-typedef Query131Response = ({
-  ({
-    IList<
-      ({
-        Optional<({String handler, ({double count, double delay}) retry})>
-        error,
-        $action$condition$loop type,
-      })
-    >
-    steps,
-    IList<
-      Union3<
-        ({String cron, $schedule type}),
-        ({$webhook type, String url}),
-        ({String eventType, $event type})
-      >
-    >
-    triggers,
-    IMap<String, Union4<String, double, bool, IList<dynamic>>> variables,
-  })
-  i,
-});

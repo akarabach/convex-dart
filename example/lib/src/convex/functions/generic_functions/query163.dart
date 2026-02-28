@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query163.freezed.dart';
+
+@freezed
+sealed class Query163Args with _$Query163Args {
+  const factory Query163Args({required Union2<AId, BId> i}) = _Query163Args;
+}
+
+@freezed
+sealed class Query163Response with _$Query163Response {
+  const factory Query163Response({required Union2<AId, BId> i}) =
+      _Query163Response;
+}
 
 Future<Query163Response> query163(Query163Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +45,8 @@ BTreeMapStringValue serialize(Query163Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on264637) => encodeValue(on264637),
-          (on717126) => encodeValue(on717126),
+          (on193382) => encodeValue(on193382),
+          (on535072) => encodeValue(on535072),
         ),
       ),
     },
@@ -42,24 +56,21 @@ BTreeMapStringValue serialize(Query163Args args) {
 @pragma("vm:prefer-inline")
 Query163Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on46203) => (
+    (on559036) => Query163Response(
       i: Union2<AId, BId>(() {
         try {
-          return AId(on46203['i'] as String);
+          return AId(on559036['i'] as String);
         } catch (e) {}
 
         try {
-          return BId(on46203['i'] as String);
+          return BId(on559036['i'] as String);
         } catch (e) {}
 
         throw Exception(
-          (on46203['i'].toString() ?? "null") +
+          (on559036['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<AId, BId>",
         );
       }()),
     ),
   );
 }
-
-typedef Query163Args = ({Union2<AId, BId> i});
-typedef Query163Response = ({Union2<AId, BId> i});

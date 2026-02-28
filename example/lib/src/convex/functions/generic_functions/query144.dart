@@ -2,9 +2,30 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query144.freezed.dart';
+
+@freezed
+sealed class Query144Args with _$Query144Args {
+  const factory Query144Args({
+    required String arg1,
+    required double arg2,
+    required bool arg3,
+  }) = _Query144Args;
+}
+
+@freezed
+sealed class Query144Response with _$Query144Response {
+  const factory Query144Response({
+    required String arg1,
+    required double arg2,
+    required bool arg3,
+  }) = _Query144Response;
+}
 
 Future<Query144Response> query144(Query144Args args) async {
   final serializedArgs = serialize(args);
@@ -39,13 +60,10 @@ BTreeMapStringValue serialize(Query144Args args) {
 @pragma("vm:prefer-inline")
 Query144Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on107932) => (
-      arg1: (on107932['arg1'] as String),
-      arg2: (on107932['arg2'] as double),
-      arg3: (on107932['arg3'] as bool),
+    (on233269) => Query144Response(
+      arg1: (on233269['arg1'] as String),
+      arg2: (on233269['arg2'] as double),
+      arg3: (on233269['arg3'] as bool),
     ),
   );
 }
-
-typedef Query144Args = ({String arg1, double arg2, bool arg3});
-typedef Query144Response = ({String arg1, double arg2, bool arg3});

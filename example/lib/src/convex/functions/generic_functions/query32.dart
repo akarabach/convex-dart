@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query32.freezed.dart';
+
+@freezed
+sealed class Query32Args with _$Query32Args {
+  const factory Query32Args({required N10Literal? i}) = _Query32Args;
+}
+
+@freezed
+sealed class Query32Response with _$Query32Response {
+  const factory Query32Response({required N10Literal? i}) = _Query32Response;
+}
 
 Future<Query32Response> query32(Query32Args args) async {
   final serializedArgs = serialize(args);
@@ -33,10 +46,8 @@ BTreeMapStringValue serialize(Query32Args args) {
 @pragma("vm:prefer-inline")
 Query32Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on909046) =>
-        (i: on909046['i'] == null ? null : $1_0.validate(on909046['i'])),
+    (on811075) => Query32Response(
+      i: on811075['i'] == null ? null : N10Literal.validate(on811075['i']),
+    ),
   );
 }
-
-typedef Query32Args = ({$1_0? i});
-typedef Query32Response = ({$1_0? i});

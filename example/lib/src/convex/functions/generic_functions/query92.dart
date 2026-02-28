@@ -2,9 +2,23 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query92.freezed.dart';
+
+@freezed
+sealed class Query92Args with _$Query92Args {
+  const factory Query92Args({required Union2<String, double> i}) = _Query92Args;
+}
+
+@freezed
+sealed class Query92Response with _$Query92Response {
+  const factory Query92Response({required Union2<String, double> i}) =
+      _Query92Response;
+}
 
 Future<Query92Response> query92(Query92Args args) async {
   final serializedArgs = serialize(args);
@@ -31,8 +45,8 @@ BTreeMapStringValue serialize(Query92Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on409116) => encodeValue(on409116),
-          (on235634) => encodeValue(on235634),
+          (on646629) => encodeValue(on646629),
+          (on581976) => encodeValue(on581976),
         ),
       ),
     },
@@ -42,24 +56,21 @@ BTreeMapStringValue serialize(Query92Args args) {
 @pragma("vm:prefer-inline")
 Query92Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on101450) => (
+    (on307843) => Query92Response(
       i: Union2<String, double>(() {
         try {
-          return (on101450['i'] as String);
+          return (on307843['i'] as String);
         } catch (e) {}
 
         try {
-          return (on101450['i'] as double);
+          return (on307843['i'] as double);
         } catch (e) {}
 
         throw Exception(
-          (on101450['i'].toString() ?? "null") +
+          (on307843['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<String, double>",
         );
       }()),
     ),
   );
 }
-
-typedef Query92Args = ({Union2<String, double> i});
-typedef Query92Response = ({Union2<String, double> i});

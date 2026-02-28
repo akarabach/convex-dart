@@ -9,6 +9,7 @@ use convex_sync_types::{
     UdfPath,
     UserIdentityAttributes,
 };
+use std::pin::Pin;
 #[cfg(doc)]
 use futures::Stream;
 use futures::StreamExt;
@@ -23,11 +24,12 @@ use tokio::{
 use tokio_stream::wrappers::BroadcastStream;
 use url::Url;
 
-use self::worker::AuthenticateRequest;
+use self::worker::SetAuthCallbackRequest;
 #[cfg(doc)]
 use crate::SubscriberId;
 use crate::{
     base_client::{
+        AuthTokenFetcher,
         BaseConvexClient,
         QueryResults,
     },
@@ -350,14 +352,19 @@ impl ConvexClient {
     /// flow. If `None` is passed as the token, then auth is unset (logging
     /// out).
     pub async fn set_auth(&mut self, token: Option<String>) {
-        let req = AuthenticateRequest {
-            token: match token {
-                None => AuthenticationToken::None,
-                Some(token) => AuthenticationToken::User(token),
-            },
-        };
+        let fetcher: Option<AuthTokenFetcher> = token.map(|t| {
+            Box::new(move |_force_refresh: bool| {
+                let t = t.clone();
+                Box::pin(async move { Ok(AuthenticationToken::User(t)) })
+                    as Pin<
+                        Box<dyn std::future::Future<Output = anyhow::Result<AuthenticationToken>> + Send>,
+                    >
+            }) as AuthTokenFetcher
+        });
         self.request_sender
-            .send(ClientRequest::Authenticate(req))
+            .send(ClientRequest::SetAuthCallback(SetAuthCallbackRequest {
+                fetcher,
+            }))
             .expect("INTERNAL BUG: Worker has gone away");
     }
 
@@ -373,11 +380,32 @@ impl ConvexClient {
         deploy_key: String,
         acting_as: Option<UserIdentityAttributes>,
     ) {
-        let req = AuthenticateRequest {
-            token: AuthenticationToken::Admin(deploy_key, acting_as),
-        };
+        let fetcher: AuthTokenFetcher = Box::new(move |_force_refresh: bool| {
+            let dk = deploy_key.clone();
+            let aa = acting_as.clone();
+            Box::pin(async move { Ok(AuthenticationToken::Admin(dk, aa)) })
+                as Pin<
+                    Box<dyn std::future::Future<Output = anyhow::Result<AuthenticationToken>> + Send>,
+                >
+        });
         self.request_sender
-            .send(ClientRequest::Authenticate(req))
+            .send(ClientRequest::SetAuthCallback(SetAuthCallbackRequest {
+                fetcher: Some(fetcher),
+            }))
+            .expect("INTERNAL BUG: Worker has gone away");
+    }
+
+    /// Set an auth token fetcher callback.
+    ///
+    /// The callback is invoked immediately and again on every websocket
+    /// reconnect, allowing dynamic token refresh.
+    ///
+    /// Passing `None` clears the callback and logs out.
+    pub async fn set_auth_callback(&mut self, fetcher: Option<AuthTokenFetcher>) {
+        self.request_sender
+            .send(ClientRequest::SetAuthCallback(SetAuthCallbackRequest {
+                fetcher,
+            }))
             .expect("INTERNAL BUG: Worker has gone away");
     }
 }

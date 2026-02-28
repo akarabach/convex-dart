@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query164.freezed.dart';
+
+@freezed
+sealed class Query164Args with _$Query164Args {
+  const factory Query164Args({required IList<Uint8ListWithEquality> i}) =
+      _Query164Args;
+}
+
+@freezed
+sealed class Query164Response with _$Query164Response {
+  const factory Query164Response({required IList<Uint8ListWithEquality> i}) =
+      _Query164Response;
+}
 
 Future<Query164Response> query164(Query164Args args) async {
   final serializedArgs = serialize(args);
@@ -30,7 +45,7 @@ BTreeMapStringValue serialize(Query164Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on430823) => encodeValue(on430823)).toIList(),
+        args.i.map((on858608) => encodeValue(on858608)).toIList(),
       ),
     },
   );
@@ -39,13 +54,10 @@ BTreeMapStringValue serialize(Query164Args args) {
 @pragma("vm:prefer-inline")
 Query164Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on178853) => (
-      i: (on178853['i'] as IList<dynamic>)
-          .map((on326171) => (on326171 as Uint8ListWithEquality))
+    (on698219) => Query164Response(
+      i: (on698219['i'] as IList<dynamic>)
+          .map((on332530) => (on332530 as Uint8ListWithEquality))
           .toIList(),
     ),
   );
 }
-
-typedef Query164Args = ({IList<Uint8ListWithEquality> i});
-typedef Query164Response = ({IList<Uint8ListWithEquality> i});

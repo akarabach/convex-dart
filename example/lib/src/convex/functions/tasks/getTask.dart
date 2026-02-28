@@ -2,9 +2,33 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'getTask.freezed.dart';
+
+@freezed
+sealed class GetTaskArgs with _$GetTaskArgs {
+  const factory GetTaskArgs({required TasksId id}) = _GetTaskArgs;
+}
+
+@freezed
+sealed class GetTaskResponseBody with _$GetTaskResponseBody {
+  const factory GetTaskResponseBody({
+    required double creationTime,
+    required TasksId id,
+    required bool isCompleted,
+    required String text,
+  }) = _GetTaskResponseBody;
+}
+
+@freezed
+sealed class GetTaskResponse with _$GetTaskResponse {
+  const factory GetTaskResponse({required GetTaskResponseBody? body}) =
+      _GetTaskResponse;
+}
 
 Future<GetTaskResponse> getTask(GetTaskArgs args) async {
   final serializedArgs = serialize(args);
@@ -32,19 +56,14 @@ BTreeMapStringValue serialize(GetTaskArgs args) {
 
 @pragma("vm:prefer-inline")
 GetTaskResponse deserialize(Value map) {
-  return (
+  return GetTaskResponse(
     body: (decodeValue(map) as IMap<String, dynamic>?)?.then(
-      (on299367) => (
-        creationTime: (on299367['_creationTime'] as double),
-        id: TasksId(on299367['_id'] as String),
-        isCompleted: (on299367['isCompleted'] as bool),
-        text: (on299367['text'] as String),
+      (on808628) => GetTaskResponseBody(
+        creationTime: (on808628['_creationTime'] as double),
+        id: TasksId(on808628['_id'] as String),
+        isCompleted: (on808628['isCompleted'] as bool),
+        text: (on808628['text'] as String),
       ),
     ),
   );
 }
-
-typedef GetTaskArgs = ({TasksId id});
-typedef GetTaskResponse = ({
-  ({double creationTime, TasksId id, bool isCompleted, String text})? body,
-});

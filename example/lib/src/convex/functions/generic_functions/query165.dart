@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query165.freezed.dart';
+
+@freezed
+sealed class Query165Args with _$Query165Args {
+  const factory Query165Args({
+    @Default(Optional.undefined()) Optional<dynamic> i,
+  }) = _Query165Args;
+}
+
+@freezed
+sealed class Query165Response with _$Query165Response {
+  const factory Query165Response({
+    @Default(Optional.undefined()) Optional<dynamic> i,
+  }) = _Query165Response;
+}
 
 Future<Query165Response> query165(Query165Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +52,10 @@ BTreeMapStringValue serialize(Query165Args args) {
 @pragma("vm:prefer-inline")
 Query165Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on541038) => (
-      i: on541038.containsKey('i')
-          ? Defined<dynamic>((on541038['i'] as dynamic))
+    (on785541) => Query165Response(
+      i: on785541.containsKey('i')
+          ? Defined<dynamic>((on785541['i'] as dynamic))
           : Undefined<dynamic>(),
     ),
   );
 }
-
-typedef Query165Args = ({Optional<dynamic> i});
-typedef Query165Response = ({Optional<dynamic> i});

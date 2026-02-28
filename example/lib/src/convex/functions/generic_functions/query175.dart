@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query175.freezed.dart';
+
+@freezed
+sealed class Query175Args with _$Query175Args {
+  const factory Query175Args({
+    @Default(Optional.undefined()) Optional<Uint8ListWithEquality> i,
+  }) = _Query175Args;
+}
+
+@freezed
+sealed class Query175Response with _$Query175Response {
+  const factory Query175Response({
+    @Default(Optional.undefined()) Optional<Uint8ListWithEquality> i,
+  }) = _Query175Response;
+}
 
 Future<Query175Response> query175(Query175Args args) async {
   final serializedArgs = serialize(args);
@@ -35,15 +52,12 @@ BTreeMapStringValue serialize(Query175Args args) {
 @pragma("vm:prefer-inline")
 Query175Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on490060) => (
-      i: on490060.containsKey('i')
+    (on380475) => Query175Response(
+      i: on380475.containsKey('i')
           ? Defined<Uint8ListWithEquality>(
-              (on490060['i'] as Uint8ListWithEquality),
+              (on380475['i'] as Uint8ListWithEquality),
             )
           : Undefined<Uint8ListWithEquality>(),
     ),
   );
 }
-
-typedef Query175Args = ({Optional<Uint8ListWithEquality> i});
-typedef Query175Response = ({Optional<Uint8ListWithEquality> i});

@@ -2,9 +2,18 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'bytesReturn.freezed.dart';
+
+@freezed
+sealed class BytesReturnResponse with _$BytesReturnResponse {
+  const factory BytesReturnResponse({required Uint8ListWithEquality body}) =
+      _BytesReturnResponse;
+}
 
 Future<BytesReturnResponse> bytesReturn() async {
   final serializedArgs = serialize(null);
@@ -32,7 +41,5 @@ BTreeMapStringValue serialize(void args) {
 
 @pragma("vm:prefer-inline")
 BytesReturnResponse deserialize(Value map) {
-  return (body: (decodeValue(map) as Uint8ListWithEquality));
+  return BytesReturnResponse(body: (decodeValue(map) as Uint8ListWithEquality));
 }
-
-typedef BytesReturnResponse = ({Uint8ListWithEquality body});

@@ -2,9 +2,35 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query111.freezed.dart';
+
+@freezed
+sealed class Query111ArgsI with _$Query111ArgsI {
+  const factory Query111ArgsI({required double age, required String name}) =
+      _Query111ArgsI;
+}
+
+@freezed
+sealed class Query111Args with _$Query111Args {
+  const factory Query111Args({required Query111ArgsI i}) = _Query111Args;
+}
+
+@freezed
+sealed class Query111ResponseI with _$Query111ResponseI {
+  const factory Query111ResponseI({required double age, required String name}) =
+      _Query111ResponseI;
+}
+
+@freezed
+sealed class Query111Response with _$Query111Response {
+  const factory Query111Response({required Query111ResponseI i}) =
+      _Query111Response;
+}
 
 Future<Query111Response> query111(Query111Args args) async {
   final serializedArgs = serialize(args);
@@ -40,16 +66,13 @@ BTreeMapStringValue serialize(Query111Args args) {
 @pragma("vm:prefer-inline")
 Query111Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on586339) => (
-      i: (on586339['i'] as IMap<String, dynamic>).then(
-        (on676951) => (
-          age: (on676951['age'] as double),
-          name: (on676951['name'] as String),
+    (on579392) => Query111Response(
+      i: (on579392['i'] as IMap<String, dynamic>).then(
+        (on774495) => Query111ResponseI(
+          age: (on774495['age'] as double),
+          name: (on774495['name'] as String),
         ),
       ),
     ),
   );
 }
-
-typedef Query111Args = ({({double age, String name}) i});
-typedef Query111Response = ({({double age, String name}) i});

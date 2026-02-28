@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query95.freezed.dart';
+
+@freezed
+sealed class Query95Args with _$Query95Args {
+  const factory Query95Args({required Union3<String, double, bool> i}) =
+      _Query95Args;
+}
+
+@freezed
+sealed class Query95Response with _$Query95Response {
+  const factory Query95Response({required Union3<String, double, bool> i}) =
+      _Query95Response;
+}
 
 Future<Query95Response> query95(Query95Args args) async {
   final serializedArgs = serialize(args);
@@ -31,9 +46,9 @@ BTreeMapStringValue serialize(Query95Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on261428) => encodeValue(on261428),
-          (on406518) => encodeValue(on406518),
-          (on523557) => encodeValue(on523557),
+          (on701938) => encodeValue(on701938),
+          (on838590) => encodeValue(on838590),
+          (on112180) => encodeValue(on112180),
         ),
       ),
     },
@@ -43,28 +58,25 @@ BTreeMapStringValue serialize(Query95Args args) {
 @pragma("vm:prefer-inline")
 Query95Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on944724) => (
+    (on963345) => Query95Response(
       i: Union3<String, double, bool>(() {
         try {
-          return (on944724['i'] as String);
+          return (on963345['i'] as String);
         } catch (e) {}
 
         try {
-          return (on944724['i'] as double);
+          return (on963345['i'] as double);
         } catch (e) {}
 
         try {
-          return (on944724['i'] as bool);
+          return (on963345['i'] as bool);
         } catch (e) {}
 
         throw Exception(
-          (on944724['i'].toString() ?? "null") +
+          (on963345['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union3<String, double, bool>",
         );
       }()),
     ),
   );
 }
-
-typedef Query95Args = ({Union3<String, double, bool> i});
-typedef Query95Response = ({Union3<String, double, bool> i});

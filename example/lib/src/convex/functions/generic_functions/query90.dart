@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query90.freezed.dart';
+
+@freezed
+sealed class Query90Args with _$Query90Args {
+  const factory Query90Args({required IMap<String, TrueLiteral?> i}) =
+      _Query90Args;
+}
+
+@freezed
+sealed class Query90Response with _$Query90Response {
+  const factory Query90Response({required IMap<String, TrueLiteral?> i}) =
+      _Query90Response;
+}
 
 Future<Query90Response> query90(Query90Args args) async {
   final serializedArgs = serialize(args);
@@ -30,8 +45,8 @@ BTreeMapStringValue serialize(Query90Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on155697 in args.i.entries)
-          on155697.key: encodeValue(encodeValue(on155697.value)),
+        for (final on985872 in args.i.entries)
+          on985872.key: encodeValue(encodeValue(on985872.value)),
       }),
     },
   );
@@ -40,16 +55,13 @@ BTreeMapStringValue serialize(Query90Args args) {
 @pragma("vm:prefer-inline")
 Query90Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on133850) => (
-      i: (on133850['i'] as IMap<String, dynamic>).map(
-        (on244492, on634785) => MapEntry(
-          on244492,
-          on634785 == null ? null : $true.validate(on634785),
+    (on348394) => Query90Response(
+      i: (on348394['i'] as IMap<String, dynamic>).map(
+        (on473848, on360641) => MapEntry(
+          on473848,
+          on360641 == null ? null : TrueLiteral.validate(on360641),
         ),
       ),
     ),
   );
 }
-
-typedef Query90Args = ({IMap<String, $true?> i});
-typedef Query90Response = ({IMap<String, $true?> i});

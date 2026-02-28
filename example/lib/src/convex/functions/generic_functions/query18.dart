@@ -2,9 +2,26 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query18.freezed.dart';
+
+@freezed
+sealed class Query18Args with _$Query18Args {
+  const factory Query18Args({
+    @Default(Optional.undefined()) Optional<TasksId> i,
+  }) = _Query18Args;
+}
+
+@freezed
+sealed class Query18Response with _$Query18Response {
+  const factory Query18Response({
+    @Default(Optional.undefined()) Optional<TasksId> i,
+  }) = _Query18Response;
+}
 
 Future<Query18Response> query18(Query18Args args) async {
   final serializedArgs = serialize(args);
@@ -35,13 +52,10 @@ BTreeMapStringValue serialize(Query18Args args) {
 @pragma("vm:prefer-inline")
 Query18Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on785274) => (
-      i: on785274.containsKey('i')
-          ? Defined<TasksId>(TasksId(on785274['i'] as String))
+    (on221044) => Query18Response(
+      i: on221044.containsKey('i')
+          ? Defined<TasksId>(TasksId(on221044['i'] as String))
           : Undefined<TasksId>(),
     ),
   );
 }
-
-typedef Query18Args = ({Optional<TasksId> i});
-typedef Query18Response = ({Optional<TasksId> i});

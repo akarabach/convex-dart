@@ -2,9 +2,29 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'getAllTasks.freezed.dart';
+
+@freezed
+sealed class GetAllTasksResponseBodyItem with _$GetAllTasksResponseBodyItem {
+  const factory GetAllTasksResponseBodyItem({
+    required double creationTime,
+    required TasksId id,
+    required bool isCompleted,
+    required String text,
+  }) = _GetAllTasksResponseBodyItem;
+}
+
+@freezed
+sealed class GetAllTasksResponse with _$GetAllTasksResponse {
+  const factory GetAllTasksResponse({
+    required IList<GetAllTasksResponseBodyItem> body,
+  }) = _GetAllTasksResponse;
+}
 
 Future<GetAllTasksResponse> getAllTasks() async {
   final serializedArgs = serialize(null);
@@ -32,23 +52,18 @@ BTreeMapStringValue serialize(void args) {
 
 @pragma("vm:prefer-inline")
 GetAllTasksResponse deserialize(Value map) {
-  return (
+  return GetAllTasksResponse(
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on662280) => (on662280 as IMap<String, dynamic>).then(
-            (on700567) => (
-              creationTime: (on700567['_creationTime'] as double),
-              id: TasksId(on700567['_id'] as String),
-              isCompleted: (on700567['isCompleted'] as bool),
-              text: (on700567['text'] as String),
+          (on912778) => (on912778 as IMap<String, dynamic>).then(
+            (on33161) => GetAllTasksResponseBodyItem(
+              creationTime: (on33161['_creationTime'] as double),
+              id: TasksId(on33161['_id'] as String),
+              isCompleted: (on33161['isCompleted'] as bool),
+              text: (on33161['text'] as String),
             ),
           ),
         )
         .toIList(),
   );
 }
-
-typedef GetAllTasksResponse = ({
-  IList<({double creationTime, TasksId id, bool isCompleted, String text})>
-  body,
-});

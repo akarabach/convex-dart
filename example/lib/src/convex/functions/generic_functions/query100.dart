@@ -2,9 +2,22 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query100.freezed.dart';
+
+@freezed
+sealed class Query100Args with _$Query100Args {
+  const factory Query100Args({required YesNo i}) = _Query100Args;
+}
+
+@freezed
+sealed class Query100Response with _$Query100Response {
+  const factory Query100Response({required YesNo i}) = _Query100Response;
+}
 
 Future<Query100Response> query100(Query100Args args) async {
   final serializedArgs = serialize(args);
@@ -33,9 +46,6 @@ BTreeMapStringValue serialize(Query100Args args) {
 @pragma("vm:prefer-inline")
 Query100Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on210314) => (i: $yes$no.fromValue(on210314['i'])),
+    (on568183) => Query100Response(i: YesNo.fromValue(on568183['i'])),
   );
 }
-
-typedef Query100Args = ({$yes$no i});
-typedef Query100Response = ({$yes$no i});

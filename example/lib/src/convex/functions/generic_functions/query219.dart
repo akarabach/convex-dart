@@ -2,9 +2,24 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, invalid_use_of_internal_member
 import "package:convex_dart/src/convex_dart_for_generated_code.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "dart:typed_data";
 import "../../schema.dart";
 import "../../literals.dart";
+
+part 'query219.freezed.dart';
+
+@freezed
+sealed class Query219Args with _$Query219Args {
+  const factory Query219Args({required IList<IMap<String, dynamic>> i}) =
+      _Query219Args;
+}
+
+@freezed
+sealed class Query219Response with _$Query219Response {
+  const factory Query219Response({required IList<IMap<String, dynamic>> i}) =
+      _Query219Response;
+}
 
 Future<Query219Response> query219(Query219Args args) async {
   final serializedArgs = serialize(args);
@@ -32,9 +47,9 @@ BTreeMapStringValue serialize(Query219Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on279448) => encodeValue({
-                for (final on689061 in on279448.entries)
-                  on689061.key: encodeValue(encodeValue(on689061.value)),
+              (on267621) => encodeValue({
+                for (final on471456 in on267621.entries)
+                  on471456.key: encodeValue(encodeValue(on471456.value)),
               }),
             )
             .toIList(),
@@ -46,17 +61,14 @@ BTreeMapStringValue serialize(Query219Args args) {
 @pragma("vm:prefer-inline")
 Query219Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on426662) => (
-      i: (on426662['i'] as IList<dynamic>)
+    (on726130) => Query219Response(
+      i: (on726130['i'] as IList<dynamic>)
           .map(
-            (on111281) => (on111281 as IMap<String, dynamic>).map(
-              (on461616, on376808) => MapEntry(on461616, (on376808 as dynamic)),
+            (on1538) => (on1538 as IMap<String, dynamic>).map(
+              (on294594, on999546) => MapEntry(on294594, (on999546 as dynamic)),
             ),
           )
           .toIList(),
     ),
   );
 }
-
-typedef Query219Args = ({IList<IMap<String, dynamic>> i});
-typedef Query219Response = ({IList<IMap<String, dynamic>> i});

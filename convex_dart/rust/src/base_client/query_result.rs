@@ -1,17 +1,8 @@
-use convex_sync_types::{
-    types::ErrorPayload,
-    QueryId,
-};
-use imbl::{
-    OrdMap,
-    OrdSet,
-};
+use convex_sync_types::{types::ErrorPayload, QueryId};
+use imbl::{OrdMap, OrdSet};
 
 use super::SubscriberId;
-use crate::{
-    ConvexError,
-    Value,
-};
+use crate::{ConvexError, Value};
 
 /// Result of a Convex function (query/mutation/action).
 ///
@@ -101,17 +92,9 @@ impl QueryResults {
 #[cfg(test)]
 mod tests {
     use convex_sync_types::QueryId;
-    use imbl::{
-        ordmap,
-        ordset,
-    };
+    use imbl::{ordmap, ordset};
 
-    use crate::{
-        base_client::SubscriberId,
-        FunctionResult,
-        QueryResults,
-        Value,
-    };
+    use crate::{base_client::SubscriberId, FunctionResult, QueryResults, Value};
 
     #[test]
     fn test_query_results() {
