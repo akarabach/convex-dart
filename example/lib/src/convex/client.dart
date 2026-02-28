@@ -4,6 +4,7 @@
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart'
     as internal;
 import 'package:http/http.dart' as $http;
+import 'dart:async' show FutureOr;
 import 'dart:convert' as $convert;
 import './functions/generic_functions/query1.dart'
     as query10
@@ -669,6 +670,12 @@ class ConvexClient {
 
   Future<void> setAuth({required String? token}) async {
     await internal.InternalConvexClient.instance.setAuth(token: token);
+  }
+  Future<void> setAuthCallback({required FutureOr<String?> Function(bool) fetchToken}) async {
+    await internal.InternalConvexClient.instance.setAuthCallback(fetchToken: fetchToken);
+  }
+  Future<void> clearAuth() async {
+    await internal.InternalConvexClient.instance.clearAuth();
   }
 
   static final String httpUrl = "https://rugged-warthog-11.convex.site";

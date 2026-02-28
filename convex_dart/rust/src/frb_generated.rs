@@ -60,7 +60,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.11.1";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1191927947;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1974420054;
 
 // Section: executor
 
@@ -218,6 +218,62 @@ fn wire__crate__dart__MobileConvexClient_action_impl(
                             api_args,
                         )
                         .await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__dart__MobileConvexClient_clear_auth_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "MobileConvexClient_clear_auth",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MobileConvexClient>,
+            >>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, crate::dart::ClientError>(
+                    (move || async move {
+                        let mut api_that_guard = None;
+                        let decode_indices_ =
+                            flutter_rust_bridge::for_generated::lockable_compute_decode_order(
+                                vec![flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                    &api_that, 0, false,
+                                )],
+                            );
+                        for i in decode_indices_ {
+                            match i {
+                                0 => {
+                                    api_that_guard =
+                                        Some(api_that.lockable_decode_async_ref().await)
+                                },
+                                _ => unreachable!(),
+                            }
+                        }
+                        let api_that_guard = api_that_guard.unwrap();
+                        let output_ok =
+                            crate::dart::MobileConvexClient::clear_auth(&*api_that_guard).await?;
                         Ok(output_ok)
                     })()
                     .await,
@@ -442,6 +498,68 @@ fn wire__crate__dart__MobileConvexClient_set_auth_impl(
         },
     )
 }
+fn wire__crate__dart__MobileConvexClient_set_auth_callback_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "MobileConvexClient_set_auth_callback",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MobileConvexClient>,
+            >>::sse_decode(&mut deserializer);
+            let api_fetch_token = decode_DartFn_Inputs_bool_Output_opt_String_AnyhowException(
+                <flutter_rust_bridge::DartOpaque>::sse_decode(&mut deserializer),
+            );
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, crate::dart::ClientError>(
+                    (move || async move {
+                        let mut api_that_guard = None;
+                        let decode_indices_ =
+                            flutter_rust_bridge::for_generated::lockable_compute_decode_order(
+                                vec![flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                    &api_that, 0, false,
+                                )],
+                            );
+                        for i in decode_indices_ {
+                            match i {
+                                0 => {
+                                    api_that_guard =
+                                        Some(api_that.lockable_decode_async_ref().await)
+                                },
+                                _ => unreachable!(),
+                            }
+                        }
+                        let api_that_guard = api_that_guard.unwrap();
+                        let output_ok = crate::dart::MobileConvexClient::set_auth_callback(
+                            &*api_that_guard,
+                            api_fetch_token,
+                        )
+                        .await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
 fn wire__crate__dart__MobileConvexClient_subscribe_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -622,6 +740,38 @@ fn wire__crate__dart__hashmap_to_btreemap_impl(
 
 // Section: related_funcs
 
+fn decode_DartFn_Inputs_bool_Output_opt_String_AnyhowException(
+    dart_opaque: flutter_rust_bridge::DartOpaque,
+) -> impl Fn(bool) -> flutter_rust_bridge::DartFnFuture<Option<String>> {
+    use flutter_rust_bridge::IntoDart;
+
+    async fn body(dart_opaque: flutter_rust_bridge::DartOpaque, arg0: bool) -> Option<String> {
+        let args = vec![arg0.into_into_dart().into_dart()];
+        let message = FLUTTER_RUST_BRIDGE_HANDLER
+            .dart_fn_invoke(dart_opaque, args)
+            .await;
+
+        let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+        let action = deserializer.cursor.read_u8().unwrap();
+        let ans = match action {
+            0 => std::result::Result::Ok(<Option<String>>::sse_decode(&mut deserializer)),
+            1 => std::result::Result::Err(
+                <flutter_rust_bridge::for_generated::anyhow::Error>::sse_decode(&mut deserializer),
+            ),
+            _ => unreachable!(),
+        };
+        deserializer.end();
+        let ans = ans.expect("Dart throws exception but Rust side assume it is not failable");
+        ans
+    }
+
+    move |arg0: bool| {
+        flutter_rust_bridge::for_generated::convert_into_dart_fn_future(body(
+            dart_opaque.clone(),
+            arg0,
+        ))
+    }
+}
 fn decode_DartFn_Inputs_function_result_Output_unit_AnyhowException(
     dart_opaque: flutter_rust_bridge::DartOpaque,
 ) -> impl Fn(
@@ -1046,10 +1196,19 @@ fn pde_ffi_dispatcher_primary_impl(
             wire__crate__dart__DartQuerySubscriber_on_update_impl(port, ptr, rust_vec_len, data_len)
         },
         3 => wire__crate__dart__MobileConvexClient_action_impl(port, ptr, rust_vec_len, data_len),
-        4 => wire__crate__dart__MobileConvexClient_mutation_impl(port, ptr, rust_vec_len, data_len),
-        6 => wire__crate__dart__MobileConvexClient_query_impl(port, ptr, rust_vec_len, data_len),
-        7 => wire__crate__dart__MobileConvexClient_set_auth_impl(port, ptr, rust_vec_len, data_len),
-        8 => {
+        4 => {
+            wire__crate__dart__MobileConvexClient_clear_auth_impl(port, ptr, rust_vec_len, data_len)
+        },
+        5 => wire__crate__dart__MobileConvexClient_mutation_impl(port, ptr, rust_vec_len, data_len),
+        7 => wire__crate__dart__MobileConvexClient_query_impl(port, ptr, rust_vec_len, data_len),
+        8 => wire__crate__dart__MobileConvexClient_set_auth_impl(port, ptr, rust_vec_len, data_len),
+        9 => wire__crate__dart__MobileConvexClient_set_auth_callback_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        10 => {
             wire__crate__dart__MobileConvexClient_subscribe_impl(port, ptr, rust_vec_len, data_len)
         },
         _ => unreachable!(),
@@ -1065,10 +1224,10 @@ fn pde_ffi_dispatcher_sync_impl(
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
         1 => wire__crate__dart__DartQuerySubscriber_new_impl(ptr, rust_vec_len, data_len),
-        5 => wire__crate__dart__MobileConvexClient_new_impl(ptr, rust_vec_len, data_len),
-        9 => wire__crate__dart__SubscriptionHandle_cancel_impl(ptr, rust_vec_len, data_len),
-        11 => wire__crate__dart__btreemap_to_hashmap_impl(ptr, rust_vec_len, data_len),
-        12 => wire__crate__dart__hashmap_to_btreemap_impl(ptr, rust_vec_len, data_len),
+        6 => wire__crate__dart__MobileConvexClient_new_impl(ptr, rust_vec_len, data_len),
+        11 => wire__crate__dart__SubscriptionHandle_cancel_impl(ptr, rust_vec_len, data_len),
+        13 => wire__crate__dart__btreemap_to_hashmap_impl(ptr, rust_vec_len, data_len),
+        14 => wire__crate__dart__hashmap_to_btreemap_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }

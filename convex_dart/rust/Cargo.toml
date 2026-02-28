@@ -2,7 +2,7 @@
 name = "convex_dart"
 description = "Client library for Convex (convex.dev)"
 authors = ["Convex, Inc. <no-reply@convex.dev>"]
-version = "0.10.2"
+version = "0.10.3"
 edition = "2021"
 rust-version = "1.80.1"
 resolver = "2"
@@ -31,7 +31,7 @@ anyhow = { version = "1" }
 async-trait = { version = "0.1" }
 base64 = { version = "0.13" }
 bytes = { version = "1.6.0" }
-convex_sync_types = { path = "./sync_types", version = "=0.10.2" }
+convex_sync_types = { path = "./sync_types", version = "=0.10.3" }
 futures = { version = "0.3" }
 imbl = { version = "5.0.0" }
 
@@ -68,7 +68,7 @@ rustls = { version = "0.23", default-features = false, features = [
 
 [dev-dependencies]
 colored = { version = "3" }
-convex_sync_types = { path = "./sync_types", version = "=0.10.2", features = [
+convex_sync_types = { path = "./sync_types", version = "=0.10.3", features = [
     "testing",
 ] }
 dotenvy = { version = "0.15.7" }

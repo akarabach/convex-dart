@@ -9,42 +9,55 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'value.freezed.dart';
 
-// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`
+            // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`
 
-/// An application error that can be returned from Convex functions. To learn
+
+            
+
+            /// An application error that can be returned from Convex functions. To learn
 /// more about throwing custom application errors, see [Convex Errors](https://docs.convex.dev/functions/error-handling/application-errors#throwing-application-errors).
-class ConvexError {
-  /// From any error, redacted from prod deployments.
-  final String message;
+class ConvexError  {
+                /// From any error, redacted from prod deployments.
+final String message;
+/// Custom application error data payload that can be passed from your
+/// function to a client.
+final Value data;
 
-  /// Custom application error data payload that can be passed from your
-  /// function to a client.
-  final Value data;
+                const ConvexError({required this.message ,required this.data ,});
 
-  const ConvexError({required this.message, required this.data});
+                
+                
 
-  @override
-  int get hashCode => message.hashCode ^ data.hashCode;
+                
+        @override
+        int get hashCode => message.hashCode^data.hashCode;
+        
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConvexError &&
-          runtimeType == other.runtimeType &&
-          message == other.message &&
-          data == other.data;
-}
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ConvexError &&
+                runtimeType == other.runtimeType
+                && message == other.message&& data == other.data;
+        
+            }
 
 @freezed
-sealed class Value with _$Value {
-  const Value._();
+                sealed class Value with _$Value  {
+                    const Value._();
 
-  const factory Value.null_() = Value_Null;
-  const factory Value.int64(PlatformInt64 field0) = Value_Int64;
-  const factory Value.float64(double field0) = Value_Float64;
-  const factory Value.boolean(bool field0) = Value_Boolean;
-  const factory Value.string(String field0) = Value_String;
-  const factory Value.bytes(Uint8List field0) = Value_Bytes;
-  const factory Value.array(List<Value> field0) = Value_Array;
-  const factory Value.object(BTreeMapStringValue field0) = Value_Object;
-}
+                     const factory Value.null_() = Value_Null;
+ const factory Value.int64(  PlatformInt64 field0,) = Value_Int64;
+ const factory Value.float64(  double field0,) = Value_Float64;
+ const factory Value.boolean(  bool field0,) = Value_Boolean;
+ const factory Value.string(  String field0,) = Value_String;
+ const factory Value.bytes(  Uint8List field0,) = Value_Bytes;
+ const factory Value.array(  List<Value> field0,) = Value_Array;
+ const factory Value.object(  BTreeMapStringValue field0,) = Value_Object;
+
+                    
+
+                    
+                }
+            

@@ -224,6 +224,7 @@ class ${tableName.pascalCase}Id  implements TableId {
 import 'package:convex_dart/src/convex_dart_for_generated_code.dart'
     as internal;
 import 'package:http/http.dart' as \$http;
+import 'dart:async' show FutureOr;
 import 'dart:convert' as \$convert;
 ${builtFunctionSpecs.map((spec) => "import '${spec.importPath}' as ${spec.prefix} show ${spec.functionNames.join(",")};").join("\n")}
 class ConvexClient {
@@ -234,6 +235,12 @@ class ConvexClient {
   }
   Future<void> setAuth({required String? token}) async {
     await internal.InternalConvexClient.instance.setAuth(token: token);
+  }
+  Future<void> setAuthCallback({required FutureOr<String?> Function(bool) fetchToken}) async {
+    await internal.InternalConvexClient.instance.setAuthCallback(fetchToken: fetchToken);
+  }
+  Future<void> clearAuth() async {
+    await internal.InternalConvexClient.instance.clearAuth();
   }
 
   static final String httpUrl = "${url.replaceAll(RegExp(r'\.cloud$'), '.site')}";

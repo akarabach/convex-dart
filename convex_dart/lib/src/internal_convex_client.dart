@@ -242,6 +242,37 @@ class InternalConvexClient {
   Future<void> setAuth({required String? token}) async {
     return await _client.setAuth(token: token);
   }
+
+  /// Sets an auth token fetcher callback.
+  ///
+  /// The callback is invoked immediately and again on every WebSocket
+  /// reconnect, allowing dynamic token refresh. The [fetchToken] callback
+  /// receives a [bool] parameter indicating whether a forced refresh is
+  /// requested (`true` on reconnect, `false` on initial call).
+  ///
+  /// Passing a function that returns `null` clears auth (logs out).
+  ///
+  /// Example:
+  /// ```dart
+  /// await client.setAuthCallback(
+  ///   fetchToken: (forceRefresh) async {
+  ///     return await myAuthProvider.getToken(forceRefresh: forceRefresh);
+  ///   },
+  /// );
+  /// ```
+  Future<void> setAuthCallback({
+    required FutureOr<String?> Function(bool) fetchToken,
+  }) async {
+    return await _client.setAuthCallback(fetchToken: fetchToken);
+  }
+
+  /// Clears the auth token callback, effectively logging out.
+  ///
+  /// After calling this method, the client will no longer send
+  /// authentication tokens with requests.
+  Future<void> clearAuth() async {
+    return await _client.clearAuth();
+  }
 }
 
 /// The rust methods may throw one of these exceptions, we will convert into
