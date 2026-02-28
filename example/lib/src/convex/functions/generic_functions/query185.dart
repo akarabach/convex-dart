@@ -11,13 +11,16 @@ part 'query185.freezed.dart';
 
 @freezed
 sealed class Query185Args with _$Query185Args {
-  const factory Query185Args({required Optional<OnLiteral> i}) = _Query185Args;
+  const factory Query185Args({
+    @Default(Optional.undefined()) Optional<OnLiteral> i,
+  }) = _Query185Args;
 }
 
 @freezed
 sealed class Query185Response with _$Query185Response {
-  const factory Query185Response({required Optional<OnLiteral> i}) =
-      _Query185Response;
+  const factory Query185Response({
+    @Default(Optional.undefined()) Optional<OnLiteral> i,
+  }) = _Query185Response;
 }
 
 Future<Query185Response> query185(Query185Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query185Args args) {
 @pragma("vm:prefer-inline")
 Query185Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on168611) => Query185Response(
-      i: on168611.containsKey('i')
-          ? Defined<OnLiteral>(OnLiteral.validate(on168611['i']))
+    (on910379) => Query185Response(
+      i: on910379.containsKey('i')
+          ? Defined<OnLiteral>(OnLiteral.validate(on910379['i']))
           : Undefined<OnLiteral>(),
     ),
   );

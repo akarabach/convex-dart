@@ -11,14 +11,16 @@ part 'query205.freezed.dart';
 
 @freezed
 sealed class Query205Args with _$Query205Args {
-  const factory Query205Args({required Optional<IMap<String, String>> i}) =
-      _Query205Args;
+  const factory Query205Args({
+    @Default(Optional.undefined()) Optional<IMap<String, String>> i,
+  }) = _Query205Args;
 }
 
 @freezed
 sealed class Query205Response with _$Query205Response {
-  const factory Query205Response({required Optional<IMap<String, String>> i}) =
-      _Query205Response;
+  const factory Query205Response({
+    @Default(Optional.undefined()) Optional<IMap<String, String>> i,
+  }) = _Query205Response;
 }
 
 Future<Query205Response> query205(Query205Args args) async {
@@ -46,8 +48,8 @@ BTreeMapStringValue serialize(Query205Args args) {
     hashmap: {
       if (args.i.isDefined)
         'i': encodeValue({
-          for (final on891915 in args.i.asDefined().value.entries)
-            on891915.key: encodeValue(encodeValue(on891915.value)),
+          for (final on100595 in args.i.asDefined().value.entries)
+            on100595.key: encodeValue(encodeValue(on100595.value)),
         }),
     },
   );
@@ -56,12 +58,11 @@ BTreeMapStringValue serialize(Query205Args args) {
 @pragma("vm:prefer-inline")
 Query205Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on395332) => Query205Response(
-      i: on395332.containsKey('i')
+    (on986872) => Query205Response(
+      i: on986872.containsKey('i')
           ? Defined<IMap<String, String>>(
-              (on395332['i'] as IMap<String, dynamic>).map(
-                (on589145, on958262) =>
-                    MapEntry(on589145, (on958262 as String)),
+              (on986872['i'] as IMap<String, dynamic>).map(
+                (on83862, on246335) => MapEntry(on83862, (on246335 as String)),
               ),
             )
           : Undefined<IMap<String, String>>(),

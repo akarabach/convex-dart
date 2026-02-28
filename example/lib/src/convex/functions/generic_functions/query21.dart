@@ -11,13 +11,16 @@ part 'query21.freezed.dart';
 
 @freezed
 sealed class Query21Args with _$Query21Args {
-  const factory Query21Args({required Optional<N10Literal> i}) = _Query21Args;
+  const factory Query21Args({
+    @Default(Optional.undefined()) Optional<N10Literal> i,
+  }) = _Query21Args;
 }
 
 @freezed
 sealed class Query21Response with _$Query21Response {
-  const factory Query21Response({required Optional<N10Literal> i}) =
-      _Query21Response;
+  const factory Query21Response({
+    @Default(Optional.undefined()) Optional<N10Literal> i,
+  }) = _Query21Response;
 }
 
 Future<Query21Response> query21(Query21Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query21Args args) {
 @pragma("vm:prefer-inline")
 Query21Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on345652) => Query21Response(
-      i: on345652.containsKey('i')
-          ? Defined<N10Literal>(N10Literal.validate(on345652['i']))
+    (on634351) => Query21Response(
+      i: on634351.containsKey('i')
+          ? Defined<N10Literal>(N10Literal.validate(on634351['i']))
           : Undefined<N10Literal>(),
     ),
   );

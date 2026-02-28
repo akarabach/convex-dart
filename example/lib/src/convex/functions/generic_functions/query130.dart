@@ -15,7 +15,7 @@ sealed class Query130ArgsIStepsItem with _$Query130ArgsIStepsItem {
     required IMap<String, dynamic> config,
     required String id,
     required String name,
-    required Optional<String> next,
+    @Default(Optional.undefined()) Optional<String> next,
   }) = _Query130ArgsIStepsItem;
 }
 
@@ -36,7 +36,7 @@ sealed class Query130ResponseIStepsItem with _$Query130ResponseIStepsItem {
     required IMap<String, dynamic> config,
     required String id,
     required String name,
-    required Optional<String> next,
+    @Default(Optional.undefined()) Optional<String> next,
   }) = _Query130ResponseIStepsItem;
 }
 
@@ -80,15 +80,15 @@ BTreeMapStringValue serialize(Query130Args args) {
         'steps': encodeValue(
           args.i.steps
               .map(
-                (on111315) => encodeValue({
+                (on833606) => encodeValue({
                   'config': encodeValue({
-                    for (final on649994 in on111315.config.entries)
-                      on649994.key: encodeValue(encodeValue(on649994.value)),
+                    for (final on423477 in on833606.config.entries)
+                      on423477.key: encodeValue(encodeValue(on423477.value)),
                   }),
-                  'id': encodeValue(on111315.id),
-                  'name': encodeValue(on111315.name),
-                  if (on111315.next.isDefined)
-                    'next': encodeValue(on111315.next.asDefined().value),
+                  'id': encodeValue(on833606.id),
+                  'name': encodeValue(on833606.name),
+                  if (on833606.next.isDefined)
+                    'next': encodeValue(on833606.next.asDefined().value),
                 }),
               )
               .toIList(),
@@ -101,21 +101,21 @@ BTreeMapStringValue serialize(Query130Args args) {
 @pragma("vm:prefer-inline")
 Query130Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on720355) => Query130Response(
-      i: (on720355['i'] as IMap<String, dynamic>).then(
-        (on302736) => Query130ResponseI(
-          steps: (on302736['steps'] as IList<dynamic>)
+    (on346863) => Query130Response(
+      i: (on346863['i'] as IMap<String, dynamic>).then(
+        (on242294) => Query130ResponseI(
+          steps: (on242294['steps'] as IList<dynamic>)
               .map(
-                (on242766) => (on242766 as IMap<String, dynamic>).then(
-                  (on112140) => Query130ResponseIStepsItem(
-                    config: (on112140['config'] as IMap<String, dynamic>).map(
-                      (on315109, on639717) =>
-                          MapEntry(on315109, (on639717 as dynamic)),
+                (on319212) => (on319212 as IMap<String, dynamic>).then(
+                  (on588068) => Query130ResponseIStepsItem(
+                    config: (on588068['config'] as IMap<String, dynamic>).map(
+                      (on761070, on324689) =>
+                          MapEntry(on761070, (on324689 as dynamic)),
                     ),
-                    id: (on112140['id'] as String),
-                    name: (on112140['name'] as String),
-                    next: on112140.containsKey('next')
-                        ? Defined<String>((on112140['next'] as String))
+                    id: (on588068['id'] as String),
+                    name: (on588068['name'] as String),
+                    next: on588068.containsKey('next')
+                        ? Defined<String>((on588068['next'] as String))
                         : Undefined<String>(),
                   ),
                 ),

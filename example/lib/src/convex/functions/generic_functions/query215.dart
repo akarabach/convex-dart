@@ -11,14 +11,16 @@ part 'query215.freezed.dart';
 
 @freezed
 sealed class Query215Args with _$Query215Args {
-  const factory Query215Args({required Optional<IList<bool>> i}) =
-      _Query215Args;
+  const factory Query215Args({
+    @Default(Optional.undefined()) Optional<IList<bool>> i,
+  }) = _Query215Args;
 }
 
 @freezed
 sealed class Query215Response with _$Query215Response {
-  const factory Query215Response({required Optional<IList<bool>> i}) =
-      _Query215Response;
+  const factory Query215Response({
+    @Default(Optional.undefined()) Optional<IList<bool>> i,
+  }) = _Query215Response;
 }
 
 Future<Query215Response> query215(Query215Args args) async {
@@ -49,7 +51,7 @@ BTreeMapStringValue serialize(Query215Args args) {
           args.i
               .asDefined()
               .value
-              .map((on450315) => encodeValue(on450315))
+              .map((on548553) => encodeValue(on548553))
               .toIList(),
         ),
     },
@@ -59,11 +61,11 @@ BTreeMapStringValue serialize(Query215Args args) {
 @pragma("vm:prefer-inline")
 Query215Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on373344) => Query215Response(
-      i: on373344.containsKey('i')
+    (on543944) => Query215Response(
+      i: on543944.containsKey('i')
           ? Defined<IList<bool>>(
-              (on373344['i'] as IList<dynamic>)
-                  .map((on666132) => (on666132 as bool))
+              (on543944['i'] as IList<dynamic>)
+                  .map((on650398) => (on650398 as bool))
                   .toIList(),
             )
           : Undefined<IList<bool>>(),

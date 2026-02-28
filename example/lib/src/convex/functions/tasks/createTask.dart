@@ -12,7 +12,7 @@ part 'createTask.freezed.dart';
 @freezed
 sealed class CreateTaskArgs with _$CreateTaskArgs {
   const factory CreateTaskArgs({
-    required Optional<bool> isCompleted,
+    @Default(Optional.undefined()) Optional<bool> isCompleted,
     required String text,
   }) = _CreateTaskArgs;
 }

@@ -11,13 +11,16 @@ part 'query194.freezed.dart';
 
 @freezed
 sealed class Query194Args with _$Query194Args {
-  const factory Query194Args({required Optional<bool> i}) = _Query194Args;
+  const factory Query194Args({
+    @Default(Optional.undefined()) Optional<bool> i,
+  }) = _Query194Args;
 }
 
 @freezed
 sealed class Query194Response with _$Query194Response {
-  const factory Query194Response({required Optional<bool> i}) =
-      _Query194Response;
+  const factory Query194Response({
+    @Default(Optional.undefined()) Optional<bool> i,
+  }) = _Query194Response;
 }
 
 Future<Query194Response> query194(Query194Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query194Args args) {
 @pragma("vm:prefer-inline")
 Query194Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on12826) => Query194Response(
-      i: on12826.containsKey('i')
-          ? Defined<bool>((on12826['i'] as bool))
+    (on141938) => Query194Response(
+      i: on141938.containsKey('i')
+          ? Defined<bool>((on141938['i'] as bool))
           : Undefined<bool>(),
     ),
   );

@@ -46,8 +46,8 @@ BTreeMapStringValue serialize(Query32Args args) {
 @pragma("vm:prefer-inline")
 Query32Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on971204) => Query32Response(
-      i: on971204['i'] == null ? null : N10Literal.validate(on971204['i']),
+    (on811075) => Query32Response(
+      i: on811075['i'] == null ? null : N10Literal.validate(on811075['i']),
     ),
   );
 }

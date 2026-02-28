@@ -23,7 +23,8 @@ sealed class Query123ArgsIVariant1Formatting
 sealed class Query123ArgsIVariant1 with _$Query123ArgsIVariant1 {
   const factory Query123ArgsIVariant1({
     required String content,
-    required Optional<Query123ArgsIVariant1Formatting> formatting,
+    @Default(Optional.undefined())
+    Optional<Query123ArgsIVariant1Formatting> formatting,
     required TextLiteral type,
   }) = _Query123ArgsIVariant1;
 }
@@ -40,7 +41,7 @@ sealed class Query123ArgsIVariant2Dimensions
 @freezed
 sealed class Query123ArgsIVariant2 with _$Query123ArgsIVariant2 {
   const factory Query123ArgsIVariant2({
-    required Optional<String> alt,
+    @Default(Optional.undefined()) Optional<String> alt,
     required Query123ArgsIVariant2Dimensions dimensions,
     required ImageLiteral type,
     required String url,
@@ -82,7 +83,8 @@ sealed class Query123ResponseIVariant1Formatting
 sealed class Query123ResponseIVariant1 with _$Query123ResponseIVariant1 {
   const factory Query123ResponseIVariant1({
     required String content,
-    required Optional<Query123ResponseIVariant1Formatting> formatting,
+    @Default(Optional.undefined())
+    Optional<Query123ResponseIVariant1Formatting> formatting,
     required TextLiteral type,
   }) = _Query123ResponseIVariant1;
 }
@@ -99,7 +101,7 @@ sealed class Query123ResponseIVariant2Dimensions
 @freezed
 sealed class Query123ResponseIVariant2 with _$Query123ResponseIVariant2 {
   const factory Query123ResponseIVariant2({
-    required Optional<String> alt,
+    @Default(Optional.undefined()) Optional<String> alt,
     required Query123ResponseIVariant2Dimensions dimensions,
     required ImageLiteral type,
     required String url,
@@ -152,36 +154,36 @@ BTreeMapStringValue serialize(Query123Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on939203) => encodeValue({
-            'content': encodeValue(on939203.content),
-            if (on939203.formatting.isDefined)
+          (on250312) => encodeValue({
+            'content': encodeValue(on250312.content),
+            if (on250312.formatting.isDefined)
               'formatting': encodeValue({
-                'bold': encodeValue(on939203.formatting.asDefined().value.bold),
+                'bold': encodeValue(on250312.formatting.asDefined().value.bold),
                 'color': encodeValue(
-                  on939203.formatting.asDefined().value.color.value,
+                  on250312.formatting.asDefined().value.color.value,
                 ),
                 'italic': encodeValue(
-                  on939203.formatting.asDefined().value.italic,
+                  on250312.formatting.asDefined().value.italic,
                 ),
               }),
-            'type': encodeValue(on939203.type),
+            'type': encodeValue(on250312.type),
           }),
-          (on893216) => encodeValue({
-            if (on893216.alt.isDefined)
-              'alt': encodeValue(on893216.alt.asDefined().value),
+          (on87189) => encodeValue({
+            if (on87189.alt.isDefined)
+              'alt': encodeValue(on87189.alt.asDefined().value),
             'dimensions': encodeValue({
-              'height': encodeValue(on893216.dimensions.height),
-              'width': encodeValue(on893216.dimensions.width),
+              'height': encodeValue(on87189.dimensions.height),
+              'width': encodeValue(on87189.dimensions.width),
             }),
-            'type': encodeValue(on893216.type),
-            'url': encodeValue(on893216.url),
+            'type': encodeValue(on87189.type),
+            'url': encodeValue(on87189.url),
           }),
-          (on542030) => encodeValue({
+          (on458628) => encodeValue({
             'items': encodeValue(
-              on542030.items.map((on977625) => encodeValue(on977625)).toIList(),
+              on458628.items.map((on342809) => encodeValue(on342809)).toIList(),
             ),
-            'ordered': encodeValue(on542030.ordered),
-            'type': encodeValue(on542030.type),
+            'ordered': encodeValue(on458628.ordered),
+            'type': encodeValue(on458628.type),
           }),
         ),
       ),
@@ -192,7 +194,7 @@ BTreeMapStringValue serialize(Query123Args args) {
 @pragma("vm:prefer-inline")
 Query123Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on756409) => Query123Response(
+    (on70373) => Query123Response(
       i:
           Union3<
             Query123ResponseIVariant1,
@@ -200,58 +202,62 @@ Query123Response deserialize(Value map) {
             Query123ResponseIVariant3
           >(() {
             try {
-              return (on756409['i'] as IMap<String, dynamic>).then(
-                (on52659) => Query123ResponseIVariant1(
-                  content: (on52659['content'] as String),
-                  formatting: on52659.containsKey('formatting')
+              return (on70373['i'] as IMap<String, dynamic>).then(
+                (on740131) => Query123ResponseIVariant1(
+                  content: (on740131['content'] as String),
+                  formatting: on740131.containsKey('formatting')
                       ? Defined<Query123ResponseIVariant1Formatting>(
-                          (on52659['formatting'] as IMap<String, dynamic>).then(
-                            (on526832) => Query123ResponseIVariant1Formatting(
-                              bold: (on526832['bold'] as bool),
-                              color: RedBlueGreen.fromValue(on526832['color']),
-                              italic: (on526832['italic'] as bool),
-                            ),
-                          ),
+                          (on740131['formatting'] as IMap<String, dynamic>)
+                              .then(
+                                (on810620) =>
+                                    Query123ResponseIVariant1Formatting(
+                                      bold: (on810620['bold'] as bool),
+                                      color: RedBlueGreen.fromValue(
+                                        on810620['color'],
+                                      ),
+                                      italic: (on810620['italic'] as bool),
+                                    ),
+                              ),
                         )
                       : Undefined<Query123ResponseIVariant1Formatting>(),
-                  type: TextLiteral.validate(on52659['type']),
+                  type: TextLiteral.validate(on740131['type']),
                 ),
               );
             } catch (e) {}
 
             try {
-              return (on756409['i'] as IMap<String, dynamic>).then(
-                (on207312) => Query123ResponseIVariant2(
-                  alt: on207312.containsKey('alt')
-                      ? Defined<String>((on207312['alt'] as String))
+              return (on70373['i'] as IMap<String, dynamic>).then(
+                (on785042) => Query123ResponseIVariant2(
+                  alt: on785042.containsKey('alt')
+                      ? Defined<String>((on785042['alt'] as String))
                       : Undefined<String>(),
-                  dimensions: (on207312['dimensions'] as IMap<String, dynamic>)
+                  dimensions: (on785042['dimensions'] as IMap<String, dynamic>)
                       .then(
-                        (on306234) => Query123ResponseIVariant2Dimensions(
-                          height: (on306234['height'] as double),
-                          width: (on306234['width'] as double),
+                        (on896412) => Query123ResponseIVariant2Dimensions(
+                          height: (on896412['height'] as double),
+                          width: (on896412['width'] as double),
                         ),
                       ),
-                  type: ImageLiteral.validate(on207312['type']),
-                  url: (on207312['url'] as String),
+                  type: ImageLiteral.validate(on785042['type']),
+                  url: (on785042['url'] as String),
                 ),
               );
             } catch (e) {}
 
             try {
-              return (on756409['i'] as IMap<String, dynamic>).then(
-                (on886576) => Query123ResponseIVariant3(
-                  items: (on886576['items'] as IList<dynamic>)
-                      .map((on85802) => (on85802 as String))
+              return (on70373['i'] as IMap<String, dynamic>).then(
+                (on965973) => Query123ResponseIVariant3(
+                  items: (on965973['items'] as IList<dynamic>)
+                      .map((on490505) => (on490505 as String))
                       .toIList(),
-                  ordered: (on886576['ordered'] as bool),
-                  type: ListLiteral.validate(on886576['type']),
+                  ordered: (on965973['ordered'] as bool),
+                  type: ListLiteral.validate(on965973['type']),
                 ),
               );
             } catch (e) {}
 
             throw Exception(
-              (on756409['i'].toString() ?? "null") +
+              (on70373['i'].toString() ?? "null") +
                   r" cannot be deserialized into a Union3<Query123ResponseIVariant1, Query123ResponseIVariant2, Query123ResponseIVariant3>",
             );
           }()),

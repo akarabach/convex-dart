@@ -13,7 +13,7 @@ part 'query171.freezed.dart';
 sealed class Query171ArgsI with _$Query171ArgsI {
   const factory Query171ArgsI({
     required String a,
-    required Optional<double> b,
+    @Default(Optional.undefined()) Optional<double> b,
     required IList<bool> c,
   }) = _Query171ArgsI;
 }
@@ -27,7 +27,7 @@ sealed class Query171Args with _$Query171Args {
 sealed class Query171ResponseI with _$Query171ResponseI {
   const factory Query171ResponseI({
     required String a,
-    required Optional<double> b,
+    @Default(Optional.undefined()) Optional<double> b,
     required IList<bool> c,
   }) = _Query171ResponseI;
 }
@@ -65,7 +65,7 @@ BTreeMapStringValue serialize(Query171Args args) {
         'a': encodeValue(args.i.a),
         if (args.i.b.isDefined) 'b': encodeValue(args.i.b.asDefined().value),
         'c': encodeValue(
-          args.i.c.map((on422233) => encodeValue(on422233)).toIList(),
+          args.i.c.map((on205884) => encodeValue(on205884)).toIList(),
         ),
       }),
     },
@@ -75,15 +75,15 @@ BTreeMapStringValue serialize(Query171Args args) {
 @pragma("vm:prefer-inline")
 Query171Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on368159) => Query171Response(
-      i: (on368159['i'] as IMap<String, dynamic>).then(
-        (on818714) => Query171ResponseI(
-          a: (on818714['a'] as String),
-          b: on818714.containsKey('b')
-              ? Defined<double>((on818714['b'] as double))
+    (on503022) => Query171Response(
+      i: (on503022['i'] as IMap<String, dynamic>).then(
+        (on535308) => Query171ResponseI(
+          a: (on535308['a'] as String),
+          b: on535308.containsKey('b')
+              ? Defined<double>((on535308['b'] as double))
               : Undefined<double>(),
-          c: (on818714['c'] as IList<dynamic>)
-              .map((on842698) => (on842698 as bool))
+          c: (on535308['c'] as IList<dynamic>)
+              .map((on298767) => (on298767 as bool))
               .toIList(),
         ),
       ),

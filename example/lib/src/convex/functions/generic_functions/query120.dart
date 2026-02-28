@@ -16,7 +16,7 @@ sealed class Query120ArgsIItemsItem with _$Query120ArgsIItemsItem {
     required IMap<String, dynamic> metadata,
     required String name,
     required double? price,
-    required Optional<double> quantity,
+    @Default(Optional.undefined()) Optional<double> quantity,
   }) = _Query120ArgsIItemsItem;
 }
 
@@ -40,7 +40,7 @@ sealed class Query120ResponseIItemsItem with _$Query120ResponseIItemsItem {
     required IMap<String, dynamic> metadata,
     required String name,
     required double? price,
-    required Optional<double> quantity,
+    @Default(Optional.undefined()) Optional<double> quantity,
   }) = _Query120ResponseIItemsItem;
 }
 
@@ -85,17 +85,17 @@ BTreeMapStringValue serialize(Query120Args args) {
         'items': encodeValue(
           args.i.items
               .map(
-                (on933716) => encodeValue({
-                  'id': encodeValue(on933716.id),
+                (on392223) => encodeValue({
+                  'id': encodeValue(on392223.id),
                   'metadata': encodeValue({
-                    for (final on578348 in on933716.metadata.entries)
-                      on578348.key: encodeValue(encodeValue(on578348.value)),
+                    for (final on524534 in on392223.metadata.entries)
+                      on524534.key: encodeValue(encodeValue(on524534.value)),
                   }),
-                  'name': encodeValue(on933716.name),
-                  'price': encodeValue(on933716.price),
-                  if (on933716.quantity.isDefined)
+                  'name': encodeValue(on392223.name),
+                  'price': encodeValue(on392223.price),
+                  if (on392223.quantity.isDefined)
                     'quantity': encodeValue(
-                      on933716.quantity.asDefined().value,
+                      on392223.quantity.asDefined().value,
                     ),
                 }),
               )
@@ -110,29 +110,29 @@ BTreeMapStringValue serialize(Query120Args args) {
 @pragma("vm:prefer-inline")
 Query120Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on348155) => Query120Response(
-      i: (on348155['i'] as IMap<String, dynamic>).then(
-        (on920559) => Query120ResponseI(
-          items: (on920559['items'] as IList<dynamic>)
+    (on661100) => Query120Response(
+      i: (on661100['i'] as IMap<String, dynamic>).then(
+        (on117232) => Query120ResponseI(
+          items: (on117232['items'] as IList<dynamic>)
               .map(
-                (on750857) => (on750857 as IMap<String, dynamic>).then(
-                  (on391659) => Query120ResponseIItemsItem(
-                    id: (on391659['id'] as String),
-                    metadata: (on391659['metadata'] as IMap<String, dynamic>)
+                (on221710) => (on221710 as IMap<String, dynamic>).then(
+                  (on87161) => Query120ResponseIItemsItem(
+                    id: (on87161['id'] as String),
+                    metadata: (on87161['metadata'] as IMap<String, dynamic>)
                         .map(
-                          (on266559, on122192) =>
-                              MapEntry(on266559, (on122192 as dynamic)),
+                          (on96478, on329747) =>
+                              MapEntry(on96478, (on329747 as dynamic)),
                         ),
-                    name: (on391659['name'] as String),
-                    price: (on391659['price'] as double?),
-                    quantity: on391659.containsKey('quantity')
-                        ? Defined<double>((on391659['quantity'] as double))
+                    name: (on87161['name'] as String),
+                    price: (on87161['price'] as double?),
+                    quantity: on87161.containsKey('quantity')
+                        ? Defined<double>((on87161['quantity'] as double))
                         : Undefined<double>(),
                   ),
                 ),
               )
               .toIList(),
-          total: (on920559['total'] as double),
+          total: (on117232['total'] as double),
         ),
       ),
     ),

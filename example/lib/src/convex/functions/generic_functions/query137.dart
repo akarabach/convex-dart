@@ -80,13 +80,13 @@ BTreeMapStringValue serialize(Query137Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on562950) => encodeValue({
-            'a': encodeValue(on562950.a),
-            'type': encodeValue(on562950.type),
+          (on39490) => encodeValue({
+            'a': encodeValue(on39490.a),
+            'type': encodeValue(on39490.type),
           }),
-          (on664246) => encodeValue({
-            'b': encodeValue(on664246.b),
-            'type': encodeValue(on664246.type),
+          (on847063) => encodeValue({
+            'b': encodeValue(on847063.b),
+            'type': encodeValue(on847063.type),
           }),
         ),
       ),
@@ -97,28 +97,28 @@ BTreeMapStringValue serialize(Query137Args args) {
 @pragma("vm:prefer-inline")
 Query137Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on48829) => Query137Response(
+    (on813210) => Query137Response(
       i: Union2<Query137ResponseIVariant1, Query137ResponseIVariant2>(() {
         try {
-          return (on48829['i'] as IMap<String, dynamic>).then(
-            (on358733) => Query137ResponseIVariant1(
-              a: (on358733['a'] as String),
-              type: ALiteral.validate(on358733['type']),
+          return (on813210['i'] as IMap<String, dynamic>).then(
+            (on404414) => Query137ResponseIVariant1(
+              a: (on404414['a'] as String),
+              type: ALiteral.validate(on404414['type']),
             ),
           );
         } catch (e) {}
 
         try {
-          return (on48829['i'] as IMap<String, dynamic>).then(
-            (on934504) => Query137ResponseIVariant2(
-              b: (on934504['b'] as double),
-              type: BLiteral.validate(on934504['type']),
+          return (on813210['i'] as IMap<String, dynamic>).then(
+            (on476993) => Query137ResponseIVariant2(
+              b: (on476993['b'] as double),
+              type: BLiteral.validate(on476993['type']),
             ),
           );
         } catch (e) {}
 
         throw Exception(
-          (on48829['i'].toString() ?? "null") +
+          (on813210['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<Query137ResponseIVariant1, Query137ResponseIVariant2>",
         );
       }()),

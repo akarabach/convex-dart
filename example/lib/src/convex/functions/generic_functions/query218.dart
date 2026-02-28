@@ -80,13 +80,13 @@ BTreeMapStringValue serialize(Query218Args args) {
     hashmap: {
       'i': encodeValue(
         args.i.split(
-          (on627604) => encodeValue({
-            'data': encodeValue(on627604.data),
-            'success': encodeValue(on627604.success),
+          (on501110) => encodeValue({
+            'data': encodeValue(on501110.data),
+            'success': encodeValue(on501110.success),
           }),
-          (on856814) => encodeValue({
-            'error': encodeValue(on856814.error),
-            'success': encodeValue(on856814.success),
+          (on902292) => encodeValue({
+            'error': encodeValue(on902292.error),
+            'success': encodeValue(on902292.success),
           }),
         ),
       ),
@@ -97,28 +97,28 @@ BTreeMapStringValue serialize(Query218Args args) {
 @pragma("vm:prefer-inline")
 Query218Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on133414) => Query218Response(
+    (on151941) => Query218Response(
       i: Union2<Query218ResponseIVariant1, Query218ResponseIVariant2>(() {
         try {
-          return (on133414['i'] as IMap<String, dynamic>).then(
-            (on743429) => Query218ResponseIVariant1(
-              data: (on743429['data'] as dynamic),
-              success: TrueLiteral.validate(on743429['success']),
+          return (on151941['i'] as IMap<String, dynamic>).then(
+            (on748417) => Query218ResponseIVariant1(
+              data: (on748417['data'] as dynamic),
+              success: TrueLiteral.validate(on748417['success']),
             ),
           );
         } catch (e) {}
 
         try {
-          return (on133414['i'] as IMap<String, dynamic>).then(
-            (on747323) => Query218ResponseIVariant2(
-              error: (on747323['error'] as String),
-              success: FalseLiteral.validate(on747323['success']),
+          return (on151941['i'] as IMap<String, dynamic>).then(
+            (on205201) => Query218ResponseIVariant2(
+              error: (on205201['error'] as String),
+              success: FalseLiteral.validate(on205201['success']),
             ),
           );
         } catch (e) {}
 
         throw Exception(
-          (on133414['i'].toString() ?? "null") +
+          (on151941['i'].toString() ?? "null") +
               r" cannot be deserialized into a Union2<Query218ResponseIVariant1, Query218ResponseIVariant2>",
         );
       }()),

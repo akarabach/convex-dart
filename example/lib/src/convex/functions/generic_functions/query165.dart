@@ -11,13 +11,16 @@ part 'query165.freezed.dart';
 
 @freezed
 sealed class Query165Args with _$Query165Args {
-  const factory Query165Args({required Optional<dynamic> i}) = _Query165Args;
+  const factory Query165Args({
+    @Default(Optional.undefined()) Optional<dynamic> i,
+  }) = _Query165Args;
 }
 
 @freezed
 sealed class Query165Response with _$Query165Response {
-  const factory Query165Response({required Optional<dynamic> i}) =
-      _Query165Response;
+  const factory Query165Response({
+    @Default(Optional.undefined()) Optional<dynamic> i,
+  }) = _Query165Response;
 }
 
 Future<Query165Response> query165(Query165Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query165Args args) {
 @pragma("vm:prefer-inline")
 Query165Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on505483) => Query165Response(
-      i: on505483.containsKey('i')
-          ? Defined<dynamic>((on505483['i'] as dynamic))
+    (on785541) => Query165Response(
+      i: on785541.containsKey('i')
+          ? Defined<dynamic>((on785541['i'] as dynamic))
           : Undefined<dynamic>(),
     ),
   );

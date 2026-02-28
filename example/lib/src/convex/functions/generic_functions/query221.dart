@@ -16,8 +16,9 @@ sealed class Query221ArgsIA with _$Query221ArgsIA {
 
 @freezed
 sealed class Query221ArgsI with _$Query221ArgsI {
-  const factory Query221ArgsI({required Optional<Query221ArgsIA> a}) =
-      _Query221ArgsI;
+  const factory Query221ArgsI({
+    @Default(Optional.undefined()) Optional<Query221ArgsIA> a,
+  }) = _Query221ArgsI;
 }
 
 @freezed
@@ -32,8 +33,9 @@ sealed class Query221ResponseIA with _$Query221ResponseIA {
 
 @freezed
 sealed class Query221ResponseI with _$Query221ResponseI {
-  const factory Query221ResponseI({required Optional<Query221ResponseIA> a}) =
-      _Query221ResponseI;
+  const factory Query221ResponseI({
+    @Default(Optional.undefined()) Optional<Query221ResponseIA> a,
+  }) = _Query221ResponseI;
 }
 
 @freezed
@@ -76,14 +78,14 @@ BTreeMapStringValue serialize(Query221Args args) {
 @pragma("vm:prefer-inline")
 Query221Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on890470) => Query221Response(
-      i: (on890470['i'] as IMap<String, dynamic>).then(
-        (on277736) => Query221ResponseI(
-          a: on277736.containsKey('a')
+    (on792393) => Query221Response(
+      i: (on792393['i'] as IMap<String, dynamic>).then(
+        (on65976) => Query221ResponseI(
+          a: on65976.containsKey('a')
               ? Defined<Query221ResponseIA>(
-                  (on277736['a'] as IMap<String, dynamic>).then(
-                    (on453371) =>
-                        Query221ResponseIA(b: (on453371['b'] as String)),
+                  (on65976['a'] as IMap<String, dynamic>).then(
+                    (on77133) =>
+                        Query221ResponseIA(b: (on77133['b'] as String)),
                   ),
                 )
               : Undefined<Query221ResponseIA>(),

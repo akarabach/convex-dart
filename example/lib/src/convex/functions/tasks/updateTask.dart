@@ -13,8 +13,8 @@ part 'updateTask.freezed.dart';
 sealed class UpdateTaskArgs with _$UpdateTaskArgs {
   const factory UpdateTaskArgs({
     required TasksId id,
-    required Optional<bool> isCompleted,
-    required Optional<String> text,
+    @Default(Optional.undefined()) Optional<bool> isCompleted,
+    @Default(Optional.undefined()) Optional<String> text,
   }) = _UpdateTaskArgs;
 }
 

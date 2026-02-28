@@ -44,7 +44,7 @@ BTreeMapStringValue serialize(Query65Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue(
-        args.i.map((on567772) => encodeValue(on567772)).toIList(),
+        args.i.map((on985142) => encodeValue(on985142)).toIList(),
       ),
     },
   );
@@ -53,11 +53,11 @@ BTreeMapStringValue serialize(Query65Args args) {
 @pragma("vm:prefer-inline")
 Query65Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on463067) => Query65Response(
-      i: (on463067['i'] as IList<dynamic>)
+    (on301132) => Query65Response(
+      i: (on301132['i'] as IList<dynamic>)
           .map(
-            (on440269) =>
-                on440269 == null ? null : HiLiteral.validate(on440269),
+            (on989259) =>
+                on989259 == null ? null : HiLiteral.validate(on989259),
           )
           .toIList(),
     ),

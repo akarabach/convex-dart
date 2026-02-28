@@ -129,19 +129,19 @@ BTreeMapStringValue serialize(Query128Args args) {
         'triggers': encodeValue(
           args.i.triggers
               .map(
-                (on292782) => encodeValue(
-                  on292782.split(
-                    (on252309) => encodeValue({
-                      'cron': encodeValue(on252309.cron),
-                      'type': encodeValue(on252309.type),
+                (on461929) => encodeValue(
+                  on461929.split(
+                    (on694203) => encodeValue({
+                      'cron': encodeValue(on694203.cron),
+                      'type': encodeValue(on694203.type),
                     }),
-                    (on198222) => encodeValue({
-                      'type': encodeValue(on198222.type),
-                      'url': encodeValue(on198222.url),
+                    (on469748) => encodeValue({
+                      'type': encodeValue(on469748.type),
+                      'url': encodeValue(on469748.url),
                     }),
-                    (on317725) => encodeValue({
-                      'eventType': encodeValue(on317725.eventType),
-                      'type': encodeValue(on317725.type),
+                    (on187545) => encodeValue({
+                      'eventType': encodeValue(on187545.eventType),
+                      'type': encodeValue(on187545.type),
                     }),
                   ),
                 ),
@@ -156,46 +156,46 @@ BTreeMapStringValue serialize(Query128Args args) {
 @pragma("vm:prefer-inline")
 Query128Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on235485) => Query128Response(
-      i: (on235485['i'] as IMap<String, dynamic>).then(
-        (on251660) => Query128ResponseI(
-          triggers: (on251660['triggers'] as IList<dynamic>)
+    (on942068) => Query128Response(
+      i: (on942068['i'] as IMap<String, dynamic>).then(
+        (on118027) => Query128ResponseI(
+          triggers: (on118027['triggers'] as IList<dynamic>)
               .map(
-                (on322196) =>
+                (on577237) =>
                     Union3<
                       Query128ResponseITriggersItemVariant1,
                       Query128ResponseITriggersItemVariant2,
                       Query128ResponseITriggersItemVariant3
                     >(() {
                       try {
-                        return (on322196 as IMap<String, dynamic>).then(
-                          (on519150) => Query128ResponseITriggersItemVariant1(
-                            cron: (on519150['cron'] as String),
-                            type: ScheduleLiteral.validate(on519150['type']),
+                        return (on577237 as IMap<String, dynamic>).then(
+                          (on217304) => Query128ResponseITriggersItemVariant1(
+                            cron: (on217304['cron'] as String),
+                            type: ScheduleLiteral.validate(on217304['type']),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on322196 as IMap<String, dynamic>).then(
-                          (on283576) => Query128ResponseITriggersItemVariant2(
-                            type: WebhookLiteral.validate(on283576['type']),
-                            url: (on283576['url'] as String),
+                        return (on577237 as IMap<String, dynamic>).then(
+                          (on560167) => Query128ResponseITriggersItemVariant2(
+                            type: WebhookLiteral.validate(on560167['type']),
+                            url: (on560167['url'] as String),
                           ),
                         );
                       } catch (e) {}
 
                       try {
-                        return (on322196 as IMap<String, dynamic>).then(
-                          (on640840) => Query128ResponseITriggersItemVariant3(
-                            eventType: (on640840['eventType'] as String),
-                            type: EventLiteral.validate(on640840['type']),
+                        return (on577237 as IMap<String, dynamic>).then(
+                          (on674769) => Query128ResponseITriggersItemVariant3(
+                            eventType: (on674769['eventType'] as String),
+                            type: EventLiteral.validate(on674769['type']),
                           ),
                         );
                       } catch (e) {}
 
                       throw Exception(
-                        (on322196.toString() ?? "null") +
+                        (on577237.toString() ?? "null") +
                             r" cannot be deserialized into a Union3<Query128ResponseITriggersItemVariant1, Query128ResponseITriggersItemVariant2, Query128ResponseITriggersItemVariant3>",
                       );
                     }()),

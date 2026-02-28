@@ -27,8 +27,9 @@ sealed class Query129ArgsIError with _$Query129ArgsIError {
 
 @freezed
 sealed class Query129ArgsI with _$Query129ArgsI {
-  const factory Query129ArgsI({required Optional<Query129ArgsIError> error}) =
-      _Query129ArgsI;
+  const factory Query129ArgsI({
+    @Default(Optional.undefined()) Optional<Query129ArgsIError> error,
+  }) = _Query129ArgsI;
 }
 
 @freezed
@@ -55,7 +56,7 @@ sealed class Query129ResponseIError with _$Query129ResponseIError {
 @freezed
 sealed class Query129ResponseI with _$Query129ResponseI {
   const factory Query129ResponseI({
-    required Optional<Query129ResponseIError> error,
+    @Default(Optional.undefined()) Optional<Query129ResponseIError> error,
   }) = _Query129ResponseI;
 }
 
@@ -105,18 +106,18 @@ BTreeMapStringValue serialize(Query129Args args) {
 @pragma("vm:prefer-inline")
 Query129Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on662963) => Query129Response(
-      i: (on662963['i'] as IMap<String, dynamic>).then(
-        (on736016) => Query129ResponseI(
-          error: on736016.containsKey('error')
+    (on549175) => Query129Response(
+      i: (on549175['i'] as IMap<String, dynamic>).then(
+        (on478782) => Query129ResponseI(
+          error: on478782.containsKey('error')
               ? Defined<Query129ResponseIError>(
-                  (on736016['error'] as IMap<String, dynamic>).then(
-                    (on991689) => Query129ResponseIError(
-                      handler: (on991689['handler'] as String),
-                      retry: (on991689['retry'] as IMap<String, dynamic>).then(
-                        (on21234) => Query129ResponseIErrorRetry(
-                          count: (on21234['count'] as double),
-                          delay: (on21234['delay'] as double),
+                  (on478782['error'] as IMap<String, dynamic>).then(
+                    (on556342) => Query129ResponseIError(
+                      handler: (on556342['handler'] as String),
+                      retry: (on556342['retry'] as IMap<String, dynamic>).then(
+                        (on868165) => Query129ResponseIErrorRetry(
+                          count: (on868165['count'] as double),
+                          delay: (on868165['delay'] as double),
                         ),
                       ),
                     ),

@@ -13,7 +13,7 @@ part 'query146.freezed.dart';
 sealed class Query146ArgsI with _$Query146ArgsI {
   const factory Query146ArgsI({
     required Uint8ListWithEquality data,
-    required Optional<dynamic> metadata,
+    @Default(Optional.undefined()) Optional<dynamic> metadata,
   }) = _Query146ArgsI;
 }
 
@@ -26,7 +26,7 @@ sealed class Query146Args with _$Query146Args {
 sealed class Query146ResponseI with _$Query146ResponseI {
   const factory Query146ResponseI({
     required Uint8ListWithEquality data,
-    required Optional<dynamic> metadata,
+    @Default(Optional.undefined()) Optional<dynamic> metadata,
   }) = _Query146ResponseI;
 }
 
@@ -71,12 +71,12 @@ BTreeMapStringValue serialize(Query146Args args) {
 @pragma("vm:prefer-inline")
 Query146Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on548878) => Query146Response(
-      i: (on548878['i'] as IMap<String, dynamic>).then(
-        (on733258) => Query146ResponseI(
-          data: (on733258['data'] as Uint8ListWithEquality),
-          metadata: on733258.containsKey('metadata')
-              ? Defined<dynamic>((on733258['metadata'] as dynamic))
+    (on457560) => Query146Response(
+      i: (on457560['i'] as IMap<String, dynamic>).then(
+        (on575040) => Query146ResponseI(
+          data: (on575040['data'] as Uint8ListWithEquality),
+          metadata: on575040.containsKey('metadata')
+              ? Defined<dynamic>((on575040['metadata'] as dynamic))
               : Undefined<dynamic>(),
         ),
       ),

@@ -22,9 +22,13 @@ class ClientBuildContext {
   void addLiteral(JsLiteral literal) {
     _literalsMap.putIfAbsent(literal.literalTypeName, () => literal);
   }
+
   // ignore: library_private_types_in_public_api
   final Set<_LiteralsUnion> enums = {};
   final Set<String> tables = {};
+  int _anonymousObjectCount = 0;
+  String get nextAnonymousObjectId =>
+      "AnonymousObject${++_anonymousObjectCount}";
   ClientBuildContext();
 }
 
@@ -625,7 +629,8 @@ sealed class JsType with JsTypeMappable {
 class JsAny extends JsType with JsAnyMappable {
   const JsAny(super.type);
   @override
-  String dartType(FunctionBuildContext context, {String? nameHint}) => 'dynamic';
+  String dartType(FunctionBuildContext context, {String? nameHint}) =>
+      'dynamic';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -756,7 +761,8 @@ class JsBigInt extends JsType with JsBigIntMappable {
 class JsBytes extends JsType with JsBytesMappable {
   const JsBytes(super.type);
   @override
-  String dartType(FunctionBuildContext context, {String? nameHint}) => 'Uint8ListWithEquality';
+  String dartType(FunctionBuildContext context, {String? nameHint}) =>
+      'Uint8ListWithEquality';
   @override
   String serialize(
     FunctionBuildContext context,
@@ -1051,11 +1057,15 @@ class _ObjectsUnion extends _BaseUnion {
 
   @override
   String dartType(FunctionBuildContext context, {String? nameHint}) {
-    final typeNames = types.indexed.map((indexed) {
-      final (i, e) = indexed;
-      final variantHint = nameHint != null ? "${nameHint}Variant${i + 1}" : null;
-      return e.dartType(context, nameHint: variantHint);
-    }).join(', ');
+    final typeNames = types.indexed
+        .map((indexed) {
+          final (i, e) = indexed;
+          final variantHint = nameHint != null
+              ? "${nameHint}Variant${i + 1}"
+              : null;
+          return e.dartType(context, nameHint: variantHint);
+        })
+        .join(', ');
     final type = "Union${types.length}<$typeNames>";
     return "$type${nullable ? "?" : ""}";
   }
@@ -1263,16 +1273,25 @@ class JsObject extends JsType with JsObjectMappable {
       return _assignedClassName!;
     }
 
-    final className = nameHint ?? "AnonymousObject${random.nextInt(1000000)}";
+    final className = nameHint ?? context.clientContext.nextAnonymousObjectId;
     _assignedClassName = className;
 
     // Build freezed class fields — thread nameHint to nested objects
-    final fields = value.entries.map((entry) {
-      final fieldName = safeDartKey(entry.key);
-      final fieldNameHint = "$className${fieldName.pascalCase}";
-      final fieldType = entry.value.dartType(context, nameHint: fieldNameHint);
-      return "required $fieldType $fieldName,";
-    }).join("\n    ");
+    final fields = value.entries
+        .map((entry) {
+          final fieldName = safeDartKey(entry.key);
+          final fieldNameHint = "$className${fieldName.pascalCase}";
+          final fieldType = entry.value.dartType(
+            context,
+            nameHint: fieldNameHint,
+          );
+          if (entry.value.optional) {
+            return "@Default(Optional.undefined()) $fieldType $fieldName,";
+          } else {
+            return "required $fieldType $fieldName,";
+          }
+        })
+        .join("\n    ");
 
     context.classBuffer.writeln("""
 @freezed

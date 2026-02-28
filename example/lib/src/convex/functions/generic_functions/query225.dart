@@ -11,14 +11,15 @@ part 'query225.freezed.dart';
 
 @freezed
 sealed class Query225Args with _$Query225Args {
-  const factory Query225Args({required Optional<Union2<String, double>> i}) =
-      _Query225Args;
+  const factory Query225Args({
+    @Default(Optional.undefined()) Optional<Union2<String, double>> i,
+  }) = _Query225Args;
 }
 
 @freezed
 sealed class Query225Response with _$Query225Response {
   const factory Query225Response({
-    required Optional<Union2<String, double>> i,
+    @Default(Optional.undefined()) Optional<Union2<String, double>> i,
   }) = _Query225Response;
 }
 
@@ -48,8 +49,8 @@ BTreeMapStringValue serialize(Query225Args args) {
       if (args.i.isDefined)
         'i': encodeValue(
           args.i.asDefined().value.split(
-            (on137265) => encodeValue(on137265),
-            (on736048) => encodeValue(on736048),
+            (on95687) => encodeValue(on95687),
+            (on140604) => encodeValue(on140604),
           ),
         ),
     },
@@ -59,20 +60,20 @@ BTreeMapStringValue serialize(Query225Args args) {
 @pragma("vm:prefer-inline")
 Query225Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on765569) => Query225Response(
-      i: on765569.containsKey('i')
+    (on837804) => Query225Response(
+      i: on837804.containsKey('i')
           ? Defined<Union2<String, double>>(
               Union2<String, double>(() {
                 try {
-                  return (on765569['i'] as String);
+                  return (on837804['i'] as String);
                 } catch (e) {}
 
                 try {
-                  return (on765569['i'] as double);
+                  return (on837804['i'] as double);
                 } catch (e) {}
 
                 throw Exception(
-                  (on765569['i'].toString() ?? "null") +
+                  (on837804['i'].toString() ?? "null") +
                       r" cannot be deserialized into a Union2<String, double>",
                 );
               }()),

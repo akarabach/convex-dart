@@ -11,14 +11,16 @@ part 'query17.freezed.dart';
 
 @freezed
 sealed class Query17Args with _$Query17Args {
-  const factory Query17Args({required Optional<Uint8ListWithEquality> i}) =
-      _Query17Args;
+  const factory Query17Args({
+    @Default(Optional.undefined()) Optional<Uint8ListWithEquality> i,
+  }) = _Query17Args;
 }
 
 @freezed
 sealed class Query17Response with _$Query17Response {
-  const factory Query17Response({required Optional<Uint8ListWithEquality> i}) =
-      _Query17Response;
+  const factory Query17Response({
+    @Default(Optional.undefined()) Optional<Uint8ListWithEquality> i,
+  }) = _Query17Response;
 }
 
 Future<Query17Response> query17(Query17Args args) async {
@@ -50,10 +52,10 @@ BTreeMapStringValue serialize(Query17Args args) {
 @pragma("vm:prefer-inline")
 Query17Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on977129) => Query17Response(
-      i: on977129.containsKey('i')
+    (on455576) => Query17Response(
+      i: on455576.containsKey('i')
           ? Defined<Uint8ListWithEquality>(
-              (on977129['i'] as Uint8ListWithEquality),
+              (on455576['i'] as Uint8ListWithEquality),
             )
           : Undefined<Uint8ListWithEquality>(),
     ),

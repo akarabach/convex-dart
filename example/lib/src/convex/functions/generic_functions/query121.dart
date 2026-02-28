@@ -31,7 +31,7 @@ sealed class Query121ArgsIItemPostsItem with _$Query121ArgsIItemPostsItem {
 @freezed
 sealed class Query121ArgsIItemUserProfile with _$Query121ArgsIItemUserProfile {
   const factory Query121ArgsIItemUserProfile({
-    required Optional<String> avatar,
+    @Default(Optional.undefined()) Optional<String> avatar,
     required String name,
   }) = _Query121ArgsIItemUserProfile;
 }
@@ -83,7 +83,7 @@ sealed class Query121ResponseIItemPostsItem
 sealed class Query121ResponseIItemUserProfile
     with _$Query121ResponseIItemUserProfile {
   const factory Query121ResponseIItemUserProfile({
-    required Optional<String> avatar,
+    @Default(Optional.undefined()) Optional<String> avatar,
     required String name,
   }) = _Query121ResponseIItemUserProfile;
 }
@@ -136,29 +136,29 @@ BTreeMapStringValue serialize(Query121Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on305801) => encodeValue({
+              (on817803) => encodeValue({
                 'posts': encodeValue(
-                  on305801.posts
+                  on817803.posts
                       .map(
-                        (on617829) => encodeValue({
+                        (on447396) => encodeValue({
                           'content': encodeValue(
-                            on617829.content.split(
-                              (on483088) => encodeValue(on483088),
-                              (on580967) => encodeValue({
+                            on447396.content.split(
+                              (on973683) => encodeValue(on973683),
+                              (on523962) => encodeValue({
                                 'media': encodeValue(
-                                  on580967.media
-                                      .map((on863175) => encodeValue(on863175))
+                                  on523962.media
+                                      .map((on520923) => encodeValue(on520923))
                                       .toIList(),
                                 ),
-                                'text': encodeValue(on580967.text),
+                                'text': encodeValue(on523962.text),
                               }),
                             ),
                           ),
-                          'id': encodeValue(on617829.id),
-                          'likes': encodeValue(on617829.likes),
+                          'id': encodeValue(on447396.id),
+                          'likes': encodeValue(on447396.likes),
                           'tags': encodeValue(
-                            on617829.tags
-                                .map((on210503) => encodeValue(on210503))
+                            on447396.tags
+                                .map((on505837) => encodeValue(on505837))
                                 .toIList(),
                           ),
                         }),
@@ -167,23 +167,23 @@ BTreeMapStringValue serialize(Query121Args args) {
                 ),
                 'user': encodeValue({
                   'preferences': encodeValue({
-                    for (final on731001 in on305801.user.preferences.entries)
-                      on731001.key: encodeValue(
+                    for (final on646785 in on817803.user.preferences.entries)
+                      on646785.key: encodeValue(
                         encodeValue(
-                          on731001.value.split(
-                            (on961637) => encodeValue(on961637),
-                            (on500725) => encodeValue(on500725),
-                            (on48725) => encodeValue(on48725),
+                          on646785.value.split(
+                            (on920038) => encodeValue(on920038),
+                            (on627299) => encodeValue(on627299),
+                            (on755432) => encodeValue(on755432),
                           ),
                         ),
                       ),
                   }),
                   'profile': encodeValue({
-                    if (on305801.user.profile.avatar.isDefined)
+                    if (on817803.user.profile.avatar.isDefined)
                       'avatar': encodeValue(
-                        on305801.user.profile.avatar.asDefined().value,
+                        on817803.user.profile.avatar.asDefined().value,
                       ),
-                    'name': encodeValue(on305801.user.profile.name),
+                    'name': encodeValue(on817803.user.profile.name),
                   }),
                 }),
               }),
@@ -197,94 +197,94 @@ BTreeMapStringValue serialize(Query121Args args) {
 @pragma("vm:prefer-inline")
 Query121Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on397147) => Query121Response(
-      i: (on397147['i'] as IList<dynamic>)
+    (on867746) => Query121Response(
+      i: (on867746['i'] as IList<dynamic>)
           .map(
-            (on450323) => (on450323 as IMap<String, dynamic>).then(
-              (on357262) => Query121ResponseIItem(
-                posts: (on357262['posts'] as IList<dynamic>)
+            (on154100) => (on154100 as IMap<String, dynamic>).then(
+              (on155110) => Query121ResponseIItem(
+                posts: (on155110['posts'] as IList<dynamic>)
                     .map(
-                      (on702453) => (on702453 as IMap<String, dynamic>).then(
-                        (on472405) => Query121ResponseIItemPostsItem(
+                      (on782213) => (on782213 as IMap<String, dynamic>).then(
+                        (on882882) => Query121ResponseIItemPostsItem(
                           content:
                               Union2<
                                 String,
                                 Query121ResponseIItemPostsItemContentVariant2
                               >(() {
                                 try {
-                                  return (on472405['content'] as String);
+                                  return (on882882['content'] as String);
                                 } catch (e) {}
 
                                 try {
-                                  return (on472405['content']
+                                  return (on882882['content']
                                           as IMap<String, dynamic>)
                                       .then(
-                                        (on707627) =>
+                                        (on171108) =>
                                             Query121ResponseIItemPostsItemContentVariant2(
                                               media:
-                                                  (on707627['media']
+                                                  (on171108['media']
                                                           as IList<dynamic>)
                                                       .map(
-                                                        (on597342) =>
-                                                            (on597342
+                                                        (on739860) =>
+                                                            (on739860
                                                                 as String),
                                                       )
                                                       .toIList(),
                                               text:
-                                                  (on707627['text'] as String),
+                                                  (on171108['text'] as String),
                                             ),
                                       );
                                 } catch (e) {}
 
                                 throw Exception(
-                                  (on472405['content'].toString() ?? "null") +
+                                  (on882882['content'].toString() ?? "null") +
                                       r" cannot be deserialized into a Union2<String, Query121ResponseIItemPostsItemContentVariant2>",
                                 );
                               }()),
-                          id: (on472405['id'] as String),
-                          likes: (on472405['likes'] as double),
-                          tags: (on472405['tags'] as IList<dynamic>)
-                              .map((on705494) => (on705494 as String))
+                          id: (on882882['id'] as String),
+                          likes: (on882882['likes'] as double),
+                          tags: (on882882['tags'] as IList<dynamic>)
+                              .map((on726032) => (on726032 as String))
                               .toIList(),
                         ),
                       ),
                     )
                     .toIList(),
-                user: (on357262['user'] as IMap<String, dynamic>).then(
-                  (on768257) => Query121ResponseIItemUser(
+                user: (on155110['user'] as IMap<String, dynamic>).then(
+                  (on629401) => Query121ResponseIItemUser(
                     preferences:
-                        (on768257['preferences'] as IMap<String, dynamic>).map(
-                          (on601109, on555846) => MapEntry(
-                            on601109,
+                        (on629401['preferences'] as IMap<String, dynamic>).map(
+                          (on749885, on827559) => MapEntry(
+                            on749885,
                             Union3<String, double, bool>(() {
                               try {
-                                return (on555846 as String);
+                                return (on827559 as String);
                               } catch (e) {}
 
                               try {
-                                return (on555846 as double);
+                                return (on827559 as double);
                               } catch (e) {}
 
                               try {
-                                return (on555846 as bool);
+                                return (on827559 as bool);
                               } catch (e) {}
 
                               throw Exception(
-                                (on555846.toString() ?? "null") +
+                                (on827559.toString() ?? "null") +
                                     r" cannot be deserialized into a Union3<String, double, bool>",
                               );
                             }()),
                           ),
                         ),
-                    profile: (on768257['profile'] as IMap<String, dynamic>)
+                    profile: (on629401['profile'] as IMap<String, dynamic>)
                         .then(
-                          (on127237) => Query121ResponseIItemUserProfile(
-                            avatar: on127237.containsKey('avatar')
+                          (on814512) => Query121ResponseIItemUserProfile(
+                            avatar: on814512.containsKey('avatar')
                                 ? Defined<String>(
-                                    (on127237['avatar'] as String),
+                                    (on814512['avatar'] as String),
                                   )
                                 : Undefined<String>(),
-                            name: (on127237['name'] as String),
+                            name: (on814512['name'] as String),
                           ),
                         ),
                   ),

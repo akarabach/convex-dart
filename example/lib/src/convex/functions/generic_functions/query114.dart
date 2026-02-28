@@ -12,8 +12,8 @@ part 'query114.freezed.dart';
 @freezed
 sealed class Query114ArgsI with _$Query114ArgsI {
   const factory Query114ArgsI({
-    required Optional<String> email,
-    required Optional<String> name,
+    @Default(Optional.undefined()) Optional<String> email,
+    @Default(Optional.undefined()) Optional<String> name,
     required String? phone,
   }) = _Query114ArgsI;
 }
@@ -26,8 +26,8 @@ sealed class Query114Args with _$Query114Args {
 @freezed
 sealed class Query114ResponseI with _$Query114ResponseI {
   const factory Query114ResponseI({
-    required Optional<String> email,
-    required Optional<String> name,
+    @Default(Optional.undefined()) Optional<String> email,
+    @Default(Optional.undefined()) Optional<String> name,
     required String? phone,
   }) = _Query114ResponseI;
 }
@@ -75,16 +75,16 @@ BTreeMapStringValue serialize(Query114Args args) {
 @pragma("vm:prefer-inline")
 Query114Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on749561) => Query114Response(
-      i: (on749561['i'] as IMap<String, dynamic>).then(
-        (on684587) => Query114ResponseI(
-          email: on684587.containsKey('email')
-              ? Defined<String>((on684587['email'] as String))
+    (on720) => Query114Response(
+      i: (on720['i'] as IMap<String, dynamic>).then(
+        (on299262) => Query114ResponseI(
+          email: on299262.containsKey('email')
+              ? Defined<String>((on299262['email'] as String))
               : Undefined<String>(),
-          name: on684587.containsKey('name')
-              ? Defined<String>((on684587['name'] as String))
+          name: on299262.containsKey('name')
+              ? Defined<String>((on299262['name'] as String))
               : Undefined<String>(),
-          phone: (on684587['phone'] as String?),
+          phone: (on299262['phone'] as String?),
         ),
       ),
     ),

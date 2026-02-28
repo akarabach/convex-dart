@@ -30,7 +30,7 @@ sealed class Query117ArgsIReviewer with _$Query117ArgsIReviewer {
 sealed class Query117ArgsI with _$Query117ArgsI {
   const factory Query117ArgsI({
     required IList<Query117ArgsICommentsItem> comments,
-    required Optional<Query117ArgsIReviewer> reviewer,
+    @Default(Optional.undefined()) Optional<Query117ArgsIReviewer> reviewer,
     required PendingApprovedRejected status,
   }) = _Query117ArgsI;
 }
@@ -62,7 +62,7 @@ sealed class Query117ResponseIReviewer with _$Query117ResponseIReviewer {
 sealed class Query117ResponseI with _$Query117ResponseI {
   const factory Query117ResponseI({
     required IList<Query117ResponseICommentsItem> comments,
-    required Optional<Query117ResponseIReviewer> reviewer,
+    @Default(Optional.undefined()) Optional<Query117ResponseIReviewer> reviewer,
     required PendingApprovedRejected status,
   }) = _Query117ResponseI;
 }
@@ -100,10 +100,10 @@ BTreeMapStringValue serialize(Query117Args args) {
         'comments': encodeValue(
           args.i.comments
               .map(
-                (on799830) => encodeValue({
-                  'author': encodeValue(on799830.author),
-                  'text': encodeValue(on799830.text),
-                  'timestamp': encodeValue(on799830.timestamp),
+                (on550481) => encodeValue({
+                  'author': encodeValue(on550481.author),
+                  'text': encodeValue(on550481.text),
+                  'timestamp': encodeValue(on550481.timestamp),
                 }),
               )
               .toIList(),
@@ -122,31 +122,31 @@ BTreeMapStringValue serialize(Query117Args args) {
 @pragma("vm:prefer-inline")
 Query117Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on595920) => Query117Response(
-      i: (on595920['i'] as IMap<String, dynamic>).then(
-        (on636418) => Query117ResponseI(
-          comments: (on636418['comments'] as IList<dynamic>)
+    (on842827) => Query117Response(
+      i: (on842827['i'] as IMap<String, dynamic>).then(
+        (on127172) => Query117ResponseI(
+          comments: (on127172['comments'] as IList<dynamic>)
               .map(
-                (on53484) => (on53484 as IMap<String, dynamic>).then(
-                  (on809333) => Query117ResponseICommentsItem(
-                    author: (on809333['author'] as String),
-                    text: (on809333['text'] as String),
-                    timestamp: (on809333['timestamp'] as double),
+                (on199374) => (on199374 as IMap<String, dynamic>).then(
+                  (on1312) => Query117ResponseICommentsItem(
+                    author: (on1312['author'] as String),
+                    text: (on1312['text'] as String),
+                    timestamp: (on1312['timestamp'] as double),
                   ),
                 ),
               )
               .toIList(),
-          reviewer: on636418.containsKey('reviewer')
+          reviewer: on127172.containsKey('reviewer')
               ? Defined<Query117ResponseIReviewer>(
-                  (on636418['reviewer'] as IMap<String, dynamic>).then(
-                    (on155667) => Query117ResponseIReviewer(
-                      id: TasksId(on155667['id'] as String),
-                      name: (on155667['name'] as String),
+                  (on127172['reviewer'] as IMap<String, dynamic>).then(
+                    (on622373) => Query117ResponseIReviewer(
+                      id: TasksId(on622373['id'] as String),
+                      name: (on622373['name'] as String),
                     ),
                   ),
                 )
               : Undefined<Query117ResponseIReviewer>(),
-          status: PendingApprovedRejected.fromValue(on636418['status']),
+          status: PendingApprovedRejected.fromValue(on127172['status']),
         ),
       ),
     ),

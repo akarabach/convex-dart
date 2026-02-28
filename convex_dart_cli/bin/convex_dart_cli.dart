@@ -97,13 +97,15 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
       logger.debug(
         'Running command: $command ${args.join(" ")} in directory: ${workingDirectory.path}',
       );
+      final String tempFile =
+          ".convex_dart_spec_${DateTime.now().millisecondsSinceEpoch}.json";
+      final tempFilePath = path.join(workingDirectory.path, tempFile);
+
       final result = await state.wait(
-        () => Process.run(
-          command,
-          args,
-          workingDirectory: workingDirectory.path,
-          runInShell: true,
-        ),
+        () => Process.run(Platform.isWindows ? 'cmd' : 'sh', [
+          Platform.isWindows ? '/c' : '-c',
+          '$command ${args.join(" ")} > $tempFile',
+        ], workingDirectory: workingDirectory.path),
       );
 
       if (result.exitCode != 0) {
@@ -127,7 +129,19 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
         );
         return;
       }
-      final stdout = result.stdout;
+
+      final String stdout;
+      try {
+        final file = File(tempFilePath);
+        stdout = await file.readAsString();
+        await file.delete();
+      } catch (e) {
+        logger.error(
+          "Failed to read generated function-spec JSON file from $tempFilePath",
+        );
+        return;
+      }
+
       final FunctionsSpec spec;
       try {
         spec = FunctionsSpecMapper.fromJson(stdout);
@@ -199,11 +213,12 @@ class GenerateCommand extends BetterCommand<CliOptions, void> {
       // Run build_runner to generate .freezed.dart files
       logger.info("Running build_runner to generate freezed classes...");
       final buildRunnerResult = await state.wait(
-        () => Process.run(
-          'dart',
-          ['run', 'build_runner', 'build', '--delete-conflicting-outputs'],
-          runInShell: true,
-        ),
+        () => Process.run('dart', [
+          'run',
+          'build_runner',
+          'build',
+          '--delete-conflicting-outputs',
+        ], runInShell: true),
       );
       if (buildRunnerResult.exitCode != 0) {
         logger.error(

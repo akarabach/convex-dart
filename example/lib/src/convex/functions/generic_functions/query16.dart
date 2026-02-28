@@ -11,12 +11,15 @@ part 'query16.freezed.dart';
 
 @freezed
 sealed class Query16Args with _$Query16Args {
-  const factory Query16Args({required Optional<int> i}) = _Query16Args;
+  const factory Query16Args({@Default(Optional.undefined()) Optional<int> i}) =
+      _Query16Args;
 }
 
 @freezed
 sealed class Query16Response with _$Query16Response {
-  const factory Query16Response({required Optional<int> i}) = _Query16Response;
+  const factory Query16Response({
+    @Default(Optional.undefined()) Optional<int> i,
+  }) = _Query16Response;
 }
 
 Future<Query16Response> query16(Query16Args args) async {
@@ -48,9 +51,9 @@ BTreeMapStringValue serialize(Query16Args args) {
 @pragma("vm:prefer-inline")
 Query16Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on518465) => Query16Response(
-      i: on518465.containsKey('i')
-          ? Defined<int>((on518465['i'] as int))
+    (on928878) => Query16Response(
+      i: on928878.containsKey('i')
+          ? Defined<int>((on928878['i'] as int))
           : Undefined<int>(),
     ),
   );

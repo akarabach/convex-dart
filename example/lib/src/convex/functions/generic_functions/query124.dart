@@ -13,7 +13,7 @@ part 'query124.freezed.dart';
 sealed class Query124ArgsIApiEndpointsValue
     with _$Query124ArgsIApiEndpointsValue {
   const factory Query124ArgsIApiEndpointsValue({
-    required Optional<bool> auth,
+    @Default(Optional.undefined()) Optional<bool> auth,
     required GetPostPutDelete method,
     required IMap<String, Union3<String, double, bool>> params,
     required String path,
@@ -80,7 +80,7 @@ sealed class Query124Args with _$Query124Args {
 sealed class Query124ResponseIApiEndpointsValue
     with _$Query124ResponseIApiEndpointsValue {
   const factory Query124ResponseIApiEndpointsValue({
-    required Optional<bool> auth,
+    @Default(Optional.undefined()) Optional<bool> auth,
     required GetPostPutDelete method,
     required IMap<String, Union3<String, double, bool>> params,
     required String path,
@@ -171,26 +171,26 @@ BTreeMapStringValue serialize(Query124Args args) {
       'i': encodeValue({
         'api': encodeValue({
           'endpoints': encodeValue({
-            for (final on454820 in args.i.api.endpoints.entries)
-              on454820.key: encodeValue(
+            for (final on754211 in args.i.api.endpoints.entries)
+              on754211.key: encodeValue(
                 encodeValue({
-                  if (on454820.value.auth.isDefined)
-                    'auth': encodeValue(on454820.value.auth.asDefined().value),
-                  'method': encodeValue(on454820.value.method.value),
+                  if (on754211.value.auth.isDefined)
+                    'auth': encodeValue(on754211.value.auth.asDefined().value),
+                  'method': encodeValue(on754211.value.method.value),
                   'params': encodeValue({
-                    for (final on677553 in on454820.value.params.entries)
-                      on677553.key: encodeValue(
+                    for (final on100200 in on754211.value.params.entries)
+                      on100200.key: encodeValue(
                         encodeValue(
-                          on677553.value.split(
-                            (on908235) => encodeValue(on908235),
-                            (on518686) => encodeValue(on518686),
-                            (on565285) => encodeValue(on565285),
+                          on100200.value.split(
+                            (on525513) => encodeValue(on525513),
+                            (on987024) => encodeValue(on987024),
+                            (on501292) => encodeValue(on501292),
                           ),
                         ),
                       ),
                   }),
-                  'path': encodeValue(on454820.value.path),
-                  'response': encodeValue(on454820.value.response),
+                  'path': encodeValue(on754211.value.path),
+                  'response': encodeValue(on754211.value.response),
                 }),
               ),
           }),
@@ -201,28 +201,28 @@ BTreeMapStringValue serialize(Query124Args args) {
         }),
         'database': encodeValue({
           'tables': encodeValue({
-            for (final on396231 in args.i.database.tables.entries)
-              on396231.key: encodeValue(
+            for (final on627165 in args.i.database.tables.entries)
+              on627165.key: encodeValue(
                 encodeValue({
                   'indexes': encodeValue(
-                    on396231.value.indexes
+                    on627165.value.indexes
                         .map(
-                          (on340532) => encodeValue({
+                          (on96128) => encodeValue({
                             'fields': encodeValue(
-                              on340532.fields
-                                  .map((on997132) => encodeValue(on997132))
+                              on96128.fields
+                                  .map((on962517) => encodeValue(on962517))
                                   .toIList(),
                             ),
-                            'name': encodeValue(on340532.name),
-                            'unique': encodeValue(on340532.unique),
+                            'name': encodeValue(on96128.name),
+                            'unique': encodeValue(on96128.unique),
                           }),
                         )
                         .toIList(),
                   ),
                   'schema': encodeValue({
-                    for (final on479143 in on396231.value.schema.entries)
-                      on479143.key: encodeValue(
-                        encodeValue(on479143.value.value),
+                    for (final on930415 in on627165.value.schema.entries)
+                      on930415.key: encodeValue(
+                        encodeValue(on930415.value.value),
                       ),
                   }),
                 }),
@@ -237,88 +237,88 @@ BTreeMapStringValue serialize(Query124Args args) {
 @pragma("vm:prefer-inline")
 Query124Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on573163) => Query124Response(
-      i: (on573163['i'] as IMap<String, dynamic>).then(
-        (on899969) => Query124ResponseI(
-          api: (on899969['api'] as IMap<String, dynamic>).then(
-            (on756711) => Query124ResponseIApi(
-              endpoints: (on756711['endpoints'] as IMap<String, dynamic>).map(
-                (on74479, on621934) => MapEntry(
-                  on74479,
-                  (on621934 as IMap<String, dynamic>).then(
-                    (on200413) => Query124ResponseIApiEndpointsValue(
-                      auth: on200413.containsKey('auth')
-                          ? Defined<bool>((on200413['auth'] as bool))
+    (on692428) => Query124Response(
+      i: (on692428['i'] as IMap<String, dynamic>).then(
+        (on975880) => Query124ResponseI(
+          api: (on975880['api'] as IMap<String, dynamic>).then(
+            (on401949) => Query124ResponseIApi(
+              endpoints: (on401949['endpoints'] as IMap<String, dynamic>).map(
+                (on502124, on561561) => MapEntry(
+                  on502124,
+                  (on561561 as IMap<String, dynamic>).then(
+                    (on167489) => Query124ResponseIApiEndpointsValue(
+                      auth: on167489.containsKey('auth')
+                          ? Defined<bool>((on167489['auth'] as bool))
                           : Undefined<bool>(),
-                      method: GetPostPutDelete.fromValue(on200413['method']),
-                      params: (on200413['params'] as IMap<String, dynamic>).map(
-                        (on929833, on61404) => MapEntry(
-                          on929833,
+                      method: GetPostPutDelete.fromValue(on167489['method']),
+                      params: (on167489['params'] as IMap<String, dynamic>).map(
+                        (on462502, on73131) => MapEntry(
+                          on462502,
                           Union3<String, double, bool>(() {
                             try {
-                              return (on61404 as String);
+                              return (on73131 as String);
                             } catch (e) {}
 
                             try {
-                              return (on61404 as double);
+                              return (on73131 as double);
                             } catch (e) {}
 
                             try {
-                              return (on61404 as bool);
+                              return (on73131 as bool);
                             } catch (e) {}
 
                             throw Exception(
-                              (on61404.toString() ?? "null") +
+                              (on73131.toString() ?? "null") +
                                   r" cannot be deserialized into a Union3<String, double, bool>",
                             );
                           }()),
                         ),
                       ),
-                      path: (on200413['path'] as String),
-                      response: (on200413['response'] as dynamic),
+                      path: (on167489['path'] as String),
+                      response: (on167489['response'] as dynamic),
                     ),
                   ),
                 ),
               ),
-              rateLimit: (on756711['rateLimit'] as IMap<String, dynamic>).then(
-                (on708349) => Query124ResponseIApiRateLimit(
-                  requests: (on708349['requests'] as double),
-                  window: MinuteHourDay.fromValue(on708349['window']),
+              rateLimit: (on401949['rateLimit'] as IMap<String, dynamic>).then(
+                (on443664) => Query124ResponseIApiRateLimit(
+                  requests: (on443664['requests'] as double),
+                  window: MinuteHourDay.fromValue(on443664['window']),
                 ),
               ),
             ),
           ),
-          database: (on899969['database'] as IMap<String, dynamic>).then(
-            (on457653) => Query124ResponseIDatabase(
-              tables: (on457653['tables'] as IMap<String, dynamic>).map(
-                (on268045, on514829) => MapEntry(
-                  on268045,
-                  (on514829 as IMap<String, dynamic>).then(
-                    (on743610) => Query124ResponseIDatabaseTablesValue(
-                      indexes: (on743610['indexes'] as IList<dynamic>)
+          database: (on975880['database'] as IMap<String, dynamic>).then(
+            (on187090) => Query124ResponseIDatabase(
+              tables: (on187090['tables'] as IMap<String, dynamic>).map(
+                (on724490, on943958) => MapEntry(
+                  on724490,
+                  (on943958 as IMap<String, dynamic>).then(
+                    (on116389) => Query124ResponseIDatabaseTablesValue(
+                      indexes: (on116389['indexes'] as IList<dynamic>)
                           .map(
                             (
-                              on414378,
-                            ) => (on414378 as IMap<String, dynamic>).then(
-                              (on261701) =>
+                              on275855,
+                            ) => (on275855 as IMap<String, dynamic>).then(
+                              (on829364) =>
                                   Query124ResponseIDatabaseTablesValueIndexesItem(
                                     fields:
-                                        (on261701['fields'] as IList<dynamic>)
+                                        (on829364['fields'] as IList<dynamic>)
                                             .map(
-                                              (on271137) =>
-                                                  (on271137 as String),
+                                              (on912740) =>
+                                                  (on912740 as String),
                                             )
                                             .toIList(),
-                                    name: (on261701['name'] as String),
-                                    unique: (on261701['unique'] as bool),
+                                    name: (on829364['name'] as String),
+                                    unique: (on829364['unique'] as bool),
                                   ),
                             ),
                           )
                           .toIList(),
-                      schema: (on743610['schema'] as IMap<String, dynamic>).map(
-                        (on748922, on727572) => MapEntry(
-                          on748922,
-                          StringNumberBooleanDate.fromValue(on727572),
+                      schema: (on116389['schema'] as IMap<String, dynamic>).map(
+                        (on407602, on792733) => MapEntry(
+                          on407602,
+                          StringNumberBooleanDate.fromValue(on792733),
                         ),
                       ),
                     ),

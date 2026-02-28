@@ -121,17 +121,17 @@ BTreeMapStringValue serialize(Query119Args args) {
       'i': encodeValue({
         'data': encodeValue(
           args.i.data.split(
-            (on801086) => encodeValue({
-              'content': encodeValue(on801086.content),
-              'type': encodeValue(on801086.type),
+            (on40660) => encodeValue({
+              'content': encodeValue(on40660.content),
+              'type': encodeValue(on40660.type),
             }),
-            (on675758) => encodeValue({
-              'content': encodeValue(on675758.content),
-              'type': encodeValue(on675758.type),
+            (on360434) => encodeValue({
+              'content': encodeValue(on360434.content),
+              'type': encodeValue(on360434.type),
             }),
-            (on291325) => encodeValue({
-              'content': encodeValue(on291325.content),
-              'type': encodeValue(on291325.type),
+            (on104592) => encodeValue({
+              'content': encodeValue(on104592.content),
+              'type': encodeValue(on104592.type),
             }),
           ),
         ),
@@ -143,9 +143,9 @@ BTreeMapStringValue serialize(Query119Args args) {
 @pragma("vm:prefer-inline")
 Query119Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on569781) => Query119Response(
-      i: (on569781['i'] as IMap<String, dynamic>).then(
-        (on665239) => Query119ResponseI(
+    (on624105) => Query119Response(
+      i: (on624105['i'] as IMap<String, dynamic>).then(
+        (on504539) => Query119ResponseI(
           data:
               Union3<
                 Query119ResponseIDataVariant1,
@@ -153,34 +153,34 @@ Query119Response deserialize(Value map) {
                 Query119ResponseIDataVariant3
               >(() {
                 try {
-                  return (on665239['data'] as IMap<String, dynamic>).then(
-                    (on212530) => Query119ResponseIDataVariant1(
-                      content: (on212530['content'] as String),
-                      type: TextLiteral.validate(on212530['type']),
+                  return (on504539['data'] as IMap<String, dynamic>).then(
+                    (on768932) => Query119ResponseIDataVariant1(
+                      content: (on768932['content'] as String),
+                      type: TextLiteral.validate(on768932['type']),
                     ),
                   );
                 } catch (e) {}
 
                 try {
-                  return (on665239['data'] as IMap<String, dynamic>).then(
-                    (on721374) => Query119ResponseIDataVariant2(
-                      content: (on721374['content'] as double),
-                      type: NumberLiteral.validate(on721374['type']),
+                  return (on504539['data'] as IMap<String, dynamic>).then(
+                    (on943669) => Query119ResponseIDataVariant2(
+                      content: (on943669['content'] as double),
+                      type: NumberLiteral.validate(on943669['type']),
                     ),
                   );
                 } catch (e) {}
 
                 try {
-                  return (on665239['data'] as IMap<String, dynamic>).then(
-                    (on159493) => Query119ResponseIDataVariant3(
-                      content: (on159493['content'] as bool),
-                      type: BooleanLiteral.validate(on159493['type']),
+                  return (on504539['data'] as IMap<String, dynamic>).then(
+                    (on163393) => Query119ResponseIDataVariant3(
+                      content: (on163393['content'] as bool),
+                      type: BooleanLiteral.validate(on163393['type']),
                     ),
                   );
                 } catch (e) {}
 
                 throw Exception(
-                  (on665239['data'].toString() ?? "null") +
+                  (on504539['data'].toString() ?? "null") +
                       r" cannot be deserialized into a Union3<Query119ResponseIDataVariant1, Query119ResponseIDataVariant2, Query119ResponseIDataVariant3>",
                 );
               }()),

@@ -11,8 +11,9 @@ part 'query133.freezed.dart';
 
 @freezed
 sealed class Query133ArgsI with _$Query133ArgsI {
-  const factory Query133ArgsI({required Optional<IMap<String, double>> a}) =
-      _Query133ArgsI;
+  const factory Query133ArgsI({
+    @Default(Optional.undefined()) Optional<IMap<String, double>> a,
+  }) = _Query133ArgsI;
 }
 
 @freezed
@@ -22,8 +23,9 @@ sealed class Query133Args with _$Query133Args {
 
 @freezed
 sealed class Query133ResponseI with _$Query133ResponseI {
-  const factory Query133ResponseI({required Optional<IMap<String, double>> a}) =
-      _Query133ResponseI;
+  const factory Query133ResponseI({
+    @Default(Optional.undefined()) Optional<IMap<String, double>> a,
+  }) = _Query133ResponseI;
 }
 
 @freezed
@@ -58,8 +60,8 @@ BTreeMapStringValue serialize(Query133Args args) {
       'i': encodeValue({
         if (args.i.a.isDefined)
           'a': encodeValue({
-            for (final on236906 in args.i.a.asDefined().value.entries)
-              on236906.key: encodeValue(encodeValue(on236906.value)),
+            for (final on508705 in args.i.a.asDefined().value.entries)
+              on508705.key: encodeValue(encodeValue(on508705.value)),
           }),
       }),
     },
@@ -69,14 +71,14 @@ BTreeMapStringValue serialize(Query133Args args) {
 @pragma("vm:prefer-inline")
 Query133Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on856736) => Query133Response(
-      i: (on856736['i'] as IMap<String, dynamic>).then(
-        (on414812) => Query133ResponseI(
-          a: on414812.containsKey('a')
+    (on152671) => Query133Response(
+      i: (on152671['i'] as IMap<String, dynamic>).then(
+        (on635482) => Query133ResponseI(
+          a: on635482.containsKey('a')
               ? Defined<IMap<String, double>>(
-                  (on414812['a'] as IMap<String, dynamic>).map(
-                    (on2304, on955107) =>
-                        MapEntry(on2304, (on955107 as double)),
+                  (on635482['a'] as IMap<String, dynamic>).map(
+                    (on932364, on226288) =>
+                        MapEntry(on932364, (on226288 as double)),
                   ),
                 )
               : Undefined<IMap<String, double>>(),

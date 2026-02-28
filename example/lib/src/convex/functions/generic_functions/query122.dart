@@ -122,27 +122,27 @@ BTreeMapStringValue serialize(Query122Args args) {
   return hashmapToBtreemap(
     hashmap: {
       'i': encodeValue({
-        for (final on159947 in args.i.entries)
-          on159947.key: encodeValue(
+        for (final on444546 in args.i.entries)
+          on444546.key: encodeValue(
             encodeValue({
-              'required': encodeValue(on159947.value.required),
+              'required': encodeValue(on444546.value.required),
               'schema': encodeValue(
-                on159947.value.schema.split(
-                  (on110513) => encodeValue({
-                    'primitive': encodeValue(on110513.primitive.value),
+                on444546.value.schema.split(
+                  (on307849) => encodeValue({
+                    'primitive': encodeValue(on307849.primitive.value),
                   }),
-                  (on215572) => encodeValue({
+                  (on749625) => encodeValue({
                     'fields': encodeValue({
-                      for (final on449247 in on215572.fields.entries)
-                        on449247.key: encodeValue(encodeValue(on449247.value)),
+                      for (final on123285 in on749625.fields.entries)
+                        on123285.key: encodeValue(encodeValue(on123285.value)),
                     }),
                   }),
-                  (on757477) => encodeValue({
-                    'elementType': encodeValue(on757477.elementType),
+                  (on158135) => encodeValue({
+                    'elementType': encodeValue(on158135.elementType),
                   }),
                 ),
               ),
-              'type': encodeValue(on159947.value.type.value),
+              'type': encodeValue(on444546.value.type.value),
             }),
           ),
       }),
@@ -153,13 +153,13 @@ BTreeMapStringValue serialize(Query122Args args) {
 @pragma("vm:prefer-inline")
 Query122Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on311548) => Query122Response(
-      i: (on311548['i'] as IMap<String, dynamic>).map(
-        (on394934, on803427) => MapEntry(
-          on394934,
-          (on803427 as IMap<String, dynamic>).then(
-            (on439109) => Query122ResponseIValue(
-              required: (on439109['required'] as bool),
+    (on550971) => Query122Response(
+      i: (on550971['i'] as IMap<String, dynamic>).map(
+        (on700689, on444068) => MapEntry(
+          on700689,
+          (on444068 as IMap<String, dynamic>).then(
+            (on806212) => Query122ResponseIValue(
+              required: (on806212['required'] as bool),
               schema:
                   Union3<
                     Query122ResponseIValueSchemaVariant1,
@@ -167,41 +167,41 @@ Query122Response deserialize(Value map) {
                     Query122ResponseIValueSchemaVariant3
                   >(() {
                     try {
-                      return (on439109['schema'] as IMap<String, dynamic>).then(
-                        (on103225) => Query122ResponseIValueSchemaVariant1(
+                      return (on806212['schema'] as IMap<String, dynamic>).then(
+                        (on288609) => Query122ResponseIValueSchemaVariant1(
                           primitive: StringNumberBoolean.fromValue(
-                            on103225['primitive'],
+                            on288609['primitive'],
                           ),
                         ),
                       );
                     } catch (e) {}
 
                     try {
-                      return (on439109['schema'] as IMap<String, dynamic>).then(
-                        (on188617) => Query122ResponseIValueSchemaVariant2(
-                          fields: (on188617['fields'] as IMap<String, dynamic>)
+                      return (on806212['schema'] as IMap<String, dynamic>).then(
+                        (on901082) => Query122ResponseIValueSchemaVariant2(
+                          fields: (on901082['fields'] as IMap<String, dynamic>)
                               .map(
-                                (on66292, on704527) =>
-                                    MapEntry(on66292, (on704527 as String)),
+                                (on574119, on150749) =>
+                                    MapEntry(on574119, (on150749 as String)),
                               ),
                         ),
                       );
                     } catch (e) {}
 
                     try {
-                      return (on439109['schema'] as IMap<String, dynamic>).then(
-                        (on914561) => Query122ResponseIValueSchemaVariant3(
-                          elementType: (on914561['elementType'] as String),
+                      return (on806212['schema'] as IMap<String, dynamic>).then(
+                        (on781460) => Query122ResponseIValueSchemaVariant3(
+                          elementType: (on781460['elementType'] as String),
                         ),
                       );
                     } catch (e) {}
 
                     throw Exception(
-                      (on439109['schema'].toString() ?? "null") +
+                      (on806212['schema'].toString() ?? "null") +
                           r" cannot be deserialized into a Union3<Query122ResponseIValueSchemaVariant1, Query122ResponseIValueSchemaVariant2, Query122ResponseIValueSchemaVariant3>",
                     );
                   }()),
-              type: PrimitiveObjectArray.fromValue(on439109['type']),
+              type: PrimitiveObjectArray.fromValue(on806212['type']),
             ),
           ),
         ),

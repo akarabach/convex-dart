@@ -13,7 +13,7 @@ part 'query135.freezed.dart';
 sealed class Query135ArgsIItem with _$Query135ArgsIItem {
   const factory Query135ArgsIItem({
     required String a,
-    required Optional<double> b,
+    @Default(Optional.undefined()) Optional<double> b,
   }) = _Query135ArgsIItem;
 }
 
@@ -27,7 +27,7 @@ sealed class Query135Args with _$Query135Args {
 sealed class Query135ResponseIItem with _$Query135ResponseIItem {
   const factory Query135ResponseIItem({
     required String a,
-    required Optional<double> b,
+    @Default(Optional.undefined()) Optional<double> b,
   }) = _Query135ResponseIItem;
 }
 
@@ -63,10 +63,10 @@ BTreeMapStringValue serialize(Query135Args args) {
       'i': encodeValue(
         args.i
             .map(
-              (on689409) => encodeValue({
-                'a': encodeValue(on689409.a),
-                if (on689409.b.isDefined)
-                  'b': encodeValue(on689409.b.asDefined().value),
+              (on677880) => encodeValue({
+                'a': encodeValue(on677880.a),
+                if (on677880.b.isDefined)
+                  'b': encodeValue(on677880.b.asDefined().value),
               }),
             )
             .toIList(),
@@ -78,14 +78,14 @@ BTreeMapStringValue serialize(Query135Args args) {
 @pragma("vm:prefer-inline")
 Query135Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on685280) => Query135Response(
-      i: (on685280['i'] as IList<dynamic>)
+    (on944538) => Query135Response(
+      i: (on944538['i'] as IList<dynamic>)
           .map(
-            (on223992) => (on223992 as IMap<String, dynamic>).then(
-              (on531991) => Query135ResponseIItem(
-                a: (on531991['a'] as String),
-                b: on531991.containsKey('b')
-                    ? Defined<double>((on531991['b'] as double))
+            (on661574) => (on661574 as IMap<String, dynamic>).then(
+              (on333794) => Query135ResponseIItem(
+                a: (on333794['a'] as String),
+                b: on333794.containsKey('b')
+                    ? Defined<double>((on333794['b'] as double))
                     : Undefined<double>(),
               ),
             ),

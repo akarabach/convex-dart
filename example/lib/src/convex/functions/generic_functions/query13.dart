@@ -11,13 +11,16 @@ part 'query13.freezed.dart';
 
 @freezed
 sealed class Query13Args with _$Query13Args {
-  const factory Query13Args({required Optional<String> i}) = _Query13Args;
+  const factory Query13Args({
+    @Default(Optional.undefined()) Optional<String> i,
+  }) = _Query13Args;
 }
 
 @freezed
 sealed class Query13Response with _$Query13Response {
-  const factory Query13Response({required Optional<String> i}) =
-      _Query13Response;
+  const factory Query13Response({
+    @Default(Optional.undefined()) Optional<String> i,
+  }) = _Query13Response;
 }
 
 Future<Query13Response> query13(Query13Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query13Args args) {
 @pragma("vm:prefer-inline")
 Query13Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on190755) => Query13Response(
-      i: on190755.containsKey('i')
-          ? Defined<String>((on190755['i'] as String))
+    (on158967) => Query13Response(
+      i: on158967.containsKey('i')
+          ? Defined<String>((on158967['i'] as String))
           : Undefined<String>(),
     ),
   );

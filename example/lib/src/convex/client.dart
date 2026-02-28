@@ -664,21 +664,27 @@ import './functions/tasks/getTaskCount.dart'
 class ConvexClient {
   static Future<void> init() async {
     await internal.InternalConvexClient.init(
-      deploymentUrl: "https://rugged-warthog-11.convex.cloud",
+      deploymentUrl: "https://curious-condor-688.convex.cloud",
     );
   }
 
   Future<void> setAuth({required String? token}) async {
     await internal.InternalConvexClient.instance.setAuth(token: token);
   }
-  Future<void> setAuthCallback({required FutureOr<String?> Function(bool) fetchToken}) async {
-    await internal.InternalConvexClient.instance.setAuthCallback(fetchToken: fetchToken);
+
+  Future<void> setAuthCallback({
+    required FutureOr<String?> Function(bool) fetchToken,
+  }) async {
+    await internal.InternalConvexClient.instance.setAuthCallback(
+      fetchToken: fetchToken,
+    );
   }
+
   Future<void> clearAuth() async {
     await internal.InternalConvexClient.instance.clearAuth();
   }
 
-  static final String httpUrl = "https://rugged-warthog-11.convex.site";
+  static final String httpUrl = "https://curious-condor-688.convex.site";
 
   static Future<$http.Response> get$api$v1$$({
     Map<String, String>? headers,

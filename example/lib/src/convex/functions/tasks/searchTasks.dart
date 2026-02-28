@@ -63,12 +63,12 @@ SearchTasksResponse deserialize(Value map) {
   return SearchTasksResponse(
     body: (decodeValue(map) as IList<dynamic>)
         .map(
-          (on444630) => (on444630 as IMap<String, dynamic>).then(
-            (on654519) => SearchTasksResponseBodyItem(
-              creationTime: (on654519['_creationTime'] as double),
-              id: TasksId(on654519['_id'] as String),
-              isCompleted: (on654519['isCompleted'] as bool),
-              text: (on654519['text'] as String),
+          (on179942) => (on179942 as IMap<String, dynamic>).then(
+            (on36244) => SearchTasksResponseBodyItem(
+              creationTime: (on36244['_creationTime'] as double),
+              id: TasksId(on36244['_id'] as String),
+              isCompleted: (on36244['isCompleted'] as bool),
+              text: (on36244['text'] as String),
             ),
           ),
         )

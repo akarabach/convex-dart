@@ -11,13 +11,16 @@ part 'query22.freezed.dart';
 
 @freezed
 sealed class Query22Args with _$Query22Args {
-  const factory Query22Args({required Optional<TrueLiteral> i}) = _Query22Args;
+  const factory Query22Args({
+    @Default(Optional.undefined()) Optional<TrueLiteral> i,
+  }) = _Query22Args;
 }
 
 @freezed
 sealed class Query22Response with _$Query22Response {
-  const factory Query22Response({required Optional<TrueLiteral> i}) =
-      _Query22Response;
+  const factory Query22Response({
+    @Default(Optional.undefined()) Optional<TrueLiteral> i,
+  }) = _Query22Response;
 }
 
 Future<Query22Response> query22(Query22Args args) async {
@@ -49,9 +52,9 @@ BTreeMapStringValue serialize(Query22Args args) {
 @pragma("vm:prefer-inline")
 Query22Response deserialize(Value map) {
   return (decodeValue(map) as IMap<String, dynamic>).then(
-    (on646530) => Query22Response(
-      i: on646530.containsKey('i')
-          ? Defined<TrueLiteral>(TrueLiteral.validate(on646530['i']))
+    (on603302) => Query22Response(
+      i: on603302.containsKey('i')
+          ? Defined<TrueLiteral>(TrueLiteral.validate(on603302['i']))
           : Undefined<TrueLiteral>(),
     ),
   );
